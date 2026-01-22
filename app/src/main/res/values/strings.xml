@@ -273,6 +273,9 @@ The programming language Pascal is named after him."</string>
     <string name="instr_did_you_know">Did you know?</string>
     <string name="settings_keep_levels">Keep created stages in “endless” mode</string>
     <string name="settings_use_hex">Display stage numbers in hex</string>
+    <string name="import_data">Import Data</string>
+    <string name="export_data">Export Data</string>
+    <string name="game_progress">Game Progress</string>
     <string name="settings_activate_log">Enable debug logging</string>
     <string name="settings_fast_fast_forward">Show “really fast forward” button</string>
     <string name="game_paused">GAME PAUSED</string>

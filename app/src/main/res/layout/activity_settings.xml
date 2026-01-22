@@ -25,23 +25,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/startNewGameButton"
-        android:layout_width="194dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/hp_key"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="startNewGame"
-        android:text="@string/button_reset_progress"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/button_back"
-        />
-
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -148,21 +131,91 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:text="@string/game_progress"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+
+        <FrameLayout
+            android:id="@+id/importData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:background="#444"
+            android:gravity="center_vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/import_data"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:textColor="@color/white"
+            />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/exportData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="8dp"
+            android:padding="16dp"
+            android:background="#444"
+            android:gravity="center_vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/export_data"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:textColor="@color/white"
+            />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/startNewGameButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="startNewGame"
+            android:padding="16dp"
+            android:background="#444"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_reset_progress"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/white"
+                />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/settings_language_selection_title"
             android:textColor="@color/white"
             android:textStyle="bold"
             />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_language_selection_text"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
+            android:layout_marginBottom="8dp"
             android:textColor="@color/white"
             />
     </LinearLayout>
-
-
 
     </ScrollView>
 
