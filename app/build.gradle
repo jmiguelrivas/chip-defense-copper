@@ -10,7 +10,7 @@ android {
         applicationId 'com.rama.chipdefense_copper'
         minSdk = 21
         targetSdk = 34
-        versionCode = 55
+        versionCode = 1
         versionName = "1." + versionCode.toString()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

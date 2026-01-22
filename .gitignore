@@ -1,34 +1,27 @@
-# Default ignored files
-/shelf/
-/.idea/
-
-
+# === IDE / Editor ===
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+
+# === Android Studio / Gradle ===
+.gradle/
+.gradle/**
+/local.properties
 keystore.properties
 
-# Android build outputs
+# === Build output ===
 /build/
 **/build/
+**/build/**
 
-# APK / AAB artifacts
+# === Android artifacts ===
 *.apk
 *.aab
 *.apks
 *.xapk
 
-# Gradle output metadata
+# === Other generated files ===
 **/output-metadata.json
+/captures
+.externalNativeBuild
+.cxx

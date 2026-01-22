@@ -170,7 +170,7 @@ class Persistency(private val activity: Activity)
 
                 if (fileName !in allPrefFiles) continue
                 // optionally skip thumbnails
-                // if (fileName == filename_thumbnails) continue
+                if (fileName == filename_thumbnails) continue
 
                 val editor = prefs(fileName).edit()
                 editor.clear()
