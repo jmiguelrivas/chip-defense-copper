@@ -268,7 +268,6 @@ The programming language Pascal is named after him."</string>
     <string name="settings_show_framerate">Show frame rate</string>
     <string name="button_back">Close</string>
     <string name="button_info">Info</string>
-    <string name="button_releasenotes">Release Notes</string>
     <string name="text_about">About …</string>
     <string name="instr_did_you_know">Did you know?</string>
     <string name="settings_keep_levels">Keep created stages in “endless” mode</string>
@@ -276,6 +275,7 @@ The programming language Pascal is named after him."</string>
     <string name="import_data">Import Data</string>
     <string name="export_data">Export Data</string>
     <string name="game_progress">Game Progress</string>
+    <string name="go_back">Go back</string>
     <string name="settings_activate_log">Enable debug logging</string>
     <string name="settings_fast_fast_forward">Show “really fast forward” button</string>
     <string name="game_paused">GAME PAUSED</string>
@@ -338,8 +338,6 @@ The programming language Pascal is named after him."</string>
     <string name="coins_none">no coins</string>
     <string name="settings_disable_purchase_dialog">Disable the life purchase dialog</string>
     <string name="version">Version</string>
-    <string name="settings_language_selection_title">Language selection</string>
-    <string name="settings_language_selection_text">To change the game\'s language, use the system “Settings”  of your device and go to “App Languages”.</string>
     <string name="deco">Deco</string>
     <string name="coins_got">Got %1$d out of %2$d coins</string>
     <string name="coins_got_plural">Got %1$d out of %2$d coins</string>

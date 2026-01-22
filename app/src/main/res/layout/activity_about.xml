@@ -1,191 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/about_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/shape_border_yellow"
-    tools:context=".activities.AboutActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/contents_section"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/button_back"
-        >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/info_section"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/licence_section"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            >
-            <ImageView
-                android:id="@+id/game_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="0dp"
-                android:adjustViewBounds="true"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/game_title" />
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/info_title_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:padding="0dp"
                 android:text="@string/about_info_title"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/game_title"
                 />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/about_version"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
                 android:text="@string/version"
                 android:textColor="@color/circuit"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/info_title_view"
-                />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_wiki"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginBottom="24dp"
-                android:text="@string/link_wiki"
-                android:textColor="@color/white"
-                android:background="@drawable/hp_key"
-                android:onClick="wiki"
-                app:layout_constraintEnd_toEndOf="@id/button_releasenotes"
-                app:layout_constraintStart_toStartOf="@id/button_releasenotes"
-                app:layout_constraintTop_toBottomOf="@id/info_text_view"
-                />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_releasenotes"
-                android:layout_width="160sp"
-                android:layout_height="48dp"
-                android:layout_marginBottom="24dp"
-                android:text="@string/button_releasenotes"
-                android:textColor="@color/white"
-                android:background="@drawable/hp_key"
-                android:onClick="releaseNotes"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_wiki"
                 />
 
             <TextView
-                android:id="@+id/info_text_view"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="0dp"
-                android:gravity="start"
-                android:maxEms="20"
-                android:paddingEnd="2dp"
-                android:paddingStart="0dp"
-                android:paddingBottom="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/about_info_text"
-                android:textAlignment="viewStart"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/about_version"
              />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/licence_section"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@id/info_section"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            >
-
             <TextView
-                android:id="@+id/about_title_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="0dp"
                 android:text="@string/about_title"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 />
 
             <TextView
-                android:id="@+id/about_text_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:gravity="start"
-                android:maxEms="20"
-                android:paddingEnd="8dp"
-                android:paddingStart="0dp"
-                android:paddingBottom="8dp"
-                android:scrollbars="vertical"
                 android:text="@string/about_license"
-                android:textAlignment="viewStart"
-                android:textColor="#939393"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/about_title_view"
-                app:layout_constraintVertical_bias="0.0" />
+                android:textColor="#939393" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <FrameLayout
+                android:id="@+id/button_wiki"
+                android:onClick="wiki"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="16dp"
+                android:background="#444"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/link_wiki"
+                    android:textColor="@color/white"
+                    />
+            </FrameLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <FrameLayout
+                android:id="@+id/button_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="dismiss"
+                android:padding="16dp"
+                android:background="#366CB1"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/go_back"
+                    android:textColor="@color/white"
+                    />
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_back"
-        android:layout_width="54dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/hp_key_back"
-        android:onClick="dismiss"
-        app:layout_constraintEnd_toEndOf="@+id/deko"
-        app:layout_constraintBottom_toTopOf="@+id/deko"
-        />
-
-    <ImageView
-        android:id="@+id/deko"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/deko_border_horizontal" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

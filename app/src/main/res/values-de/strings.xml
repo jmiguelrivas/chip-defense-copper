@@ -166,7 +166,6 @@ Das Verschieben ist gleichbedeutend mit einer Division durch 2."
     <string name="button_purchase_plural">Anheuern [%d Coins]</string>
     <string name="button_back">Schließen</string>
     <string name="button_info">Info</string>
-    <string name="button_releasenotes">Versionshinweise</string>
     <string name="text_about">Über …</string>
     <string name="instr_16">Der NOP Chip (für „no operation“) tut gar nichts, belegt allerdings einen wertvollen Steckplatz.\n\nEin NOP 2 Chip tut ebenfalls nicht, und das gleich zwei Mal.</string>
     <string name="instr_endless">Du hast alle Level geschafft und das Spiel gewonnen!\n\nWenn du willst, kannst du nun im „Endlos“-Modus weitermachen, mit zufällig generierten Leveln, die immer schwieriger werden. Du beginnst diese neue Serie ohne Helden, und du kannst die bisher gesammelten CryptoCoins nicht verwenden. \n\nWie weit kommst du?</string>
@@ -257,8 +256,6 @@ Das Verschieben ist gleichbedeutend mit einer Division durch 2."
     <string name="coins_none">keinen Coin</string>
     <string name="settings_disable_purchase_dialog">Dialog „Kaufen von Leben“ deaktivieren</string>
     <string name="version">Version</string>
-    <string name="settings_language_selection_title">Sprachauswahl</string>
-    <string name="settings_language_selection_text">Die Sprache des Spiels kann in den System-Einstellungen unter „App-Sprachen“ ausgewählt werden.</string>
     <string name="deco">Deco</string>
     <string name="coins_got">%1$d von %2$d Coins erhalten</string>
     <string name="coins_got_plural">%1$d von %2$d Coins erhalten</string>

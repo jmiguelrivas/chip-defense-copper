@@ -138,7 +138,6 @@
     <string name="button_purchase_plural">"Recruter [%d écus] "</string>
     <string name="button_back">Fermer</string>
     <string name="button_info">Info</string>
-    <string name="button_releasenotes">Notes de version</string>
     <string name="text_about">A propos de…</string>
     <string name="instr_endless">Vous avez réussi tous les niveaux et gagné le jeu !\n\nSi vous le souhaitez, vous pouvez continuer en mode « endless » (sans fin), avec des circuits générés aléatoirement et de plus en plus difficiles. Vous commencerez cette série sans héros, et vous ne pourrez pas utiliser les écus collectés jusqu\'à présent. \n\nJusqu\'où irez-vous ?</string>
     <string name="message_endless_unavailable">Disponible après avoir terminé tous les niveaux précédents.</string>
@@ -227,8 +226,6 @@
     <string name="coins_none">aucun écu</string>
     <string name="settings_disable_purchase_dialog">Désactiver la boîte de dialogue de rachat des vies.</string>
     <string name="version">Version</string>
-    <string name="settings_language_selection_title">Choix de langue</string>
-    <string name="settings_language_selection_text">"Pour changer la langue du jeu, ouvrez le dialogue « Paramètres » de l'appareil et naviguez sur « Langues de l'application »."</string>
     <string name="deco">Deco</string>
     <string name="coins_got">%1$d écu reçu sur %2$d</string>
     <string name="coins_got_plural">%1$d écus reçus sur %2$d</string>

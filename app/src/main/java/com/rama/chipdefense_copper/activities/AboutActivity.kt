@@ -21,9 +21,6 @@ class AboutActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)  // method of AppCompatActivity
         setContentView(R.layout.activity_about)
-        val textView = findViewById<TextView>(R.id.about_text_view)
-        textView.movementMethod = ScrollingMovementMethod()
-        textView.movementMethod = LinkMovementMethod.getInstance()
         val info = packageManager.getPackageInfo(this.packageName, PackageManager.GET_ACTIVITIES)
         val versionView: TextView = findViewById(R.id.about_version)
         versionView.text = getString(R.string.about_version).format(info.versionName)
@@ -42,23 +39,4 @@ class AboutActivity : AppCompatActivity()
         }
         catch (_: Exception) {}  // come here if no external app can handle the request
     }
-
-    fun releaseNotes(@Suppress("UNUSED_PARAMETER") v: View)
-    {
-        try {
-
-            val contentView = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.contents_section)
-            contentView.removeAllViews()
-            val textView = TextView(this)
-            textView.text = getString(R.string.ZZ_release_notes)
-            textView.setPadding(8)
-            // textView.typeface = ResourcesCompat.getFont(this, R.font.ubuntu_mono_bold)
-            textView.setTextColor(Color.WHITE)
-            textView.textSize = 12f
-            textView.movementMethod = ScrollingMovementMethod()
-            contentView.addView(textView)
-        }
-        catch (_: Exception) {}
-    }
-
 }
