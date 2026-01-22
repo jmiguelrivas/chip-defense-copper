@@ -1,4 +1,4 @@
-# Chip Defense
+# Chip Defense: Copper
 
 __Chip defense__ is a casual game for Android devices of the _tower defense_ genre. It centres around a design of electric circuits and logical chips, evoking the good ol' days of 8 bit micro-processors.
 

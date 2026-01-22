@@ -7,7 +7,7 @@
         errorLine1="                    resources.getIdentifier(&quot;url_&quot; + name.toLowerCase(), &quot;string&quot;, gameActivity.packageName)"
         errorLine2="                                                          ~~~~~~~~~~~">
         <location
-            file="src/main/java/com/example/cpudefense/Hero.kt"
+            file="src/main/java/com/rama/chipdefense_copper/Hero.kt"
             line="659"
             column="59"/>
     </issue>
@@ -161,7 +161,7 @@
         errorLine1="                    resources.getIdentifier(&quot;url_&quot; + name.toLowerCase(), &quot;string&quot;, gameActivity.packageName)"
         errorLine2="                              ~~~~~~~~~~~~~">
         <location
-            file="src/main/java/com/example/cpudefense/Hero.kt"
+            file="src/main/java/rama/chipdefense_copper/Hero.kt"
             line="659"
             column="31"/>
     </issue>
