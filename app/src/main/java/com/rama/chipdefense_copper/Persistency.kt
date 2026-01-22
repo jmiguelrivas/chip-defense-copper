@@ -149,7 +149,7 @@ class Persistency(private val activity: Activity)
             false
         }
     }
-    
+
     /**
      * Import ALL SharedPreferences from a previously exported JSON file.
      * Existing preferences are cleared BEFORE restore.
