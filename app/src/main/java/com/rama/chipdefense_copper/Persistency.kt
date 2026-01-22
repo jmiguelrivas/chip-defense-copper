@@ -130,24 +130,18 @@ class Persistency(private val activity: Activity)
                 (trimmed.startsWith("[") && trimmed.endsWith("]"))
     }
 
-    fun exportAllDataToUri(uri: android.net.Uri): Boolean {
+    fun exportAllDataToUri(uri: Uri): Boolean {
         return try {
-            val folder = androidx.documentfile.provider.DocumentFile.fromTreeUri(activity, uri)
+            val json = exportAllDataToFile()
+            if (json.isBlank()) return false
+
+            activity.contentResolver
+                .openOutputStream(uri)
+                ?.use { output ->
+                    output.write(json.toByteArray())
+                    output.flush()
+                }
                 ?: return false
-
-            val file = folder.createFile("application/json", "cpudefense_backup.json")
-                ?: return false
-
-            val outputStream = activity.contentResolver.openOutputStream(file.uri)
-                ?: return false
-
-            val allData = exportAllDataToFile()
-
-            if (allData.isEmpty()) return false
-
-            outputStream.use { out ->
-                out.write(allData.toByteArray())
-            }
 
             true
         } catch (e: Exception) {
@@ -155,8 +149,7 @@ class Persistency(private val activity: Activity)
             false
         }
     }
-
-
+    
     /**
      * Import ALL SharedPreferences from a previously exported JSON file.
      * Existing preferences are cleared BEFORE restore.
@@ -174,6 +167,11 @@ class Persistency(private val activity: Activity)
                 gson.fromJson(json, type)
 
             for ((fileName, entries) in imported) {
+
+                if (fileName !in allPrefFiles) continue
+                // optionally skip thumbnails
+                // if (fileName == filename_thumbnails) continue
+
                 val editor = prefs(fileName).edit()
                 editor.clear()
 
@@ -184,6 +182,7 @@ class Persistency(private val activity: Activity)
                         is Int     -> editor.putInt(key, value)
                         is Long    -> editor.putLong(key, value)
                         is Float   -> editor.putFloat(key, value)
+                        is Double  -> editor.putFloat(key, value.toFloat())
                         else       -> editor.putString(key, gson.toJson(value))
                     }
                 }

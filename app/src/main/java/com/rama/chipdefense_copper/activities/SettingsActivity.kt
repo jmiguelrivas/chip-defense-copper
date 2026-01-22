@@ -25,7 +25,7 @@ class SettingsActivity : AppCompatActivity()
     var settings = Settings()
     private var isEndlessAvailable = false
 
-    private lateinit var exportLauncher: ActivityResultLauncher<Intent>
+    private lateinit var exportLauncher: ActivityResultLauncher<String>
     private lateinit var importLauncher: ActivityResultLauncher<Array<String>>
 
     private fun toast(message: String) {
@@ -33,14 +33,20 @@ class SettingsActivity : AppCompatActivity()
     }
 
     private fun restartApp() {
-        val intent = packageManager.getLaunchIntentForPackage(packageName)
-        intent?.addFlags(
-                Intent.FLAG_ACTIVITY_CLEAR_TOP or
-                        Intent.FLAG_ACTIVITY_NEW_TASK or
+        val launchIntent = packageManager
+            .getLaunchIntentForPackage(packageName)
+            ?: return
+
+        launchIntent.addFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK or
                         Intent.FLAG_ACTIVITY_CLEAR_TASK
         )
-        startActivity(intent)
+
+        startActivity(launchIntent)
+
+        // Ensure the current process is killed
         finishAffinity()
+        Runtime.getRuntime().exit(0)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,29 +67,36 @@ class SettingsActivity : AppCompatActivity()
         }
 
         // EXPORT launcher
-        exportLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val treeUri = result.data?.data
-                if (treeUri != null) {
-
-                    contentResolver.takePersistableUriPermission(
-                            treeUri,
-                            Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                    )
-
+        exportLauncher =
+            registerForActivityResult(
+                    ActivityResultContracts.CreateDocument("application/json")
+            ) { uri ->
+                if (uri != null) {
                     val persistency = Persistency(this)
-                    val success = persistency.exportAllDataToUri(treeUri)
+                    val success = persistency.exportAllDataToUri(uri)
 
-                    if (success) toast("Export successful!")
-                    else toast("Export failed.")
+                    if (success) {
+                        toast("Export successful!")
+                    } else {
+                        toast("Export failed.")
+                    }
+                } else {
+                    toast("Export canceled.")
                 }
             }
-        }
+
 
         // IMPORT launcher
-        // IMPORT launcher
-        importLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        importLauncher = registerForActivityResult(
+                ActivityResultContracts.OpenDocument()
+        ) { uri ->
             if (uri != null) {
+
+                contentResolver.takePersistableUriPermission(
+                        uri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+
                 val persistency = Persistency(this)
                 val success = persistency.importAllDataFromUri(uri)
 
@@ -97,7 +110,6 @@ class SettingsActivity : AppCompatActivity()
                 toast("No file selected.")
             }
         }
-
     }
 
     private fun loadPrefs()
@@ -194,14 +206,7 @@ class SettingsActivity : AppCompatActivity()
     // ----------------------------
 
     private fun exportData() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
-            addFlags(
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION or
-                            Intent.FLAG_GRANT_WRITE_URI_PERMISSION or
-                            Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-            )
-        }
-        exportLauncher.launch(intent)
+        exportLauncher.launch("cpudefense_backup.json")
     }
 
     private fun importData() {
