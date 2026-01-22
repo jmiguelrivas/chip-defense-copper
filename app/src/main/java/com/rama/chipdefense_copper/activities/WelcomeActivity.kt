@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -58,36 +59,36 @@ class WelcomeActivity : AppCompatActivity() {
             /** displays the max level reached so far as graphical display */
     {
         // display as graphics:
-        var displayLit = true
-        val display =
-            SevenSegmentDisplay(4, (80 * resources.displayMetrics.scaledDensity).toInt(), this)
-        val imageView = findViewById<ImageView>(R.id.sevenSegmentDisplay)
-        val radix = if (settings.showLevelsInHex) 16 else 10
-        if (maxLevel.number == 0)
-            displayLit = false
-        when (maxLevel.series) {
-            GameMechanics.SERIES_NORMAL -> imageView.setImageBitmap(
-                display.getDisplayBitmap(
-                        maxLevel.number,
-                        SevenSegmentDisplay.LedColors.GREEN,
-                        displayLit, radix
-                )
-            )
-            GameMechanics.SERIES_TURBO -> imageView.setImageBitmap(
-                display.getDisplayBitmap(
-                        maxLevel.number,
-                        SevenSegmentDisplay.LedColors.YELLOW,
-                        displayLit, radix
-                )
-            )
-            else -> imageView.setImageBitmap(
-                display.getDisplayBitmap(
-                        maxLevel.number,
-                        SevenSegmentDisplay.LedColors.RED,
-                        displayLit, radix
-                )
-            )
-        }
+//        var displayLit = true
+//        val display =
+//            SevenSegmentDisplay(4, (80 * resources.displayMetrics.scaledDensity).toInt(), this)
+//        val imageView = findViewById<ImageView>(R.id.sevenSegmentDisplay)
+//        val radix = if (settings.showLevelsInHex) 16 else 10
+//        if (maxLevel.number == 0)
+//            displayLit = false
+//        when (maxLevel.series) {
+//            GameMechanics.SERIES_NORMAL -> imageView.setImageBitmap(
+//                display.getDisplayBitmap(
+//                        maxLevel.number,
+//                        SevenSegmentDisplay.LedColors.GREEN,
+//                        displayLit, radix
+//                )
+//            )
+//            GameMechanics.SERIES_TURBO -> imageView.setImageBitmap(
+//                display.getDisplayBitmap(
+//                        maxLevel.number,
+//                        SevenSegmentDisplay.LedColors.YELLOW,
+//                        displayLit, radix
+//                )
+//            )
+//            else -> imageView.setImageBitmap(
+//                display.getDisplayBitmap(
+//                        maxLevel.number,
+//                        SevenSegmentDisplay.LedColors.RED,
+//                        displayLit, radix
+//                )
+//            )
+//        }
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -146,15 +147,15 @@ class WelcomeActivity : AppCompatActivity() {
         if (maxLevel.series == 1 && maxLevel.number == 0)  // no level info, try other file
             migrateLevelInfo(prefsLegacy, prefsState)
         showLevelReached()
-        val buttonResume = findViewById<Button>(R.id.continueGameButton)
-        when {
-            maxLevel.number == 0 -> buttonResume.text = getString(R.string.button_start_game)
-            gameState == "running" -> buttonResume.text = getString(R.string.button_resume)
-            gameState == "complete" -> {
-                buttonResume.text = getString(R.string.play_level_x).format(Stage.numberToString(nextLevelToPlay.number, settings.showLevelsInHex))
-            }
-            else -> buttonResume.isEnabled = false
-        }
+//        val buttonResume = findViewById<FrameLayout>(R.id.continueGameButton)
+//        when {
+//            maxLevel.number == 0 -> buttonResume.text = getString(R.string.button_start_game)
+//            gameState == "running" -> buttonResume.text = getString(R.string.button_resume)
+//            gameState == "complete" -> {
+//                buttonResume.text = getString(R.string.play_level_x).format(Stage.numberToString(nextLevelToPlay.number, settings.showLevelsInHex))
+//            }
+//            else -> buttonResume.isEnabled = false
+//        }
         // uncomment if there is a message to display
         // showVersionMessage()
     }
