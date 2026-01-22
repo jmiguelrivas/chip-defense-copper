@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.util.Base64
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -160,13 +161,17 @@ class Persistency(private val activity: Activity)
      * Import ALL SharedPreferences from a previously exported JSON file.
      * Existing preferences are cleared BEFORE restore.
      */
-    fun importAllDataFromUri(uri: android.net.Uri): Boolean {
+    fun importAllDataFromUri(uri: Uri): Boolean {
         return try {
-            val json = activity.contentResolver.openInputStream(uri)?.bufferedReader().use { it?.readText() }
+            val json = activity.contentResolver
+                .openInputStream(uri)
+                ?.bufferedReader()
+                ?.use { it.readText() }
                 ?: return false
 
             val type = object : TypeToken<Map<String, Map<String, Any?>>>() {}.type
-            val imported: Map<String, Map<String, Any?>> = gson.fromJson(json, type)
+            val imported: Map<String, Map<String, Any?>> =
+                gson.fromJson(json, type)
 
             for ((fileName, entries) in imported) {
                 val editor = prefs(fileName).edit()
@@ -185,14 +190,12 @@ class Persistency(private val activity: Activity)
                 editor.apply()
             }
 
-            toast("Import completed. Restart the game.")
             true
         } catch (e: Exception) {
-            toast("Import failed: ${e.message}")
+            e.printStackTrace()
             false
         }
     }
-
 
     private fun toast(msg: String)
     {

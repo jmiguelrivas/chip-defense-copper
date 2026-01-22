@@ -24,13 +24,23 @@ class SettingsActivity : AppCompatActivity()
 {
     var settings = Settings()
     private var isEndlessAvailable = false
-    private val EXPORT_REQUEST_CODE = 1001
 
     private lateinit var exportLauncher: ActivityResultLauncher<Intent>
     private lateinit var importLauncher: ActivityResultLauncher<Array<String>>
 
     private fun toast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun restartApp() {
+        val intent = packageManager.getLaunchIntentForPackage(packageName)
+        intent?.addFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                        Intent.FLAG_ACTIVITY_NEW_TASK or
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK
+        )
+        startActivity(intent)
+        finishAffinity()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,39 +81,24 @@ class SettingsActivity : AppCompatActivity()
         }
 
         // IMPORT launcher
+        // IMPORT launcher
         importLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
             if (uri != null) {
                 val persistency = Persistency(this)
-                persistency.importAllDataFromUri(uri)
+                val success = persistency.importAllDataFromUri(uri)
+
+                if (success) {
+                    toast("Import completed. Restarting…")
+                    restartApp()
+                } else {
+                    toast("Import failed.")
+                }
             } else {
                 toast("No file selected.")
             }
         }
+
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == EXPORT_REQUEST_CODE && resultCode == RESULT_OK) {
-            data?.data?.let { treeUri ->
-                // Persist permission for later use
-                contentResolver.takePersistableUriPermission(
-                        treeUri,
-                        Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-                )
-
-                // Now pass the URI to Persistency to export
-                val persistency = Persistency(this)
-                val success = persistency.exportAllDataToUri(treeUri)
-
-                if (success) {
-                    Toast.makeText(this, "Export successful!", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Export failed.", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
 
     private fun loadPrefs()
     {
