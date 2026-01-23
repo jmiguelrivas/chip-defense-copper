@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -13,206 +12,203 @@
         android:layout_height="wrap_content"
         android:paddingBottom="16dp"
         android:text="@string/settings_title"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        android:textColor="@color/foreground_color"
+        android:textSize="24sp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        >
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_disable_purchase_dialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="#1f1f21"
-            android:layout_marginBottom="8dp"
-            android:onClick="savePrefs"
-            android:text="@string/settings_disable_purchase_dialog"
-            android:textColor="#FFFFFF" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_disable_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="#1f1f21"
-            android:layout_marginBottom="8dp"
-            android:onClick="savePrefs"
-            android:text="@string/settings_disable_background"
-            android:textColor="#FFFFFF" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_disable_purchase_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="#1f1f21"
+                android:layout_marginBottom="8dp"
+                android:onClick="savePrefs"
+                android:text="@string/settings_disable_purchase_dialog"
+                android:textColor="@color/foreground_color" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_show_atts_in_range"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="#1f1f21"
-            android:layout_marginBottom="8dp"
-            android:onClick="savePrefs"
-            android:text="@string/settings_show_atts_in_range"
-            android:textColor="#FFFFFF" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_disable_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="#1f1f21"
+                android:layout_marginBottom="8dp"
+                android:onClick="savePrefs"
+                android:text="@string/settings_disable_background"
+                android:textColor="@color/foreground_color" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_use_large_buttons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="#1f1f21"
-            android:layout_marginBottom="8dp"
-            android:onClick="savePrefs"
-            android:text="@string/settings_use_large_buttons"
-            android:textColor="#FFFFFF" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_show_atts_in_range"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="#1f1f21"
+                android:layout_marginBottom="8dp"
+                android:onClick="savePrefs"
+                android:text="@string/settings_show_atts_in_range"
+                android:textColor="@color/foreground_color" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_show_framerate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="#1f1f21"
-            android:layout_marginBottom="8dp"
-            android:onClick="savePrefs"
-            android:text="@string/settings_show_framerate"
-            android:textColor="#FFFFFF" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_use_large_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="#1f1f21"
+                android:layout_marginBottom="8dp"
+                android:onClick="savePrefs"
+                android:text="@string/settings_use_large_buttons"
+                android:textColor="@color/foreground_color" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_show_framerate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="#1f1f21"
+                android:layout_marginBottom="8dp"
+                android:onClick="savePrefs"
+                android:text="@string/settings_show_framerate"
+                android:textColor="@color/foreground_color" />
 
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_fast_fast_forward"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="#1f1f21"
-            android:layout_marginBottom="8dp"
-            android:onClick="savePrefs"
-            android:text="@string/settings_fast_fast_forward"
-            android:textColor="#FFFFFF" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_fast_fast_forward"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="#1f1f21"
+                android:layout_marginBottom="8dp"
+                android:onClick="savePrefs"
+                android:text="@string/settings_fast_fast_forward"
+                android:textColor="@color/foreground_color" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_keep_levels"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="#1f1f21"
-            android:layout_marginBottom="8dp"
-            android:onClick="savePrefs"
-            android:text="@string/settings_keep_levels"
-            android:textColor="#FFFFFF" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_keep_levels"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="#1f1f21"
+                android:layout_marginBottom="8dp"
+                android:onClick="savePrefs"
+                android:text="@string/settings_keep_levels"
+                android:textColor="@color/foreground_color" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_use_hex"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="#1f1f21"
-            android:layout_marginBottom="8dp"
-            android:onClick="savePrefs"
-            android:text="@string/settings_use_hex"
-            android:textColor="#FFFFFF" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_use_hex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="#1f1f21"
+                android:layout_marginBottom="8dp"
+                android:onClick="savePrefs"
+                android:text="@string/settings_use_hex"
+                android:textColor="@color/foreground_color" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_activate_log"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:padding="16dp"
-            android:background="#1f1f21"
-            android:layout_marginBottom="8dp"
-            android:onClick="savePrefs"
-            android:text="@string/settings_activate_log"
-            android:textColor="#FFFFFF"
-            android:visibility="gone" />
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_activate_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:padding="16dp"
+                android:background="#1f1f21"
+                android:layout_marginBottom="8dp"
+                android:onClick="savePrefs"
+                android:text="@string/settings_activate_log"
+                android:textColor="@color/foreground_color"
+                android:visibility="gone" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:text="@string/game_progress"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            />
-
-        <FrameLayout
-            android:id="@+id/importData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="#444"
-            android:gravity="center_vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/import_data"
-            android:textColor="@color/white"
-            />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/exportData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_marginBottom="8dp"
-            android:padding="16dp"
-            android:background="#444"
-            android:gravity="center_vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/export_data"
-            android:textColor="@color/white"
-            />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/startNewGameButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="startNewGame"
-            android:padding="16dp"
-            android:background="#444"
-            android:gravity="center_vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/button_reset_progress"
-                android:textColor="@color/white"
-                />
-        </FrameLayout>
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="@string/game_progress"
+                android:textColor="@color/foreground_color"
+                android:textSize="18sp" />
 
-        <FrameLayout
-            android:id="@+id/button_back"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="dismiss"
-            android:padding="16dp"
-            android:background="#366CB1"
-            android:gravity="center_vertical">
-            <TextView
+            <FrameLayout
+                android:id="@+id/importData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/go_back"
-                android:textColor="@color/white"
-                />
-        </FrameLayout>
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="#444"
+                android:gravity="center_vertical">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/import_data"
+                    android:textColor="@color/foreground_color" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/exportData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginBottom="8dp"
+                android:padding="16dp"
+                android:background="#444"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/export_data"
+                    android:textColor="@color/foreground_color" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/startNewGameButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="startNewGame"
+                android:padding="16dp"
+                android:background="#444"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_reset_progress"
+                    android:textColor="@color/foreground_color" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/button_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="dismiss"
+                android:padding="16dp"
+                android:background="#366CB1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/go_back"
+                    android:textColor="@color/foreground_color" />
+            </FrameLayout>
+
+        </LinearLayout>
 
     </ScrollView>
 

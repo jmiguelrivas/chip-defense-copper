@@ -4794,7 +4794,7 @@
         id="IconLocation"
         message="Found bitmap drawable `res/drawable/move_unlock.png` in densityless folder">
         <location
-            file="src/main/res/drawable/move_unlock.png"/>
+            file="src/main/res/drawable/drag_pan.xml"/>
     </issue>
 
     <issue

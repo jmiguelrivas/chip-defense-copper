@@ -5,34 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_border_yellow"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    >
-
-    <ImageView
-        android:id="@+id/deko"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHorizontal_weight="25"
-        android:adjustViewBounds="true"
-        android:scaleType="fitEnd"
-        app:layout_constraintBottom_toBottomOf="@id/inner_layout"
-        app:layout_constraintEnd_toStartOf="@id/inner_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/inner_layout"
-        app:srcCompat="@drawable/deko_border"
-        tools:ignore="ContentDescription" />
+    app:layout_constraintEnd_toEndOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/inner_layout"
         android:layout_width="0dp"
         app:layout_constraintHorizontal_weight="75"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/deko"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginEnd="16dp">
 
         <TextView
             android:id="@+id/question"
