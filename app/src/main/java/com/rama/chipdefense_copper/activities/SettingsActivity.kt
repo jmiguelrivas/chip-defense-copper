@@ -170,10 +170,7 @@ class SettingsActivity : BaseFullscreenActivity() {
                 ViewGroup.LayoutParams.WRAP_CONTENT
         )
         dialog.setCancelable(true)
-        dialog.findViewById<TextView>(R.id.question).text =
-            resources.getText(R.string.query_restart_game)
-        dialog.findViewById<TextView>(R.id.button1)?.let {
-            it.text = resources.getText(R.string.choice_1)
+        dialog.findViewById<TextView>(R.id.reset_all)?.let {
             it.setOnClickListener {
                 val intent = Intent(this, GameActivity::class.java)
                 intent.putExtra("RESET_PROGRESS", true)
@@ -183,8 +180,7 @@ class SettingsActivity : BaseFullscreenActivity() {
                 dismiss(v)
             }
         }
-        dialog.findViewById<TextView>(R.id.button2)?.let {
-            it.text = resources.getText(R.string.choice_2)
+        dialog.findViewById<TextView>(R.id.reset_endless)?.let {
             if (isEndlessAvailable) {
                 it.setOnClickListener {
                     val intent = Intent(this, GameActivity::class.java)
@@ -194,12 +190,9 @@ class SettingsActivity : BaseFullscreenActivity() {
                     dialog.dismiss()
                     dismiss(v)
                 }
-            } else {
-                it.setTextColor(Color.BLACK)
             }
         }
-        dialog.findViewById<TextView>(R.id.button3)?.let {
-            it.text = resources.getText(R.string.choice_3)
+        dialog.findViewById<TextView>(R.id.close_modal)?.let {
             it.setOnClickListener {
                 dialog.dismiss()
             }

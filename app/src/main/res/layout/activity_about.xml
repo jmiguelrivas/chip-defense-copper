@@ -10,16 +10,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
         android:id="@+id/root"
         android:layout_height="match_parent">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/about_info_title"
-            android:textColor="@color/foreground_color"
-            android:textSize="24sp" />
+            android:text="About the game"
+            style="@style/Title" />
 
         <ScrollView
             android:layout_width="match_parent"

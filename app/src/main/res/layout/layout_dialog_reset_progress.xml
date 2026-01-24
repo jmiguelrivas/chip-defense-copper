@@ -1,93 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@color/background_secondary_color"
+    android:focusableInTouchMode="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/inner_layout"
-        android:layout_width="0dp"
-        app:layout_constraintHorizontal_weight="75"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp">
+        android:text="Do you want to reset all your current progress?"
+        style="@style/Title" />
 
-        <TextView
-            android:id="@+id/question"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
-            android:paddingTop="0dp"
-            android:paddingBottom="16dp"
-            android:text="Question"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dialog_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/reset_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset All My Progress"
+        style="@style/Widget.CpuDefense.Button.Danger" />
 
-        <TextView
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="16dp"
-            android:paddingEnd="16dp"
-            android:background="@color/black"
-            android:text="Answer 1"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="@color/choice_1"
-            android:textSize="@dimen/dialog_text_size"
-            app:backgroundTint="@null"
-            app:layout_constraintStart_toStartOf="@id/question"
-            app:layout_constraintTop_toBottomOf="@id/question"
-            tools:ignore="HardcodedText" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/reset_endless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Onle Reset Endless Mode"
+        style="@style/Widget.CpuDefense.Button.Danger" />
 
-        <TextView
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="16dp"
-            android:layout_marginBottom="0dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="16dp"
-            android:background="@color/black"
-            android:text="Answer 2"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="@color/choice_2"
-            android:textSize="@dimen/dialog_text_size"
-            app:backgroundTint="@null"
-            app:layout_constraintStart_toStartOf="@id/question"
-            app:layout_constraintTop_toBottomOf="@id/button1"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:background="@color/black"
-            android:text="Answer 3"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"
-            android:textColor="@color/choice_3"
-            android:textSize="@dimen/dialog_text_size"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/question"
-            app:layout_constraintTop_toBottomOf="@id/button2"
-            tools:ignore="HardcodedText" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/close_modal"
+        android:text="Cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.CpuDefense.Button" />
+</LinearLayout>
