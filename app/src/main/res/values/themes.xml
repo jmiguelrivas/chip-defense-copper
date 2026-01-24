@@ -3,6 +3,10 @@
     <style name="Theme.CpuDefense" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="windowNoTitle">true</item>
         <item name="android:windowNoTitle">true</item>
+
+        <item name="android:fontFamily">@font/jersey25_regular</item>
+        <item name="fontFamily">@font/jersey25_regular</item>
+
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -16,10 +20,12 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="AlertDialogCustom" parent="@android:style/Theme.Material.Dialog">
+    <style name="AlertDialogCustom" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+
+        <item name="android:fontFamily">@font/jersey25_regular</item>
+        <item name="fontFamily">@font/jersey25_regular</item>
+
         <item name="android:textColor">@android:color/holo_red_dark</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:headerDividersEnabled">true</item>
         <item name="android:background">@android:color/holo_blue_dark</item>
     </style>
 </resources>

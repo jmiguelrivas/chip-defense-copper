@@ -206,9 +206,9 @@ class GameView(context: Context) :
     private fun setComputerTypeface() {
         try {
             monoTypeface =
-                ResourcesCompat.getFont(context, R.font.ubuntu_mono) ?: Typeface.MONOSPACE
+                ResourcesCompat.getFont(context, R.font.jersey25_regular) ?: Typeface.MONOSPACE
             boldTypeface =
-                ResourcesCompat.getFont(context, R.font.ubuntu_mono_bold) ?: Typeface.MONOSPACE
+                ResourcesCompat.getFont(context, R.font.jersey25_regular) ?: Typeface.MONOSPACE
         } catch (ex: Exception) {
             monoTypeface = Typeface.MONOSPACE
             boldTypeface = Typeface.MONOSPACE

@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="CustomAlertDialog" parent="android:Theme.Material.Dialog.Alert">
+        <item name="android:fontFamily">@font/jersey25_regular</item>
+        <item name="fontFamily">@font/jersey25_regular</item>
+
         <item name="android:background">@color/black</item>
         <item name="android:textColorPrimary">@color/text_amber</item> <!-- influences title -->
         <item name="android:textSize">16sp</item> <!-- influences the button text -->
-        <item name="android:typeface">monospace</item> <!-- influences the button text -->
+        <!--        <item name="android:typeface">monospace</item> &lt;!&ndash; influences the button text &ndash;&gt;-->
         <item name="android:textColor">@color/text_lightgreen</item> <!-- influences nothing -->
         <item name="android:borderlessButtonStyle">@style/PositiveButtonStyle</item>
         <item name="android:buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
         <item name="android:buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
-        <item name="android:negativeButtonText">TEST</item> <!-- sets text, but is overridden in source code -->
+        <item name="android:negativeButtonText">TEST
+        </item> <!-- sets text, but is overridden in source code -->
         <!--
         <item name="colorPrimary">@color/text_amber</item>
         <item name="android:textColorPrimary">@color/text_green</item>
@@ -30,19 +35,44 @@
     </style>
     -->
     </style>
+
     <style name="NegativeButtonStyle" parent="android:Widget.Material.Button">
         <item name="android:textColor">@color/text_lightgreen</item>
         <item name="android:textColorPrimary">@color/text_lightgreen</item>
         <item name="android:textColorSecondary">@color/text_lightgreen</item>
     </style>
+
     <style name="PositiveButtonStyle">
         <item name="android:textColor">@color/text_lightgreen</item>
     </style>
+
     <style name="WelcomeButtonStyle">
         <item name="android:textColor">@color/text_lightgreen</item>
         <item name="android:background">@color/black</item>
     </style>
+
     <style name="textStyle">
         <item name="android:textColor">@color/text_lightgreen</item>
+    </style>
+
+    <!-- NEW -->
+
+    <style name="Widget.CpuDefense.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/jersey25_regular</item>
+        <item name="fontFamily">@font/jersey25_regular</item>
+        <item name="android:textColor">@color/foreground_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:backgroundTint">@color/button_color</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="Widget.CpuDefense.Button.Danger" parent="Widget.CpuDefense.Button">
+        <item name="android:backgroundTint">@color/button_danger_color</item>
+    </style>
+
+    <style name="Widget.CpuDefense.Button.Title" parent="Widget.CpuDefense.Button">
+        <item name="android:textSize">22sp</item>
     </style>
 </resources>

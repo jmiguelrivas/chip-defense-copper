@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     android:id="@+id/root"
     android:background="@color/background_color"
+    android:focusableInTouchMode="true"
     android:layout_height="match_parent">
 
     <TextView
@@ -137,78 +137,35 @@
                 android:textColor="@color/foreground_color"
                 android:textSize="18sp" />
 
-            <FrameLayout
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/importData"
+                android:text="@string/import_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="16dp"
-                android:layout_marginBottom="8dp"
-                android:background="#444"
-                android:gravity="center_vertical">
+                style="@style/Widget.CpuDefense.Button.Danger" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/import_data"
-                    android:textColor="@color/foreground_color" />
-            </FrameLayout>
-
-            <FrameLayout
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/exportData"
+                android:text="@string/export_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_marginBottom="8dp"
-                android:padding="16dp"
-                android:background="#444"
-                android:gravity="center_vertical">
+                style="@style/Widget.CpuDefense.Button.Danger" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/export_data"
-                    android:textColor="@color/foreground_color" />
-            </FrameLayout>
-
-            <FrameLayout
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/startNewGameButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:clickable="true"
-                android:focusable="true"
                 android:onClick="startNewGame"
-                android:padding="16dp"
-                android:background="#444"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/button_reset_progress"
-                    android:textColor="@color/foreground_color" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/button_back"
+                android:text="@string/button_reset_progress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="dismiss"
-                android:padding="16dp"
-                android:background="#366CB1"
-                android:gravity="center_vertical">
+                style="@style/Widget.CpuDefense.Button.Danger" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/go_back"
-                    android:textColor="@color/foreground_color" />
-            </FrameLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_back"
+                android:onClick="dismiss"
+                android:text="@string/go_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.CpuDefense.Button" />
 
         </LinearLayout>
 
