@@ -10,70 +10,26 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowInsets
-import android.view.WindowInsetsController
-import android.view.WindowManager
 import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
+import com.rama.chipdefense_copper.BaseFullscreenActivity
 import com.rama.chipdefense_copper.GameMechanics
 import com.rama.chipdefense_copper.Persistency
 import com.rama.chipdefense_copper.R
 import com.rama.chipdefense_copper.Settings
 import com.rama.chipdefense_copper.Stage
-import com.rama.chipdefense_copper.gameElements.SevenSegmentDisplay
-import com.rama.chipdefense_copper.utils.dp
 
-class WelcomeActivity : AppCompatActivity() {
+class WelcomeActivity : BaseFullscreenActivity() {
     private var info: PackageInfo? = null
     private var settings = Settings()
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) {
-            val controller =
-                WindowCompat.getInsetsController(window, window.decorView)
-            controller?.hide(WindowInsets.Type.systemBars())
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
-
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        window.attributes = window.attributes.apply {
-            layoutInDisplayCutoutMode =
-                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-        }
-
-        val controller = WindowCompat.getInsetsController(window, window.decorView)
-        controller?.let {
-            it.hide(WindowInsets.Type.systemBars())
-            it.systemBarsBehavior =
-                WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
 
         setContentView(R.layout.activity_welcome)
 
-        val padding = dp(16)
-
-        val root = findViewById<View>(R.id.welcome)
-        root.setOnApplyWindowInsetsListener { view, insets ->
-            view.setPadding(
-                    insets.systemWindowInsetLeft + padding,
-                    insets.systemWindowInsetTop + padding,
-                    insets.systemWindowInsetRight + padding,
-                    insets.systemWindowInsetBottom + padding
-            )
-            insets
-        }
+        applySystemInsets(findViewById<View>(R.id.welcome))
 
         info = packageManager.getPackageInfo(
                 this.packageName,
