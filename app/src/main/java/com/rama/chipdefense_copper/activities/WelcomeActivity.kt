@@ -29,7 +29,7 @@ class WelcomeActivity : BaseFullscreenActivity() {
 
         setContentView(R.layout.activity_welcome)
 
-        applySystemInsets(findViewById<View>(R.id.welcome))
+        applySystemInsets(findViewById<View>(R.id.root))
 
         info = packageManager.getPackageInfo(
                 this.packageName,

@@ -18,10 +18,10 @@ import com.rama.chipdefense_copper.R
 import com.rama.chipdefense_copper.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.ActivityResultLauncher
+import com.rama.chipdefense_copper.BaseFullscreenActivity
 
 
-class SettingsActivity : AppCompatActivity()
-{
+class SettingsActivity : BaseFullscreenActivity() {
     var settings = Settings()
     private var isEndlessAvailable = false
 
@@ -55,6 +55,8 @@ class SettingsActivity : AppCompatActivity()
         if (intent.getIntExtra("MAXSERIES", 1) >= GameMechanics.SERIES_ENDLESS)
             isEndlessAvailable = true
         setContentView(R.layout.activity_settings)
+        applySystemInsets(findViewById<View>(R.id.root))
+
         loadPrefs()
 
         // --------- NEW: Wire Import/Export Buttons ----------
@@ -112,16 +114,20 @@ class SettingsActivity : AppCompatActivity()
         }
     }
 
-    private fun loadPrefs()
-    {
+    private fun loadPrefs() {
         val prefs = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.loadFromFile(prefs)
-        findViewById<SwitchCompat>(R.id.switch_disable_purchase_dialog)?.isChecked = settings.configDisablePurchaseDialog
-        findViewById<SwitchCompat>(R.id.switch_disable_background)?.isChecked = settings.configDisableBackground
-        findViewById<SwitchCompat>(R.id.switch_show_atts_in_range)?.isChecked = settings.configShowAttackersInRange
-        findViewById<SwitchCompat>(R.id.switch_use_large_buttons)?.isChecked = settings.configUseLargeButtons
+        findViewById<SwitchCompat>(R.id.switch_disable_purchase_dialog)?.isChecked =
+            settings.configDisablePurchaseDialog
+        findViewById<SwitchCompat>(R.id.switch_disable_background)?.isChecked =
+            settings.configDisableBackground
+        findViewById<SwitchCompat>(R.id.switch_show_atts_in_range)?.isChecked =
+            settings.configShowAttackersInRange
+        findViewById<SwitchCompat>(R.id.switch_use_large_buttons)?.isChecked =
+            settings.configUseLargeButtons
         findViewById<SwitchCompat>(R.id.switch_show_framerate)?.isChecked = settings.showFrameRate
-        findViewById<SwitchCompat>(R.id.switch_fast_fast_forward)?.isChecked = settings.fastFastForward
+        findViewById<SwitchCompat>(R.id.switch_fast_fast_forward)?.isChecked =
+            settings.fastFastForward
         findViewById<SwitchCompat>(R.id.switch_keep_levels)?.isChecked = settings.keepLevels
         findViewById<SwitchCompat>(R.id.switch_use_hex)?.isChecked = settings.showLevelsInHex
         findViewById<SwitchCompat>(R.id.switch_activate_log)?.let {
@@ -134,28 +140,33 @@ class SettingsActivity : AppCompatActivity()
     }
 
     @Suppress("UNUSED_PARAMETER")
-    fun savePrefs(v: View)
-    {
-        settings.configDisablePurchaseDialog = findViewById<SwitchCompat>(R.id.switch_disable_purchase_dialog)?.isChecked ?: false
-        settings.configDisableBackground = findViewById<SwitchCompat>(R.id.switch_disable_background)?.isChecked ?: false
-        settings.configShowAttackersInRange = findViewById<SwitchCompat>(R.id.switch_show_atts_in_range)?.isChecked ?: false
-        settings.configUseLargeButtons = findViewById<SwitchCompat>(R.id.switch_use_large_buttons)?.isChecked ?: false
-        settings.showFrameRate = findViewById<SwitchCompat>(R.id.switch_show_framerate)?.isChecked ?: false
-        settings.fastFastForward = findViewById<SwitchCompat>(R.id.switch_fast_fast_forward)?.isChecked ?: false
+    fun savePrefs(v: View) {
+        settings.configDisablePurchaseDialog =
+            findViewById<SwitchCompat>(R.id.switch_disable_purchase_dialog)?.isChecked ?: false
+        settings.configDisableBackground =
+            findViewById<SwitchCompat>(R.id.switch_disable_background)?.isChecked ?: false
+        settings.configShowAttackersInRange =
+            findViewById<SwitchCompat>(R.id.switch_show_atts_in_range)?.isChecked ?: false
+        settings.configUseLargeButtons =
+            findViewById<SwitchCompat>(R.id.switch_use_large_buttons)?.isChecked ?: false
+        settings.showFrameRate =
+            findViewById<SwitchCompat>(R.id.switch_show_framerate)?.isChecked ?: false
+        settings.fastFastForward =
+            findViewById<SwitchCompat>(R.id.switch_fast_fast_forward)?.isChecked ?: false
         settings.keepLevels = findViewById<SwitchCompat>(R.id.switch_keep_levels)?.isChecked ?: true
-        settings.showLevelsInHex = findViewById<SwitchCompat>(R.id.switch_use_hex)?.isChecked ?: false
-        settings.activateLogging = findViewById<SwitchCompat>(R.id.switch_activate_log)?.isChecked ?: false
+        settings.showLevelsInHex =
+            findViewById<SwitchCompat>(R.id.switch_use_hex)?.isChecked ?: false
+        settings.activateLogging =
+            findViewById<SwitchCompat>(R.id.switch_activate_log)?.isChecked ?: false
         val prefs = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.saveToFile(prefs)
     }
 
-    fun dismiss(@Suppress("UNUSED_PARAMETER") v: View)
-    {
+    fun dismiss(@Suppress("UNUSED_PARAMETER") v: View) {
         finish()
     }
 
-    fun startNewGame(@Suppress("UNUSED_PARAMETER") v: View)
-    {
+    fun startNewGame(@Suppress("UNUSED_PARAMETER") v: View) {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.layout_dialog_reset_progress)
         dialog.window?.setLayout(
@@ -163,8 +174,9 @@ class SettingsActivity : AppCompatActivity()
                 ViewGroup.LayoutParams.WRAP_CONTENT
         )
         dialog.setCancelable(true)
-        dialog.findViewById<TextView>(R.id.question).text = resources.getText(R.string.query_restart_game)
-        dialog.findViewById<TextView>(R.id.button1)?.let{
+        dialog.findViewById<TextView>(R.id.question).text =
+            resources.getText(R.string.query_restart_game)
+        dialog.findViewById<TextView>(R.id.button1)?.let {
             it.text = resources.getText(R.string.choice_1)
             it.setOnClickListener {
                 val intent = Intent(this, GameActivity::class.java)
@@ -175,7 +187,7 @@ class SettingsActivity : AppCompatActivity()
                 dismiss(v)
             }
         }
-        dialog.findViewById<TextView>(R.id.button2)?.let{
+        dialog.findViewById<TextView>(R.id.button2)?.let {
             it.text = resources.getText(R.string.choice_2)
             if (isEndlessAvailable) {
                 it.setOnClickListener {
@@ -186,13 +198,11 @@ class SettingsActivity : AppCompatActivity()
                     dialog.dismiss()
                     dismiss(v)
                 }
-            }
-            else
-            {
+            } else {
                 it.setTextColor(Color.BLACK)
             }
         }
-        dialog.findViewById<TextView>(R.id.button3)?.let{
+        dialog.findViewById<TextView>(R.id.button3)?.let {
             it.text = resources.getText(R.string.choice_3)
             it.setOnClickListener {
                 dialog.dismiss()

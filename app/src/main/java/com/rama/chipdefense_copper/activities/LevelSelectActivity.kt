@@ -19,9 +19,10 @@ import com.rama.chipdefense_copper.Stage
 import com.google.android.material.tabs.TabLayout
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
+import com.rama.chipdefense_copper.BaseFullscreenActivity
 
 @Suppress("DEPRECATION")
-class LevelSelectActivity : AppCompatActivity() {
+class LevelSelectActivity : BaseFullscreenActivity() {
     private var levels: HashMap<Int, Stage.Summary> = HashMap()
     private var selectedLevelView: Button? = null
     private var selectedLevel: Int = 0
@@ -37,47 +38,45 @@ class LevelSelectActivity : AppCompatActivity() {
         isTurboAvailable = intent.getBooleanExtra("TURBO_AVAILABLE", false)
         isEndlessAvailable = intent.getBooleanExtra("ENDLESS_AVAILABLE", false)
         setContentView(R.layout.activity_level)
+        applySystemInsets(findViewById<View>(R.id.root))
         setupSelector()
     }
 
-    override fun onActivityReenter(resultCode: Int, data: Intent?)
-    {
+    override fun onActivityReenter(resultCode: Int, data: Intent?) {
         super.onActivityReenter(resultCode, data)
         isTurboAvailable = intent.getBooleanExtra("TURBO_AVAILABLE", false)
         isEndlessAvailable = intent.getBooleanExtra("ENDLESS_AVAILABLE", false)
         setupSelector()
     }
 
-    private fun setupSelector()
-    {
+    private fun setupSelector() {
         val prefs = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.loadFromFile(prefs)
         val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
-        if (GameMechanics.makeAllLevelsAvailable)
-        {
+        if (GameMechanics.makeAllLevelsAvailable) {
             isTurboAvailable = true
             isEndlessAvailable = true
         }
         tabLayout.setOnTabSelectedListener(
-            (object : TabLayout.OnTabSelectedListener {
+                (object : TabLayout.OnTabSelectedListener {
 
-                override fun onTabSelected(tab: TabLayout.Tab) {
-                    prepareStageSelector(tab.position+1)
-                }
+                    override fun onTabSelected(tab: TabLayout.Tab) {
+                        prepareStageSelector(tab.position + 1)
+                    }
 
-                override fun onTabReselected(tab: TabLayout.Tab?) {
-                    // Write code to handle tab reselect
-                }
+                    override fun onTabReselected(tab: TabLayout.Tab?) {
+                        // Write code to handle tab reselect
+                    }
 
-                override fun onTabUnselected(tab: TabLayout.Tab?) {
-                    // Write code to handle tab reselect
-                }
-            })
+                    override fun onTabUnselected(tab: TabLayout.Tab?) {
+                        // Write code to handle tab reselect
+                    }
+                })
         )
         val currentSeries = intent.getIntExtra("NEXT_SERIES", GameMechanics.SERIES_NORMAL)
         prepareStageSelector(currentSeries)
         // set the active tab depending on the current series
-        val tab = tabLayout.getTabAt(currentSeries-1)
+        val tab = tabLayout.getTabAt(currentSeries - 1)
         tab?.select()
     }
 
@@ -101,8 +100,7 @@ class LevelSelectActivity : AppCompatActivity() {
         val listView = findViewById<LinearLayout>(R.id.levelList)
         listView.removeAllViews()
         selectedSeries = series
-        when (series)
-        {
+        when (series) {
             GameMechanics.SERIES_NORMAL -> {
                 levels = Persistency(this).loadStageSummaries(GameMechanics.SERIES_NORMAL)
                 populateStageList(
@@ -110,6 +108,7 @@ class LevelSelectActivity : AppCompatActivity() {
                         resources.getColor(R.color.text_lightgreen)
                 )
             }
+
             GameMechanics.SERIES_TURBO -> {
                 if (isTurboAvailable) {
                     levels = Persistency(this).loadStageSummaries(GameMechanics.SERIES_TURBO)
@@ -117,9 +116,7 @@ class LevelSelectActivity : AppCompatActivity() {
                             listView, levels, GameMechanics.SERIES_NORMAL, resources.getColor(R.color.text_amber),
                             resources.getColor(R.color.text_lightamber)
                     )
-                }
-                else
-                {
+                } else {
                     val textView = TextView(this)
                     textView.text = getString(R.string.message_series_unavailable)
                     textView.textSize = 8f * resources.displayMetrics.scaledDensity
@@ -131,6 +128,7 @@ class LevelSelectActivity : AppCompatActivity() {
                     listView.addView(textView)
                 }
             }
+
             GameMechanics.SERIES_ENDLESS -> {
                 if (isEndlessAvailable) {
                     levels = Persistency(this).loadStageSummaries(GameMechanics.SERIES_ENDLESS)
@@ -138,9 +136,7 @@ class LevelSelectActivity : AppCompatActivity() {
                             listView, levels, GameMechanics.SERIES_ENDLESS, resources.getColor(R.color.text_red),
                             resources.getColor(R.color.text_lightred)
                     )
-                }
-                else
-                {
+                } else {
                     val textView = TextView(this)
                     textView.text = getString(R.string.message_endless_unavailable)
                     textView.textSize = 8f * resources.displayMetrics.scaledDensity
@@ -173,23 +169,22 @@ class LevelSelectActivity : AppCompatActivity() {
         // and it becomes available directly
         val highestLevelInList = ArrayList(stageSummary.keys).last()
         if (nextLevelPossible(highestLevelInList, series) && (stageSummary[highestLevelInList]?.won == true))
-            stageSummary[highestLevelInList+1] = Stage.Summary()
+            stageSummary[highestLevelInList + 1] = Stage.Summary()
 
-        for ((level, summary) in stageSummary.entries)
-        {
+        for ((level, summary) in stageSummary.entries) {
             val levelEntryView = Button(this)
             val levelNumber = Stage.numberToString(level, settings.showLevelsInHex)
             var textString = getString(R.string.level_entry).format(levelNumber)
             val coinsMaxAvailable = when {
                 // this is a hack to handle levels where coinsMaxAvailable is not set correctly
-                summary.coinsMaxAvailable>0 -> summary.coinsMaxAvailable
+                summary.coinsMaxAvailable > 0 -> summary.coinsMaxAvailable
                 else -> summary.coinsAvailable + summary.coinsGot
             }
-            if (coinsMaxAvailable > 0)
-            {
+            if (coinsMaxAvailable > 0) {
                 val formatString =
-                    if (summary.coinsGot==1) resources.getString(R.string.coins_got) else resources.getString(R.string.coins_got_plural)
-                textString = textString.plus("\n"+formatString.format(summary.coinsGot, coinsMaxAvailable))
+                    if (summary.coinsGot == 1) resources.getString(R.string.coins_got) else resources.getString(R.string.coins_got_plural)
+                textString =
+                    textString.plus("\n" + formatString.format(summary.coinsGot, coinsMaxAvailable))
             }
             levelEntryView.text = textString
             levelEntryView.textSize = 32f
@@ -204,10 +199,10 @@ class LevelSelectActivity : AppCompatActivity() {
             levelEntryView.setTextAppearance(this, R.style.TextAppearance_AppCompat_Medium)
             // choose color of text:
             @Suppress("SimplifyBooleanWithConstants") // no linter warning, please
-            when
-            {
+            when {
                 (summary.won == true && (summary.coinsGot < summary.coinsMaxAvailable))
-                -> levelEntryView.setTextColor(colorUnfinished)
+                    -> levelEntryView.setTextColor(colorUnfinished)
+
                 summary.won == true -> levelEntryView.setTextColor(colorFinished)
                 else -> levelEntryView.setTextColor(resources.getColor(R.color.text_white))
             }
@@ -231,13 +226,13 @@ class LevelSelectActivity : AppCompatActivity() {
         icon?.let {
             val canvas = Canvas(bitmap)
             val paint = Paint()
-            canvas.drawBitmap(it, null, Rect(iconPadding,iconPadding, iconSize-iconPadding, iconSize-iconPadding), paint)
+            canvas.drawBitmap(it, null, Rect(iconPadding, iconPadding, iconSize - iconPadding, iconSize - iconPadding), paint)
         }
         view.setCompoundDrawablesWithIntrinsicBounds(bitmap.toDrawable(resources), null, null, null)
     }
 
     private fun onLevelSelect(v: View, level: Int)
-    /** make the list entry visibly active when the user touches it */
+            /** make the list entry visibly active when the user touches it */
     {
         selectedLevel = level
 
@@ -250,7 +245,7 @@ class LevelSelectActivity : AppCompatActivity() {
     }
 
     fun startGame(@Suppress("UNUSED_PARAMETER") v: View)
-    /** called when the Start Game button is pushed */
+            /** called when the Start Game button is pushed */
     {
         if (selectedLevel == 0)
             return

@@ -8,6 +8,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.SystemClock
+import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.Window
@@ -19,6 +20,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.WindowCompat
+import com.rama.chipdefense_copper.BaseFullscreenActivity
 import com.rama.chipdefense_copper.CpuReached
 import com.rama.chipdefense_copper.GameMechanics
 import com.rama.chipdefense_copper.GameMechanics.GamePhase
@@ -43,7 +45,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class GameActivity : Activity() {
+class GameActivity : BaseFullscreenActivity() {
     var logger: Logger? = null
     lateinit var gameMechanics: GameMechanics
     lateinit var gameView: GameView
@@ -100,18 +102,10 @@ class GameActivity : Activity() {
     {
         super.onCreate(savedInstanceState)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        val controller = WindowCompat.getInsetsController(window, window.decorView)
-        controller?.let {
-            it.hide(WindowInsets.Type.systemBars())
-            it.systemBarsBehavior =
-                WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
-
         /* here, the size of the surfaces might not be known */
         requestWindowFeature(Window.FEATURE_NO_TITLE) // method of Activity
         setContentView(R.layout.activity_main_game)
+//        applySystemInsets(findViewById<View>(R.id.mainGameLayout))
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         if (intent.getBooleanExtra("ACTIVATE_LOGGING", false) && GameMechanics.enableLogging)
             logger = Logger(this, GameMechanics.logLevel)
