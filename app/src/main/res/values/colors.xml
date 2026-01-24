@@ -2,10 +2,13 @@
 <resources>
     <color name="foreground_color">#BCCDD5</color>
     <color name="background_color">#2A2837</color>
+    <color name="background_secondary_color">#223</color>
+    <color name="background_tertiary_color">#1f1f21</color>
     <color name="active_color">#EEEEEE</color>
     <color name="inactive_color">#777777</color>
     <color name="button_color">#3d385b</color>
     <color name="button_danger_color">#77302c</color>
+    <color name="switch_track_color">#445</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

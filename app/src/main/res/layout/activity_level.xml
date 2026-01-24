@@ -1,98 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/root"
-    android:background="@color/background_color"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/levelSelectorText"
+    <com.rama.chipdefense_copper.AnimatedPatternView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/level_selector"
-        android:textColor="@color/foreground_color"
-        android:textSize="24sp" />
+        android:layout_height="match_parent" />
 
-    <!-- Tabs -->
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/foreground_color"
-        app:tabTextColor="@color/text_green">
+        android:layout_height="match_parent"
+        android:id="@+id/root"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name_series_1" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name_series_2" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name_series_3" />
-    </com.google.android.material.tabs.TabLayout>
-
-    <!-- Scrollable level list -->
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:gravity="top"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:id="@+id/levelList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
-    <!-- Play button -->
-    <FrameLayout
-        android:id="@+id/playLevelButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:padding="16dp"
-        android:background="#444"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="startGame">
-
+        <!-- Title -->
         <TextView
+            android:id="@+id/levelSelectorText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/level_selector"
+            android:textColor="@color/foreground_color"
+            android:textSize="24sp" />
+
+        <!-- Tabs -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_series_1" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_series_2" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_series_3" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <!-- Scrollable level list -->
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="top"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/levelList"
+                android:background="@color/background_secondary_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/playLevelButton"
+            android:onClick="startGame"
             android:text="@string/play_selected_level"
-            android:textColor="@color/foreground_color" />
-    </FrameLayout>
-
-    <!-- Back button -->
-    <FrameLayout
-        android:id="@+id/button_back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="#366CB1"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="dismiss">
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/go_back"
-            android:textColor="@color/foreground_color" />
-    </FrameLayout>
+            style="@style/Widget.CpuDefense.Button" />
 
-</LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_back"
+            android:onClick="dismiss"
+            android:text="@string/go_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.CpuDefense.Button" />
+    </LinearLayout>
+</FrameLayout>

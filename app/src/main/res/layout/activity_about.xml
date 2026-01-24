@@ -1,93 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:id="@+id/root"
-    android:background="@color/background_color"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.rama.chipdefense_copper.AnimatedPatternView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/about_info_title"
-        android:textColor="@color/foreground_color"
-        android:textSize="24sp" />
+        android:layout_height="match_parent" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:id="@+id/root"
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="@string/about_info_title"
+            android:textColor="@color/foreground_color"
+            android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/about_version"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/version"
-                android:textColor="@color/foreground_color" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="@string/about_info_text"
-                android:textColor="@color/foreground_color" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/about_title"
-                android:textColor="#FFFFFF" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="@string/about_license"
-                android:textColor="@color/foreground_color" />
-
-            <FrameLayout
-                android:id="@+id/button_wiki"
-                android:onClick="wiki"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="16dp"
-                android:background="#444"
-                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/about_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/version"
+                    android:textColor="@color/foreground_color" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/about_info_text"
+                    android:textColor="@color/foreground_color" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_title"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/about_license"
+                    android:textColor="@color/foreground_color" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_wiki"
+                    android:onClick="wiki"
                     android:text="@string/link_wiki"
-                    android:textColor="@color/foreground_color" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/button_back"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="dismiss"
-                android:padding="16dp"
-                android:background="#366CB1"
-                android:gravity="center_vertical">
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/go_back"
-                    android:textColor="@color/foreground_color" />
-            </FrameLayout>
-        </LinearLayout>
-    </ScrollView>
+                    style="@style/Widget.CpuDefense.Button" />
 
-</LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_back"
+                    android:onClick="dismiss"
+                    android:text="@string/go_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.Button" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

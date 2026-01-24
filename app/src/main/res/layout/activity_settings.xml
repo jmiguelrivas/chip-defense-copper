@@ -1,174 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/root"
-    android:background="@color/background_color"
-    android:focusableInTouchMode="true"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/settings_title_view"
+    <com.rama.chipdefense_copper.AnimatedPatternView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
-        android:text="@string/settings_title"
-        android:textColor="@color/foreground_color"
-        android:textSize="24sp" />
+        android:layout_height="match_parent" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/root"
+        android:focusableInTouchMode="true"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_title"
+            style="@style/Title" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_disable_purchase_dialog"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="#1f1f21"
-                android:layout_marginBottom="8dp"
-                android:onClick="savePrefs"
-                android:text="@string/settings_disable_purchase_dialog"
-                android:textColor="@color/foreground_color" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_disable_background"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="#1f1f21"
-                android:layout_marginBottom="8dp"
-                android:onClick="savePrefs"
-                android:text="@string/settings_disable_background"
-                android:textColor="@color/foreground_color" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical">
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_show_atts_in_range"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="#1f1f21"
-                android:layout_marginBottom="8dp"
-                android:onClick="savePrefs"
-                android:text="@string/settings_show_atts_in_range"
-                android:textColor="@color/foreground_color" />
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_disable_purchase_dialog"
+                    android:text="@string/settings_disable_purchase_dialog"
+                    android:onClick="savePrefs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.RetroSwitch" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_use_large_buttons"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="#1f1f21"
-                android:layout_marginBottom="8dp"
-                android:onClick="savePrefs"
-                android:text="@string/settings_use_large_buttons"
-                android:textColor="@color/foreground_color" />
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_disable_background"
+                    android:text="@string/settings_disable_background"
+                    android:onClick="savePrefs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.RetroSwitch" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_show_framerate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="#1f1f21"
-                android:layout_marginBottom="8dp"
-                android:onClick="savePrefs"
-                android:text="@string/settings_show_framerate"
-                android:textColor="@color/foreground_color" />
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_show_atts_in_range"
+                    android:text="@string/settings_show_atts_in_range"
+                    android:onClick="savePrefs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.RetroSwitch" />
 
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_use_large_buttons"
+                    android:text="@string/settings_use_large_buttons"
+                    android:onClick="savePrefs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.RetroSwitch" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_fast_fast_forward"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="#1f1f21"
-                android:layout_marginBottom="8dp"
-                android:onClick="savePrefs"
-                android:text="@string/settings_fast_fast_forward"
-                android:textColor="@color/foreground_color" />
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_show_framerate"
+                    android:text="@string/settings_show_framerate"
+                    android:onClick="savePrefs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.RetroSwitch" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_keep_levels"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="#1f1f21"
-                android:layout_marginBottom="8dp"
-                android:onClick="savePrefs"
-                android:text="@string/settings_keep_levels"
-                android:textColor="@color/foreground_color" />
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_keep_levels"
+                    android:text="@string/settings_keep_levels"
+                    android:onClick="savePrefs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.RetroSwitch" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_use_hex"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:background="#1f1f21"
-                android:layout_marginBottom="8dp"
-                android:onClick="savePrefs"
-                android:text="@string/settings_use_hex"
-                android:textColor="@color/foreground_color" />
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_use_hex"
+                    android:text="@string/settings_use_hex"
+                    android:onClick="savePrefs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.RetroSwitch" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_activate_log"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:padding="16dp"
-                android:background="#1f1f21"
-                android:layout_marginBottom="8dp"
-                android:onClick="savePrefs"
-                android:text="@string/settings_activate_log"
-                android:textColor="@color/foreground_color"
-                android:visibility="gone" />
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_activate_log"
+                    android:text="@string/settings_activate_log"
+                    android:onClick="savePrefs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    style="@style/Widget.CpuDefense.RetroSwitch" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:text="@string/game_progress"
-                android:textColor="@color/foreground_color"
-                android:textSize="18sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/game_progress"
+                    style="@style/Title" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/importData"
-                android:text="@string/import_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.CpuDefense.Button.Danger" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/importData"
+                    android:text="@string/import_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.Button.Danger" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/exportData"
-                android:text="@string/export_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.CpuDefense.Button.Danger" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/exportData"
+                    android:text="@string/export_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.Button.Danger" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/startNewGameButton"
-                android:onClick="startNewGame"
-                android:text="@string/button_reset_progress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.CpuDefense.Button.Danger" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/startNewGameButton"
+                    android:onClick="startNewGame"
+                    android:text="@string/button_reset_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.Button.Danger" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_back"
-                android:onClick="dismiss"
-                android:text="@string/go_back"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.CpuDefense.Button" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_back"
+                    android:onClick="dismiss"
+                    android:text="@string/go_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.Button" />
 
-        </LinearLayout>
-
-    </ScrollView>
-
-</LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

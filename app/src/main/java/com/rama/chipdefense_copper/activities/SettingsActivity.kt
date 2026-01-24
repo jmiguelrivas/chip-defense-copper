@@ -126,8 +126,6 @@ class SettingsActivity : BaseFullscreenActivity() {
         findViewById<SwitchCompat>(R.id.switch_use_large_buttons)?.isChecked =
             settings.configUseLargeButtons
         findViewById<SwitchCompat>(R.id.switch_show_framerate)?.isChecked = settings.showFrameRate
-        findViewById<SwitchCompat>(R.id.switch_fast_fast_forward)?.isChecked =
-            settings.fastFastForward
         findViewById<SwitchCompat>(R.id.switch_keep_levels)?.isChecked = settings.keepLevels
         findViewById<SwitchCompat>(R.id.switch_use_hex)?.isChecked = settings.showLevelsInHex
         findViewById<SwitchCompat>(R.id.switch_activate_log)?.let {
@@ -151,8 +149,6 @@ class SettingsActivity : BaseFullscreenActivity() {
             findViewById<SwitchCompat>(R.id.switch_use_large_buttons)?.isChecked ?: false
         settings.showFrameRate =
             findViewById<SwitchCompat>(R.id.switch_show_framerate)?.isChecked ?: false
-        settings.fastFastForward =
-            findViewById<SwitchCompat>(R.id.switch_fast_fast_forward)?.isChecked ?: false
         settings.keepLevels = findViewById<SwitchCompat>(R.id.switch_keep_levels)?.isChecked ?: true
         settings.showLevelsInHex =
             findViewById<SwitchCompat>(R.id.switch_use_hex)?.isChecked ?: false
