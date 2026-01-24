@@ -11,11 +11,14 @@ import android.os.SystemClock
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.Window
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.WindowCompat
 import com.rama.chipdefense_copper.CpuReached
 import com.rama.chipdefense_copper.GameMechanics
 import com.rama.chipdefense_copper.GameMechanics.GamePhase
@@ -44,6 +47,7 @@ class GameActivity : Activity() {
     var logger: Logger? = null
     lateinit var gameMechanics: GameMechanics
     lateinit var gameView: GameView
+
     /** flag used to keep the threads running. Set to false when leaving activity */
     private var gameThreadsRunning = true
 
@@ -54,6 +58,7 @@ class GameActivity : Activity() {
     /* properties used for assuring a constant frame rate */
     /** delta T in normal operation */
     private val defaultDelay = 40L
+
     /** delta T when accelerated */
     private val fastForwardDelay = 8L
     private val fastFastForwardDelay = 3L
@@ -63,17 +68,22 @@ class GameActivity : Activity() {
     // additional properties for displaying an average frame rate
     /** the moment when the last frame was displayed (in ms since last device reboot) */
     private var timeOfLastFrame = SystemClock.uptimeMillis()
+
     /** how many samples in one count */
     private val meanCount = 10
     private var updateJob: Job? = null
     private var displayJob: Job? = null
     private var effectsJob: Job? = null
+
     /** how many samples have been taken */
     private var frameCount = 0
+
     /** cumulated time */
     private var frameTimeSum = 0L
+
     /** level snapshots (common for series 1 and 2) */
     var levelThumbnail = HashMap<Int, Bitmap?>()
+
     /** level snapshots for series 3 */
     var levelThumbnailEndless = HashMap<Int, Bitmap?>()
 
@@ -84,11 +94,21 @@ class GameActivity : Activity() {
     private var resumeGame = true
 
     override fun onCreate(savedInstanceState: Bundle?)
-    /** this function gets called when the app was started, but not when the user returns
-     * here from another app.
-     */
+            /** this function gets called when the app was started, but not when the user returns
+             * here from another app.
+             */
     {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        val controller = WindowCompat.getInsetsController(window, window.decorView)
+        controller?.let {
+            it.hide(WindowInsets.Type.systemBars())
+            it.systemBarsBehavior =
+                WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+
         /* here, the size of the surfaces might not be known */
         requestWindowFeature(Window.FEATURE_NO_TITLE) // method of Activity
         setContentView(R.layout.activity_main_game)
@@ -102,9 +122,9 @@ class GameActivity : Activity() {
     }
 
     override fun onPause()
-    /** this method get executed when the user presses the system's "back" button,
-     *  but also when she navigates to another app
-     */
+            /** this method get executed when the user presses the system's "back" button,
+             *  but also when she navigates to another app
+             */
     {
         logger?.log("Pausing Game Activity")
         Persistency(this).saveGeneralState(gameMechanics)
@@ -114,9 +134,9 @@ class GameActivity : Activity() {
     }
 
     override fun onResume()
-    /** this function gets called in any case, regardless of whether
-     * a new game is started or the user just navigates back to the app.
-     */
+            /** this function gets called in any case, regardless of whether
+             * a new game is started or the user just navigates back to the app.
+             */
     {
         super.onResume()
         Toast.makeText(this, resources.getString(R.string.toast_loading), Toast.LENGTH_SHORT).show()
@@ -127,8 +147,7 @@ class GameActivity : Activity() {
         // determine what to do: resume, restart, or play next level
         val restartGame = intent.getBooleanExtra("RESET_PROGRESS", false)
         val restartEndless = intent.getBooleanExtra("RESET_ENDLESS", false)
-        val startOnLevel = when
-        {
+        val startOnLevel = when {
             restartGame -> Stage.Identifier.startOfNewGame
             restartEndless -> Stage.Identifier.startOfEndless
             else -> Identifier(
@@ -139,16 +158,17 @@ class GameActivity : Activity() {
         if (!resumeGame)
             resumeGame = intent.getBooleanExtra("RESUME_GAME", false)
 
-        when (gameMechanics.state.phase)
-        {
+        when (gameMechanics.state.phase) {
             GamePhase.START -> {
                 beginGame(resumeGame = resumeGame, resetProgress = restartGame, resetEndless = restartEndless, startingLevel = startOnLevel)
             }
+
             GamePhase.RUNNING -> {
                 beginGame(resumeGame = resumeGame, resetProgress = restartGame, resetEndless = restartEndless, startingLevel = startOnLevel)
                 if (resumeGame)
                     showStageMessage(gameMechanics.currentlyActiveStage)
             }
+
             GamePhase.INTERMEZZO -> {}
             GamePhase.MARKETPLACE -> {}
             GamePhase.PAUSED -> {}
@@ -159,10 +179,16 @@ class GameActivity : Activity() {
         startGameThreads()
     }
 
-    private fun showStageMessage(stage: Stage?)
-    {
-        runOnUiThread { stage?.let {Toast.makeText(this, resources.getString(R.string.toast_enter_stage).format(it.numberAsString()),
-                                       Toast.LENGTH_SHORT).show() }}
+    private fun showStageMessage(stage: Stage?) {
+        runOnUiThread {
+            stage?.let {
+                Toast.makeText(
+                        this, resources.getString(R.string.toast_enter_stage)
+                    .format(it.numberAsString()),
+                        Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
     override fun onStop() {
@@ -177,30 +203,28 @@ class GameActivity : Activity() {
     }
 
     private fun setupGameView()
-    /** creates the game view including all game components */
+            /** creates the game view including all game components */
     {
-        if (gameView.parent == null)
-        {
+        if (gameView.parent == null) {
             val parentView: FrameLayout? = findViewById(R.id.gameFrameLayout)
             parentView?.addView(gameView)
         }
         gameView.setupView()
     }
 
-    fun changeToGamePhase(phase: GamePhase)
-    {
+    fun changeToGamePhase(phase: GamePhase) {
         gameMechanics.state.phase = phase
         logger?.log("Switching to game phase %s".format(phase.toString()))
     }
 
 
     fun setLastPlayedStage(identifier: Identifier)
-    /** when completing a level, record the current number in the SharedPrefs.
-     * @param identifier number of the level successfully completed */
+            /** when completing a level, record the current number in the SharedPrefs.
+             * @param identifier number of the level successfully completed */
     {
         logger?.log("Setting last played stage to series %d / level %d.".format(identifier.series, identifier.number))
         val prefs = getSharedPreferences(Persistency.filename_state, Context.MODE_PRIVATE)
-        with (prefs.edit())
+        with(prefs.edit())
         {
             putInt("LASTSTAGE", identifier.number)
             putInt("LASTSERIES", identifier.series)
@@ -217,23 +241,27 @@ class GameActivity : Activity() {
         val prefs = getSharedPreferences(Persistency.filename_state, Context.MODE_PRIVATE)
         val previousMaxStage =
             Identifier(prefs.getInt("MAXSERIES", 1), prefs.getInt("MAXSTAGE", 0))
-        val newMaxStage = if (identifier.isGreaterThan(previousMaxStage) || forceReset) identifier else previousMaxStage
+        val newMaxStage =
+            if (identifier.isGreaterThan(previousMaxStage) || forceReset) identifier else previousMaxStage
         logger?.log("Setting max stage to series %d / level %d.".format(newMaxStage.series, newMaxStage.number))
-        with (prefs.edit())
+        with(prefs.edit())
         {
             putInt("MAXSTAGE", newMaxStage.number)
             putInt("MAXSERIES", newMaxStage.series)
             // make next series available if last level is completed, otherwise remove access
-            val completedLastStageOfSeries: Boolean = (identifier.number == GameMechanics.maxLevelAvailable)
+            val completedLastStageOfSeries: Boolean =
+                (identifier.number == GameMechanics.maxLevelAvailable)
             when (newMaxStage.series) {
                 SERIES_NORMAL -> {
                     putBoolean("TURBO_AVAILABLE", completedLastStageOfSeries)
                     putBoolean("ENDLESS_AVAILABLE", false)
                 }
+
                 SERIES_TURBO -> {
                     putBoolean("TURBO_AVAILABLE", true)
                     putBoolean("ENDLESS_AVAILABLE", completedLastStageOfSeries)
                 }
+
                 SERIES_ENDLESS -> {
                     putBoolean("TURBO_AVAILABLE", true)
                     putBoolean("ENDLESS_AVAILABLE", true)
@@ -243,18 +271,19 @@ class GameActivity : Activity() {
         }
     }
 
-    private fun beginGame(resetProgress: Boolean = false,
-                          resetEndless: Boolean = false,
-                          resumeGame: Boolean = false,
-                          startingLevel: Identifier = Identifier()
+    private fun beginGame(
+        resetProgress: Boolean = false,
+        resetEndless: Boolean = false,
+        resumeGame: Boolean = false,
+        startingLevel: Identifier = Identifier()
     )
-    /** Begins the current game on a chosen level. Also called when starting a completely
-     * new game.
-     * @param resetProgress If true, the whole game is started from the first level, and
-     * all coins and heroes are cleared. Otherwise, start on the level given in the saved state.
-     * @param resetEndless same as resetProgress, but only for the 'endless' series.
-     * @param resumeGame Continue the game within a level, at exactly the point where it has been left.
-     */
+            /** Begins the current game on a chosen level. Also called when starting a completely
+             * new game.
+             * @param resetProgress If true, the whole game is started from the first level, and
+             * all coins and heroes are cleared. Otherwise, start on the level given in the saved state.
+             * @param resetEndless same as resetProgress, but only for the 'endless' series.
+             * @param resumeGame Continue the game within a level, at exactly the point where it has been left.
+             */
     {
         loadSettings()
         Persistency(this).let {
@@ -267,8 +296,7 @@ class GameActivity : Activity() {
         var level = startingLevel
         val resetRequested = (resetEndless || resetProgress)
 
-        if (resetRequested)
-        {
+        if (resetRequested) {
             level = Identifier.startOfEndless
             gameMechanics.deleteProgressOfSeries(LevelMode.ENDLESS)
             if (resetProgress)
@@ -279,7 +307,7 @@ class GameActivity : Activity() {
             }
             gameMechanics.currentStageIdent = level
             setLastPlayedStage(level)
-            setMaxPlayedStage(level, forceReset=true)
+            setMaxPlayedStage(level, forceReset = true)
             prepareLevelAtStartOfGame(level)
             Persistency(this).apply {
                 saveHeroes(gameMechanics)
@@ -302,7 +330,7 @@ class GameActivity : Activity() {
     }
 
     private fun resumeGame()
-    /** function to resume a running game at exactly the point where the app was left. */
+            /** function to resume a running game at exactly the point where the app was left. */
     {
         Persistency(this).loadCurrentLevelState(gameMechanics)
         gameMechanics.stageData?.let {
@@ -314,24 +342,29 @@ class GameActivity : Activity() {
             it.network.validateViewport()
             gameView.viewport.setGridSize(it.sizeX, it.sizeY)
             gameView.background.prepareAtStartOfStage(it.data.ident)
-            gameView.speedControlPanel.setInfoLine(gameView.resources.getString(R.string.stage_number)
-                                                       .format(it.numberAsString()))
+            gameView.speedControlPanel.setInfoLine(
+                    gameView.resources.getString(R.string.stage_number)
+                        .format(it.numberAsString())
+            )
         }
-        when (gameMechanics.state.phase)
-        {
+        when (gameMechanics.state.phase) {
             GamePhase.MARKETPLACE -> {
                 gameView.marketplace.nextGameLevel = gameMechanics.currentStageIdent
                 setGameActivityStatus(GameActivityStatus.BETWEEN_LEVELS)
             }
+
             GamePhase.INTERMEZZO -> {
                 setGameActivityStatus(GameActivityStatus.BETWEEN_LEVELS)
             }
+
             GamePhase.START -> {
                 setGameActivityStatus(GameActivityStatus.BETWEEN_LEVELS)
                 gameMechanics.currentlyActiveStage?.let {
                     gameMechanics.currentlyActiveWave = if (it.waves.isNotEmpty()) it.waves[0]
-                    else it.nextWave() }
+                    else it.nextWave()
+                }
             }
+
             else -> {
                 gameMechanics.currentlyActiveStage?.let {
                     gameMechanics.currentlyActiveWave = if (it.waves.isNotEmpty()) it.waves[0]
@@ -342,8 +375,7 @@ class GameActivity : Activity() {
         changeToGamePhase(GamePhase.RUNNING)
     }
 
-    fun startNextStage(ident: Identifier)
-    {
+    fun startNextStage(ident: Identifier) {
         val nextStage = Stage(gameMechanics, gameView)
         logger?.log("Starting level %d of series %d".format(ident.number, ident.series))
         StageCatalog.createStage(nextStage, ident)
@@ -352,7 +384,7 @@ class GameActivity : Activity() {
             return  // something went wrong, possibly trying to create a level that doesn't exist
         nextStage.network.recreateNetworkImage(true)
         setGameActivityStatus(GameActivityStatus.PLAYING)
-        with (gameMechanics) {
+        with(gameMechanics) {
             currentStageIdent = ident
             calculateLives()
             calculateStartingCash()
@@ -364,7 +396,9 @@ class GameActivity : Activity() {
         Persistency(this).saveStageSummaries(gameMechanics, ident.series)
         logger?.log("Saving summary of series %d".format(ident.series))
         gameMechanics.currentlyActiveStage?.let {
-            gameView.speedControlPanel.setInfoLine(gameView.resources.getString(R.string.stage_number).format(it.numberAsString()))
+            gameView.speedControlPanel.setInfoLine(
+                    gameView.resources.getString(R.string.stage_number).format(it.numberAsString())
+            )
             showStageMessage(it)
         }
         setGameSpeed(GameSpeed.NORMAL)  // reset speed to normal when starting next stage
@@ -376,12 +410,11 @@ class GameActivity : Activity() {
         takeLevelSnapshot()
     }
 
-    fun onEndOfStage()
-    {
+    fun onEndOfStage() {
         if (gameMechanics.currentlyActiveStage == null)
             return // in this case, the stage has already been left
         gameMechanics.currentlyActiveStage?.let {
-            if (it.attackerCount()>0)
+            if (it.attackerCount() > 0)
             // still attackers left, wait until wave is really over
                 GlobalScope.launch { delay(2000L); onEndOfStage() }
             else {
@@ -394,28 +427,32 @@ class GameActivity : Activity() {
         }
     }
 
-    fun onStageCleared(stage: Stage)
-    {
-        runOnUiThread { Toast.makeText(this, resources.getString(R.string.toast_stage_cleared), Toast.LENGTH_SHORT).show() }
-        gameView.intermezzo.coinsGathered = gameMechanics.state.coinsExtra + gameMechanics.state.coinsInLevel
+    fun onStageCleared(stage: Stage) {
+        runOnUiThread {
+            Toast.makeText(this, resources.getString(R.string.toast_stage_cleared), Toast.LENGTH_SHORT)
+                .show()
+        }
+        gameView.intermezzo.coinsGathered =
+            gameMechanics.state.coinsExtra + gameMechanics.state.coinsInLevel
         gameMechanics.currentPurse().addReward(gameView.intermezzo.coinsGathered)
-        val summaryOfCompletedStage = Stage.Summary(won = true,
-                                                    coinsGot = stage.summary.coinsGot + gameMechanics.state.coinsInLevel,
-                                                    coinsMaxAvailable = stage.summary.coinsMaxAvailable,
-                                                    coinsAvailable = stage.summary.coinsMaxAvailable - gameMechanics.state.coinsInLevel
+        val summaryOfCompletedStage = Stage.Summary(
+                won = true,
+                coinsGot = stage.summary.coinsGot + gameMechanics.state.coinsInLevel,
+                coinsMaxAvailable = stage.summary.coinsMaxAvailable,
+                coinsAvailable = stage.summary.coinsMaxAvailable - gameMechanics.state.coinsInLevel
         )
         val currentStageIdent = stage.data.ident
         gameMechanics.currentStageIdent = currentStageIdent
         val nextStage = currentStageIdent.next()
         gameMechanics.setSummaryOfStage(currentStageIdent, summaryOfCompletedStage)
         setMaxPlayedStage(currentStageIdent)
-        if (stage.data.type == Stage.Type.FINAL)
-        {
+        if (stage.data.type == Stage.Type.FINAL) {
             gameView.intermezzo.endOfGame(currentStageIdent, hasWon = true)
-        }
-        else {
+        } else {
             // make next level available. Create an empty one if necessary
-            gameMechanics.setSummaryOfStage(nextStage, gameMechanics.getSummaryOfStage(nextStage) ?: Stage.Summary())
+            gameMechanics.setSummaryOfStage(
+                    nextStage, gameMechanics.getSummaryOfStage(nextStage) ?: Stage.Summary()
+            )
             gameView.intermezzo.prepareLevel(nextStage, false)
         }
         Persistency(this).let {
@@ -444,8 +481,7 @@ class GameActivity : Activity() {
     fun setGameSpeed(speed: GameSpeed) {
         gameMechanics.state.speed = speed
         Persistency(this).saveGeneralState(gameMechanics)
-        updateDelay = when (speed)
-        {
+        updateDelay = when (speed) {
             GameSpeed.NORMAL -> defaultDelay
             GameSpeed.FAST -> fastForwardDelay
             GameSpeed.MAX -> fastFastForwardDelay
@@ -484,9 +520,9 @@ class GameActivity : Activity() {
              */
     {
         val price = gameMechanics.costOfLife()
-        if (price>0 && gameMechanics.currentPurse().canAfford(price)
-            && gameMechanics.state.lives<gameMechanics.state.currentMaxLives)
-        {
+        if (price > 0 && gameMechanics.currentPurse().canAfford(price)
+            && gameMechanics.state.lives < gameMechanics.state.currentMaxLives
+        ) {
             val dialog = Dialog(this)
             dialog.setContentView(R.layout.layout_dialog_purchaselife)
             dialog.window?.setLayout(MATCH_PARENT, WRAP_CONTENT)
@@ -509,7 +545,7 @@ class GameActivity : Activity() {
     private fun prepareLevelAtStartOfGame(ident: Identifier)
             /** function that is called when starting a new level from the main menu.
              * Does not get called when resuming a running game.
-              */
+             */
     {
         logger?.log("Preparing level %s".format(ident.toString()))
         gameView.resetAtStartOfStage()
@@ -517,30 +553,27 @@ class GameActivity : Activity() {
     }
 
     private fun update()
-    /** Thread for all physical processes on the screen, i.e. movement of attackers, cool-down times, etc.
-     * This thread must run on a fixed pace. When accelerating the game, the delay of this thread is shortened. */
+            /** Thread for all physical processes on the screen, i.e. movement of attackers, cool-down times, etc.
+             * This thread must run on a fixed pace. When accelerating the game, the delay of this thread is shortened. */
     {
         if (gameThreadsRunning) {
             val timeAtStartOfCycle = SystemClock.uptimeMillis()
             gameMechanics.ticksCount++
             try {
                 gameMechanics.update()
-            }
-            catch (ex: TemperatureDamageException)
-            {
+            } catch (ex: TemperatureDamageException) {
                 removeOneLife()
                 runOnUiThread {
-                    val toast: Toast = Toast.makeText(this, resources.getString(R.string.overheat), Toast.LENGTH_SHORT)
+                    val toast: Toast =
+                        Toast.makeText(this, resources.getString(R.string.overheat), Toast.LENGTH_SHORT)
                     toast.show()
                 }
-            }
-            catch (ex: CpuReached)
-            {
+            } catch (ex: CpuReached) {
                 removeOneLife()
             }
             gameView.scoreBoard.update()
             // determine whether to update the display
-            if (timeAtStartOfCycle-timeOfLastFrame > 20 && displayJob?.isActive != true)
+            if (timeAtStartOfCycle - timeOfLastFrame > 20 && displayJob?.isActive != true)
                 displayJob = GlobalScope.launch { display() }
             val elapsed = SystemClock.uptimeMillis() - timeAtStartOfCycle
             val wait: Long =
@@ -549,34 +582,33 @@ class GameActivity : Activity() {
         }
     }
 
-    private fun removeOneLife()
-    {
+    private fun removeOneLife() {
         val livesLeft = gameMechanics.removeOneLife()
         Persistency(this).saveGeneralState(gameMechanics)
-        when (livesLeft)
-        {
-            0-> {
+        when (livesLeft) {
+            0 -> {
                 takeLevelSnapshot()
                 gameView.intermezzo.endOfGame(gameMechanics.currentStageIdent, hasWon = false)
             }
+
             1 -> {
                 if (!settings.configDisablePurchaseDialog)
                     runOnUiThread { showPurchaseLifeDialog() }
             }
+
             else -> {}
         }
     }
 
-    private fun restoreOneLife()
-    {
+    private fun restoreOneLife() {
         gameMechanics.restoreOneLife()
         Persistency(this).saveGeneralState(gameMechanics)
         Persistency(this).saveCoins(gameMechanics)
     }
 
     private fun display()
-    /** Thread for refreshing the display on the screen.
-     * The delay between two executions may vary. */
+            /** Thread for refreshing the display on the screen.
+             * The delay between two executions may vary. */
     {
         if (gameThreadsRunning) {
             gameMechanics.frameCount++
@@ -596,7 +628,7 @@ class GameActivity : Activity() {
     }
 
     private fun updateGraphicalEffects()
-    /** do all faders, explosions etc. This thread is independent of the update() cycle. */
+            /** do all faders, explosions etc. This thread is independent of the update() cycle. */
     {
         if (gameThreadsRunning) {
             gameView.updateEffects()
@@ -616,11 +648,11 @@ class GameActivity : Activity() {
         logger?.log("Activity status set to %s".format(status.toString()))
     }
 
-    private fun takeLevelSnapshot()
-    {
+    private fun takeLevelSnapshot() {
         gameMechanics.currentlyActiveStage?.let {
             if (it.getSeries() == SERIES_ENDLESS)
-                levelThumbnailEndless[it.getLevel()] = it.takeSnapshot(GameView.levelSnapshotIconSize)
+                levelThumbnailEndless[it.getLevel()] =
+                    it.takeSnapshot(GameView.levelSnapshotIconSize)
             else
                 levelThumbnail[it.getLevel()] = it.takeSnapshot(GameView.levelSnapshotIconSize)
             Persistency(this).saveThumbnailOfLevel(this, it)

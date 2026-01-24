@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="foreground_color">#EEEEEE</color>
+    <color name="foreground_color">#BCCDD5</color>
+    <color name="background_color">#2A2837</color>
     <color name="active_color">#EEEEEE</color>
     <color name="inactive_color">#777777</color>
 
