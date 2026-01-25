@@ -64,7 +64,7 @@
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/icon_crown_solid"
                 app:backgroundColor="#2A2A3A"
-                app:text="License GPLv3" />
+                app:text="License MIT" />
 
             <com.rama.chipdefense_copper.IconLink
                 android:layout_width="match_parent"

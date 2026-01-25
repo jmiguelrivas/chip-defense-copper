@@ -42,6 +42,10 @@ class LevelSelectActivity : BaseFullscreenActivity() {
         setupSelector()
     }
 
+    fun dismiss(@Suppress("UNUSED_PARAMETER") v: View) {
+        finish()
+    }
+
     override fun onActivityReenter(resultCode: Int, data: Intent?) {
         super.onActivityReenter(resultCode, data)
         isTurboAvailable = intent.getBooleanExtra("TURBO_AVAILABLE", false)
