@@ -1,6 +1,18 @@
 <resources>
-    <declare-styleable name="IconTextButton">
-        <attr name="icon" format="reference" />
-        <attr name="text" format="string" />
+    <!-- Shared attributes -->
+    <attr name="icon" format="reference" />
+    <attr name="text" format="string" />
+    <attr name="url" format="string" />
+
+    <declare-styleable name="IconLink">
+        <attr name="icon" />
+        <attr name="text" />
+        <attr name="url" />
     </declare-styleable>
+
+    <declare-styleable name="IconBadge">
+        <attr name="icon" />
+        <attr name="text" />
+    </declare-styleable>
+
 </resources>

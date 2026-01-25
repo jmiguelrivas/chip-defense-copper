@@ -26,13 +26,4 @@ class AboutActivity : BaseFullscreenActivity() {
     fun dismiss(@Suppress("UNUSED_PARAMETER") v: View) {
         finish()
     }
-
-    fun wiki(@Suppress("UNUSED_PARAMETER") v: View) {
-        val browserIntent =
-            Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ochadenas/cpudefense/wiki/Chip-Defense"))
-        try {
-            startActivity(browserIntent)
-        } catch (_: Exception) {
-        }  // come here if no external app can handle the request
-    }
 }

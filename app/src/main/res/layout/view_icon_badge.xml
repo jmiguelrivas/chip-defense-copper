@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="@color/button_color"
+        android:background="@color/accent"
         android:padding="0dp">
 
         <FrameLayout
@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:background="@color/background_secondary_color">
+            android:background="#1f1f2f">
 
             <ImageView
                 android:id="@+id/icon"
@@ -33,7 +33,7 @@
             android:textSize="16sp"
             android:textAllCaps="true"
             android:letterSpacing="0.08"
-            android:textColor="@color/foreground_color"
+            android:textColor="@color/background_tertiary_color"
             android:fontFamily="@font/jersey25_regular" />
     </LinearLayout>
 

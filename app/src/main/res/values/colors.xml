@@ -11,10 +11,9 @@
     <color name="switch_track_color">#445</color>
 
     <!-- UI -->
-    <color name="accent">#abd68e</color>
-    <color name="accent_secondary">#cdc58b</color>
+    <color name="accent">#7EA245</color>
+    <color name="accent_secondary">#639FC7</color>
     <color name="danger">#ff7e80</color>
-    <color name="input_color">#343</color>
 
     <!-- _________________________________________________________________________________ -->
 

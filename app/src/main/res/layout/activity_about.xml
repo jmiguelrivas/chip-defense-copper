@@ -37,56 +37,59 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <com.rama.chipdefense_copper.IconTextButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:icon="@drawable/icon_github"
-                app:text="jmiguelrivas/chip-defense-copper" />
-
-            <com.rama.chipdefense_copper.IconTextButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:icon="@drawable/icon_github"
-                app:text="ochadenas/cpudefense (Original)" />
-
-            <com.rama.chipdefense_copper.IconTextButton
-                android:id="@+id/button_wiki"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:onClick="wiki"
-                app:icon="@drawable/icon_face_thinking_solid"
-                app:text="Game Wiki (ChipDefense)" />
-
-            <com.rama.chipdefense_copper.IconTextButton
+            <com.rama.chipdefense_copper.IconBadge
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/icon_octagon_check_solid"
                 app:text="No Ads" />
 
-            <com.rama.chipdefense_copper.IconTextButton
+            <com.rama.chipdefense_copper.IconBadge
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/icon_octagon_check_solid"
                 app:text="No Trackers" />
 
-            <com.rama.chipdefense_copper.IconTextButton
+            <com.rama.chipdefense_copper.IconBadge
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/icon_octagon_check_solid"
                 app:text="Works Offline" />
 
-            <com.rama.chipdefense_copper.IconTextButton
+            <com.rama.chipdefense_copper.IconBadge
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:icon="@drawable/icon_crown_solid"
+                app:backgroundColor="#2A2A3A"
+                app:text="License GPLv3" />
+
+            <com.rama.chipdefense_copper.IconLink
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:icon="@drawable/icon_github"
+                app:url="https://github.com/jmiguelrivas/chip-defense-copper"
+                app:text="jmiguelrivas/chip-defense-copper" />
+
+            <com.rama.chipdefense_copper.IconLink
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:icon="@drawable/icon_github"
+                app:url="https://github.com/ochadenas/cpudefense"
+                app:text="ochadenas/cpudefense (Original)" />
+
+            <com.rama.chipdefense_copper.IconLink
+                android:id="@+id/button_wiki"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                app:icon="@drawable/icon_crown_solid"
-                app:text="License GPLv3" />
+                app:url="https://github.com/ochadenas/cpudefense/wiki/Chip-Defense"
+                app:icon="@drawable/icon_face_thinking_solid"
+                app:text="Game Wiki (ChipDefense)" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_back"
