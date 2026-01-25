@@ -1,31 +1,30 @@
 # ChipDefense: Copper
 
-This project is a fork of ChipDefense (originally by ochadenas) and is released under the MIT
-License.
+**ChipDefense: Copper** is a fork of **ChipDefense** (originally created by **ochadenas**) and is released under the **MIT License**.
 
-__Chip defense__ is a casual game for Android devices of the _tower defense_ genre. It centres
-around a design of electric circuits and logical chips, evoking the good ol' days of 8 bit
-micro-processors.
+This game is a casual Android tower defense game based on electric circuits and logic chips, evoking the feel of classic 8-bit micro-processors.
 
-The attackers in this game are represented as bits and bytes. To defend the cpu against them, the
-player builds chips in designated slots. These “towers” deal damage by operations such as
-subtraction, right shift, bitwise and, etc. As usual in these games, the chips can be upgraded in
-strength.
+Attackers are represented as bits and bytes. The player defends the CPU by building chips in designated slots. These “towers” deal damage using operations such as subtraction, right shift, bitwise AND, etc. Chips can be upgraded to become stronger.
 
-The game features “heroes of the information age”: persons that had great influence on the
-development of modern computers. They come with a short biography und provide global bonuses that
-make the game considerably easier.
+The game also features “heroes of the information age”: historical figures that had major influence on the development of modern computing. Each hero provides a short biography and global bonuses that make gameplay easier.
 
-Currently, there are more than 25 heroes and heroines. The game comes with 32 predefined levels, but
-it has also an "endless" mode with randomly generated levels. Check out
-some [screenshots](https://github.com/ochadenas/cpudefense/wiki/Screenshots), or have a look into
-the [game's wiki](https://github.com/ochadenas/cpudefense/wiki).
+Currently, the game includes more than 25 heroes and heroines, 32 predefined levels, and an “endless” mode with randomly generated levels.
+
+Check out some [screenshots](https://github.com/ochadenas/cpudefense/wiki/Screenshots) or browse the [game wiki](https://github.com/ochadenas/cpudefense/wiki).
+
+---
 
 ## Download
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="64">](https://f-droid.org/packages/de.chadenas.cpudefense/)
 
-This game is free to play. Find it on F-Droid, or get the latest APK from
-the [Releases Section](https://github.com/ochadenas/cpudefense/releases/latest).
+This game is free to play. Find it on F-Droid, or download the latest APK from the [Releases section](https://github.com/ochadenas/cpudefense/releases/latest).
 
-![pcb_with_castle_small](https://github.com/user-attachments/assets/6a3aa810-f7db-47fa-974d-cc277c14e519)
+---
+
+## Attribution & Licenses
+
+This project includes third-party assets such as icons and fonts.  
+Please see the full attribution list in:
+
+[ATTRIBUTION.md](ATTRIBUTION.md)
