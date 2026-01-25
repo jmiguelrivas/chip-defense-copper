@@ -141,12 +141,12 @@ class GameView(context: Context) :
         )
 
     //        BitmapFactory.decodeResource(resources, R.drawable.cancel_active)
-    val moveLockIcon: Bitmap = vectorToBitmap(
-            context,
-            R.drawable.drag_pan_lock,
-            64,
-            64
-    )
+//    val moveLockIcon: Bitmap = vectorToBitmap(
+//            context,
+//            R.drawable.drag_pan_lock,
+//            64,
+//            64
+//    )
     val moveUnlockIcon: Bitmap = vectorToBitmap(
             context,
             R.drawable.drag_pan,

@@ -22,7 +22,7 @@ class AnimatedPatternView @JvmOverloads constructor(
     private var offset = 0f
 
     init {
-        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.pattern)
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.background_pattern)
 
         shader = BitmapShader(
                 bitmap,

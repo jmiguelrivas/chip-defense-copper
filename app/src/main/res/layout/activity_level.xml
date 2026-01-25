@@ -54,10 +54,12 @@
 
             <LinearLayout
                 android:id="@+id/levelList"
-                android:background="@color/background_secondary_color"
+                android:background="@color/background_tertiary_color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                style="@style/Content" />
+
         </ScrollView>
 
         <com.google.android.material.button.MaterialButton

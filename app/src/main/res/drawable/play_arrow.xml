@@ -3,7 +3,7 @@
     android:height="24dp"
     android:viewportWidth="960"
     android:viewportHeight="960">
-  <path
-      android:pathData="M320,760v-560l440,280 -440,280Z"
-      android:fillColor="@color/active_color"/>
+    <path
+        android:pathData="M320,760v-560l440,280 -440,280Z"
+        android:fillColor="@color/game_button_color" />
 </vector>

@@ -3,7 +3,7 @@
     android:height="24dp"
     android:viewportWidth="960"
     android:viewportHeight="960">
-  <path
-      android:pathData="M100,240v480l200,-133.36L300,720l200,-133.36L500,720l360,-240 -360,-240v133.36L300,240v133.36L100,240z"
-      android:fillColor="@color/active_color"/>
+    <path
+        android:pathData="M100,240v480l200,-133.36L300,720l200,-133.36L500,720l360,-240 -360,-240v133.36L300,240v133.36L100,240z"
+        android:fillColor="@color/game_button_color" />
 </vector>
