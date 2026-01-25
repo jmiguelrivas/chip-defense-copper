@@ -1,0 +1,6 @@
+<resources>
+    <declare-styleable name="IconTextButton">
+        <attr name="icon" format="reference" />
+        <attr name="text" format="string" />
+    </declare-styleable>
+</resources>

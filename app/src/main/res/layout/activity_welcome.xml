@@ -17,7 +17,7 @@
 
         <ImageView
             android:layout_width="350dp"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:src="@drawable/logo" />
 
         <LinearLayout

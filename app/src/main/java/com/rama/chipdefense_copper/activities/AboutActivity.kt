@@ -21,9 +21,6 @@ class AboutActivity : BaseFullscreenActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
         applySystemInsets(findViewById<View>(R.id.root))
-        val info = packageManager.getPackageInfo(this.packageName, PackageManager.GET_ACTIVITIES)
-        val versionView: TextView = findViewById(R.id.about_version)
-        versionView.text = getString(R.string.about_version).format(info.versionName)
     }
 
     fun dismiss(@Suppress("UNUSED_PARAMETER") v: View) {

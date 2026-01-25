@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name" translatable="false">ChipDefense: Copper</string>
+    <string name="app_description">Chip Defense is a casual game for Android devices of the tower defense genre. It centres around a design of electric circuits and logical chips, evoking the good ol\' days of 8 bit micro-processors.</string>
+
+    <!-- _________________________________________________________________________________ -->
+
     <string name="app_name_last" translatable="false">Defense</string>
     <string name="button_start_game">Start new game</string>
     <string name="button_reset_progress">Reset game progress</string>

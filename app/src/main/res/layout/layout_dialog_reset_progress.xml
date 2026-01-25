@@ -24,7 +24,7 @@
         android:id="@+id/reset_endless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Onle Reset Endless Mode"
+        android:text="Only Reset Endless Mode"
         style="@style/Widget.CpuDefense.Button.Danger" />
 
     <com.google.android.material.button.MaterialButton

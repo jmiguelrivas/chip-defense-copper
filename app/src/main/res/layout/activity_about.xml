@@ -1,76 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.rama.chipdefense_copper.AnimatedPatternView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
         android:id="@+id/root"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:focusableInTouchMode="true"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="370dp"
+            android:layout_height="120dp"
+            android:src="@drawable/logo" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:text="@string/app_description"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About the game"
-            style="@style/Title" />
+            android:layout_marginBottom="16dp"
+            android:textAlignment="center"
+            android:textColor="@color/foreground_color"
+            style="@style/Content" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <LinearLayout
+            <com.rama.chipdefense_copper.IconTextButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="12dp"
+                app:icon="@drawable/icon_github"
+                app:text="jmiguelrivas/chip-defense-copper" />
 
-                <TextView
-                    android:id="@+id/about_version"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/version"
-                    android:textColor="@color/foreground_color" />
+            <com.rama.chipdefense_copper.IconTextButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:icon="@drawable/icon_github"
+                app:text="ochadenas/cpudefense (Original)" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/about_info_text"
-                    android:textColor="@color/foreground_color" />
+            <com.rama.chipdefense_copper.IconTextButton
+                android:id="@+id/button_wiki"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:onClick="wiki"
+                app:icon="@drawable/icon_face_thinking_solid"
+                app:text="Game Wiki (ChipDefense)" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/about_title"
-                    android:textColor="#FFFFFF" />
+            <com.rama.chipdefense_copper.IconTextButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:icon="@drawable/icon_octagon_check_solid"
+                app:text="No Ads" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/about_license"
-                    android:textColor="@color/foreground_color" />
+            <com.rama.chipdefense_copper.IconTextButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:icon="@drawable/icon_octagon_check_solid"
+                app:text="No Trackers" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_wiki"
-                    android:onClick="wiki"
-                    android:text="@string/link_wiki"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.CpuDefense.Button" />
+            <com.rama.chipdefense_copper.IconTextButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:icon="@drawable/icon_octagon_check_solid"
+                app:text="Works Offline" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_back"
-                    android:onClick="dismiss"
-                    android:text="@string/go_back"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.CpuDefense.Button" />
-            </LinearLayout>
-        </ScrollView>
+            <com.rama.chipdefense_copper.IconTextButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                app:icon="@drawable/icon_crown_solid"
+                app:text="License GPLv3" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_back"
+                android:onClick="dismiss"
+                android:text="@string/go_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.CpuDefense.Button" />
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>
