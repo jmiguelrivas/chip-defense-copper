@@ -1,0 +1,12 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:fillColor="@color/game_button_color"
+      android:pathData="M8.806,4.742V19.258H5.903V7.645H3.58V4.742ZM11.71,15.774V15.194h0.581v-0.581h0.581v-0.581h0.581V13.452H12.871V12.871H12.29V12.29H11.71V11.71H11.129V8.226h2.903v2.903h0.581v0.581h0.581v0.581h1.161v-0.581h0.581v-0.581h0.581V8.226h2.903v3.484h-0.581v0.581h-0.581v0.581h-0.581v0.581h-0.581v0.581h0.581v0.581h0.581v0.581h0.581v0.581h0.581v3.484h-2.903v-2.903H16.936V15.774H16.355V15.194h-1.161v0.581h-0.581v0.581h-0.581v2.903H11.129v-3.484z"
+      android:strokeLineJoin="round"
+      android:strokeWidth="1.92843"
+      android:strokeLineCap="round"/>
+</vector>

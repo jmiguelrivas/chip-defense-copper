@@ -11,10 +11,12 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Typeface
+import android.view.ContextThemeWrapper
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.GestureDetectorCompat
 import com.rama.chipdefense_copper.GameMechanics.GamePhase
@@ -107,35 +109,35 @@ class GameView(context: Context) :
     val cpuImage: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.cpu)
     val playIcon: Bitmap = vectorToBitmap(
             context,
-            R.drawable.play_arrow,
+            R.drawable.icon_1x,
             64,
             64
     )
     val pauseIcon: Bitmap =
         vectorToBitmap(
                 context,
-                R.drawable.pause,
+                R.drawable.icon_pause,
                 64,
                 64
         )
     val fastIcon: Bitmap =
         vectorToBitmap(
                 context,
-                R.drawable.fast_forward,
+                R.drawable.icon_2x,
                 64,
                 64
         )
     val fastestIcon: Bitmap =
         vectorToBitmap(
                 context,
-                R.drawable.fast_forward_3,
+                R.drawable.icon_3x,
                 64,
                 64
         )
     val returnIcon: Bitmap =
         vectorToBitmap(
                 context,
-                R.drawable.menu,
+                R.drawable.icon_bars,
                 64,
                 64
         )
@@ -447,15 +449,24 @@ class GameView(context: Context) :
     }
 
     private fun displayPauseIndicator(canvas: Canvas) {
-        canvas.let {
-            val paint = Paint()
-            paint.color = Color.WHITE
-            paint.textSize = 72f
-            paint.typeface = Typeface.DEFAULT_BOLD
-            val rect = Rect(0, 0, viewport.viewportWidth, viewport.viewportHeight)
-            rect.displayTextCenteredInRect(it, resources.getString(R.string.game_paused), paint)
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = resources.getColor(R.color.foreground_color)
+            textSize = 72f
+
+            typeface = ResourcesCompat.getFont(
+                    context,
+                    R.font.jersey25_regular
+            )
         }
+
+        val rect = Rect(0, 0, viewport.viewportWidth, viewport.viewportHeight)
+        rect.displayTextCenteredInRect(
+                canvas,
+                resources.getString(R.string.game_paused),
+                paint
+        )
     }
+
 
     fun currentCoinBitmap(stage: Stage.Identifier = gameMechanics.currentStageIdent): Bitmap {
         return when (stage.mode()) {

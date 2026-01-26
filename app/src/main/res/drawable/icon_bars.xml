@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:fillColor="@color/game_button_color"
+      android:pathData="M4.877,4.877L4.877,5.59L4.166,5.59L4.166,7.014L4.877,7.014L4.877,7.727L19.123,7.727L19.123,7.014h0.711L19.834,5.59L19.123,5.59L19.123,4.877ZM4.877,10.576v0.711L4.166,11.287v1.426h0.711v0.711L19.123,13.424L19.123,12.713h0.711v-1.426h-0.711v-0.711zM4.877,16.273v0.713L4.166,16.986v1.424h0.711v0.713L19.123,19.123L19.123,18.41h0.711v-1.424h-0.711v-0.713z"
+      android:strokeWidth="0.712255"/>
+</vector>

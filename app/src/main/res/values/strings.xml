@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">ChipDefense: Copper</string>
     <string name="app_description">Chip Defense is a casual game for Android devices of the tower defense genre. It centres around a design of electric circuits and logical chips, evoking the good ol\' days of 8 bit micro-processors.</string>
 
+    <string name="game_paused">GAME PAUSED</string>
     <string name="coins_got">%1$d / %2$d coin</string>
     <string name="coins_got_plural">%1$d / %2$d coins</string>
     <!-- _________________________________________________________________________________ -->
@@ -284,7 +285,7 @@ The programming language Pascal is named after him."</string>
     <string name="go_back">Go back</string>
     <string name="settings_activate_log">Enable debug logging</string>
     <string name="settings_fast_fast_forward">Show “really fast forward” button</string>
-    <string name="game_paused">GAME PAUSED</string>
+
     <string name="overheat">CPU damage from overheating</string>
     <string-array name="fun_fact">
         <item>Until 1999, the amount of 1024 B was called a <i>kilobyte</i> (kB). For consistency with other SI units, the kilobyte\'s meaning was changed to 1 kB = 1000 B. To keep the former definition, the kibibyte was invented, with 1 KiB = 1024 B.</item>
