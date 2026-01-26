@@ -19,15 +19,17 @@ class SpeedControl(var gameView: GameView)
 {
     private val gameMechanics = gameView.gameMechanics
     private var button1 =
-        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.X2, this)
-    private var button2 =
         SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.X0, this)
+    private var button2 =
+        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.X1, this)
     private var button3 =
+        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.X2, this)
+    private var button4 =
         SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.X3, this)
 
     private var returnButton =
         SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.RETURN, this)
-    private var buttons = mutableListOf(button1, button2, returnButton)
+    private var buttons = mutableListOf(button4, button3, button2, button1, returnButton)
     private var areaRight = Rect(0, 0, 0, 0)
     private var areaLeft = Rect(0, 0, 0, 0)
     private var areaCenter = Rect(0, 0, 0, 0)
@@ -38,25 +40,46 @@ class SpeedControl(var gameView: GameView)
 
     fun setSize(parentArea: Rect) {
         val actualButtonSize =
-            (GameView.speedControlButtonSize * gameView.resources.displayMetrics.density.toInt() *
+            (GameView.speedControlButtonSize *
+                    gameView.resources.displayMetrics.density *
                     if (gameView.gameActivity.settings.configUseLargeButtons) 1.6f else 1.0f).toInt()
-        val margin = actualButtonSize / 5   // space between the buttons
 
-        buttons.add(button3) // add a "fast fast forward" button
+        val margin = actualButtonSize / 2
+
+        buttons = mutableListOf(button4, button3, button2, button1, returnButton)
+
         buttons.forEach { it.setSize(actualButtonSize) }
-        areaRight.right = parentArea.right - margin
-        areaRight.bottom = parentArea.bottom - margin
-        areaRight.left = areaRight.right - 2 * actualButtonSize - margin
-        areaRight.top = areaRight.bottom - actualButtonSize
-        button1.area.setCenter(areaRight.left + actualButtonSize / 2, areaRight.centerY())
-        button2.area.setCenter(areaRight.right - actualButtonSize / 2, areaRight.centerY())
-        button3.area.setCenter(areaRight.left - actualButtonSize / 2 - margin, areaRight.centerY())
-        // put the 'return' button on the other side
-        areaLeft = Rect(areaRight)
-        areaLeft.setLeft(margin)
-        areaCenter = Rect(areaLeft.left, areaLeft.top, areaRight.right, areaRight.bottom)
-        returnButton.area.setCenter(areaLeft.left + actualButtonSize / 2, areaLeft.centerY())
+
+        val centerY = parentArea.bottom - (margin / 3) - actualButtonSize / 2
+
+        // Start from the right edge and move left
+        var cursorX = parentArea.right - margin - actualButtonSize / 2
+
+        button1.area.setCenter(cursorX, centerY)
+        cursorX -= actualButtonSize + margin
+
+        button2.area.setCenter(cursorX, centerY)
+        cursorX -= actualButtonSize + margin
+
+        button3.area.setCenter(cursorX, centerY)
+        cursorX -= actualButtonSize + margin
+
+        button4.area.setCenter(cursorX, centerY)
+
+        // Return button on the left
+        returnButton.area.setCenter(
+                parentArea.left + margin + actualButtonSize / 2,
+                centerY
+        )
+
+        areaCenter = Rect(
+                button1.area.right,
+                parentArea.bottom - actualButtonSize - margin,
+                button4.area.left,
+                parentArea.bottom - margin
+        )
     }
+
 
     fun setInfoLine(newText: String) {
         if (newText == stageInfoText)
@@ -85,9 +108,10 @@ class SpeedControl(var gameView: GameView)
     }
 
     fun resetButtons() {
-        button1.type = SpeedControlButton.Type.X2
-        button2.type = SpeedControlButton.Type.X0
-        button3.type = SpeedControlButton.Type.X3
+        button1.type = SpeedControlButton.Type.X0
+        button2.type = SpeedControlButton.Type.X1
+        button3.type = SpeedControlButton.Type.X2
+        button4.type = SpeedControlButton.Type.X3
     }
 
     fun onDown(p0: MotionEvent): Boolean {
@@ -96,9 +120,8 @@ class SpeedControl(var gameView: GameView)
     }
 
     fun display(canvas: Canvas) {
-        if (areaRight.left == 0)
-            return
         buttons.forEach { it.display(canvas) }
+
         statusInfoBitmap?.let {
             val statusLineRect = Rect(0, 0, it.width, it.height)
             statusLineRect.setCenter(areaCenter.centerX(), areaCenter.centerY())

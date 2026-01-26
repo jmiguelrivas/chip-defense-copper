@@ -43,28 +43,21 @@ class SpeedControlButton(
                 Type.X0 -> {
                     gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X1)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.PAUSED)
-                    panel.resetButtons()
-                    type = Type.X1
                 }
 
                 Type.X1 -> {
                     gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X1)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.RUNNING)
-                    panel.resetButtons()
                 }
 
                 Type.X2 -> {
                     gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X2)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.RUNNING)
-                    panel.resetButtons()
-                    type = Type.X1
                 }
 
                 Type.X3 -> {
                     gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X3)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.RUNNING)
-                    panel.resetButtons()
-                    type = Type.X1
                 }
 
                 Type.RETURN -> {
