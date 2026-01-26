@@ -1,71 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scaleType="centerCrop">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@color/background_secondary_color"
+    android:focusableInTouchMode="true">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="@dimen/dialog_button_margin_vertical"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="sans-serif"
         android:text="@string/query_quit"
-        android:textColor="@color/text_lightamber"
-        android:textSize="@dimen/dialog_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        style="@style/Title" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_return"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="@dimen/dialog_button_margin_vertical"
-        android:layout_marginBottom="@dimen/dialog_button_margin_vertical"
-        android:background="@color/black"
-        android:backgroundTint="@color/black"
-        android:backgroundTintMode="src_over"
-        android:fontFamily="sans-serif"
         android:text="@string/button_return_to_main_menu"
-        android:textAllCaps="true"
-        android:textColor="@color/text_green"
-        android:textSize="@dimen/dialog_text_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintBottom_toTopOf="@id/button_replay" />
+        style="@style/Widget.CpuDefense.Button.Danger" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_replay"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:fontFamily="sans-serif"
         android:text="@string/buttton_replay"
-        android:textAllCaps="true"
-        android:textColor="@color/text_lightgreen"
-        android:textSize="@dimen/dialog_text_size"
-        android:layout_marginTop="@dimen/dialog_button_margin_vertical"
-        android:layout_marginBottom="@dimen/dialog_button_margin_vertical"
-        app:layout_constraintStart_toStartOf="@+id/button_return"
-        app:layout_constraintBottom_toTopOf="@+id/button_cancel" />
+        style="@style/Widget.CpuDefense.Button.Danger" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:fontFamily="sans-serif"
         android:text="@string/continue_game"
-        android:textAllCaps="true"
-        android:textColor="@color/text_gray"
-        android:textSize="@dimen/dialog_text_size"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintStart_toStartOf="@+id/button_return"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.CpuDefense.Button" />
+</LinearLayout>

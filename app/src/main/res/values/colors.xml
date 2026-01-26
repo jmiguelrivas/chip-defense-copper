@@ -6,17 +6,18 @@
     <color name="background_secondary_color">#223</color>
     <color name="background_tertiary_color">#1f1f21</color>
 
+    <color name="accent">#7EA245</color>
+    <color name="accent_secondary">#639FC7</color>
+    <color name="danger">#ff7e80</color>
+
     <color name="game_button_color">#c9e3ce</color>
     <color name="stage_selection_background_color">#2f3d6f</color>
 
     <color name="button_color">#3d385b</color>
     <color name="button_danger_color">#77302c</color>
     <color name="switch_track_color">#445</color>
+    <color name="tab_selected_color">#3c797a</color>
 
-    <!-- UI -->
-    <color name="accent">#7EA245</color>
-    <color name="accent_secondary">#639FC7</color>
-    <color name="danger">#ff7e80</color>
 
     <!-- _________________________________________________________________________________ -->
 

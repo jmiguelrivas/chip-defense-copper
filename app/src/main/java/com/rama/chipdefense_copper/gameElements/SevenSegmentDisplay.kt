@@ -19,22 +19,22 @@ class SevenSegmentDisplay(private val numberOfDigits: Int, val size: Int, activi
     private var resources: Resources = activity.resources
     private val casingMask: Bitmap = decodeResource(resources, R.drawable.mask)
     private val digitMask = listOf<Bitmap>(
-//        decodeResource(resources, R.drawable.digit_0),
-//        decodeResource(resources, R.drawable.digit_1),
-//        decodeResource(resources, R.drawable.digit_2),
-//        decodeResource(resources, R.drawable.digit_3),
-//        decodeResource(resources, R.drawable.digit_4),
-//        decodeResource(resources, R.drawable.digit_5),
-//        decodeResource(resources, R.drawable.digit_6),
-//        decodeResource(resources, R.drawable.digit_7),
-//        decodeResource(resources, R.drawable.digit_8),
-//        decodeResource(resources, R.drawable.digit_9),
-//        decodeResource(resources, R.drawable.digit_a),
-//        decodeResource(resources, R.drawable.digit_b),
-//        decodeResource(resources, R.drawable.digit_c),
-//        decodeResource(resources, R.drawable.digit_d),
-//        decodeResource(resources, R.drawable.digit_e),
-//        decodeResource(resources, R.drawable.digit_f)
+            decodeResource(resources, R.drawable.digit_0),
+            decodeResource(resources, R.drawable.digit_1),
+            decodeResource(resources, R.drawable.digit_2),
+            decodeResource(resources, R.drawable.digit_3),
+            decodeResource(resources, R.drawable.digit_4),
+            decodeResource(resources, R.drawable.digit_5),
+            decodeResource(resources, R.drawable.digit_6),
+            decodeResource(resources, R.drawable.digit_7),
+            decodeResource(resources, R.drawable.digit_8),
+            decodeResource(resources, R.drawable.digit_9),
+            decodeResource(resources, R.drawable.digit_a),
+            decodeResource(resources, R.drawable.digit_b),
+            decodeResource(resources, R.drawable.digit_c),
+            decodeResource(resources, R.drawable.digit_d),
+            decodeResource(resources, R.drawable.digit_e),
+            decodeResource(resources, R.drawable.digit_f)
     )
     private val backgroundLight = hashMapOf<LedColors, Bitmap>(
             LedColors.GREEN to decodeResource(resources, R.drawable.led_green),

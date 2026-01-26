@@ -60,7 +60,7 @@
         <item name="tabPadding">16dp</item>
         <item name="tabTextColor">@color/foreground_color</item>
         <item name="tabSelectedTextColor">@color/foreground_color</item>
-        <item name="tabBackground">@drawable/tab_background_selector</item>
+        <item name="tabBackground">@drawable/ui_tab_background_selector</item>
     </style>
 
     <style name="TextAppearance.CpuDefense.Tab" parent="TextAppearance.MaterialComponents.Button">
