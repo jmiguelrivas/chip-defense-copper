@@ -1,19 +1,40 @@
 <resources>
+    <!-- APP DETAILS -->
     <string name="app_name" translatable="false">ChipDefense: Copper</string>
     <string name="app_description">Chip Defense is a casual game for Android devices of the tower defense genre. It centres around a design of electric circuits and logical chips, evoking the good ol\' days of 8 bit micro-processors.</string>
 
-    <string name="game_paused">GAME PAUSED</string>
+    <!-- HOME -->
+    <string name="button_resume">Resume game</string>
+
+    <!-- SETTINGS -->
+
+    <!-- ABOUT -->
+
+    <!-- LEVEL SELECTOR -->
     <string name="coins_got">%1$d / %2$d coin</string>
     <string name="coins_got_plural">%1$d / %2$d coins</string>
+
+    <!-- MODAL :: RESET GAME PROGRESS -->
+    <string name="button_reset_progress">Reset game progress</string>
+
+    <!-- MODAL :: RESET STAGE -->
+    <string name="buttton_replay">Reset stage</string>
+    <string name="button_return_to_main_menu">Return to main menu</string>
+    <string name="continue_game">Continue playing</string>
+
+    <!-- GAME -->
+    <string name="game_paused">GAME PAUSED</string>
+
+
+    <!-- DEPRECATED -->
+    <string name="quit">Quit</string>
+    <string name="app_name_last" translatable="false">Defense</string>
+    <string name="button_nextlevel">Play next stage</string>
+
     <!-- _________________________________________________________________________________ -->
 
-    <string name="app_name_last" translatable="false">Defense</string>
     <string name="button_start_game">Start new game</string>
-    <string name="button_reset_progress">Reset game progress</string>
-    <string name="quit">Quit</string>
-    <string name="button_resume">Resume game</string>
     <string name="button_playlevel">Play stage</string>
-    <string name="button_nextlevel">Play next stage</string>
     <string name="failed">Failed to clear stage.</string>
     <string name="success">All stages cleared!</string>
     <string name="cleared">Stage cleared.</string>
@@ -267,10 +288,7 @@ The programming language Pascal is named after him."</string>
     <string name="settings_show_atts_in_range">Show attackers in range</string>
     <string name="series_completed_message_1">" "</string>
     <string name="series_completed_message_4">" "</string>
-    <string name="query_quit">Do you want to quit the current stage?</string>
-    <string name="button_return_to_main_menu">Return to main menu</string>
-    <string name="continue_game">Continue playing</string>
-    <string name="buttton_replay">Replay stage</string>
+
     <string name="settings_use_large_buttons">Use large objects</string>
     <string name="settings_show_framerate">Show frame rate</string>
     <string name="button_back">Close</string>

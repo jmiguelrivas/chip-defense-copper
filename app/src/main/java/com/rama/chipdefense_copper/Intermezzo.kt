@@ -31,7 +31,7 @@ import kotlin.random.Random
 - bi-quinary coded decimal
  */
 
-class Intermezzo(var gameView: GameView): GameElement(), Fadable {
+class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
     var level = Stage.Identifier()
     val resources: Resources = gameView.resources
     var alpha = 0
@@ -41,8 +41,10 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
     private var buttonContinue: Button? = null
     private var buttonPurchase: Button? = null
     private var instructions: Instructions? = null
+
     /** a panel containing several heroes to choose from */
     private var heroSelection: HeroSelection? = null
+
     /** whether the player must choose a hero to go on leave */
     private var showLeaveDialogue = false
 
@@ -54,11 +56,11 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
     private val widthOfConsoleLine = 4
     private var textOnContinueButton = ""
 
-    enum class Type {STARTING_LEVEL, NORMAL_LEVEL, GAME_LOST, GAME_WON}
+    enum class Type { STARTING_LEVEL, NORMAL_LEVEL, GAME_LOST, GAME_WON }
+
     var type = Type.NORMAL_LEVEL
 
-    fun setSize(area: Rect)
-    {
+    fun setSize(area: Rect) {
         myArea = Rect(area)
         heroSelection?.adjustArea()
     }
@@ -74,34 +76,34 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
         heroSelection?.prepareScreen()
     }
 
-    private fun displayTypewriterText()
-    {
+    private fun displayTypewriterText() {
         val lines = CopyOnWriteArrayList<String>()
-        when (type)
-        {
+        when (type) {
             Type.GAME_LOST -> {
                 lines.add(resources.getString(R.string.failed))
-                lines.add(resources.getString(R.string.last_stage)
-                              .format(Stage.numberToString(level.number, gameView.gameActivity.settings.showLevelsInHex)))
+                lines.add(
+                        resources.getString(R.string.last_stage)
+                            .format(Stage.numberToString(level.number, gameView.gameActivity.settings.showLevelsInHex))
+                )
                 textOnContinueButton = resources.getString(R.string.button_retry)
                 gameView.gameActivity.setLastPlayedStage(level)
             }
-            Type.GAME_WON  -> {
+
+            Type.GAME_WON -> {
                 lines.add(resources.getString(R.string.success))
-                if (coinsGathered>0)
+                if (coinsGathered > 0)
                     lines.add(resources.getString(R.string.coins_gathered).format(coinsGathered))
-                if (level.series == 1)
-                {
+                if (level.series == 1) {
                     lines.add(resources.getString(R.string.series_completed_message_1))
                     lines.add(resources.getString(R.string.series_completed_message_2))
                     lines.add(resources.getString(R.string.series_completed_message_3))
                     lines.add(resources.getString(R.string.series_completed_message_4))
-                }
-                else
+                } else
                     lines.add(resources.getString(R.string.win))
                 textOnContinueButton = resources.getString(R.string.button_exit)
                 gameView.gameActivity.setLastPlayedStage(level)
             }
+
             Type.STARTING_LEVEL -> {
                 lines.add(resources.getString(R.string.game_start))
                 if (gameView.gameMechanics.currentHeroesOnLeave(level).isNotEmpty())
@@ -109,13 +111,15 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
                 textOnContinueButton = resources.getString(R.string.enter_game)
                 gameView.gameActivity.setLastPlayedStage(level)
             }
-            Type.NORMAL_LEVEL ->
-            {
+
+            Type.NORMAL_LEVEL -> {
                 lines.add(resources.getString(R.string.cleared))
-                if (coinsGathered>0)
+                if (coinsGathered > 0)
                     lines.add(resources.getString(R.string.coins_gathered).format(coinsGathered))
-                lines.add(resources.getString(R.string.next_stage)
-                              .format(Stage.numberToString(level.number, gameView.gameActivity.settings.showLevelsInHex)))
+                lines.add(
+                        resources.getString(R.string.next_stage)
+                            .format(Stage.numberToString(level.number, gameView.gameActivity.settings.showLevelsInHex))
+                )
                 if (gameView.gameMechanics.currentHeroesOnLeave(level).isNotEmpty())
                     lines += heroesOnLeaveText()
                 textOnContinueButton = resources.getString(R.string.enter_game)
@@ -126,7 +130,7 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
     }
 
     private fun heightOfConsoleLine(): Int
-    /** @return the y position of the green line that separates the typewriter text */
+            /** @return the y position of the green line that separates the typewriter text */
     {
         var y = myArea.bottom - Typewriter.heightOfEmptyTypewriterArea
         typewriter?.let { y = it.topOfTypewriterArea() }
@@ -134,36 +138,36 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
     }
 
     private fun displayLine(canvas: Canvas, y: Int)
-    /** paints the green line that separates the typewriter text */
+            /** paints the green line that separates the typewriter text */
     {
         paintLine.style = Paint.Style.FILL_AND_STROKE
         paintLine.color = resources.getColor(R.color.text_green)
-        canvas.drawRect(Rect(0, y-widthOfConsoleLine, gameView.right, y), paintLine)
+        canvas.drawRect(Rect(0, y - widthOfConsoleLine, gameView.right, y), paintLine)
     }
 
-    private fun heroesOnLeaveText(): List<String>
-    {
+    private fun heroesOnLeaveText(): List<String> {
         val heroes: List<Hero> = gameView.gameMechanics.currentHeroesOnLeave(level).values.toList()
         when (heroes.size) {
             0 -> return listOf(resources.getString(R.string.heroes_on_leave_0))
-            1 -> return listOf(resources.getString(R.string.heroes_on_leave_1),
-                               heroes.first().person.fullName)
+            1 -> return listOf(
+                    resources.getString(R.string.heroes_on_leave_1),
+                    heroes.first().person.fullName
+            )
+
             else -> return listOf(resources.getString(R.string.heroes_on_leave_1)) +
                     heroes.map { it.person.fullName }
         }
     }
 
-    private fun displayFireworks()
-    {
-        if (myArea.width()==0)
+    private fun displayFireworks() {
+        if (myArea.width() == 0)
             return
         val frequency = if (level.series == 1) 0.96f else 0.92f
         if (Random.nextFloat() < frequency)  // control amount of fireworks
             return
         // choose random colour
         val colour: Pair<Int, Int>
-        when (Random.nextInt(8))
-        {
+        when (Random.nextInt(8)) {
             0 -> colour = Pair(Color.YELLOW, Color.WHITE)
             1 -> colour = Pair(Color.BLUE, Color.YELLOW)
             2 -> colour = Pair(Color.GREEN, Color.WHITE)
@@ -173,21 +177,24 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
         }
 
         gameView.effects?.explosions?.add(
-            Explosion(Pair(Random.nextInt(myArea.width()), Random.nextInt(myArea.height()*8/10)),
-                colour.first, colour.second))
+                Explosion(
+                        Pair(Random.nextInt(myArea.width()), Random.nextInt(myArea.height() * 8 / 10)),
+                        colour.first, colour.second
+                )
+        )
     }
 
-    private fun onTypewriterDone()
-    {
+    private fun onTypewriterDone() {
         showButton()
     }
 
-    private fun showButton()
-    {
+    private fun showButton() {
         val bottomMargin = 40
-        buttonContinue = Button(gameView, textOnContinueButton,
-                                textSize = GameView.computerTextSize * gameView.textScaleFactor,
-                                color = resources.getColor(R.color.text_green), style = Button.Style.FILLED)
+        buttonContinue = Button(
+                gameView, textOnContinueButton,
+                textSize = GameView.computerTextSize * gameView.textScaleFactor,
+                color = resources.getColor(R.color.text_green), style = Button.Style.FILLED
+        )
         val buttonTop = myArea.bottom - (buttonContinue?.area?.height() ?: 20) - bottomMargin
         buttonContinue?.let {
             Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW)
@@ -196,12 +203,14 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
         // if (game.global.coinsTotal > 0)  // make button always accessible. Issue #20
         if (level.number > 6 || level.series != GameMechanics.SERIES_NORMAL)  // level 6 in series 1 is the first one where coins may be present
         {
-            buttonPurchase = Button(gameView, resources.getString(R.string.button_marketplace),
-                                    textSize = GameView.computerTextSize * gameView.textScaleFactor,
-                                    color = resources.getColor(R.color.text_blue), style = Button.Style.FILLED)
+            buttonPurchase = Button(
+                    gameView, resources.getString(R.string.button_marketplace),
+                    textSize = GameView.computerTextSize * gameView.textScaleFactor,
+                    color = resources.getColor(R.color.text_blue), style = Button.Style.FILLED
+            )
             buttonPurchase?.let {
                 Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW)
-                it.alignRight(myArea.right-bottomMargin, buttonTop)
+                it.alignRight(myArea.right - bottomMargin, buttonTop)
             }
         }
     }
@@ -214,10 +223,10 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
         if (gameView.gameMechanics.state.phase != GameMechanics.GamePhase.INTERMEZZO)
             return
         val paint = Paint()
-        paint.color = Color.BLACK
-        paint.alpha = 255 // alpha
+        paint.color = resources.getColor(R.color.background_tertiary_color)
+        paint.alpha = 255
         canvas.drawRect(myArea, paint)
-        instructions?.setTextArea(Rect(myArea.left,0,myArea.right,heightOfConsoleLine()))
+        instructions?.setTextArea(Rect(myArea.left, 0, myArea.right, heightOfConsoleLine()))
         instructions?.display(canvas)
         typewriter?.display(canvas)
         buttonContinue?.display(canvas)
@@ -232,13 +241,20 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
             startMarketplace()
         else if (buttonContinue?.touchableArea?.contains(event.x.toInt(), event.y.toInt()) == true) {
             when (type) {
-                Type.GAME_WON -> { gameView.gameActivity.finish() }
-                Type.GAME_LOST -> { startLevel() }
-                else -> { startLevel() }
+                Type.GAME_WON -> {
+                    gameView.gameActivity.finish()
+                }
+
+                Type.GAME_LOST -> {
+                    startLevel()
+                }
+
+                else -> {
+                    startLevel()
+                }
             }
             return true
-        }
-        else if (heroSelection?.onDown(event) == true)
+        } else if (heroSelection?.onDown(event) == true)
             return true
         return false
     }
@@ -260,32 +276,28 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
         return true
     }
 
-    private fun maxVerticalDisplacement(): Float
-    {
+    private fun maxVerticalDisplacement(): Float {
         var max = 0
         if (showLeaveDialogue)
             heroSelection?.let { selection ->
-                selection.bitmap?.height?.let { max = it - myArea.height()}
+                selection.bitmap?.height?.let { max = it - myArea.height() }
             }
         else instructions?.let {
             max = it.bitmap.height - it.myArea.height()
         }
-        if (max<0)
+        if (max < 0)
             max = 0
         return max.toFloat()
     }
 
 
-    fun prepareLevel(nextLevel: Stage.Identifier, isStartingLevel: Boolean)
-    {
+    fun prepareLevel(nextLevel: Stage.Identifier, isStartingLevel: Boolean) {
         clear()
         this.level = nextLevel
         if (isStartingLevel) {
             type = Type.STARTING_LEVEL
             Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.FAST)
-        }
-        else
-        {
+        } else {
             type = Type.NORMAL_LEVEL
             Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.SLOW)
         }
@@ -305,8 +317,7 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
         gameView.gameActivity.setGameActivityStatus(GameActivity.GameActivityStatus.BETWEEN_LEVELS)
     }
 
-    private fun startMarketplace()
-    {
+    private fun startMarketplace() {
         if (holidayGranted()) {
             clear()
             gameView.marketplace.fillMarket(level)
@@ -314,17 +325,14 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
         }
     }
 
-    private fun startLevel()
-    {
+    private fun startLevel() {
         if (holidayGranted()) {
             gameView.gameActivity.startNextStage(level)
         }
     }
 
-    private fun holidayGranted(): Boolean
-    {
-        if (oneHeroMustGoOnLeave(level))
-        {
+    private fun holidayGranted(): Boolean {
+        if (oneHeroMustGoOnLeave(level)) {
             if (heroSelection?.selectedHero == null) {
                 Toast.makeText(gameView.gameActivity, "You must select one hero and give them leave!", Toast.LENGTH_SHORT)
                     .show()
@@ -333,8 +341,7 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
             heroSelection?.selectedHero?.addLeave(level, durationOfLeave)
             Persistency(gameView.gameActivity).saveHolidays(gameView.gameMechanics)
             return true
-        }
-        else
+        } else
             return true
     }
 
@@ -350,8 +357,7 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
         if (hasWon) {
             type = Type.GAME_WON
             Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.SLOW)
-        }
-        else {
+        } else {
             type = Type.GAME_LOST
             alpha = 255
             displayTypewriterText()
@@ -360,8 +366,7 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
         gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.INTERMEZZO)
     }
 
-    private fun clear()
-    {
+    private fun clear() {
         typewriter = null
         instructions = null
         buttonContinue = null
@@ -370,33 +375,43 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
     }
 
     private fun isLevelWhereHeroGoesOnLeave(ident: Stage.Identifier): Boolean
-    /** This function also sets the duration of leave (in levels; default is 2) */
+            /** This function also sets the duration of leave (in levels; default is 2) */
     {
         if (ident.series < GameMechanics.SERIES_ENDLESS)
             return false
         durationOfLeave = 1 + ident.number / 100
-        return when (ident.number % 4)
-        {
-            0 -> { ident.number >= 16 }
-            1 -> { ident.number >= 256 }
-            2 -> { ident.number >= 64 }
-            3 -> { ident.number >= 128 }
+        return when (ident.number % 4) {
+            0 -> {
+                ident.number >= 16
+            }
+
+            1 -> {
+                ident.number >= 256
+            }
+
+            2 -> {
+                ident.number >= 64
+            }
+
+            3 -> {
+                ident.number >= 128
+            }
+
             else -> false
         }
     }
 
-    private fun oneHeroMustGoOnLeave(ident: Stage.Identifier): Boolean
-    {
+    private fun oneHeroMustGoOnLeave(ident: Stage.Identifier): Boolean {
         return (isLevelWhereHeroGoesOnLeave(ident) && (ident.number !in gameView.gameMechanics.holidays))
     }
 
-    inner class HeroSelection
-    {
+    inner class HeroSelection {
         private val sizeOfHeroPanel = GameMechanics.numberOfHeroesToChooseFrom
         var heroesAskingToTakeLeave = listOf<Hero>()
         var selectedHero: Hero? = null
         var width: Int = 0
         var bitmap: Bitmap? = null
+
         /** outer rectangle with a green border */
         private var heroSelectionArea = Rect()
 
@@ -408,14 +423,13 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
                 heroesAskingToTakeLeave = heroesAskingToTakeLeave.takeLast(sizeOfHeroPanel)
         }
 
-        fun prepareScreen()
-        {
+        fun prepareScreen() {
             if (heroSelectionArea.height() > 0)
                 bitmap = createBitmap(heroSelectionArea)
         }
 
         fun createBitmap(area: Rect): Bitmap
-        /** @param area the rectangle that can be used by the bitmap */
+                /** @param area the rectangle that can be used by the bitmap */
         {
             // create empty bitmap
             val bitmap = Bitmap.createBitmap(area.width(), area.height(), Bitmap.Config.ARGB_8888)
@@ -425,17 +439,18 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
             val margin = 20 * gameView.scaleFactor
             canvas.save()
             canvas.translate(margin, margin)
-            val text = when (durationOfLeave)
-            {
+            val text = when (durationOfLeave) {
                 1 -> resources.getString(R.string.instr_leave_1)
-                else -> resources.getString(R.string.instr_leave).format(gameView.intermezzo.durationOfLeave)
+                else -> resources.getString(R.string.instr_leave)
+                    .format(gameView.intermezzo.durationOfLeave)
             }
             val textPaint = TextPaint()
             textPaint.textSize = GameView.computerTextSize * gameView.textScaleFactor
             textPaint.typeface = Typeface.SANS_SERIF
             textPaint.color = resources.getColor(R.color.text_amber)
             textPaint.alpha = 255
-            val textLayout = StaticLayout(text, textPaint, area.width()-2*margin.toInt(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false)
+            val textLayout =
+                StaticLayout(text, textPaint, area.width() - 2 * margin.toInt(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false)
             textLayout.draw(canvas)
             canvas.restore()
 
@@ -449,28 +464,25 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
             return bitmap
         }
 
-        fun adjustArea()
-        {
+        fun adjustArea() {
             heroSelectionArea = Rect(myArea.left, myArea.top, myArea.right, heightOfConsoleLine())
         }
 
-        private fun determineCardPositions(upperEdge: Int, margin: Int)
-        {
+        private fun determineCardPositions(upperEdge: Int, margin: Int) {
             heroesAskingToTakeLeave.forEach {
                 it.card.create(showNextUpdate = false, monochrome = true)
             }
-            val cardWidth  = heroesAskingToTakeLeave.first().card.cardArea.width()
+            val cardWidth = heroesAskingToTakeLeave.first().card.cardArea.width()
             val cardHeight = heroesAskingToTakeLeave.first().card.cardArea.height()
-            val heroRect = Rect(heroSelectionArea.left, upperEdge, heroSelectionArea.right, heroSelectionArea.bottom).apply { shrink(margin) }
+            val heroRect =
+                Rect(heroSelectionArea.left, upperEdge, heroSelectionArea.right, heroSelectionArea.bottom).apply { shrink(margin) }
             val xLeft = heroRect.left
             val xRight = heroRect.left + cardWidth + margin
-            val yBottom = heroRect.top + cardHeight + 2*margin
+            val yBottom = heroRect.top + cardHeight + 2 * margin
             val yTop = heroRect.top + margin
             heroesAskingToTakeLeave.forEachIndexed()
-            {
-                index, hero ->
-                when (index)
-                {
+            { index, hero ->
+                when (index) {
                     0 -> hero.card.putAt(xLeft, yTop)
                     1 -> hero.card.putAt(xRight, yTop)
                     2 -> hero.card.putAt(xLeft, yBottom)
@@ -479,8 +491,7 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
             }
         }
 
-        fun display(canvas: Canvas)
-        {
+        fun display(canvas: Canvas) {
             heroSelectionArea.bottom = heightOfConsoleLine()
             paint.color = resources.getColor(R.color.text_amber)
             paint.style = Paint.Style.STROKE
@@ -499,10 +510,12 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
                  */
         {
             val count = GameMechanics.numberOfHeroesConsideredForLeave
-            val heroesExcluded = listOf(Hero.Type.ENABLE_MEM_UPGRADE, Hero.Type.INCREASE_MAX_HERO_LEVEL )
+            val heroesExcluded =
+                listOf(Hero.Type.ENABLE_MEM_UPGRADE, Hero.Type.INCREASE_MAX_HERO_LEVEL)
             var possibleHeroes = gameView.gameMechanics.currentHeroes(level).values.filter {
                 it.data.type !in heroesExcluded && !it.isOnLeave(level)
-            }.sortedBy { it.data.level }  // list of all heroes that are available, the strongest at the end
+            }
+                .sortedBy { it.data.level }  // list of all heroes that are available, the strongest at the end
             if (possibleHeroes.size > count)
                 possibleHeroes = possibleHeroes.takeLast(count)
             return possibleHeroes.shuffled()
@@ -521,8 +534,7 @@ class Intermezzo(var gameView: GameView): GameElement(), Fadable {
             return false
         }
 
-        private fun selectForLeave(hero: Hero)
-        {
+        private fun selectForLeave(hero: Hero) {
             heroesAskingToTakeLeave.filter { it != hero }
                 .forEach { it.isOnLeave = false }  // reset the other cards
             hero.isOnLeave = !hero.isOnLeave // toggle this one

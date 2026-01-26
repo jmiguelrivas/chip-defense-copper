@@ -7,12 +7,6 @@
     android:background="@color/background_secondary_color"
     android:focusableInTouchMode="true">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/query_quit"
-        style="@style/Title" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_return"
         android:layout_width="match_parent"
