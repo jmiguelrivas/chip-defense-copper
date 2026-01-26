@@ -11,10 +11,10 @@ import androidx.core.graphics.scale
 class SpeedControlButton(
     val gameView: GameView,
     val gameMechanics: GameMechanics,
-    var type: Type = Type.PAUSE,
+    var type: Type = Type.X0,
     private val panel: SpeedControl
 ) : Fadable {
-    enum class Type { PAUSE, FAST, FASTEST, NORMAL, RETURN }
+    enum class Type { X0, X2, X3, X1, RETURN }
 
     var area = Rect()
     var paint = Paint()
@@ -23,10 +23,10 @@ class SpeedControlButton(
 
     fun setSize(size: Int) {
         area = Rect(0, 0, size, size)
-        bitmapOfType[Type.PAUSE] = gameView.pauseIcon.scale(size, size)
-        bitmapOfType[Type.NORMAL] = gameView.playIcon.scale(size, size)
-        bitmapOfType[Type.FAST] = gameView.fastIcon.scale(size, size)
-        bitmapOfType[Type.FASTEST] = gameView.fastestIcon.scale(size, size)
+        bitmapOfType[Type.X0] = gameView.pauseIcon.scale(size, size)
+        bitmapOfType[Type.X1] = gameView.playIcon.scale(size, size)
+        bitmapOfType[Type.X2] = gameView.fastIcon.scale(size, size)
+        bitmapOfType[Type.X3] = gameView.fastestIcon.scale(size, size)
         bitmapOfType[Type.RETURN] = gameView.returnIcon.scale(size, size)
     }
 
@@ -40,31 +40,31 @@ class SpeedControlButton(
     fun onDown(p0: MotionEvent): Boolean {
         if (area.contains(p0.x.toInt(), p0.y.toInt())) {
             when (type) {
-                Type.PAUSE -> {
-                    gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.NORMAL)
+                Type.X0 -> {
+                    gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X1)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.PAUSED)
                     panel.resetButtons()
-                    type = Type.NORMAL
+                    type = Type.X1
                 }
 
-                Type.NORMAL -> {
-                    gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.NORMAL)
+                Type.X1 -> {
+                    gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X1)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.RUNNING)
                     panel.resetButtons()
                 }
 
-                Type.FAST -> {
-                    gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.FAST)
+                Type.X2 -> {
+                    gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X2)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.RUNNING)
                     panel.resetButtons()
-                    type = Type.NORMAL
+                    type = Type.X1
                 }
 
-                Type.FASTEST -> {
-                    gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.MAX)
+                Type.X3 -> {
+                    gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X3)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.RUNNING)
                     panel.resetButtons()
-                    type = Type.NORMAL
+                    type = Type.X1
                 }
 
                 Type.RETURN -> {

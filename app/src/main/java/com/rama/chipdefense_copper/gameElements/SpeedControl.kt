@@ -19,11 +19,11 @@ class SpeedControl(var gameView: GameView)
 {
     private val gameMechanics = gameView.gameMechanics
     private var button1 =
-        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.FAST, this)
+        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.X2, this)
     private var button2 =
-        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.PAUSE, this)
+        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.X0, this)
     private var button3 =
-        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.FASTEST, this)
+        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.X3, this)
 
     private var returnButton =
         SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.RETURN, this)
@@ -85,9 +85,9 @@ class SpeedControl(var gameView: GameView)
     }
 
     fun resetButtons() {
-        button1.type = SpeedControlButton.Type.FAST
-        button2.type = SpeedControlButton.Type.PAUSE
-        button3.type = SpeedControlButton.Type.FASTEST
+        button1.type = SpeedControlButton.Type.X2
+        button2.type = SpeedControlButton.Type.X0
+        button3.type = SpeedControlButton.Type.X3
     }
 
     fun onDown(p0: MotionEvent): Boolean {

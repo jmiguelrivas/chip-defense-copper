@@ -169,7 +169,7 @@ class GameActivity : BaseFullscreenActivity() {
         }
         gameThreadsRunning = true
         resumeGame = true // for the next time we come here
-        setGameSpeed(GameSpeed.NORMAL) // always start with normal speed
+        setGameSpeed(GameSpeed.X1) // always start with normal speed
         startGameThreads()
     }
 
@@ -395,7 +395,7 @@ class GameActivity : BaseFullscreenActivity() {
             )
             showStageMessage(it)
         }
-        setGameSpeed(GameSpeed.NORMAL)  // reset speed to normal when starting next stage
+        setGameSpeed(GameSpeed.X1)  // reset speed to normal when starting next stage
         changeToGamePhase(GamePhase.RUNNING)
         nextStage.gameView.resetAtStartOfStage()
         gameMechanics.currentlyActiveWave = nextStage.nextWave()
@@ -476,9 +476,9 @@ class GameActivity : BaseFullscreenActivity() {
         gameMechanics.state.speed = speed
         Persistency(this).saveGeneralState(gameMechanics)
         updateDelay = when (speed) {
-            GameSpeed.NORMAL -> defaultDelay
-            GameSpeed.FAST -> fastForwardDelay
-            GameSpeed.MAX -> fastFastForwardDelay
+            GameSpeed.X1 -> defaultDelay
+            GameSpeed.X2 -> fastForwardDelay
+            GameSpeed.X3 -> fastFastForwardDelay
         }
         logger?.log("Game speed set to %s. Update delay is %s".format(speed.toString(), updateDelay.toString()))
     }
