@@ -24,11 +24,10 @@ class SpeedControl(var gameView: GameView)
         SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.PAUSE, this)
     private var button3 =
         SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.FASTEST, this)
-    private var lockButton =
-        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.UNLOCK, this)
+
     private var returnButton =
         SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.RETURN, this)
-    private var buttons = mutableListOf(button1, button2, returnButton, lockButton)
+    private var buttons = mutableListOf(button1, button2, returnButton)
     private var areaRight = Rect(0, 0, 0, 0)
     private var areaLeft = Rect(0, 0, 0, 0)
     private var areaCenter = Rect(0, 0, 0, 0)
@@ -57,7 +56,6 @@ class SpeedControl(var gameView: GameView)
         areaLeft.setLeft(margin)
         areaCenter = Rect(areaLeft.left, areaLeft.top, areaRight.right, areaRight.bottom)
         returnButton.area.setCenter(areaLeft.left + actualButtonSize / 2, areaLeft.centerY())
-        lockButton.area.setCenter(areaLeft.right - actualButtonSize / 2, areaLeft.centerY())
     }
 
     fun setInfoLine(newText: String) {

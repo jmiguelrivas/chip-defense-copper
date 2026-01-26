@@ -14,7 +14,7 @@ class SpeedControlButton(
     var type: Type = Type.PAUSE,
     private val panel: SpeedControl
 ) : Fadable {
-    enum class Type { PAUSE, FAST, FASTEST, NORMAL, RETURN, LOCK, UNLOCK }
+    enum class Type { PAUSE, FAST, FASTEST, NORMAL, RETURN }
 
     var area = Rect()
     var paint = Paint()
@@ -28,8 +28,6 @@ class SpeedControlButton(
         bitmapOfType[Type.FAST] = gameView.fastIcon.scale(size, size)
         bitmapOfType[Type.FASTEST] = gameView.fastestIcon.scale(size, size)
         bitmapOfType[Type.RETURN] = gameView.returnIcon.scale(size, size)
-//        bitmapOfType[Type.LOCK] = gameView.moveLockIcon.scale(size, size)
-        bitmapOfType[Type.UNLOCK] = gameView.moveUnlockIcon.scale(size, size)
     }
 
     override fun fadeDone(type: Fader.Type) {
@@ -71,16 +69,6 @@ class SpeedControlButton(
 
                 Type.RETURN -> {
                     gameView.gameActivity.showReturnDialog()
-                }
-
-                Type.LOCK -> {
-                    gameView.scrollAllowed = true
-                    type = Type.UNLOCK
-                }
-
-                Type.UNLOCK -> {
-                    gameView.scrollAllowed = false
-                    type = Type.LOCK
                 }
             }
             return true
