@@ -27,8 +27,9 @@
     <string name="scoreboard_status">lives</string>
     <string name="scoreboard_coins">coins</string>
     <string name="scoreboard_inf">inf</string>
+    <string name="scoreboard_stage">stage</string>
     <string name="scoreboard_waves">wave</string>
-
+    <string name="scoreboard_temp">temp</string>
 
     <!-- DEPRECATED -->
     <string name="quit">Quit</string>

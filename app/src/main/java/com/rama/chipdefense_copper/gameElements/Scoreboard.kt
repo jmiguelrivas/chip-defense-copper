@@ -18,13 +18,14 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
     var margin = 4   // between LED area and edge
 
     private var area = Rect()
+    private var stageDisplay = StageDisplay()
     private var information = Information()
     private var waves = Waves()
     private var lives = Lives()
     private var coins = Coins()
     private var temperature = Temperature()
     private var debugStatusLine: DebugStatusLine? = null
-    private var displayOutputSize: Int = 150
+    private var displayOutputSize: Int = 130
 
     /** height of the (virtual) line between the display title and the actual display */
     private var divider: Int = 0
@@ -52,7 +53,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
 
         textSize = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_SP,
-                16f,
+                14f,
                 resources.displayMetrics
         )
 
@@ -91,15 +92,15 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         canvas.drawRect(outerRect, bgPaint)
 
         // Optional border (very retro)
-//        val borderPaint = Paint().apply {
-//            color = ContextCompat.getColor(
-//                    gameView.context,
-//                    R.color.dashboard_divider_color
-//            )
-//            style = Paint.Style.STROKE
-//            strokeWidth = 3f
-//        }
-//        canvas.drawRect(outerRect, borderPaint)
+        val borderPaint = Paint().apply {
+            color = ContextCompat.getColor(
+                    gameView.context,
+                    R.color.dashboard_divider_color
+            )
+            style = Paint.Style.STROKE
+            strokeWidth = 3f
+        }
+        canvas.drawRect(outerRect, borderPaint)
 
         // Title paint (same style, smaller)
         val titlePaint = gameView.createGameDisplayPaint(
@@ -140,7 +141,6 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         )
     }
 
-
     fun setSize(area: Rect)
             /** sets the size of the score board and determines the dimensions of all components.
              * @param area The rectangle that the score board shall occupy
@@ -150,8 +150,9 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         // divider between title line and actual status indicators
         divider = /* this.area.top + */ this.area.height() * 32 / 100
         var areaRemaining = Rect(area).inflate(-scoreboardBorderWidth.toInt())
-        areaRemaining = information.setSize(areaRemaining, divider)
+        areaRemaining = stageDisplay.setSize(areaRemaining, divider)
         areaRemaining = waves.setSize(areaRemaining, divider)
+        areaRemaining = information.setSize(areaRemaining, divider)
         areaRemaining = coins.setSize(areaRemaining, divider)
         areaRemaining = lives.setSize(areaRemaining, divider)
         @Suppress("UNUSED_VALUE")
@@ -194,15 +195,13 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         paint.strokeWidth = scoreboardBorderWidth
         // canvas.drawRect(area, paint)
         canvas.drawLine(area.left.toFloat(), area.top.toFloat(), area.right.toFloat(), area.top.toFloat(), paint)
+        stageDisplay.display(canvas)
+        waves.display(canvas)
         if (currentStage.series > 1 || currentStage.number > 2)
             information.display(canvas)
-        waves.display(canvas)
         lives.display(canvas)
         coins.display(canvas)
-        if (currentStage.series > 1 || currentStage.number > 27)
-            temperature.display(canvas)
-        if (currentStage.series > 1)
-            temperature.display(canvas)
+        temperature.display(canvas)
         debugStatusLine?.display(canvas)
     }
 
@@ -243,6 +242,48 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         }
     }
 
+    inner class StageDisplay {
+        private var area = Rect()
+        private var divider = 0
+
+        private var lastValue = ""
+        lateinit var bitmap: Bitmap
+        private val paint = Paint()
+
+        fun setSize(area: Rect, divider: Int): Rect {
+            this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
+            bitmap = createBitmap(this.area.width(), this.area.height())
+            this.divider = divider
+            return Rect(this.area.right, area.top, area.right, area.bottom)
+        }
+
+        fun display(canvas: Canvas) {
+            val stage = gameView.gameMechanics.currentStageIdent
+            val newValue = "S${stage.series}-${stage.number}"
+
+            if (newValue != lastValue) {
+                lastValue = newValue
+                recreateBitmap()
+            }
+            canvas.drawBitmap(bitmap, null, area, paint)
+        }
+
+        fun recreateBitmap() {
+            bitmap = createBitmap(area.width(), area.height())
+            val canvas = Canvas(bitmap)
+
+            drawGameDisplay(
+                    canvas = canvas,
+                    gameView = gameView,
+                    x = (area.width() - displayOutputSize) / 2,
+                    y = (area.height() - displayOutputSize) / 2,
+                    title = resources.getString(R.string.scoreboard_stage),
+                    value = lastValue
+            )
+        }
+    }
+
+
     inner class Information
     /** display of current amount of information ('cash') */
     {
@@ -260,8 +301,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
                  * @return The rectangle that remains (original area minus occupied area)
                  */
         {
-            this.area =
-                Rect(area.left, area.top, (area.width() * fractionOfScoreBoardUsedForInf).toInt(), area.bottom)
+            this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
             bitmap = createBitmap(this.area.width(), this.area.height())
             this.divider = divider
             return Rect(this.area.right, area.top, area.right, area.bottom)
@@ -304,8 +344,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         val paint = Paint()
 
         fun setSize(area: Rect, divider: Int): Rect {
-            this.area =
-                Rect(area.left, area.top, (area.left + area.width() * 0.25).toInt(), area.bottom)
+            this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
             bitmap = createBitmap(this.area.width(), this.area.height())
             this.divider = divider
             return Rect(this.area.right, area.top, area.right, area.bottom)
@@ -356,8 +395,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         private var deltaX = 0
 
         fun setSize(area: Rect, divider: Int): Rect {
-            this.area =
-                Rect(area.left, area.top, (area.left + area.width() * 0.7f).toInt(), area.bottom)
+            this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
             bitmap = createBitmap(this.area.width(), this.area.height())
             this.divider = divider
             calculateLedSize()
@@ -414,8 +452,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
 
         fun setSize(area: Rect, divider: Int): Rect {
             actualSize = (GameView.coinSizeOnScoreboard * gameView.scaleFactor).toInt()
-            this.area =
-                Rect(area.left, area.top, (area.left + area.width() * 0.36).toInt(), area.bottom)
+            this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
             bitmap = createBitmap(this.area.width(), this.area.height())
             this.divider = divider
             return Rect(this.area.right, area.top, area.right, area.bottom)
@@ -464,8 +501,13 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         lateinit var bitmap: Bitmap
         private val paint = Paint()
 
+        private fun isTemperatureAvailable(): Boolean {
+            val state = gameView.gameMechanics.state
+            return state.heat > 0
+        }
+
         fun setSize(area: Rect, divider: Int): Rect {
-            this.area = Rect(area)
+            this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
             this.divider = divider
             bitmap = createBitmap(area.width(), area.height())
             return Rect(this.area.right, area.top, area.right, area.bottom)
@@ -473,11 +515,17 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
 
         fun display(canvas: Canvas) {
             val state = gameView.gameMechanics.state
-            temperature =
-                (state.heat / GameMechanics.heatPerDegree + GameMechanics.baseTemperature).toInt()
 
-            if (temperature != lastValue) {
-                lastValue = temperature
+            val newValue =
+                if (state.heat > 0) {
+                    (state.heat / GameMechanics.heatPerDegree +
+                            GameMechanics.baseTemperature).toInt()
+                } else {
+                    Int.MIN_VALUE
+                }
+
+            if (newValue != lastValue) {
+                lastValue = newValue
                 recreateBitmap()
             }
 
@@ -488,65 +536,31 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
             bitmap = createBitmap(area.width(), area.height())
             val canvas = Canvas(bitmap)
 
-            // Background tile
-            val bgPaint = Paint().apply {
-                color = ContextCompat.getColor(
-                        gameView.context,
-                        R.color.background_tertiary_color
-                )
-                style = Paint.Style.FILL
-            }
-
-            val borderPaint = Paint().apply {
-                color = ContextCompat.getColor(
-                        gameView.context,
-                        R.color.dashboard_divider_color
-                )
-                style = Paint.Style.STROKE
-                strokeWidth = 3f
-            }
-
-            val outer = Rect(0, 0, area.width(), area.height())
-            canvas.drawRect(outer, bgPaint)
-            canvas.drawRect(outer, borderPaint)
-
-            // Header
-            displayHeader(
-                    canvas,
-                    Rect(0, 0, area.width(), area.height()),
-                    "TEMP"
-            )
-
-            // Value
-            val valueRect = Rect(
-                    0,
-                    divider,
-                    area.width(),
-                    area.height()
-            )
-
-            val valueText = "$temperature°"
-
+            val valueText: String
             val valuePaint = gameView.createGameDisplayPaint(
                     colorParam = R.color.dashboard_display_foregorund_color
             )
 
-            // Optional warning color
-            when {
-                temperature >= GameMechanics.temperatureLimit ->
+            if (lastValue == Int.MIN_VALUE) {
+                valueText = "--"
+                valuePaint.alpha = 120
+            } else {
+                valueText = "$lastValue°"
+                if (lastValue >= GameMechanics.temperatureLimit)
                     valuePaint.color = ContextCompat.getColor(gameView.context, R.color.led_red)
-
-                temperature >= GameMechanics.temperatureWarnThreshold ->
+                else if (lastValue >= GameMechanics.temperatureWarnThreshold)
                     valuePaint.color = ContextCompat.getColor(gameView.context, R.color.led_turbo)
             }
 
-            valueRect.displayTextCenteredInRect(
-                    canvas,
-                    valueText,
-                    valuePaint
+            drawGameDisplay(
+                    canvas = canvas,
+                    gameView = gameView,
+                    x = (area.width() - displayOutputSize) / 2,
+                    y = (area.height() - displayOutputSize) / 2,
+                    title = resources.getString(R.string.scoreboard_temp),
+                    value = valueText
             )
         }
-
     }
 
     inner class DebugStatusLine
