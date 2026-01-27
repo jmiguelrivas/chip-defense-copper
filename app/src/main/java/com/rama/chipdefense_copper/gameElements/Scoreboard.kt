@@ -3,10 +3,8 @@
 package com.rama.chipdefense_copper.gameElements
 
 import android.graphics.*
-import android.util.TypedValue
 import android.view.MotionEvent
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.rama.chipdefense_copper.*
 import com.rama.chipdefense_copper.networkmap.Viewport
 import com.rama.chipdefense_copper.utils.*
@@ -36,31 +34,6 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
     var type: ScoreBoard.Type = ScoreBoard.Type.MENU
 
     enum class Type { MENU }
-
-    fun GameView.createGameDisplayPaint(
-        colorParam: Int
-    ): Paint = Paint().apply {
-
-        color = ContextCompat.getColor(
-                context,
-                colorParam
-        )
-
-        typeface = ResourcesCompat.getFont(
-                context,
-                R.font.jersey25_regular
-        )
-
-        letterSpacing = 0.05f
-
-        textSize = TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_SP,
-                14f,
-                resources.displayMetrics
-        )
-
-        isAntiAlias = true
-    }
 
     fun drawGameDisplay(
         canvas: Canvas,
@@ -104,17 +77,11 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         }
         canvas.drawRect(outerRect, borderPaint)
 
-        // Title paint (same style, smaller)
-        val titlePaint = gameView.createGameDisplayPaint(
-                colorParam = R.color.foreground_color
-        ).apply {
+        val titlePaint = textStyleContent(gameView.context).apply {
             textAlign = Paint.Align.CENTER
         }
 
-        // Value paint (main output)
-        val valuePaint = gameView.createGameDisplayPaint(
-                colorParam = R.color.dashboard_display_foregorund_color
-        ).apply {
+        val valuePaint = textStyleTitle(gameView.context).apply {
             textAlign = Paint.Align.CENTER
         }
 
@@ -262,8 +229,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         menuButton.display(canvas)
         stageDisplay.display(canvas)
         waves.display(canvas)
-        if (currentStage.series > 1 || currentStage.number > 2)
-            information.display(canvas)
+        information.display(canvas)
         lives.display(canvas)
         coins.display(canvas)
         temperature.display(canvas)
@@ -282,7 +248,8 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         val rect = Rect(area)
         rect.bottom = divider
 
-        val paint = gameView.createGameDisplayPaint(
+        val paint = textStyle(
+                gameView.context,
                 colorParam = R.color.fps_debug
         ).apply {
             textAlign = Paint.Align.LEFT
@@ -593,10 +560,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         }
 
         fun display(canvas: Canvas) {
-            val stage: Stage? = gameView.gameMechanics.currentlyActiveStage
             val state: GameMechanics.StateData = gameView.gameMechanics.state
-            if (stage?.summary?.coinsMaxAvailable == 0)
-                return  // levels where you can't get coins
             coins = state.coinsInLevel + state.coinsExtra
             if (coins < 0)
                 return  // something went wrong, shouldn't happen
@@ -671,8 +635,8 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
             val canvas = Canvas(bitmap)
 
             val valueText: String
-            val valuePaint = gameView.createGameDisplayPaint(
-                    colorParam = R.color.dashboard_display_foregorund_color
+            val valuePaint = textStyleContent(
+                    gameView.context
             )
 
             if (lastValue == Int.MIN_VALUE) {
