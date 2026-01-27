@@ -32,19 +32,16 @@ fun Bitmap.clear()
 }
 
 fun Context.vectorToBitmap(
-    context: Context,
     drawableId: Int,
     width: Int,
     height: Int
 ): Bitmap {
-    val drawable = ResourcesCompat.getDrawable(context.resources, drawableId, null)
-        ?: throw IllegalArgumentException("Drawable not found")
+    val drawable = ResourcesCompat.getDrawable(resources, drawableId, null)
+        ?: error("Drawable not found: $drawableId")
 
-    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-    val canvas = Canvas(bitmap)
-
-    drawable.setBounds(0, 0, canvas.width, canvas.height)
-    drawable.draw(canvas)
-
-    return bitmap
+    return Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888).also { bitmap ->
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, canvas.width, canvas.height)
+        drawable.draw(canvas)
+    }
 }

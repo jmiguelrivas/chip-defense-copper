@@ -65,7 +65,6 @@ class GameView(context: Context) :
         const val minScoreBoardHeight = 100
         const val maxScoreBoardHeight = 320
         const val speedControlButtonSize = 24
-        const val levelSnapshotIconSize = 120
     }
 
     val gameActivity = context as GameActivity
@@ -86,28 +85,24 @@ class GameView(context: Context) :
         BitmapFactory.decodeResource(resources, R.drawable.cryptocoin_red)
     val cpuImage: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.cpu)
     val playIcon: Bitmap = context.vectorToBitmap(
-            context,
             R.drawable.icon_1x,
             64,
             64
     )
     val pauseIcon: Bitmap =
         context.vectorToBitmap(
-                context,
                 R.drawable.icon_pause,
                 64,
                 64
         )
     val fastIcon: Bitmap =
         context.vectorToBitmap(
-                context,
                 R.drawable.icon_2x,
                 64,
                 64
         )
     val fastestIcon: Bitmap =
         context.vectorToBitmap(
-                context,
                 R.drawable.icon_3x,
                 64,
                 64
