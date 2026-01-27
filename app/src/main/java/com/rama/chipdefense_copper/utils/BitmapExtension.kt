@@ -2,9 +2,12 @@
 
 package com.rama.chipdefense_copper.utils
 
+import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Matrix
+import androidx.core.content.res.ResourcesCompat
 
 fun Bitmap.flipHorizontally(): Bitmap
         /** flips the bitmap horizontally. Taken from
@@ -26,4 +29,22 @@ fun Bitmap.clear()
         /** just a function to make the naming clearer */
 {
     eraseColor(Color.TRANSPARENT)
+}
+
+fun Context.vectorToBitmap(
+    context: Context,
+    drawableId: Int,
+    width: Int,
+    height: Int
+): Bitmap {
+    val drawable = ResourcesCompat.getDrawable(context.resources, drawableId, null)
+        ?: throw IllegalArgumentException("Drawable not found")
+
+    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bitmap)
+
+    drawable.setBounds(0, 0, canvas.width, canvas.height)
+    drawable.draw(canvas)
+
+    return bitmap
 }

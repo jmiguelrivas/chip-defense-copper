@@ -33,25 +33,8 @@ import com.rama.chipdefense_copper.networkmap.Coord
 import com.rama.chipdefense_copper.networkmap.Network
 import com.rama.chipdefense_copper.networkmap.Viewport
 import com.rama.chipdefense_copper.utils.displayTextCenteredInRect
+import com.rama.chipdefense_copper.utils.vectorToBitmap
 import java.util.concurrent.CopyOnWriteArrayList
-
-fun vectorToBitmap(
-    context: Context,
-    drawableId: Int,
-    width: Int,
-    height: Int
-): Bitmap {
-    val drawable = ResourcesCompat.getDrawable(context.resources, drawableId, null)
-        ?: throw IllegalArgumentException("Drawable not found")
-
-    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-    val canvas = Canvas(bitmap)
-
-    drawable.setBounds(0, 0, canvas.width, canvas.height)
-    drawable.draw(canvas)
-
-    return bitmap
-}
 
 class GameView(context: Context) :
     SurfaceView(context), SurfaceHolder.Callback,
@@ -102,28 +85,28 @@ class GameView(context: Context) :
     private val coinIconRed: Bitmap =
         BitmapFactory.decodeResource(resources, R.drawable.cryptocoin_red)
     val cpuImage: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.cpu)
-    val playIcon: Bitmap = vectorToBitmap(
+    val playIcon: Bitmap = context.vectorToBitmap(
             context,
             R.drawable.icon_1x,
             64,
             64
     )
     val pauseIcon: Bitmap =
-        vectorToBitmap(
+        context.vectorToBitmap(
                 context,
                 R.drawable.icon_pause,
                 64,
                 64
         )
     val fastIcon: Bitmap =
-        vectorToBitmap(
+        context.vectorToBitmap(
                 context,
                 R.drawable.icon_2x,
                 64,
                 64
         )
     val fastestIcon: Bitmap =
-        vectorToBitmap(
+        context.vectorToBitmap(
                 context,
                 R.drawable.icon_3x,
                 64,
