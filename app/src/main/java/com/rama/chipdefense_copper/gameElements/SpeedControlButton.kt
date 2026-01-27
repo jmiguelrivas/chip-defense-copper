@@ -27,7 +27,6 @@ class SpeedControlButton(
         bitmapOfType[Type.X1] = gameView.playIcon.scale(size, size)
         bitmapOfType[Type.X2] = gameView.fastIcon.scale(size, size)
         bitmapOfType[Type.X3] = gameView.fastestIcon.scale(size, size)
-        bitmapOfType[Type.RETURN] = gameView.returnIcon.scale(size, size)
     }
 
     override fun fadeDone(type: Fader.Type) {

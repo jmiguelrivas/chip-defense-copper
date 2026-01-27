@@ -4,7 +4,7 @@
     android:viewportWidth="24"
     android:viewportHeight="24">
   <path
-      android:fillColor="@color/game_button_color"
+      android:fillColor="@color/foreground_color"
       android:pathData="M2.821,2.821L2.821,3.74L1.905,3.74L1.905,5.575L2.821,5.575L2.821,6.494L21.179,6.494L21.179,5.575h0.916L22.095,3.74L21.179,3.74L21.179,2.821ZM2.821,10.165v0.916L1.905,11.081v1.838L2.821,12.919v0.916h18.358v-0.916h0.916v-1.838h-0.916v-0.916zM2.821,17.506v0.919L1.905,18.425v1.835L2.821,20.26v0.919h18.358v-0.919h0.916L22.095,18.425L21.179,18.425L21.179,17.506Z"
       android:strokeWidth="0.917812"/>
 </vector>

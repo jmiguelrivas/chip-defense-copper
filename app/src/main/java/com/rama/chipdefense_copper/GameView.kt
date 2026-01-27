@@ -132,13 +132,6 @@ class GameView(context: Context) :
                 64,
                 64
         )
-    val returnIcon: Bitmap =
-        vectorToBitmap(
-                context,
-                R.drawable.icon_bars,
-                64,
-                64
-        )
 
     val hpBackgroundBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.hp_key)
     val chipBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.chip_surface)

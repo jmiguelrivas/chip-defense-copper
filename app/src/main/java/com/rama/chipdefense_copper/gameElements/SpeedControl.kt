@@ -27,11 +27,7 @@ class SpeedControl(var gameView: GameView)
     private var button4 =
         SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.X3, this)
 
-    private var returnButton =
-        SpeedControlButton(gameView, gameMechanics, SpeedControlButton.Type.RETURN, this)
-    private var buttons = mutableListOf(button4, button3, button2, button1, returnButton)
-    private var areaRight = Rect(0, 0, 0, 0)
-    private var areaLeft = Rect(0, 0, 0, 0)
+    private var buttons = mutableListOf(button4, button3, button2, button1)
     private var areaCenter = Rect(0, 0, 0, 0)
 
     private var stageInfoText = ""
@@ -46,7 +42,7 @@ class SpeedControl(var gameView: GameView)
 
         val margin = actualButtonSize / 2
 
-        buttons = mutableListOf(button4, button3, button2, button1, returnButton)
+        buttons = mutableListOf(button4, button3, button2, button1)
 
         buttons.forEach { it.setSize(actualButtonSize) }
 
@@ -65,12 +61,6 @@ class SpeedControl(var gameView: GameView)
         cursorX -= actualButtonSize + margin
 
         button4.area.setCenter(cursorX, centerY)
-
-        // Return button on the left
-        returnButton.area.setCenter(
-                parentArea.left + margin + actualButtonSize / 2,
-                centerY
-        )
 
         areaCenter = Rect(
                 button1.area.right,

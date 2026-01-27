@@ -18,6 +18,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
     var margin = 4   // between LED area and edge
 
     private var area = Rect()
+    private var menuButton = MenuButtonDisplay()
     private var stageDisplay = StageDisplay()
     private var information = Information()
     private var waves = Waves()
@@ -150,6 +151,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         // divider between title line and actual status indicators
         divider = /* this.area.top + */ this.area.height() * 32 / 100
         var areaRemaining = Rect(area).inflate(-scoreboardBorderWidth.toInt())
+        areaRemaining = menuButton.setSize(areaRemaining, divider)
         areaRemaining = stageDisplay.setSize(areaRemaining, divider)
         areaRemaining = waves.setSize(areaRemaining, divider)
         areaRemaining = information.setSize(areaRemaining, divider)
@@ -195,6 +197,8 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         paint.strokeWidth = scoreboardBorderWidth
         // canvas.drawRect(area, paint)
         canvas.drawLine(area.left.toFloat(), area.top.toFloat(), area.right.toFloat(), area.top.toFloat(), paint)
+
+        menuButton.display(canvas)
         stageDisplay.display(canvas)
         waves.display(canvas)
         if (currentStage.series > 1 || currentStage.number > 2)
@@ -241,6 +245,73 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
             temperature.recreateBitmap()
         }
     }
+
+//    fun onTouchDown(x: Float, y: Float): Boolean {
+//        if (menuButton.contains(x, y)) {
+//            gameView.gameActivity.showReturnDialog()
+//            return true
+//        }
+//        return false
+//    }
+
+    inner class MenuButtonDisplay {
+        private var area = Rect()
+        private var divider = 0
+        private lateinit var bitmap: Bitmap
+        private val paint = Paint()
+
+        fun setSize(area: Rect, divider: Int): Rect {
+            this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
+            this.divider = divider
+            bitmap = createBitmap(this.area.width(), this.area.height())
+            recreateBitmap()
+            return Rect(this.area.right, area.top, area.right, area.bottom)
+        }
+
+        fun display(canvas: Canvas) {
+            canvas.drawBitmap(bitmap, null, area, paint)
+        }
+
+        fun recreateBitmap() {
+            bitmap = createBitmap(area.width(), area.height())
+            val canvas = Canvas(bitmap)
+
+            // background
+            canvas.drawRect(
+                    Rect(0, 0, area.width(), area.height()),
+                    Paint().apply {
+                        color = ContextCompat.getColor(
+                                gameView.context,
+                                R.color.button_color
+                        )
+                        style = Paint.Style.FILL
+                    }
+            )
+
+            // icon
+            val drawable = ContextCompat.getDrawable(
+                    gameView.context,
+                    R.drawable.icon_bars
+            ) ?: return
+
+            val iconSize = (displayOutputSize * 0.5f).toInt()
+            val left = (area.width() - iconSize) / 2
+            val top = (area.height() - iconSize) / 2
+
+            drawable.setBounds(
+                    left,
+                    top,
+                    left + iconSize,
+                    top + iconSize
+            )
+            drawable.draw(canvas)
+        }
+
+        fun contains(x: Float, y: Float): Boolean {
+            return area.contains(x.toInt(), y.toInt())
+        }
+    }
+
 
     inner class StageDisplay {
         private var area = Rect()
