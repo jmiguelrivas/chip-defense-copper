@@ -336,10 +336,6 @@ class GameActivity : BaseFullscreenActivity() {
             it.network.validateViewport()
             gameView.viewport.setGridSize(it.sizeX, it.sizeY)
             gameView.background.prepareAtStartOfStage(it.data.ident)
-            gameView.speedControlPanel.setInfoLine(
-                    gameView.resources.getString(R.string.stage_number)
-                        .format(it.numberAsString())
-            )
         }
         when (gameMechanics.state.phase) {
             GamePhase.MARKETPLACE -> {
