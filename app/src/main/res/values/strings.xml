@@ -24,6 +24,10 @@
 
     <!-- GAME -->
     <string name="game_paused">GAME PAUSED</string>
+    <string name="scoreboard_status">lives</string>
+    <string name="scoreboard_coins">coins</string>
+    <string name="scoreboard_inf">inf</string>
+    <string name="scoreboard_waves">wave</string>
 
 
     <!-- DEPRECATED -->
@@ -44,10 +48,7 @@
     <string name="coins_gathered">Coins gathered: %d.</string>
     <string name="game_start">Starting game.</string>
     <string name="enter_game">Enter</string>
-    <string name="scoreboard_inf">Inf</string>
-    <string name="scoreboard_waves">Wave</string>
-    <string name="scoreboard_status">Status</string>
-    <string name="scoreboard_coins">Coins</string>
+
     <string name="selectLevel">Select Level</string>
     <string name="play_selected_level">Play selected level</string>
     <string name="button_marketplace">Heroes</string>

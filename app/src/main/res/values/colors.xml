@@ -18,6 +18,11 @@
     <color name="switch_track_color">#445</color>
     <color name="tab_selected_color">#3c797a</color>
 
+    <!-- GAME: DASHBOARD -->
+    <color name="dashboard_color">#181e3c</color>
+    <color name="dashboard_display_foregorund_color">#a6e190</color>
+    <color name="dashboard_display_background_color">#112</color>
+    <color name="dashboard_divider_color">#2a304f</color>
 
     <!-- _________________________________________________________________________________ -->
 
