@@ -637,11 +637,6 @@ class GameActivity : BaseFullscreenActivity() {
 
     private fun takeLevelSnapshot() {
         gameMechanics.currentlyActiveStage?.let {
-            if (it.getSeries() == SERIES_ENDLESS)
-                levelThumbnailEndless[it.getLevel()] =
-                    it.takeSnapshot(GameView.levelSnapshotIconSize)
-            else
-                levelThumbnail[it.getLevel()] = it.takeSnapshot(GameView.levelSnapshotIconSize)
             Persistency(this).saveThumbnailOfLevel(this, it)
             logger?.log("Level snapshot taken.")
         }
