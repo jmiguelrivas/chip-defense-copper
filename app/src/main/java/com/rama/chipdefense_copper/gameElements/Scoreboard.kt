@@ -14,9 +14,6 @@ import androidx.core.graphics.createBitmap
 class ScoreBoard(val gameView: GameView) : GameElement() {
     private var resources = gameView.resources
 
-    // default or min sizes
-    var margin = 4   // between LED area and edge
-
     private var area = Rect()
     private var menuButton = MenuButtonDisplay()
     private var stageDisplay = StageDisplay()
@@ -209,7 +206,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         debugStatusLine?.display(canvas)
     }
 
-    fun displayHeader(canvas: Canvas, area: Rect, text: String, centered: Boolean = true)
+    fun displayHeader(canvas: Canvas, area: Rect, text: String)
             /**
              * Display text in 'header' text size
              *
@@ -220,15 +217,13 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
     {
         val rect = Rect(area)
         rect.bottom = divider
-        val paint = Paint()
-        paint.color = resources.getColor(R.color.scoreboard_text)
-        paint.typeface = Typeface.create("sans-serif", Typeface.NORMAL)
-        paint.textSize = GameView.scoreHeaderSize * gameView.textScaleFactor
-        paint.textAlign = Paint.Align.LEFT
-        if (centered)
-            rect.displayTextCenteredInRect(canvas, text, paint, baseline = divider - dividerMargin)
-        else
-            rect.displayTextLeftAlignedInRect(canvas, text, paint, baseline = divider - dividerMargin)
+
+        val paint = gameView.createGameDisplayPaint(
+                colorParam = R.color.fps_debug
+        ).apply {
+            textAlign = Paint.Align.LEFT
+        }
+        rect.displayTextLeftAlignedInRect(canvas, text, paint, baseline = divider - dividerMargin)
     }
 
     fun recreateBitmap()
@@ -239,7 +234,6 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         if (area.width() > 0 && area.height() > 0) {
             information.recreateBitmap()
             waves.recreateBitmap()
-            lives.calculateLedSize()
             lives.recreateBitmap()
             coins.recreateBitmap()
             temperature.recreateBitmap()
@@ -458,30 +452,13 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         private var lastValue = -1   // used to detect value changes
         lateinit var bitmap: Bitmap
         private val paint = Paint()
-        private var ledAreaHeight: Int = 0
-        private var ledAreaWidth: Int = 0
         private var preferredSizeLedX = 0
-        private var sizeLedX = preferredSizeLedX
-        private var sizeLedY = 0 // will be calculated in setSize
-        private var deltaX = 0
 
         fun setSize(area: Rect, divider: Int): Rect {
             this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
             bitmap = createBitmap(this.area.width(), this.area.height())
             this.divider = divider
-            calculateLedSize()
             return Rect(this.area.right, area.top, area.right, area.bottom)
-        }
-
-        fun calculateLedSize() {
-            val maxLives = gameView.gameMechanics.state.currentMaxLives
-            // calculate size and spacing of LEDs
-            sizeLedY = (area.height() - divider - 2 * margin) * 74 / 100
-            val maxPossibleDeltaX = area.width() / (maxLives + 1.0f)
-            preferredSizeLedX = (GameView.preferredSizeOfLED * gameView.scaleFactor).toInt()
-            deltaX = kotlin.math.min(preferredSizeLedX * 1.2f, maxPossibleDeltaX).toInt()
-            ledAreaWidth = (maxLives + 1) * deltaX
-            sizeLedX = kotlin.math.min(preferredSizeLedX.toFloat(), deltaX / 1.2f).toInt()
         }
 
         fun display(canvas: Canvas) {
@@ -515,14 +492,12 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         private var area = Rect()
         private var divider = 0
         private var coins: Int = 0
-        private var actualSize = GameView.coinSizeOnScoreboard
 
         private var lastValue = -1   // used to detect value changes
         lateinit var bitmap: Bitmap
         private val paint = Paint()
 
         fun setSize(area: Rect, divider: Int): Rect {
-            actualSize = (GameView.coinSizeOnScoreboard * gameView.scaleFactor).toInt()
             this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
             bitmap = createBitmap(this.area.width(), this.area.height())
             this.divider = divider
@@ -673,17 +648,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
 
             bitmap?.let {
                 val canvas = Canvas(it)
-
-                val padding = 16
-                val height = 48   // UI strip height in px
-
-                val rect = Rect(
-                        padding,
-                        200,
-//                        area.height() - height - padding,
-                        area.width() / 3,        // keep it narrow
-                        0//area.height() - padding
-                )
+                val rect = Rect(50, 0, 0, 0)
 
                 displayHeader(canvas, rect, textToDisplay)
             }

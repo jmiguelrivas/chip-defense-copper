@@ -70,33 +70,6 @@ class SpeedControl(var gameView: GameView)
         )
     }
 
-
-    fun setInfoLine(newText: String) {
-        if (newText == stageInfoText)
-            return
-        else {
-            stageInfoText = newText
-            recreateBitmap()
-        }
-    }
-
-    @Suppress("DEPRECATION")
-    private fun recreateBitmap() {
-        bitmapPaint.alpha = 255
-        val paint = Paint()
-        paint.color = gameView.resources.getColor(R.color.connectors)
-        paint.typeface = Typeface.SANS_SERIF
-        paint.textSize = GameView.scoreHeaderSize * gameView.textScaleFactor
-        paint.textAlign = Paint.Align.LEFT
-        val bounds = Rect()
-        paint.getTextBounds(stageInfoText, 0, stageInfoText.length, bounds)
-        statusInfoBitmap = createBitmap(bounds.width(), bounds.height())
-        statusInfoBitmap?.let {
-            val canvas = Canvas(it)
-            canvas.drawText(stageInfoText, 0f, (it.height - bounds.bottom).toFloat(), paint)
-        }
-    }
-
     fun resetButtons() {
         button1.type = SpeedControlButton.Type.X0
         button2.type = SpeedControlButton.Type.X1

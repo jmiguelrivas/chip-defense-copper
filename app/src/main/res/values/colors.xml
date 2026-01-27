@@ -19,6 +19,7 @@
     <color name="tab_selected_color">#3c797a</color>
 
     <!-- GAME: DASHBOARD -->
+    <color name="fps_debug">#afa</color>
     <color name="dashboard_color">#181e3c</color>
     <color name="dashboard_display_foregorund_color">#a6e190</color>
     <color name="dashboard_display_background_color">#112</color>

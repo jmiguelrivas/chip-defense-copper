@@ -59,8 +59,6 @@ class GameView(context: Context) :
     @Suppress("ConstPropertyName")
     companion object {
         // default sizes for graphical game elements.
-        const val scoreTextSize = 36f
-        const val scoreHeaderSize = 18f
         const val chipTextSize = 20f
         const val computerTextSize = 26f
         const val notificationTextSize = 22f
@@ -71,7 +69,6 @@ class GameView(context: Context) :
         const val purchaseButtonTextSize = 20f
         const val coinsAmountTextSize = 24f
 
-        const val coinSizeOnScoreboard = 48
         const val coinSizeOnScreen = 16
         const val cardWidth = 220
         const val cardHeight = cardWidth * 1.41
@@ -233,10 +230,6 @@ class GameView(context: Context) :
         viewport.reset()
         viewport.setScreenSize(this.width, this.height)
         gameMechanics.currentlyActiveStage?.network?.recreateNetworkImage(false)
-        speedControlPanel.setInfoLine(
-                resources.getString(R.string.stage_number)
-                    .format(gameMechanics.currentlyActiveStage?.numberAsString())
-        )
     }
 
     private fun scoreBoardHeight(h: Int): Int
