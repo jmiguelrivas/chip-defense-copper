@@ -23,15 +23,14 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
     private var coins = Coins()
     private var temperature = Temperature()
     private var debugStatusLine: DebugStatusLine? = null
-    private var displayOutputSize: Int = 130
+    private var displayOutputSize: Int = 120
+    private val horizontalPaddingPx = 48
 
     /** height of the (virtual) line between the display title and the actual display */
     private var divider: Int = 0
 
     /** the amount in pixels that separates the header text from the divider */
     private var dividerMargin: Int = 8
-
-    val fractionOfScoreBoardUsedForInf = 0.3f
     private val scoreboardBorderWidth = 4.0f
     fun GameView.createGameDisplayPaint(
         colorParam: Int
@@ -89,16 +88,16 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
 
         canvas.drawRect(outerRect, bgPaint)
 
-        // Optional border (very retro)
-        val borderPaint = Paint().apply {
-            color = ContextCompat.getColor(
-                    gameView.context,
-                    R.color.dashboard_divider_color
-            )
-            style = Paint.Style.STROKE
-            strokeWidth = 3f
-        }
-        canvas.drawRect(outerRect, borderPaint)
+        // Optional border
+//        val borderPaint = Paint().apply {
+//            color = ContextCompat.getColor(
+//                    gameView.context,
+//                    R.color.dashboard_divider_color
+//            )
+//            style = Paint.Style.STROKE
+//            strokeWidth = 3f
+//        }
+//        canvas.drawRect(outerRect, borderPaint)
 
         // Title paint (same style, smaller)
         val titlePaint = gameView.createGameDisplayPaint(
@@ -144,23 +143,83 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
              * @param area The rectangle that the score board shall occupy
              */
     {
+        val itemSpacingPx = 16
+        var displayCount =
+            listOf(
+                    menuButton,
+                    stageDisplay,
+                    waves,
+                    information,
+                    coins,
+                    lives,
+                    temperature
+            ).size
+
+        val usableWidth =
+            area.width() - (horizontalPaddingPx * 2)
+
+        val totalDisplaysWidth =
+            displayCount * displayOutputSize +
+                    (displayCount - 1) * itemSpacingPx
+
+        var cursorX =
+            area.left +
+                    horizontalPaddingPx +
+                    (usableWidth - totalDisplaysWidth) / 2
+
+
         this.area = Rect(area)
-        // divider between title line and actual status indicators
-        divider = /* this.area.top + */ this.area.height() * 32 / 100
-        var areaRemaining = Rect(area).inflate(-scoreboardBorderWidth.toInt())
-        areaRemaining = menuButton.setSize(areaRemaining, divider)
-        areaRemaining = stageDisplay.setSize(areaRemaining, divider)
-        areaRemaining = waves.setSize(areaRemaining, divider)
-        areaRemaining = information.setSize(areaRemaining, divider)
-        areaRemaining = coins.setSize(areaRemaining, divider)
-        areaRemaining = lives.setSize(areaRemaining, divider)
-        @Suppress("UNUSED_VALUE")
-        areaRemaining = temperature.setSize(areaRemaining, divider)
+        divider = this.area.height() * 32 / 100
         if (gameView.gameActivity.settings.showFrameRate) {
             debugStatusLine = DebugStatusLine()
             debugStatusLine?.setSize(area, divider)
         }
-        recreateBitmap()
+
+        val top = area.top
+        val bottom = area.bottom
+
+        menuButton.setSize(
+                Rect(cursorX, top, cursorX + displayOutputSize, bottom),
+                divider
+        )
+        cursorX += displayOutputSize + itemSpacingPx
+
+        stageDisplay.setSize(
+                Rect(cursorX, top, cursorX + displayOutputSize, bottom),
+                divider
+        )
+        cursorX += displayOutputSize + itemSpacingPx
+
+        waves.setSize(
+                Rect(cursorX, top, cursorX + displayOutputSize, bottom),
+                divider
+        )
+        cursorX += displayOutputSize + itemSpacingPx
+
+
+        information.setSize(
+                Rect(cursorX, top, cursorX + displayOutputSize, bottom),
+                divider
+        )
+        cursorX += displayOutputSize + itemSpacingPx
+
+        coins.setSize(
+                Rect(cursorX, top, cursorX + displayOutputSize, bottom),
+                divider
+        )
+        cursorX += displayOutputSize + itemSpacingPx
+
+        lives.setSize(
+                Rect(cursorX, top, cursorX + displayOutputSize, bottom),
+                divider
+        )
+        cursorX += displayOutputSize + itemSpacingPx
+
+        temperature.setSize(
+                Rect(cursorX, top, cursorX + displayOutputSize, bottom),
+                divider
+        )
+
     }
 
     fun informationToString(number: Int): String {
@@ -255,7 +314,16 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         private val paint = Paint()
 
         fun setSize(area: Rect, divider: Int): Rect {
-            this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
+            val left = area.left
+            val top = area.top + (area.height() - displayOutputSize) / 2
+
+            this.area = Rect(
+                    left,
+                    top,
+                    left + displayOutputSize,
+                    top + displayOutputSize
+            )
+
             this.divider = divider
             bitmap = createBitmap(this.area.width(), this.area.height())
             recreateBitmap()
@@ -386,7 +454,13 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
             bitmap = createBitmap(area.width(), area.height())
             val canvas = Canvas(bitmap)
 
-            val value = informationToString(gameView.gameMechanics.state.cash)
+            val currentStage = gameView.gameMechanics.currentStageIdent
+
+            val value = if (currentStage.series > 1 || currentStage.number > 2) {
+                informationToString(gameView.gameMechanics.state.cash)
+            } else {
+                "--"
+            }
 
             drawGameDisplay(
                     canvas = canvas,
@@ -637,14 +711,12 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         private fun recreateBitmap() {
             if (area.width() > 0 && area.height() > 0)
                 bitmap = createBitmap(area.width(), area.height())
-            // var textToDisplay = "Level %d, difficulty %.2f".format(game.currentStage.number, game.currentlyActiveStage?.data?.difficulty)
             val fps = if (gameView.gameMechanics.timeBetweenFrames > 0f) {
                 1000f / gameView.gameMechanics.timeBetweenFrames
             } else {
                 0f
             }
             val textToDisplay = "%.1f FPS".format(fps)
-            // var textToDisplay = "time per frame: %.2f ms. Ticks %d, frames %d.".format(game.timeBetweenFrames, game.ticksCount, game.frameCount)
 
             bitmap?.let {
                 val canvas = Canvas(it)
