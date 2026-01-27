@@ -4,6 +4,7 @@ package com.rama.chipdefense_copper.gameElements
 
 import android.graphics.*
 import android.util.TypedValue
+import android.view.MotionEvent
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.rama.chipdefense_copper.*
@@ -32,6 +33,10 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
     /** the amount in pixels that separates the header text from the divider */
     private var dividerMargin: Int = 8
     private val scoreboardBorderWidth = 4.0f
+    var type: ScoreBoard.Type = ScoreBoard.Type.MENU
+
+    enum class Type { MENU }
+
     fun GameView.createGameDisplayPaint(
         colorParam: Int
     ): Paint = Paint().apply {
@@ -89,15 +94,15 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         canvas.drawRect(outerRect, bgPaint)
 
         // Optional border
-//        val borderPaint = Paint().apply {
-//            color = ContextCompat.getColor(
-//                    gameView.context,
-//                    R.color.dashboard_divider_color
-//            )
-//            style = Paint.Style.STROKE
-//            strokeWidth = 3f
-//        }
-//        canvas.drawRect(outerRect, borderPaint)
+        val borderPaint = Paint().apply {
+            color = ContextCompat.getColor(
+                    gameView.context,
+                    R.color.dashboard_divider_color
+            )
+            style = Paint.Style.STROKE
+            strokeWidth = 3f
+        }
+        canvas.drawRect(outerRect, borderPaint)
 
         // Title paint (same style, smaller)
         val titlePaint = gameView.createGameDisplayPaint(
@@ -299,19 +304,28 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         }
     }
 
-//    fun onTouchDown(x: Float, y: Float): Boolean {
-//        if (menuButton.contains(x, y)) {
-//            gameView.gameActivity.showReturnDialog()
-//            return true
-//        }
-//        return false
-//    }
+    fun onDown(p0: MotionEvent): Boolean {
+        if (!area.contains(p0.x.toInt(), p0.y.toInt()))
+            return false
+
+        if (menuButton.onDown(p0)) return true
+
+        return false
+    }
 
     inner class MenuButtonDisplay {
         private var area = Rect()
         private var divider = 0
         private lateinit var bitmap: Bitmap
         private val paint = Paint()
+
+        fun onDown(p0: MotionEvent): Boolean {
+            if (area.contains(p0.x.toInt(), p0.y.toInt())) {
+                gameView.gameActivity.showReturnDialog()
+                return true
+            }
+            return false
+        }
 
         fun setSize(area: Rect, divider: Int): Rect {
             val left = area.left

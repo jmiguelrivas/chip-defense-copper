@@ -81,7 +81,7 @@ class GameView(context: Context) :
         const val viewportMargin = 10
         const val minScoreBoardHeight = 100
         const val maxScoreBoardHeight = 320
-        const val speedControlButtonSize = 28
+        const val speedControlButtonSize = 24
         const val levelSnapshotIconSize = 120
     }
 
@@ -287,8 +287,12 @@ class GameView(context: Context) :
     override fun onDown(motionEvent: MotionEvent): Boolean {
         when (gameMechanics.state.phase) {
             GamePhase.RUNNING -> {
+                if (scoreBoard.onDown(motionEvent))
+                    return true
+
                 if (speedControlPanel.onDown(motionEvent))
                     return true
+
                 gameMechanics.currentlyActiveStage?.network?.let {
                     if (processClickOnNodes(it, motionEvent))
                         return true
@@ -302,12 +306,17 @@ class GameView(context: Context) :
             GamePhase.INTERMEZZO -> return intermezzo.onDown(motionEvent)
             GamePhase.MARKETPLACE -> return marketplace.onDown(motionEvent)
             GamePhase.PAUSED -> {
+                if (scoreBoard.onDown(motionEvent))
+                    return true
+
                 if (speedControlPanel.onDown(motionEvent))
                     return true
+
                 gameMechanics.currentlyActiveStage?.network?.let {
                     if (processClickOnNodes(it, motionEvent))
                         return true
                 }
+                return false
             }
 
             else -> return false

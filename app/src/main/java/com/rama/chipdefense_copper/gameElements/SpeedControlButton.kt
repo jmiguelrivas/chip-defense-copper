@@ -14,7 +14,7 @@ class SpeedControlButton(
     var type: Type = Type.X0,
     private val panel: SpeedControl
 ) : Fadable {
-    enum class Type { X0, X2, X3, X1, RETURN }
+    enum class Type { X0, X2, X3, X1 }
 
     var area = Rect()
     var paint = Paint()
@@ -57,10 +57,6 @@ class SpeedControlButton(
                 Type.X3 -> {
                     gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X3)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.RUNNING)
-                }
-
-                Type.RETURN -> {
-                    gameView.gameActivity.showReturnDialog()
                 }
             }
             return true

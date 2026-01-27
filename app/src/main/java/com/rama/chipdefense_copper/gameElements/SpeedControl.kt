@@ -4,17 +4,12 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
-import android.graphics.Typeface
 import android.view.MotionEvent
 import com.rama.chipdefense_copper.GameView
-import com.rama.chipdefense_copper.R
 import com.rama.chipdefense_copper.utils.setCenter
-import com.rama.chipdefense_copper.utils.setLeft
-import androidx.core.graphics.createBitmap
 
 class SpeedControl(var gameView: GameView)
-/** set of buttons that control the game speed, but also provide additional interaction such
- * as "lock scrolling" or "return to main menu". Also shows the level number.
+/** set of buttons that control the game speed.
  */
 {
     private val gameMechanics = gameView.gameMechanics
@@ -29,8 +24,6 @@ class SpeedControl(var gameView: GameView)
 
     private var buttons = mutableListOf(button4, button3, button2, button1)
     private var areaCenter = Rect(0, 0, 0, 0)
-
-    private var stageInfoText = ""
     private var statusInfoBitmap: Bitmap? = null
     private var bitmapPaint = Paint()
 
@@ -40,7 +33,7 @@ class SpeedControl(var gameView: GameView)
                     gameView.resources.displayMetrics.density *
                     if (gameView.gameActivity.settings.configUseLargeButtons) 1.6f else 1.0f).toInt()
 
-        val margin = actualButtonSize / 2
+        val margin = actualButtonSize
 
         buttons = mutableListOf(button4, button3, button2, button1)
 
