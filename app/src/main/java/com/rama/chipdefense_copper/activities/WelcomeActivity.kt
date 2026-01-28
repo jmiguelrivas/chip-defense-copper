@@ -2,16 +2,13 @@
 
 package com.rama.chipdefense_copper.activities
 
-import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import com.rama.chipdefense_copper.BaseFullscreenActivity
 import com.rama.chipdefense_copper.GameMechanics
@@ -140,25 +137,44 @@ class WelcomeActivity : BaseFullscreenActivity() {
     }
 
     private fun setupButtons() {
+        val isTurboAvailable = intent.getBooleanExtra("TURBO_AVAILABLE", false)
+        val isEndlessAvailable = intent.getBooleanExtra("ENDLESS_AVAILABLE", false)
+
         val prefsState = getSharedPreferences(Persistency.filename_state, MODE_PRIVATE)
         val prefsLegacy = getSharedPreferences(Persistency.filename_legacy, MODE_PRIVATE)
         gameState = prefsState.getString("STATUS", "")
         determineLevels(prefsState)
-        if (maxLevel.series == 1 && maxLevel.number == 0)  // no level info, try other file
+
+        if (maxLevel.series == 1 && maxLevel.number == 0)
             migrateLevelInfo(prefsLegacy, prefsState)
+
         showLevelReached()
-//        val buttonResume = findViewById<FrameLayout>(R.id.continueGameButton)
-//        when {
-//            maxLevel.number == 0 -> buttonResume.text = getString(R.string.button_start_game)
-//            gameState == "running" -> buttonResume.text = getString(R.string.button_resume)
-//            gameState == "complete" -> {
-//                buttonResume.text = getString(R.string.play_level_x).format(Stage.numberToString(nextLevelToPlay.number, settings.showLevelsInHex))
-//            }
-//            else -> buttonResume.isEnabled = false
-//        }
-        // uncomment if there is a message to display
-        // showVersionMessage()
+
+        val buttonResume = findViewById<Button>(R.id.continueGameButton)
+
+        buttonResume.text = when {
+            // Level 0 but turbo mode available → play level 1 in turbo
+            maxLevel.number == 0 && (isTurboAvailable || isEndlessAvailable) ->
+                getString(R.string.play_level_x)
+                    .format(Stage.numberToString(nextLevelToPlay.number, settings.showLevelsInHex))
+
+            // Level 0 normal → start game
+            maxLevel.number == 0 ->
+                getString(R.string.button_start_game)
+
+            // Play specific level
+            gameState == "running" || gameState == "complete" ->
+                getString(R.string.play_level_x)
+                    .format(Stage.numberToString(nextLevelToPlay.number, settings.showLevelsInHex))
+
+            // Unknown state → disable button
+            else -> {
+                buttonResume.isEnabled = false
+                ""
+            }
+        }
     }
+
 
     override fun onActivityReenter(resultCode: Int, data: Intent?) {
         super.onActivityReenter(resultCode, data)
@@ -217,39 +233,6 @@ class WelcomeActivity : BaseFullscreenActivity() {
     fun displayAboutDialog(@Suppress("UNUSED_PARAMETER") v: View) {
         val intent = Intent(this, AboutActivity::class.java)
         startActivity(intent)
-    }
-
-    @Suppress("unused")
-    fun showVersionMessage()
-            /** display version message, if not already displayed earlier */
-    {
-        val prefs = getSharedPreferences(Persistency.filename_state, MODE_PRIVATE)
-        info?.let {
-            val messageDisplayed = prefs.getString("VERSIONMESSAGE_SEEN", "")
-            if (messageDisplayed != it.versionName) {
-                showMessageOfTheDay()
-                with(prefs.edit()) {
-                    putString("VERSIONMESSAGE_SEEN", it.versionName)
-                    commit()
-                }
-            }
-        }
-    }
-
-    private fun showMessageOfTheDay() {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.layout_dialog_message_of_the_day)
-        dialog.window?.setLayout(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-        dialog.setCancelable(false)
-        dialog.findViewById<TextView>(R.id.question).text =
-            resources.getText(R.string.ZZ_message_of_the_day)
-        val button1 = dialog.findViewById<Button>(R.id.button1)
-        button1?.text = resources.getText(R.string.close)
-        button1?.setOnClickListener { dialog.dismiss() }
-        dialog.show()
     }
 
     fun exitActivity(@Suppress("UNUSED_PARAMETER") v: View) {

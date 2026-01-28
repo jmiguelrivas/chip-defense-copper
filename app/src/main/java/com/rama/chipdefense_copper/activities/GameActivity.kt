@@ -2,24 +2,18 @@
 
 package com.rama.chipdefense_copper.activities
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.SystemClock
-import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.Window
-import android.view.WindowInsets
-import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.WindowCompat
 import com.rama.chipdefense_copper.BaseFullscreenActivity
 import com.rama.chipdefense_copper.CpuReached
 import com.rama.chipdefense_copper.GameMechanics
@@ -82,12 +76,6 @@ class GameActivity : BaseFullscreenActivity() {
 
     /** cumulated time */
     private var frameTimeSum = 0L
-
-    /** level snapshots (common for series 1 and 2) */
-    var levelThumbnail = HashMap<Int, Bitmap?>()
-
-    /** level snapshots for series 3 */
-    var levelThumbnailEndless = HashMap<Int, Bitmap?>()
 
     val settings = Settings()
 
@@ -394,7 +382,6 @@ class GameActivity : BaseFullscreenActivity() {
         gameMechanics.currentlyActiveWave = nextStage.nextWave()
         Persistency(this).saveCurrentLevelState(gameMechanics)
         Persistency(this).saveGeneralState(gameMechanics)
-        takeLevelSnapshot()
     }
 
     fun onEndOfStage() {
@@ -409,7 +396,6 @@ class GameActivity : BaseFullscreenActivity() {
                 Persistency(this).saveGeneralState(gameMechanics)
                 Persistency(this).saveStageSummaries(gameMechanics, gameMechanics.currentStageIdent.series)
                 setGameActivityStatus(GameActivityStatus.BETWEEN_LEVELS)
-                takeLevelSnapshot()
             }
         }
     }
@@ -574,7 +560,6 @@ class GameActivity : BaseFullscreenActivity() {
         Persistency(this).saveGeneralState(gameMechanics)
         when (livesLeft) {
             0 -> {
-                takeLevelSnapshot()
                 gameView.intermezzo.endOfGame(gameMechanics.currentStageIdent, hasWon = false)
             }
 
@@ -633,13 +618,6 @@ class GameActivity : BaseFullscreenActivity() {
         }
         editor.apply()
         logger?.log("Activity status set to %s".format(status.toString()))
-    }
-
-    private fun takeLevelSnapshot() {
-        gameMechanics.currentlyActiveStage?.let {
-            Persistency(this).saveThumbnailOfLevel(this, it)
-            logger?.log("Level snapshot taken.")
-        }
     }
 
 }
