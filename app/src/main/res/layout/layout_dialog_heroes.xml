@@ -1,65 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:scaleType="centerCrop">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:id="@+id/inner_layout"
+    android:background="@color/background_secondary_color"
+    android:focusableInTouchMode="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/inner_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/question"
+        android:text="Question"
+        style="@style/Title" />
 
-        <TextView
-            android:id="@+id/question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Question"
-            android:textColor="@color/text_blue"
-            android:textSize="@dimen/dialog_text_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:backgroundTint="@color/black"
-            android:backgroundTintMode="src_over"
-            android:text="Answer 1"
-            android:textAllCaps="true"
-            android:textColor="@color/text_blue"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/question"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="@dimen/dialog_button_margin_vertical"
-            android:layout_marginBottom="@dimen/dialog_button_margin_vertical"
-            android:layout_marginStart="@dimen/dialog_button_margin_horizontal"
-            android:layout_marginEnd="@dimen/dialog_button_margin_horizontal"
-            android:textSize="@dimen/dialog_text_size" />
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1"
+        android:text="Answer 1"
+        style="@style/Widget.CpuDefense.Button" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/black"
-            android:text="Answer 2"
-            android:textAllCaps="true"
-            android:textColor="@color/text_lightblue"
-            android:textSize="@dimen/dialog_text_size"
-            android:layout_marginTop="@dimen/dialog_button_margin_vertical"
-            android:layout_marginBottom="@dimen/dialog_button_margin_vertical"
-            android:layout_marginStart="@dimen/dialog_button_margin_horizontal"
-            android:layout_marginEnd="@dimen/dialog_button_margin_horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/button1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button1"
-            app:layout_constraintStart_toEndOf="@id/button1" />
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:text="Answer 2"
+        style="@style/Widget.CpuDefense.Button.Danger" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

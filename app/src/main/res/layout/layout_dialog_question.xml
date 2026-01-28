@@ -1,66 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:id="@+id/inner_layout"
+    android:background="@color/background_secondary_color"
+    android:focusableInTouchMode="true">
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:scaleType="centerCrop">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/question"
+        android:text="Question"
+        style="@style/Title" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/inner_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/question"
-            android:layout_width="160sp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Question"
-            android:textSize="@dimen/dialog_text_size"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1"
+        android:text="Answer 1"
+        style="@style/Widget.CpuDefense.Button" />
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="16dp"
-            android:textSize="@dimen/dialog_text_size"
-            android:background="@color/black"
-            android:text="Answer 1"
-            android:textAllCaps="true"
-            android:textColor="@color/circuit_edge"
-            app:backgroundTint="@null"
-            app:layout_constraintTop_toBottomOf="@id/question"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:ignore="HardcodedText" />
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:text="Answer 2"
+        style="@style/Widget.CpuDefense.Button.Danger" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:background="@color/black"
-            android:text="Answer 2"
-            android:textSize="@dimen/dialog_text_size"
-            android:textAllCaps="true"
-            android:textColor="@color/circuit"
-            app:backgroundTint="@null"
-            app:layout_constraintEnd_toStartOf="@id/button1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/button1"
-            app:layout_constraintBottom_toBottomOf="@id/button1"
-            tools:ignore="HardcodedText" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
