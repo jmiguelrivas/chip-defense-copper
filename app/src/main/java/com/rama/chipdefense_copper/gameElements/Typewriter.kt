@@ -5,36 +5,42 @@ package com.rama.chipdefense_copper.gameElements
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
+import android.text.TextPaint
 import com.rama.chipdefense_copper.GameView
 import com.rama.chipdefense_copper.R
 import com.rama.chipdefense_copper.effects.Fadable
 import com.rama.chipdefense_copper.effects.Fader
+import com.rama.chipdefense_copper.utils.textStyleDisplay
 import java.util.concurrent.CopyOnWriteArrayList
 
-class Typewriter(val gameView: GameView, myArea: Rect, private var lines: CopyOnWriteArrayList<String>, private var callback: (() -> Unit)?)
-{
+class Typewriter(
+    val gameView: GameView,
+    myArea: Rect,
+    private var lines: CopyOnWriteArrayList<String>,
+    private var callback: (() -> Unit)?
+) {
     private var resources = gameView.resources
     private var textBoxes = CopyOnWriteArrayList<TextBox>()
     private val pos = Pair(myArea.left + 50, myArea.bottom - heightOfEmptyTypewriterArea)
     private val lineSpacingY = GameView.computerTextSize * gameView.textScaleFactor * 1.8f
     private var paintLine = Paint()
 
-    init { showNextLine() }
+    init {
+        showNextLine()
+    }
 
     @Suppress("MoveLambdaOutsideParentheses")
-    private fun showNextLine(): Boolean
-    {
+    private fun showNextLine(): Boolean {
         textBoxes.map { it.y -= lineSpacingY }
         if (lines.isEmpty()) {
             callback?.let { it() }  // call callback function, if defined.
             return false
         }
-        textBoxes.add(TextBox(gameView, lines.removeAt(0), pos, {  showNextLine() } ))
+        textBoxes.add(TextBox(gameView, lines.removeAt(0), pos, { showNextLine() }))
         return true
     }
 
-    fun topOfTypewriterArea(): Int
-    {
+    fun topOfTypewriterArea(): Int {
         var y = pos.second
         textBoxes[0]?.let { y = it.y.toInt() }
         return (y - lineSpacingY).toInt()
@@ -45,21 +51,22 @@ class Typewriter(val gameView: GameView, myArea: Rect, private var lines: CopyOn
         paintLine.color = resources.getColor(R.color.text_green)
     }
 
-    inner class TextBox(val gameView: GameView, var text: String, topLeft: Pair<Int, Int>, private var callback: (() -> Unit)?):
-        Fadable
-    {
+    inner class TextBox(
+        val gameView: GameView,
+        var text: String,
+        topLeft: Pair<Int, Int>,
+        private var callback: (() -> Unit)?
+    ) :
+        Fadable {
         var alpha = 255
         val textSize = GameView.computerTextSize * gameView.textScaleFactor
         private var stringLength = 0 // number of characters to display
         var x = topLeft.first.toFloat()
         var y = topLeft.second.toFloat()
-        private val paintText = Paint()
+        private val paintText = TextPaint(textStyleDisplay(gameView.context, textSizeSp = 20f))
 
         init {
             Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.SLOW)
-            paintText.color = resources.getColor(R.color.text_green)
-            paintText.typeface = gameView.monoTypeface
-            paintText.textSize = textSize
         }
 
         override fun fadeDone(type: Fader.Type) {
@@ -81,7 +88,7 @@ class Typewriter(val gameView: GameView, myArea: Rect, private var lines: CopyOn
     }
 
     companion object {
-        const val heightOfEmptyTypewriterArea = 80
+        const val heightOfEmptyTypewriterArea = 200
     }
 
 }

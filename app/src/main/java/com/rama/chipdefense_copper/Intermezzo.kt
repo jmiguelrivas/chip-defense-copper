@@ -108,7 +108,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
                 lines.add(resources.getString(R.string.game_start))
                 if (gameView.gameMechanics.currentHeroesOnLeave(level).isNotEmpty())
                     lines += heroesOnLeaveText()
-                textOnContinueButton = resources.getString(R.string.enter_game)
+                textOnContinueButton = resources.getString(R.string.button_playlevel)
                 gameView.gameActivity.setLastPlayedStage(level)
             }
 
@@ -122,7 +122,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
                 )
                 if (gameView.gameMechanics.currentHeroesOnLeave(level).isNotEmpty())
                     lines += heroesOnLeaveText()
-                textOnContinueButton = resources.getString(R.string.enter_game)
+                textOnContinueButton = resources.getString(R.string.button_playlevel)
                 gameView.gameActivity.setLastPlayedStage(level)
             }
         }
@@ -141,7 +141,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
             /** paints the green line that separates the typewriter text */
     {
         paintLine.style = Paint.Style.FILL_AND_STROKE
-        paintLine.color = resources.getColor(R.color.text_green)
+        paintLine.color = resources.getColor(R.color.dashboard_display_foregorund_color)
         canvas.drawRect(Rect(0, y - widthOfConsoleLine, gameView.right, y), paintLine)
     }
 
