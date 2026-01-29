@@ -4,6 +4,7 @@ package com.rama.chipdefense_copper.gameElements
 
 import android.content.res.Resources
 import android.graphics.*
+import android.text.TextPaint
 import com.rama.chipdefense_copper.GameView
 import com.rama.chipdefense_copper.Hero
 import com.rama.chipdefense_copper.R
@@ -14,8 +15,9 @@ import com.rama.chipdefense_copper.utils.center
 import com.rama.chipdefense_copper.utils.displayTextCenteredInRect
 import com.rama.chipdefense_copper.utils.setCenter
 import com.rama.chipdefense_copper.utils.setTopLeft
+import com.rama.chipdefense_copper.utils.textStyleContent
 
-class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
+class HeroCard(val gameView: GameView, val hero: Hero) : GameElement(), Fadable
 /** graphical representation of a hero or a heroine */
 {
     val type = hero.data.type
@@ -23,8 +25,10 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
 
     /** rectangle with the size of the card, positioned at (0|0) */
     var cardArea = Rect()
+
     /** rectangle at the actual position on the screen */
     var cardAreaOnScreen = Rect(cardArea)
+
     /** the area where the hero photo goes */
     private var portraitArea = Rect()
     private var portraitAreaOnScreen = Rect(portraitArea)
@@ -34,6 +38,7 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
 
     /** state used for various graphical effects */
     enum class GraphicalState { NORMAL, TRANSIENT_LEVEL_0, TRANSIENT }
+
     private var graphicalState = GraphicalState.NORMAL
     private var transition = 0.0f
     var heroOpacity = 0f
@@ -53,11 +58,10 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
     private var paintText = Paint()
     private val paintHero = Paint()
 
-    var inactiveColor = resources.getColor(R.color.upgrade_inactive)
+    var inactiveColor = resources.getColor(R.color.foreground_inactive_color)
     private var monochromeColor = inactiveColor
     var activeColor: Int = if (monochrome) monochromeColor
-    else when(type)
-    {
+    else when (type) {
         Hero.Type.INCREASE_CHIP_SUB_SPEED -> resources.getColor(R.color.upgrade_active_chip_sub)
         Hero.Type.INCREASE_CHIP_SUB_RANGE -> resources.getColor(R.color.upgrade_active_chip_sub)
         Hero.Type.DOUBLE_HIT_SUB -> resources.getColor(R.color.upgrade_active_chip_sub)
@@ -87,27 +91,29 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
         Hero.Type.DECREASE_REMOVAL_COST -> resources.getColor(R.color.upgrade_active_eco)
     }
 
-
     init {
         paintRect.style = Paint.Style.STROKE
         paintInactive = Paint(paintRect)
         paintInactive.color = inactiveColor
-        paintText.color = Color.WHITE
-        paintText.style = Paint.Style.FILL
-        shortDescRect.top = shortDescRect.bottom - (50 * resources.displayMetrics.scaledDensity).toInt()
-        heroOpacity = when (hero.data.level) { 0 -> 0f else -> 1f}
+        paintText = TextPaint(textStyleContent(gameView.context))
+        shortDescRect.top =
+            shortDescRect.bottom - (50 * resources.displayMetrics.scaledDensity).toInt()
+        heroOpacity = when (hero.data.level) {
+            0 -> 0f
+            else -> 1f
+        }
     }
 
     override fun update() {
     }
 
-    override fun display(canvas: Canvas, viewport: Viewport)
-    {
+    override fun display(canvas: Canvas, viewport: Viewport) {
         when (hero.data.level) {
             0 -> {
                 paintRect.color = inactiveColor
                 paintRect.strokeWidth = 2f
             }
+
             else -> {
                 paintRect.color = activeColor
                 paintRect.strokeWidth = 2f + hero.data.level / 2
@@ -118,11 +124,9 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
 
         // display hero picture
         // (this is put here because of fading)
-        if (hero.isOnLeave)
-        {
+        if (hero.isOnLeave) {
             portraitAreaOnScreen.displayTextCenteredInRect(canvas, "On leave", paintText)
-        }
-        else // not on leave, this is the normal case
+        } else // not on leave, this is the normal case
         {
             paintHero.alpha = (255f * heroOpacity).toInt()
             hero.person.picture?.let { canvas.drawBitmap(it, null, portraitAreaOnScreen, paintHero) }
@@ -130,17 +134,18 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
         displayFrame(canvas)
     }
 
-    private fun displayFrame(canvas: Canvas)
-    {
+    private fun displayFrame(canvas: Canvas) {
         when (graphicalState) {
             GraphicalState.TRANSIENT -> {
                 // draw animation
                 var thickness = transition
                 if (transition > 0.5)
                     thickness = 1.0f - transition
-                paintRect.strokeWidth = (2f + 10 * thickness)*resources.displayMetrics.scaledDensity
+                paintRect.strokeWidth =
+                    (2f + 10 * thickness) * resources.displayMetrics.scaledDensity
                 canvas.drawRect(cardAreaOnScreen, paintRect)
             }
+
             GraphicalState.TRANSIENT_LEVEL_0 -> {
                 // draw animation for initial activation of the upgrade
                 canvas.drawRect(cardAreaOnScreen, paintInactive)
@@ -151,13 +156,13 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
                 // let hero picture appear
                 heroOpacity = transition
             }
+
             else -> canvas.drawRect(cardAreaOnScreen, paintRect)
         }
     }
 
-    fun displayHighlightFrame(canvas: Canvas)
-    {
-        with (paintInactive)
+    fun displayHighlightFrame(canvas: Canvas) {
+        with(paintInactive)
         {
             val originalThickness = strokeWidth
             val originalAlpha = alpha
@@ -175,10 +180,10 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
     }
 
     private fun displayLine(canvas: Canvas, x0: Int, y0: Int, x1: Int, y1: Int)
-    /** draws a fraction of the line between x0,y0 and x1,y1 */
+            /** draws a fraction of the line between x0,y0 and x1,y1 */
     {
-        val x: Float = x0 * (1-transition) + x1 * transition
-        val y = y0 * (1-transition) + y1 * transition
+        val x: Float = x0 * (1 - transition) + x1 * transition
+        val y = y0 * (1 - transition) + y1 * transition
         canvas.drawLine(x0.toFloat(), y0.toFloat(), x, y, paintRect)
         // draw the glow effect
         val effectRect = Rect(0, 0, effectBitmap.width, effectBitmap.height)
@@ -187,7 +192,7 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
     }
 
     fun putAt(left: Int, top: Int)
-    /** sets the top left corner of the card area to the given position */
+            /** sets the top left corner of the card area to the given position */
     {
         cardAreaOnScreen = Rect(cardArea)
         cardAreaOnScreen.setTopLeft(left, top)
@@ -198,27 +203,27 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
         indicatorSize = portraitArea.width() / 10
     }
 
-    private fun addLevelDecoration(canvas: Canvas)
-    {
+    private fun addLevelDecoration(canvas: Canvas) {
         paintIndicator.color = if (hero.data.level == 0) inactiveColor else activeColor
         var verticalIndicatorSize = indicatorSize  // squeeze when max level is greater than 8
-        if (hero.getMaxUpgradeLevel()>8)
-            verticalIndicatorSize = portraitArea.height() / (5+hero.getMaxUpgradeLevel())
-        for (i in 1 .. hero.getMaxUpgradeLevel())
-        {
-            val rect = Rect(0,0, indicatorSize, verticalIndicatorSize)
-            rect.setTopLeft(0, (2*i-1)*verticalIndicatorSize)
+        if (hero.getMaxUpgradeLevel() > 8)
+            verticalIndicatorSize = portraitArea.height() / (5 + hero.getMaxUpgradeLevel())
+        for (i in 1..hero.getMaxUpgradeLevel()) {
+            val rect = Rect(0, 0, indicatorSize, verticalIndicatorSize)
+            rect.setTopLeft(0, (2 * i - 1) * verticalIndicatorSize)
             levelIndicator.add(rect)
-            paintIndicator.style = if (i<=hero.data.level) Paint.Style.FILL else Paint.Style.STROKE
+            paintIndicator.style =
+                if (i <= hero.data.level) Paint.Style.FILL else Paint.Style.STROKE
             canvas.drawRect(rect, paintIndicator)
         }
         return
     }
 
-    fun create(showNextUpdate: Boolean = true, monochrome: Boolean = false)
-    {
-        cardArea = Rect(0, 0, (GameView.cardWidth*gameView.scaleFactor).toInt(), (GameView.cardHeight*gameView.scaleFactor).toInt())
-        portraitArea = Rect(0, 0, (GameView.cardPictureSize*gameView.scaleFactor).toInt(), (GameView.cardPictureSize*gameView.scaleFactor).toInt())
+    fun create(showNextUpdate: Boolean = true, monochrome: Boolean = false) {
+        cardArea =
+            Rect(0, 0, (GameView.cardWidth * gameView.scaleFactor).toInt(), (GameView.cardHeight * gameView.scaleFactor).toInt())
+        portraitArea =
+            Rect(0, 0, (GameView.cardPictureSize * gameView.scaleFactor).toInt(), (GameView.cardPictureSize * gameView.scaleFactor).toInt())
         paintText.textSize = GameView.heroCardTextSize * gameView.textScaleFactor
         indicatorSize = portraitArea.width() / 10
         this.showNextUpdate = showNextUpdate
@@ -229,13 +234,14 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
     fun createBitmap()
             /** re-creates the bitmap without border, using a canvas positioned at (0, 0) */
     {
-        val bitmap = Bitmap.createBitmap(cardArea.width(), cardArea.height(), Bitmap.Config.ARGB_8888)
+        val bitmap =
+            Bitmap.createBitmap(cardArea.width(), cardArea.height(), Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
 
         // render text used to indicate the effect of the upgrade, and calculate its position
-        val marginHorizontal = 10f*resources.displayMetrics.scaledDensity
-        val marginVertical = 10f*resources.displayMetrics.scaledDensity
-        val baseline = bitmap.height-marginVertical
+        val marginHorizontal = 10f * resources.displayMetrics.scaledDensity
+        val marginVertical = 10f * resources.displayMetrics.scaledDensity
+        val baseline = bitmap.height - marginVertical
         val paintUpdate = Paint(paintText)
         canvas.drawText(hero.strengthDesc, marginHorizontal, baseline, paintText)
         val bounds = Rect()
@@ -245,11 +251,11 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
             paintUpdate.color = resources.getColor(R.color.upgrade_inactive)
             canvas.drawText(hero.upgradeDesc, bounds.right + marginHorizontal, baseline, paintUpdate)
         }
-        val margin = (10*resources.displayMetrics.scaledDensity).toInt()
+        val margin = (10 * resources.displayMetrics.scaledDensity).toInt()
         val heroPaintText = Paint(paintText)
         heroPaintText.textSize = GameView.heroCardNameSize * gameView.textScaleFactor
         heroPaintText.color = if (hero.data.level == 0) inactiveColor else activeColor
-        val heroTextRect = Rect(0, margin, cardArea.width(), margin+40)
+        val heroTextRect = Rect(0, margin, cardArea.width(), margin + 40)
         heroTextRect.displayTextCenteredInRect(canvas, hero.person.fullName, heroPaintText)
 
         addLevelDecoration(canvas)
@@ -257,13 +263,12 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
     }
 
     fun upgradeAnimation()
-    /** graphical transition that is called when upgrading the hero in the marketplace */
+            /** graphical transition that is called when upgrading the hero in the marketplace */
     {
         if (hero.data.level == 1) {
             Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.VERY_SLOW)
             graphicalState = GraphicalState.TRANSIENT_LEVEL_0
-        }
-        else {
+        } else {
             Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.MEDIUM)
             graphicalState = GraphicalState.TRANSIENT
         }
@@ -275,8 +280,7 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
         if (hero.data.level == 0) {
             Fader(gameView, this, Fader.Type.DISAPPEAR, Fader.Speed.MEDIUM)
             graphicalState = GraphicalState.TRANSIENT_LEVEL_0
-        }
-        else {
+        } else {
             Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.MEDIUM)
             graphicalState = GraphicalState.TRANSIENT
         }
@@ -290,8 +294,7 @@ class HeroCard(val gameView: GameView, val hero: Hero): GameElement(), Fadable
         graphicalState = GraphicalState.NORMAL
     }
 
-    override fun setOpacity(opacity: Float)
-    {
+    override fun setOpacity(opacity: Float) {
         transition = opacity
     }
 }

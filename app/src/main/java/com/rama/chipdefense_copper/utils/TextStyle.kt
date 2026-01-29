@@ -33,7 +33,7 @@ fun textStyle(
 
 fun textStyleContent(
     context: Context,
-    textSizeSp: Float = 14f,
+    textSizeSp: Float = 16f,
     colorParam: Int = R.color.foreground_color
 ): Paint = textStyle(
         context = context,

@@ -225,12 +225,12 @@ The programming language Pascal is named after him."</string>
     <string name="link_wiki">Game Wiki</string>
     <string name="button_exit">Exit</string>
     <string name="button_retry">Retry</string>
-    <string name="shortdesc_SUB">SUB chip speed</string>
+    <string name="shortdesc_SUB">SUB :: chip speed</string>
     <string name="shortdesc_startinfo">Starting information</string>
     <string name="shortdesc_info_on_kill">Additional info</string>
-    <string name="shortdesc_SHR">SHR chip speed</string>
-    <string name="shortdesc_ACC">ACC chip speed</string>
-    <string name="shortdesc_MEM">MEM chip speed</string>
+    <string name="shortdesc_SHR">SHR :: chip speed</string>
+    <string name="shortdesc_ACC">ACC :: chip speed</string>
+    <string name="shortdesc_MEM">MEM :: chip speed</string>
     <string name="shortdesc_RES">Resistance value</string>
     <string name="shortdesc_duration">R effect duration</string>
     <string name="shortdesc_heat">Generated heat</string>

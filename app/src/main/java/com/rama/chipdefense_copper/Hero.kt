@@ -722,13 +722,13 @@ class Hero(var gameActivity: GameActivity, type: Type)
             if (data.level > 0) {
                 text = vitae + "\n"
                 paintBiography =
-                    TextPaint(textStyleContent(gameActivity, GameView.biographyTextSize))
+                    TextPaint(textStyleContent(gameActivity))
                 if (gameActivity.gameMechanics.currentStageIdent.series > GameMechanics.SERIES_NORMAL)
                     wikiButtonVisible = true
             } else {
                 text = "%s\n\n%s".format(person.fullName, effect)
                 paintBiography =
-                    TextPaint(textStyleContent(gameActivity, GameView.biographyTextSize, R.color.foreground_inactive_color))
+                    TextPaint(textStyleContent(gameActivity, colorParam = R.color.foreground_inactive_color))
                 wikiButtonVisible = false
             }
 //            canvas.drawColor(resources.getColor(R.color.background_tertiary_color))
