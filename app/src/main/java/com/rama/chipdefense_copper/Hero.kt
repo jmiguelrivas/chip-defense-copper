@@ -705,8 +705,6 @@ class Hero(var gameActivity: GameActivity, type: Type)
         private var paintBiography = TextPaint()
         var wikiButton = Button(
                 gameActivity.gameView, resources.getString(R.string.button_wiki),
-                textSize = GameView.purchaseButtonTextSize * gameActivity.gameView.textScaleFactor,
-                style = Button.Style.FRAME, preferredWidth = area.width() - 4
         )
         var wikiButtonVisible = false
 
@@ -721,7 +719,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
             if (data.level > 0) {
                 text = vitae + "\n"
                 paintBiography.color = selected?.card?.activeColor ?: Color.WHITE
-                wikiButton.color = paintBiography.color
+//                wikiButton.color = paintBiography.color
                 if (gameActivity.gameMechanics.currentStageIdent.series > GameMechanics.SERIES_NORMAL)
                     wikiButtonVisible = true
             } else {
@@ -748,7 +746,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                 (area.height() + 2 * wikiButton.area.height() - screenArea.height()).toFloat()
             maxViewOffset = if (maxViewOffset < 0f) 0f else maxViewOffset
             wikiButtonActive = false
-            wikiButton.alpha = 0
+//            wikiButton.alpha = 0
             placeButton()
         }
 

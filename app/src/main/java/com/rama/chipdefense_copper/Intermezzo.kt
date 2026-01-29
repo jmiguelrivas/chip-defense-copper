@@ -192,8 +192,8 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
         val bottomMargin = 40
         buttonContinue = Button(
                 gameView, textOnContinueButton,
-                textSize = GameView.computerTextSize * gameView.textScaleFactor,
-                color = resources.getColor(R.color.text_green), style = Button.Style.FILLED
+//                textSize = GameView.computerTextSize * gameView.textScaleFactor,
+//                color = resources.getColor(R.color.text_green), style = Button.Style.FILLED
         )
         val buttonTop = myArea.bottom - (buttonContinue?.area?.height() ?: 20) - bottomMargin
         buttonContinue?.let {
@@ -205,8 +205,8 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
         {
             buttonPurchase = Button(
                     gameView, resources.getString(R.string.button_marketplace),
-                    textSize = GameView.computerTextSize * gameView.textScaleFactor,
-                    color = resources.getColor(R.color.text_blue), style = Button.Style.FILLED
+//                    textSize = GameView.computerTextSize * gameView.textScaleFactor,
+//                    color = resources.getColor(R.color.text_blue), style = Button.Style.FILLED
             )
             buttonPurchase?.let {
                 Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW)
