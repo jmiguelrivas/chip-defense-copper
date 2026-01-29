@@ -8,14 +8,13 @@ import com.rama.chipdefense_copper.effects.Fadable
 import com.rama.chipdefense_copper.effects.Fader
 import com.rama.chipdefense_copper.utils.displayTextCenteredInRect
 import com.rama.chipdefense_copper.utils.inflate
-import com.rama.chipdefense_copper.utils.setCenter
 import java.util.*
 
 class Button(
     val gameView: GameView,
     var text: String,
-    val preferredWidth: Int = 0,
-    val containerArea: Rect? = null
+    val containerArea: Rect? = null,
+    maxWidth: Int? = null // new
 ) : Fadable {
 
     private var alpha = 255
@@ -28,12 +27,9 @@ class Button(
         color = gameView.resources.getColor(R.color.button_color)
     }
 
-    private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        typeface = ResourcesCompat.getFont(
-                gameView.context,
-                R.font.jersey25_regular
-        ) ?: Typeface.DEFAULT
-
+    val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { // make it public or internal
+        typeface = ResourcesCompat.getFont(gameView.context, R.font.jersey25_regular)
+            ?: Typeface.DEFAULT
         color = gameView.resources.getColor(R.color.foreground_color)
         textSize = 32f * gameView.scaleFactor
         letterSpacing = 0.08f
@@ -41,26 +37,18 @@ class Button(
     }
 
     init {
+        val padding = (16f * gameView.resources.displayMetrics.density).toInt()
         if (containerArea != null) {
-            // Use the container directly
             area.set(containerArea)
-            touchableArea.set(area)
         } else {
-            // old width calculation
-            val padding = (16f * gameView.resources.displayMetrics.density).toInt()
             val bounds = Rect()
             textPaint.getTextBounds(text, 0, text.length, bounds)
-            val width = bounds.width() + padding * 2
+            val width = maxWidth ?: (bounds.width() + padding * 2)
             val height = bounds.height() + padding * 2
             area.set(0, 0, width, height)
-            touchableArea.set(area)
-            touchableArea.inflate(padding / 2)
         }
-    }
-
-    fun setPosition(left: Int, top: Int) {
-        area.offsetTo(left, top)
-        touchableArea.setCenter(area.centerX(), area.centerY())
+        touchableArea.set(area)
+        touchableArea.inflate(padding / 2)
     }
 
     override fun fadeDone(type: Fader.Type) {}

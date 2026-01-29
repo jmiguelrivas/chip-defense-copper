@@ -33,10 +33,24 @@ fun textStyle(
 
 fun textStyleContent(
     context: Context,
-    textSizeSp: Float = 14f
+    textSizeSp: Float = 14f,
+    colorParam: Int = R.color.foreground_color
 ): Paint = textStyle(
         context = context,
-        colorParam = R.color.dashboard_display_foregorund_color,
+        colorParam = colorParam,
+        textSizeSp = textSizeSp
+).apply {
+    letterSpacing = 0.08f
+    isFakeBoldText = true
+}
+
+fun textStyleDisplay(
+    context: Context,
+    textSizeSp: Float = 14f,
+    colorParam: Int = R.color.dashboard_display_foregorund_color
+): Paint = textStyle(
+        context = context,
+        colorParam = colorParam,
         textSizeSp = textSizeSp
 ).apply {
     letterSpacing = 0.08f

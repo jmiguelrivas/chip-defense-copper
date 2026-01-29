@@ -129,9 +129,9 @@ class Marketplace(val gameView: GameView) : GameElement() {
     }
 
     private fun createButton() {
-        val margin = 16                   // margin from left/right
+        val margin = 16
         val bottomMargin = 40
-        val buttonHeight = 80             // fixed height
+        val buttonHeight = 80
 
         // continue button at the bottom
         val finishRect = Rect(
@@ -147,7 +147,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
         )
         buttonFinish?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
 
-        // refund button above continue
         val refundRect = Rect(
                 rightPanelArea.left + margin,
                 finishRect.top - buttonHeight - margin,

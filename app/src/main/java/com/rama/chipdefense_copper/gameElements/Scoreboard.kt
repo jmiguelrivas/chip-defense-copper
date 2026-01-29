@@ -77,7 +77,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         }
         canvas.drawRect(outerRect, borderPaint)
 
-        val titlePaint = textStyleContent(gameView.context).apply {
+        val titlePaint = textStyleDisplay(gameView.context).apply {
             textAlign = Paint.Align.CENTER
         }
 
@@ -635,7 +635,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
             val canvas = Canvas(bitmap)
 
             val valueText: String
-            val valuePaint = textStyleContent(
+            val valuePaint = textStyleDisplay(
                     gameView.context
             )
 

@@ -12,7 +12,9 @@ import com.rama.chipdefense_copper.activities.GameActivity
 import com.rama.chipdefense_copper.effects.Fader
 import com.rama.chipdefense_copper.gameElements.Button
 import com.rama.chipdefense_copper.gameElements.HeroCard
+import com.rama.chipdefense_copper.utils.inflate
 import com.rama.chipdefense_copper.utils.setTopLeft
+import com.rama.chipdefense_copper.utils.textStyleContent
 import kotlin.math.exp
 import kotlin.math.truncate
 
@@ -704,12 +706,13 @@ class Hero(var gameActivity: GameActivity, type: Type)
         private var canvas = Canvas(bitmap)
         private var paintBiography = TextPaint()
         var wikiButton = Button(
-                gameActivity.gameView, resources.getString(R.string.button_wiki),
+                gameActivity.gameView,
+                resources.getString(R.string.button_wiki),
         )
-        var wikiButtonVisible = false
+        var wikiButtonVisible = true
 
         /** whether clicking on the button triggers an action */
-        var wikiButtonActive = false
+        var wikiButtonActive = true
 
         /** distance to lower edge of area where the wikipedia button begins to fade */
         private var margin = 10 * gameActivity.gameView.scaleFactor
@@ -718,19 +721,17 @@ class Hero(var gameActivity: GameActivity, type: Type)
             val text: String
             if (data.level > 0) {
                 text = vitae + "\n"
-                paintBiography.color = selected?.card?.activeColor ?: Color.WHITE
-//                wikiButton.color = paintBiography.color
+                paintBiography =
+                    TextPaint(textStyleContent(gameActivity, GameView.biographyTextSize))
                 if (gameActivity.gameMechanics.currentStageIdent.series > GameMechanics.SERIES_NORMAL)
                     wikiButtonVisible = true
             } else {
                 text = "%s\n\n%s".format(person.fullName, effect)
-                paintBiography.color = selected?.card?.inactiveColor ?: Color.WHITE
+                paintBiography =
+                    TextPaint(textStyleContent(gameActivity, GameView.biographyTextSize, R.color.foreground_inactive_color))
                 wikiButtonVisible = false
             }
-            canvas.drawColor(Color.BLACK)
-            paintBiography.textSize =
-                GameView.biographyTextSize * gameActivity.gameView.textScaleFactor
-            paintBiography.alpha = 255
+//            canvas.drawColor(resources.getColor(R.color.background_tertiary_color))
             val textLayout = StaticLayout(
                     text, paintBiography, screenArea.width(),
                     Layout.Alignment.ALIGN_NORMAL, 1.0f,
@@ -738,7 +739,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     false
             )
             area.bottom =
-                screenArea.top + textLayout.height  // may be bigger or smaller than myArea
+                screenArea.top + textLayout.height
             this.bitmap = createBitmap(area.width(), area.height(), Bitmap.Config.ARGB_8888)
             canvas = Canvas(bitmap)
             textLayout.draw(canvas)
@@ -746,7 +747,6 @@ class Hero(var gameActivity: GameActivity, type: Type)
                 (area.height() + 2 * wikiButton.area.height() - screenArea.height()).toFloat()
             maxViewOffset = if (maxViewOffset < 0f) 0f else maxViewOffset
             wikiButtonActive = false
-//            wikiButton.alpha = 0
             placeButton()
         }
 
@@ -758,6 +758,20 @@ class Hero(var gameActivity: GameActivity, type: Type)
         }
 
         fun placeButton() {
+            // full width, but height based on text
+            val padding = (16f * gameActivity.gameView.scaleFactor).toInt()
+            val bounds = Rect()
+            wikiButton.textPaint.getTextBounds(wikiButton.text, 0, wikiButton.text.length, bounds)
+            val buttonHeight = bounds.height() + padding * 2
+            wikiButton.area.set(
+                    screenArea.left,
+                    0, // y will be set in placeButton()
+                    screenArea.right,
+                    buttonHeight
+            )
+            wikiButton.touchableArea.set(wikiButton.area)
+            wikiButton.touchableArea.inflate(padding / 2)
+
             if (!wikiButtonVisible)
                 return
             wikiButton.area.setTopLeft(area.left, (area.bottom + viewOffset).toInt())
