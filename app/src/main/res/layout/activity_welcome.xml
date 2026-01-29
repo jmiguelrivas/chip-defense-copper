@@ -53,7 +53,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/startNewGameButton"
                 android:onClick="displayAboutDialog"
-                android:text="About The Game"
+                android:text="@string/button_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.CpuDefense.Button.Title" />
@@ -61,7 +61,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/quitButton"
                 android:onClick="exitActivity"
-                android:text="Exit Game"
+                android:text="@string/button_exit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.CpuDefense.Button.Title" />

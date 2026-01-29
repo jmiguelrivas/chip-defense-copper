@@ -42,21 +42,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/icon_octagon_check_solid"
-                app:text="No Ads" />
+                app:text="@string/no_ads" />
 
             <com.rama.chipdefense_copper.IconBadge
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/icon_octagon_check_solid"
-                app:text="No Trackers" />
+                app:text="@string/no_trackers" />
 
             <com.rama.chipdefense_copper.IconBadge
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/icon_octagon_check_solid"
-                app:text="Works Offline" />
+                app:text="@string/works_offline" />
 
             <com.rama.chipdefense_copper.IconBadge
                 android:layout_width="match_parent"
@@ -64,32 +64,32 @@
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/icon_crown_solid"
                 app:backgroundColor="#2A2A3A"
-                app:text="License MIT" />
+                app:text="@string/license" />
 
             <com.rama.chipdefense_copper.IconLink
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/icon_github"
-                app:url="https://github.com/jmiguelrivas/chip-defense-copper"
-                app:text="jmiguelrivas/chip-defense-copper" />
+                app:url="@string/chip_defense_copper_url"
+                app:text="@string/chip_defense_copper_label" />
 
             <com.rama.chipdefense_copper.IconLink
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/icon_github"
-                app:url="https://github.com/ochadenas/cpudefense"
-                app:text="ochadenas/cpudefense (Original)" />
+                app:url="@string/chip_defense_url"
+                app:text="@string/chip_defense_label" />
 
             <com.rama.chipdefense_copper.IconLink
                 android:id="@+id/button_wiki"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                app:url="https://github.com/ochadenas/cpudefense/wiki/Chip-Defense"
+                app:url="@string/wiki_url"
                 app:icon="@drawable/icon_face_thinking_solid"
-                app:text="Game Wiki (ChipDefense)" />
+                app:text="@string/wiki_label" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_back"

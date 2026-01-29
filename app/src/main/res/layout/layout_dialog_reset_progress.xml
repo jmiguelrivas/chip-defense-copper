@@ -10,26 +10,26 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Do you want to reset all your current progress?"
+        android:text="@string/query_restart_game"
         style="@style/Title" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/reset_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reset All My Progress"
+        android:text="@string/reset_all_progress"
         style="@style/Widget.CpuDefense.Button.Danger" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/reset_endless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Only Reset Endless Mode"
+        android:text="@string/reset_endless"
         style="@style/Widget.CpuDefense.Button.Danger" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/close_modal"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.CpuDefense.Button" />

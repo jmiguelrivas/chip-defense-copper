@@ -3,24 +3,95 @@
     <string name="app_name" translatable="false">ChipDefense: Copper</string>
     <string name="app_description">Chip Defense is a casual game for Android devices of the tower defense genre. It centres around a design of electric circuits and logical chips, evoking the good ol\' days of 8 bit micro-processors.</string>
 
+    <!-- GENERAL -->
+    <string name="go_back">Go back</string>
+    <string name="name_series_1">Normal</string>
+    <string name="name_series_2">Turbo</string>
+    <string name="name_series_3">Endless</string>
+
     <!-- HOME -->
+    <string name="button_start_game">Start new game</string>
     <string name="button_resume">Resume game</string>
+    <string name="selectLevel">Select Level</string>
+    <string name="button_info">About The Game</string>
+    <string name="button_exit">Exit Game</string>
+    <string name="play_level_x">Play level %s</string>
+    <string name="stage_reached">Stage reached: %1$s %2$d</string>
 
     <!-- SETTINGS -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_use_large_buttons">Use large objects</string>
+    <string name="settings_show_framerate">Show frame rate</string>
+    <string name="settings_keep_levels">Keep created stages in “endless” mode</string>
+    <string name="settings_use_hex">Display stage numbers in hex</string>
+    <string name="game_progress">Game Progress</string>
+    <string name="import_data">Import Data</string>
+    <string name="export_data">Export Data</string>
+    <string name="button_reset_progress">Reset game progress</string>
+    <string name="settings_activate_log">Enable debug logging</string>
+    <string name="settings_fast_fast_forward">Show “really fast forward” button</string>
+    <string name="settings_disable_purchase_dialog">Disable the life purchase dialog</string>
+    <string name="settings_disable_background">Disable background</string>
+    <string name="settings_show_atts_in_range">Show attackers in range</string>
 
     <!-- ABOUT -->
+    <string name="chip_defense_copper_url" translatable="false">https://github.com/jmiguelrivas/chip-defense-copper</string>
+    <string name="chip_defense_copper_label" translatable="false">jmiguelrivas/chip-defense-copper</string>
+    <string name="chip_defense_url" translatable="false">https://github.com/ochadenas/cpudefense</string>
+    <string name="chip_defense_label" translatable="false">ochadenas/cpudefense</string>
+    <string name="wiki_url" translatable="false">https://github.com/ochadenas/cpudefense/wiki/Chip-Defense</string>
+    <string name="wiki_label">Game Wiki (ChipDefense)</string>
+    <string name="works_offline">Works Offline</string>
+    <string name="no_trackers">No Trackers</string>
+    <string name="no_ads">No Ads</string>
+    <string name="license">License MIT</string>
 
     <!-- LEVEL SELECTOR -->
+    <string name="play_selected_level">Play selected level</string>
     <string name="coins_got">%1$d / %2$d coin</string>
     <string name="coins_got_plural">%1$d / %2$d coins</string>
+    <string name="level_entry">Level %s</string>
+    <string name="message_series_unavailable">Complete all levels in “normal” mode first.</string>
+    <string name="message_endless_unavailable">Complete all levels in “turbo” mode first.</string>
 
     <!-- MODAL :: RESET GAME PROGRESS -->
-    <string name="button_reset_progress">Reset game progress</string>
+    <string name="query_restart_game">Do you want to reset all your current progress?</string>
+    <string name="reset_all_progress">Reset all my progress</string>
+    <string name="reset_endless">Only reset endless mode</string>
+    <string name="cancel">Cancel</string>
 
     <!-- MODAL :: RESET STAGE -->
     <string name="buttton_replay">Reset stage</string>
     <string name="button_return_to_main_menu">Return to main menu</string>
     <string name="continue_game">Continue playing</string>
+
+    <!-- INTERMEZZO -->
+    <string name="series_completed_message_1">" "</string>
+    <string name="series_completed_message_4">" "</string>
+    <string name="game_start">Starting game.</string>
+    <string name="button_playlevel">Play stage</string>
+    <string name="failed">Failed to clear stage.</string>
+    <string name="coins_gathered">Coins gathered: %d.</string>
+    <string name="success">All stages cleared!</string>
+    <string name="next_stage">Next stage: %s</string>
+    <string name="cleared">Stage cleared.</string>
+    <string name="last_stage">Last stage was: %s</string>
+    <string name="win">You win.</string>
+    <string name="button_retry">Retry</string>
+    <string name="instr_leave">Some heroes are asking for time off. You must grant leave to one of them, who will return after %d levels.</string>
+    <string name="instr_leave_1">Some heroes are asking for time off. You must grant leave to one of them, who will return in the next level.</string>
+    <string name="heroes_on_leave_0">No heroes are on leave.</string>
+    <string name="heroes_on_leave_1">Hero on leave:</string>
+    <string name="button_marketplace">Check Heroes</string>
+
+    <!-- MODAL :: RESET HEROES -->
+    <string name="query_reset">Do you want to reset all heroes?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+
+    <!-- MODAL :: PURCHASE LIFE -->
+    <string name="query_purchase_life">Do you want to spend %s to recover a life?</string>
+    <string name="annotation_purchase_life">This dialog can be disabled in “Settings”. You will still be able to purchase lives by tapping on the CPU.</string>
 
     <!-- GAME -->
     <string name="game_paused">GAME PAUSED</string>
@@ -30,283 +101,51 @@
     <string name="scoreboard_stage">stage</string>
     <string name="scoreboard_waves">wave</string>
     <string name="scoreboard_temp">temp</string>
+    <string name="toast_loading">Loading …</string>
+    <string name="overheat">CPU damage from overheating</string>
 
-    <!-- DEPRECATED -->
-    <string name="quit">Quit</string>
-    <string name="app_name_last" translatable="false">Defense</string>
-    <string name="button_nextlevel">Play next stage</string>
-
-    <!-- _________________________________________________________________________________ -->
-
-    <string name="button_start_game">Start new game</string>
-    <string name="button_playlevel">Play stage</string>
-    <string name="failed">Failed to clear stage.</string>
-    <string name="success">All stages cleared!</string>
-    <string name="cleared">Stage cleared.</string>
-    <string name="last_stage">Last stage was: %s</string>
-    <string name="win">You win.</string>
-    <string name="next_stage">Next stage: %s</string>
-    <string name="coins_gathered">Coins gathered: %d.</string>
-    <string name="game_start">Starting game.</string>
-    <string name="enter_game">Enter</string>
-
-    <string name="selectLevel">Select Level</string>
-    <string name="play_selected_level">Play selected level</string>
-    <string name="button_marketplace">Heroes</string>
-    <string name="button_refund_all">Reset all</string>
+    <!-- MERKETPLACE -->
+    <string name="button_refund_all">Reset all Heroes</string>
     <string name="button_refund_one">Downgrade Hero</string>
     <string name="button_purchase">Upgrade Hero [1 coin] </string>
     <string name="button_purchase_plural">Upgrade Hero [%d coins]</string>
     <string name="cost_desc">[cost: %d]</string>
-    <string name="level_entry">Level %s</string>
-    <string name="level_selector">Level Selector</string>
-    <string name="query_reset">Do you want to reset all heroes?</string>
-    <string name="query_restart_game">Do you want to reset all your current progress?</string>
-    <string name="no">No</string>
-    <string name="yes">Yes</string>
-    <string name="choice_1">Yes, start a fresh game from the beginning.</string>
-    <string name="choice_2">Only reset the “endless” levels.</string>
-    <string name="choice_3">No, keep my progress.</string>
-    <string name="close">Close</string>
+    <string name="message_cannot_fire">Use “%s” to release this hero.</string>
+    <string name="message_is_on_leave">%s is currently on leave.</string>
+    <string name="button_wiki">"Check Wikipedia Bio"</string>
+    <string name="coins_available">Coins available: %d</string>
+    <string name="coins_received_as_gift">You received %d coins as gift.</string>
 
-    <string name="instr_1">
-"Your computer is being invaded by an evil virus. Rogue code fragments - shown as Ones and Zeroes - try to get through to the cpu.
-
-Tap on the empty slot to add a chip as defense against the attack, and then tap again to confirm your choice.
-
-The most basic chip is “SUB 1” which subtracts 1 from the attacker´s value. It turns 1´s into 0´s, and it makes 0´s disappear. Only then they are no longer a threat."
-    </string>
-    <string name="instr_2">
-"You may also tap on an attacker. This will invert its value: 1 becomes 0, and 0 becomes 1.
-
-Inverting a 0 will actually make the attacker more dangerous, so be careful not to tap on everything you see."
-    </string>
-    <string name="instr_3">
-"The currency in this game is information. It is displayed on the bottom left.
-
-Destroy the attacking code to gain some information about the virus. Use it to buy additional chips or to upgrade the existing ones."
-    </string>
-    <string name="instr_4">
-"Here are some hints:
-
-Remember that in binary,
-  10 equals 2,
-  11 equals 3,
-100 equals 4,
-and so on.
-
-Try to tap on numbers starting with “1”. This reduces the attacker´s number and makes the level much easier.
-
-Any attacker that gets through to the CPU will cost one life, regardless of its number. You must have at least one SUB chip to get rid of them."</string>
-    <string name="instr_5">
-"In the next level, a new chip type is available. It is labelled “SHR 1”, which means “shift right by 1”.
-
-All digits are moved one position to the right. The leftmost digit is replaced by 0.
-
-For example, 0110 becomes 0011. This is equivalent to dividing the value by 2."
-    </string>
-    <string name="instr_6">
-"By clearing stages, you can gain cryptocoins. These coins are valuable. You can use them to hire some powerful Heroes of the Information Age who will give you significant advantages in the game.
-
-There is a maximum amount of cryptocoins per level shown on the bottom, and each life lost will reduce the reward.
-
-If you do not get all the coins, you can always replay the level. However, once you have obtained the maximum, you won´t receive any more coins for this stage.
-"
-    </string>
-    <string name="instr_7">
-"Sometimes you will see a cryptocoin moving along with the attackers. You can collect it by destroying it, even multiple times when you replay the level.
-
-But be careful. The moving cryptocoin is stronger than ordinary attackers, and if it reaches the CPU, it will take one of your lives."
-    </string>
+    <!-- INSTRUCTIONS -->
+    <string name="instr_1">"Your computer is being invaded by an evil virus. Rogue code fragments - shown as Ones and Zeroes - try to get through to the cpu.\n\nTap on the empty slot to add a chip as defense against the attack, and then tap again to confirm your choice.\n\nThe most basic chip is “SUB 1” which subtracts 1 from the attacker´s value. It turns 1´s into 0´s, and it makes 0´s disappear. Only then they are no longer a threat."</string>
+    <string name="instr_2">"You may also tap on an attacker. This will invert its value: 1 becomes 0, and 0 becomes 1.\n\nInverting a 0 will actually make the attacker more dangerous, so be careful not to tap on everything you see."</string>
+    <string name="instr_3">"The currency in this game is information. It is displayed on the bottom left.\n\nDestroy the attacking code to gain some information about the virus. Use it to buy additional chips or to upgrade the existing ones."    </string>
+    <string name="instr_4">"Here are some hints:\n\nRemember that in binary,\n\n10 equals 2,\n11 equals 3,\n100 equals 4,\nand so on.\n\nTry to tap on numbers starting with “1”. This reduces the attacker´s number and makes the level much easier.\n\nAny attacker that gets through to the CPU will cost one life, regardless of its number. You must have at least one SUB chip to get rid of them."</string>
+    <string name="instr_5">"In the next level, a new chip type is available. It is labelled “SHR 1”, which means “shift right by 1”.\n\nAll digits are moved one position to the right. The leftmost digit is replaced by 0.\n\nFor example, 0110 becomes 0011. This is equivalent to dividing the value by 2."</string>
+    <string name="instr_6">"By clearing stages, you can gain cryptocoins. These coins are valuable. You can use them to hire some powerful Heroes of the Information Age who will give you significant advantages in the game.\n\nThere is a maximum amount of cryptocoins per level shown on the bottom, and each life lost will reduce the reward.\n\nIf you do not get all the coins, you can always replay the level. However, once you have obtained the maximum, you won´t receive any more coins for this stage."</string>
+    <string name="instr_7">"Sometimes you will see a cryptocoin moving along with the attackers. You can collect it by destroying it, even multiple times when you replay the level.\n\nBut be careful. The moving cryptocoin is stronger than ordinary attackers, and if it reaches the CPU, it will take one of your lives."</string>
     <string name="instr_7a">Chips need to cool down between operations. Hire heroes to reduce the chance of grouped attackers overwhelming a chip.\n\nIf you are stuck, you can replay a lower level trying to catch a running cryptocoin.</string>
     <string name="instr_8">"\nYou can sell existing chips and re-use their slot. Most, but not all of the information will be refunded.\n\nNote that an activated chip will complete its current cooldown cycle before disappearing."</string>
     <string name="instr_9">"\nLet´s introduce another chip. The MEM (for memory) chip takes a number and stores it safely away in memory. A little white indicator shows that there is a value inside.\n\nThe MEM chip must be “read out” (by tapping on it). Once you have tapped on the chip, its cool down cycle starts, and only after that the memory slot becomes available again. A thick white frame indicates whether you should tap on the chip.\n\nFor now, the MEM chip can hold only one attacker,. Later in the game you will be able to buy upgrades, creating additional slots.\n\nMEM chips are powerful because they can take out any attacker, but they require your attention, and they are quite slow."</string>
-    <string name="instr_10">
-"The accumulator chip (ACC) is a bit more complex than the others, but it can be very effective against large numbers of attackers. It takes two numbers and combines them into one result.
-
-In its basic variant, it adds the two numbers. If you upgrade the chip once, it will OR the input numbers. Upgrading twice makes the operation an AND.
-
-Example: If the numbers 0110 (that is 6) and 0011 (that is 3) enter the ACC chip, the result will be
-1001 (that is 9) when adding [ACC +]
-0111 (that is 7) using OR [ACC v]
-0010 (that is 2) using AND [ACC &amp;].
-
-The advantage of ACC is that it is really fast."
-    </string>
-    <string name="instr_11">
-"Larger numbers are represented in hexadecimal. They are shown with a leading “x”.
-
-In hex, you have digits from 0 to 9 and then from A to F. The hex number x0F equals 15, or 1111 in binary."
-    </string>
-    <string name="instr_12">
-"Two more chip types: ADD and SHL.\n\nThese do the opposite of SUB and SHR, respectively: They add 1 to the number and shift the bits to the left.\n\nOf course, this is really undesired. You can “upgrade” these chips to reduce their strength or make them disappear."
-    </string>
-    <string name="instr_13">
-"Note that cryptocoins are unaffected by ACC and also by MEM chips."
-    </string>
+    <string name="instr_10">"The accumulator chip (ACC) is a bit more complex than the others, but it can be very effective against large numbers of attackers. It takes two numbers and combines them into one result.\n\nIn its basic variant, it adds the two numbers. If you upgrade the chip once, it will OR the input numbers. Upgrading twice makes the operation an AND.\n\nExample: If the numbers 0110 (that is 6) and 0011 (that is 3) enter the ACC chip, the result will be\n1001 (that is 9) when adding [ACC +]\n0111 (that is 7) using OR [ACC v]\n0010 (that is 2) using AND [ACC &amp;].\n\nThe advantage of ACC is that it is really fast."</string>
+    <string name="instr_11">"Larger numbers are represented in hexadecimal. They are shown with a leading “x”.\n\nIn hex, you have digits from 0 to 9 and then from A to F. The hex number x0F equals 15, or 1111 in binary."</string>
+    <string name="instr_12">"Two more chip types: ADD and SHL.\n\nThese do the opposite of SUB and SHR, respectively: They add 1 to the number and shift the bits to the left.\n\nOf course, this is really undesired. You can “upgrade” these chips to reduce their strength or make them disappear."</string>
+    <string name="instr_13">"Note that cryptocoins are unaffected by ACC and also by MEM chips."</string>
     <string name="instr_14">Another chip becomes available! \n\nThe CLK (clock) chip does not affect the attackers itself. Instead, it speeds up the other chips on the board. Each time the CLK ticks, the cooldown timer of all other chips is reset, and they become ready to operate anew.\n\nUpgrading increases the CLK frequency.</string>
     <string name="instr_15">Overclocking the CPU can be dangerous: The faster your chips work, the hotter they will get.\n\nEach time your clock resets a chip, a small amount of heat is produced. Temperatures of more than %d degrees can damage the CPU, that means, that they can cost you one life.</string>
     <string name="instr_16">The NOP chip (No operation) does nothing. But since it occupies a slot, you might want to remove it.\n\nA NOP 2 chip also does nothing, but twice.</string>
-    <string name="instr_17">Two more undesired chip types, then we have seen them all.\n\nDUP duplicates an attacking piece of code. Instead of one attacker, you\'ll have two, with the same number.\n\nSPLT (split) does nearly the same, but instead of simply duplicating the number, it splits it into two pieces. For example, xA4 becomes xA0 and x04. This is somewhat the opposite of ACC: If the two resulting numbers are combined by logical OR, you\'ll get the original values. </string>
+    <string name="instr_17">Two more undesired chip types, then we have seen them all.\n\nDUP duplicates an attacking piece of code. Instead of one attacker, you\'ll have two, with the same number.\n\nSPLT (split) does nearly the same, but instead of simply duplicating the number, it splits it into two pieces. For example, xA4 becomes xA0 and x04. This is somewhat the opposite of ACC: If the two resulting numbers are combined by logical OR, you\'ll get the original values.</string>
     <string name="instr_18">Beware! Sneak attack!</string>
     <string name="instr_22">Remember that SHR chips are powerful but cannot eliminate attackers. They quickly reduce large values, but against hordes of weak attackers, multiple SUB chips may be a more cost-effective defence.</string>
     <string name="instr_23">Not all electronic components are logic chips. There are also important classic, analogue components such as capacitors [C] or resistors [R]. \n\nIn this game, resistors have the effect of slowing down the attackers for a certain period of time. Their strength is indicated by three coloured rings. The slowing effect is the bigger the stronger the attackers are. One-bit-numbers are hardly affected at all, whereas 8-bit numbers become quite slow by large resistances.\n\nResistors generate heat. There is a hero (Claude Shannon) who can convert some of this heat into information.</string>
     <string name="instr_endless">You have successfully cleared all stages and won the game!\n\nIf you want, you can continue in “endless” mode, with randomly generated circuits that get more and more difficult. You will start the “endless” series without heroes, and you cannot use the coins gathered until now. \n\nHow far will you get?</string>
-
-
-    <string name="turing">Alan Turing was one of the most important persons in computer science. He created many of the foundations in theoretical computing, such as the Turing machine and the Turing test, and made important breakthroughs in cryptology. Building on the work of the Polish Cipher Bureau, he led the team that was responsible for deciphering the Enigma code during the Second World War. His impact on the outcome of the war can hardly be overestimated.\n\nHe was heavily discriminated against because of his homosexuality. He died, probably by his own hand, in 1954.</string>
-    <string name="lovelace">
-"Ada, Countess of Lovelace is held to have invented the concept of Programming.
-
-Together with Charles Babbage she worked on his mechanical calculation machine. She created an instruction set for the calculation of Bernoulli numbers, which is probably the first formal program ever written.
-
-Lovelace realized that the abilities of a programmable engine were much greater than arithmetical computations. She also was the first to distinguish the symbolic concepts (software) from the physical parts (hardware).
-
-She died in 1852, aged only 36."
-    </string>
-    <string name="hollerith">
-"Data storage and processing started when Herman Hollerith introduced punched cards. He developed and merchandised a punched card tabulating machine to assist in collecting, sorting, and summarizing information. It was used (among other uses) for census purposes in many countries.
-
-In 1896, Hollerith founded the Tabulating Machine Company that should later become International Business Machines (IBM)."
-    </string>
-    <string name="osborne">
-"In 1981 Adam Osborne created the first portable computer. The “Osborne 1” was not really what we nowadays call a laptop, it was more like a big suitcase with a weight of over 11 kg. However, it had everything a computer needed in one compact case: Power supply, keyboard, two floppy drives, a CRT monitor, and lots of software.
-
-Osborne was also an author and book publisher."
-    </string>
-    <string name="cernettes">
-"Les Horribles Cernettes, or LHC, are the High Energy Rock Band of the European research facility CERN. They also were The First Band On The Web.
-
-After Berners-Lee had invented the World Wide Web, he was looking for some content to put into it. Silvano de Gennaro provided him with a photo of the Cernettes taken in july 1992, which became the first photo of a band that appeared in browser windows all over the world."
-    </string>
-    <string name="knuth">"Donald Ervin Knuth is a computer scientist and mathematician who has made numerous contributions to theoretical computer science.  He is mostly known for the monumental work “The Art of Computer Programming”, a project that started in 1962 and is still not finished. For this he created en passant the TeX formatting system that has become the standard for scientific publications all over the world."</string>
-    <string name="zuse">
-"The first modern computer was built by Konrad Zuse in 1941. The Z1 was a programmable, electro-mechanical machine that operated on a digital base, implemented Boolean logic, and even used floating point numbers.
-
-Zuse also created the first high-level programming language “Plankalkül”."
-    </string>
-    <string name="franke">
-"Herbert W. Franke was a physicist well known as an author of science fiction novels and documentary works.
-
-He was a pionier in the field of computer art and computer graphics, and developed the concept of “cybernetical aesthetics” - art created by electronic devices and numerical algorithms."
-    </string>
-    <string name="vaughan">
-"Dorothy Vaughan was one of the “human computers” working with the NASA. She was capable of solving complex mathematical equations faster and more reliably than the electronic or mechanical devices available at the time. With other women, she significantly helped advancing the American space program.
-
-Later, as manager at the NASA, she prepared for the introduction of electronic computers by teaching herself and her staff the FORTRAN programming language."
-    </string>
-    <string name="tramiel">
-"As a child, Idek Tramielski survived Auschwitz. In 1947, he emigrated to the USA, where in 1954 he founded Commodore International, a company manufacturing typewriters. In 1982, Commodore presented the C64, the world´s first real home computer.
-
-The record-selling C64 not only had an enormous 64 kiB of RAM, it also featured hi-res graphics, digital sound, a built-in BASIC interpreter, and two joystick ports. Countless persons made their first steps into the information age on good old C64."
-    </string>
-    <string name="wiener">"Norbert Wiener is known as the founder of cybernetics, i.e. the control and regulation of machines, and is thus one of the pioneers of artificial intelligence. The term “cyber” coined by him is ubiquitous today.  \n\nHe developed mathematical theories, especially in the field of pattern recognition and image processing, and proved a number of mathematical theorems.  \n\nDue to his experiences in WW2, he adopted an increasingly pacifist stance and refused to publish works that might cause harm in the hands of militarists."</string>
-    <string name="pascal">
-"Blaise Pascal was a polymath in many fields of mathematics, philosophy and physics. For the later information age, his calculating machines, the “Pascalines”, were an early precursor.
-
-The programming language Pascal is named after him."</string>
-    <string name="hopper">"\nGrace Brewster Murray Hopper had the idea that computer programs could be written in human-readable language instead of as sequences of Ones and Zeroes. She designed the FLOW-MATIC programming language, and thus invented the first compiler."</string>
-    <string name="mandelbrot">Benoît Mandelbrot was the most important founder of fractal geometry, which can not only be used to describe many structures in nature very well, but also to create fantastic graphics on the computer. \n\nThe graphical representation of the Mandelbrot set went viral and founded a new age of computer art.</string>
-    <string name="schneier">"Bruce Schneier is an expert on cryptography and information security. He has written important books on the subject, most notably “Applied Cryptography”, and has designed several cryptographic algorithms.\n        \nHe is not afraid of criticizing governments or global companies if he deems their actions counterproductive to security or violating the right of privacy."</string>
-    <string name="meier">Sidney K. Meier has created some of the most influential strategy games and revolutionised the genre. With comparatively simple rules, his games simulate the complexities of reality amazingly well. And they always tell a story: of the age of the railways, of the American Revolution, or - as in his most famous work “Civilization” - of 6000 years of human history.</string>
-    <string name="kilby">Jack St. Clair Kilby had the idea of combining semiconductor elements - such as transistors or diodes - in an integrated circuit (IC) instead of wiring the components individually on a board. This was the basis for microchips and processors and made modern electronics with its miniaturisation possible in the first place.\n\n\nJack Kilby is also regarded as co-inventor of the pocket calculator and thermal printer.</string>
-    <string name="chappe">Together with his four brothers Ignace, Pierre François, René and Abraham, Claude Chappe developed the optical telegraph. His “tachygraph” was the first system with which information could be transmitted quickly over long distances, making it the forerunner of all modern communication. Around 1830, the Chappe semaphore system connected Paris with many important cities in France and Europe.</string>
-    <string name="hamilton">As a young programmer, Margaret Elaine Hamilton worked on military projects. In the mid-1960s she joined the Apollo moon landing project and quickly became head of software development. She and her team were responsible for programming and testing the guidance computer on board the spacecraft and lunar module, with the astronauts\' lives depending on the absolute reliability of the programmes.\n\nHamilton coined the term software engineering. And she is available as a Lego figure.</string>
-    <string name="leibniz">Like Pascal, Gottfried Wilhelm Leibniz was also a great polymath of his time. We owe to him important advances in numerous very different fields of science, which are far too numerous to list here.\n\nHis achievement for the information age is the construction of complex mechanical calculating machines, which can be seen as the forerunners of modern computers. Above all, however, he recognised the importance of the dual system and the binary number code, which all digital devices use today.</string>
-    <string name="ohm">Georg Simon Ohm was one of the first to attempt to describe electrical processes mathematically. His work initially attracted little attention and was dismissed as an academic gimmick. It was not until Charles Wheatstone recognised their importance and asked Ada Lovelace to translate some of Ohm\'s works into English.\n\nToday, his name is inextricably linked with electrical resistance. Ohm\'s law and the unit of resistance are named after him.</string>
-    <string name="volta">Alessandro Giuseppe Antonio Anastasio Volta was an experimental physicist who questioned and refuted some of the theories and assumptions prevailing at the time. He not only discovered the gas methane, but also made groundbreaking discoveries in the new field of electricity. He described the relationship between voltage, charge and capacity. Above all, however, he developed the first functioning battery. \n\nThe unit of electrical voltage, the volt, is named after him.</string>
-    <string name="settings_title">Settings</string>
-    <string name="about_title">About</string>
-    <string name="about_version">Version %s.</string>
-    <string name="about_license">"This game is open source. Visit <a href="https://github.com/ochadenas/cpudefense#MIT-1-ov-file">github.com/ochadenas/cpudefense</a> for more information.\n\nThe portraits of the Information Age Heroes are mostly derived from works of the public domain.\n\nOriginal photos:\n  Alex Handy (CC BY-SA 2.0)\n  Jacob Appelbaum (CC BY-SA 2.5)\n  Konrad Jacobs (CC BY-SA 2.0 de)\n  Rama (CC BY-SA 2.0 fr)\n  Shervinafshar (CC BY-SA 3.0)\n  Tony Bove (CC BY 3.0)\n  Wolfgang Hunscher (CC BY-SA 3.0)\n  Silvano de Gennaro (courtesy of the author)\n  Clermont Auvergne Métropole (CC BY-SA 4.0)\n  Jean-Frédéric (CC BY 2.0)\n  Tekniska Museet (CC BY 2.0)\n  The Royal Society (CC BY-SA 4.0)\n  Konrad Jacobs (CC BY-SA 2.0 de)\n  \nComputer boards:\n  Autopilot (CC BY-SA 4.0)\n  Bill Bertram (CC-BY 2.0)\n  Oliver Chadenas (CC BY-SA 3.0)\n  Smial (FAL)\n\nAll other artwork:\n  Oliver Chadenas (CC BY-SA 3.0)"</string>
-    <string name="about_info_title">Info</string>
-    <string name="about_info_text">For additional info and hints on game play visit the game\'s wiki on the web.</string>
-    <string name="play_level_x">Play level %s</string>
-    <string name="link_wiki">Game Wiki</string>
-    <string name="button_exit">Exit</string>
-    <string name="button_retry">Retry</string>
-    <string name="shortdesc_SUB">SUB :: chip speed</string>
-    <string name="shortdesc_startinfo">Starting information</string>
-    <string name="shortdesc_info_on_kill">Additional info</string>
-    <string name="shortdesc_SHR">SHR :: chip speed</string>
-    <string name="shortdesc_ACC">ACC :: chip speed</string>
-    <string name="shortdesc_MEM">MEM :: chip speed</string>
-    <string name="shortdesc_RES">Resistance value</string>
-    <string name="shortdesc_duration">R effect duration</string>
-    <string name="shortdesc_heat">Generated heat</string>
-    <string name="shortdesc_upgrade">Chip upgrade cost</string>
-    <string name="shortdesc_lives">Additional lives</string>
-    <string name="shortdesc_frequency">Attacker frequency</string>
-    <string name="shortdesc_att_speed">Attacker speed</string>
-    <string name="shortdesc_att_strength">Attacker strength</string>
-    <string name="shortdesc_coin_strength">Coin strength</string>
-    <string name="shortdesc_info_gain">Information gain</string>
-    <string name="shortdesc_heat_conversion">heat converted</string>
-    <string name="shortdesc_double_chance">%s double hit chance</string>
-    <string name="shortdesc_range">%s chip range</string>
-    <string name="shortdesc_refund">Refund when selling chips</string>
-    <string name="shortdesc_max_hero_upgrade">Max hero level</string>
-    <string name="shortdesc_limit_unwanted">Unwanted chip count</string>
-    <string name="shortdesc_create_wanted">Additional chip count</string>
-    <string name="shortdesc_reduce_removal">Chip removal cost</string>
-    <string name="shortdesc_enable_mem_upgrade">MEM max. level</string>
-    <string name="upgrade_format">%1$s  [cost: %2$d]</string>
-    <string name="stage_number">Stage %s</string>
-    <string name="toast_stage_cleared">Stage cleared</string>
-    <string name="toast_enter_stage">Stage %s</string>
-    <string name="HERO_EFFECT_CHIPSPEED">Decreases cooldown time of all %s chips</string>
-    <string name="HERO_EFFECT_HEAT">Reduces the amount of generated heat</string>
-    <string name="HERO_EFFECT_STARTINFO">Increases information at start of level</string>
-    <string name="HERO_EFFECT_UPGRADECOST">Reduces upgrade cost of all chips</string>
-    <string name="HERO_EFFECT_LIVES">Grants additional lives</string>
-    <string name="HERO_EFFECT_FREQUENCY">Decreases attacker frequency</string>
-    <string name="HERO_EFFECT_INFOOVERTIME">Gains additional bits over time</string>
-    <string name="HERO_EFFECT_ATTSPEED">Reduces attacker speed</string>
-    <string name="HERO_EFFECT_COINSTRENGTH">Reduces cryptocoin strength</string>
-    <string name="HERO_EFFECT_ATTSTRENGTH">Reduces attacker strength</string>
-    <string name="HERO_EFFECT_MAXHEROUPGRADE">Increases maximal upgrade level of other heroes</string>
-    <string name="HERO_EFFECT_REFUNDPRICE">Increases refund when selling chips</string>
-    <string name="HERO_EFFECT_GAININFO">Increases information gain through destroying attackers</string>
-    <string name="HERO_EFFECT_RANGE">Increases %s chip range</string>
-    <string name="HERO_EFFECT_LIMITUNWANTED">Reduces the number of unwanted chips</string>
-    <string name="HERO_CREATE_CHIPS">Creates additional chips</string>
-    <string name="HERO_EFFECT_DECREASEREMOVAL">Reduces the cost of unwanted chip removal</string>
-    <string name="HERO_EFFECT_ENABLEMEM">Enables upgrading of MEM chips</string>
-    <string name="HERO_EFFECT_RES_STRENGTH">Increases the strength of resistors</string>
-    <string name="HERO_EFFECT_RES_DURATION">Increases the duration of resistance effect</string>
-    <string name="HERO_EFFECT_CONVERT_HEAT">Converts some of the resistors\' heat into info</string>
-    <string name="HERO_EFFECT_CHANCE_DOUBLE">Gives %s chips a chance of double effect</string>
-    <string name="toast_loading">Loading …</string>
-    <string name="name_series_1">Normal</string>
-    <string name="name_series_2">Turbo</string>
-    <string name="name_series_3">Endless</string>
-    <string name="message_series_unavailable">Complete all levels in “normal” mode first.</string>
-    <string name="message_endless_unavailable">Available after completing all previous levels.</string>
-    <string name="stage_reached">Stage reached: %1$s %2$d</string>
+    <string name="instr_did_you_know">Did you know?</string>
+    <string name="instr_2_98">The heroes will soon be extending their holidays. They will then be unavailable for two or even more stages.</string>
     <string name="series_completed_message_2">You may replay all levels</string>
     <string name="series_completed_message_3">in “turbo” mode now.</string>
-    <string name="instr_2_1">" In turbo mode, the attackers are stronger, faster and more numerous.  Furthermore, some slots are already taken by unwanted chips you´ll have to deal with."</string>
-    <string name="settings_disable_background">Disable background</string>
-    <string name="settings_show_atts_in_range">Show attackers in range</string>
-    <string name="series_completed_message_1">" "</string>
-    <string name="series_completed_message_4">" "</string>
+    <string name="instr_2_1">"In turbo mode, the attackers are stronger, faster and more numerous.  Furthermore, some slots are already taken by unwanted chips you´ll have to deal with."</string>
 
-    <string name="settings_use_large_buttons">Use large objects</string>
-    <string name="settings_show_framerate">Show frame rate</string>
-    <string name="button_back">Close</string>
-    <string name="button_info">Info</string>
-    <string name="text_about">About …</string>
-    <string name="instr_did_you_know">Did you know?</string>
-    <string name="settings_keep_levels">Keep created stages in “endless” mode</string>
-    <string name="settings_use_hex">Display stage numbers in hex</string>
-    <string name="import_data">Import Data</string>
-    <string name="export_data">Export Data</string>
-    <string name="game_progress">Game Progress</string>
-    <string name="go_back">Go back</string>
-    <string name="settings_activate_log">Enable debug logging</string>
-    <string name="settings_fast_fast_forward">Show “really fast forward” button</string>
-
-    <string name="overheat">CPU damage from overheating</string>
+    <!-- INSTRUCTIONS :: FUN_FACTS -->
     <string-array name="fun_fact">
         <item>Until 1999, the amount of 1024 B was called a <i>kilobyte</i> (kB). For consistency with other SI units, the kilobyte\'s meaning was changed to 1 kB = 1000 B. To keep the former definition, the kibibyte was invented, with 1 KiB = 1024 B.</item>
         <item>An actual computer bug was found in a Harvard Mark II computer in 1947. A small insect had gotten into a relay, making programs fail.\n\nThe term “bug” for computer errors, however, had been used well before. Already in the 19th century small defects in mechanical devices were called bugs.</item>
@@ -345,30 +184,37 @@ The programming language Pascal is named after him."</string>
         <item>The first American computer, ENIAC, was programmed by a team of six high-calibre specialists - all of whom were women. For a long time, their achievements went virtually unrecognised. Only recently has there been an interest in the influence that these women had on the development of computer science.\n\nTheir names are Frances Spence, Betty Holberton, Ruth Teitelbaum, Kathleen Antonelli, Marlyn Meltzer and Jean Bartik.</item>
         <item>Instead of the hexadecimal system, computers can also work internally with ‘normal’ decimal numbers. A decimal digit from 0 to 9 is then coded in four bits, and the six superfluous combinations (A to F) are not used. This representation is called BCD (binary coded decimal) and has the advantage that a memory dump can be read in the familiar number system.\n\nHowever, the disadvantages clearly outweigh the advantages. Around a third of the memory space is wasted and all logic and arithmetic operations become significantly more complicated and require more circuits. The BCD representation is therefore practically no longer used today.</item>
     </string-array>
-    <string name="ZZ_message_of_the_day">There have been major changes to game play, especially on the “Endless” levels. Check out the Release Notes in the INFO screen.</string>
-    <string name="ZZ_release_notes">Release Notes\n\nVersion 1.55\n============\nNew features:\n- Italian translation added\n\nBug fixes:\nnone\n\nMiscellaneous:\n- build environment updated, API modernisations\n\n\nVersion 1.54\n============\nNew features:\n- Explanatory text added to level 98. Fixes issue #214.\n\nBug fixes:\n- Selling chips created by von Neumann could yield absurdly high amounts of information. These chips now sell only for 8 bits max. Fixes issue #211.\n- Chips created by von Neumann are limited to level 10. Fixes issue #207.\n\nVersion 1.53\n============\nNew Features:\n- Added a “really fast forward” button (must be enabled in the settings)\n\nBug fixes:\n- level number was not shown in hex when failing a level\n\nMiscellaneous:\n- Made “fast forward” mode slightly slower\n- New \"did you know\" entry\n\nVersion 1.52\n============\nNew Features:\n- Stage numbers are optionally shown in hex (must be activated in Settings)\n\nBug fixes:\n- When leaving the hero screen, the current hero is de-selected. Fixes issue #206.\n- Coins in the hero screen are no longer shown separately if there are too many of them. Fixes issue #208.\n- If an attacker becomes released from ACC or MEM during its fade-out animation, it no longer disappears. Fixes issue #212.\n\nVersion 1.51\n============\nNew features:\n- When playing for the first time in endless, 4 coins are granted for free to help get things going.\n\nBug fixes:\n- If a stage in endless mode cannot be loaded, a new stage layout is generated.\n- Chips created by von Neumann with level 2 or higher now have the correct value. When selling these chips, the refund is halved.\n- Heroes that are active are always visible now, even if their prerequisites are no longer met.\n- The number of available coins were not saved if a stage was not finished.\n- Chips with level 0 are removed at the beginning of a stage.\n\nMiscellaneous:\n- The additional chips created by the game (both helpful and unwanted) are recreated every time the level is played.\n- Turing\'s biography now mentions that the Enigma was initially broken by the Polish Cipher Bureau.\n\nVersion 1.50\n============\nNew features:\n- Link to Wikipedia articles added for heroes and heroines\n\nBug fixes:\n- Fixed a bug when changing between apps in the hero screen\n\nVersion 1.49\n============\nNew features:\n- New hero: John von Neumann\n- Some more did you know text\n\nBug fixes:\n- Attackers stored in MEM or ACC sometimes remained visible on the screen.\n- The text on the chips is scaled down if it does not fit into the rectangle.\n\nMiscellaneous:\n- Small changes in the hero dependency tree. For the current tree, see the game\'s wiki.\n- Ameliorations to the Level Select and the Info screen\n- Reduced cost of resistor chips\n\nVersion 1.48\n============\nBug fixes:\n- No reward coins were awarded in Endless series after a game reset.\n\nMiscellaneous:\n- Heroes are no longer automatically available in TURBO and ENDLESS. The hero tree applies for all series.\n\nVersion 1.47\n============\nNew features:\n- Endless series can be reset independently from the basic series.\n\nBug fixes:\n- Background image no longer changes when switching between apps.\n- Attackers held in MEM chips kept this state even after being released.\n\nVersion 1.46\n============\nNew features:\n- added a special Christmas level\n- The game\'s language can be changed via the device Settings dialogue.\n\nBug fixes:\n- added a safety catch for trapped attackers\n- corrected a migration problem\n\nVersion 1.45\n============\nNew features:\n- The mission briefing text is now scrollable. This should avoid the text overlapping if it doesn\'t fit on the screen.\n\nBug fixes:\n- Corrected portrait image for John Conway\n\nVersion 1.44\n============\nNew features:\n- New hero: John Conway\n- Some more Did you know texts.\n\nBug fixes:\n- Some fixes to the purchase lives dialogue\n\nMiscellaneous:\n- Major re-organisation of save files. This should result in faster loading, and generally\n  less laggy behaviour of the app.\n\nVersion 1.43\n============\nNew features:\n- In “endless” mode, lost lives can be recovered for coins by tapping on the CPU.\n\nBug fixes:\n- Some text size and other layout corrections\n- The “quit level” dialogue now freezes the game.\n\nVersion 1.42\n============\nNew features:\n- Stage number is displayed on the game screen\n\nBug fixes:\n- Fixed some problems when selecting heroes for leave\n- Fixed heat to cash conversion calculation for resistors\n\nMiscellaneous:\n- The required shortest path length in endless mode has been raised for stage numbers > 200\n\nVersion 1.41\n============\nBug fixes:\n- Fixed some problems when returning after switching apps\n- Better loading and scaling of background images\n- Margaret Hamilton must not appear before stage 24.\n- Some text corrections\n\nMiscellaneous:\n- Massively reduced the number of waves for higher stages in Endless mode\n- Resistors now act simultaneously on all targets in range.\n- Slightly changed the screen size of several game element\n\nVersion 1.40\n============\nNew features:\n- New heroes: Claude Shannon, George Boole, Whit Diffie\n- Resistors now produce heat, which can be converted into information if Shannon is available.\n- Some more Did you know messages.\n\nBug fixes:\n- Avoid a situation where the player must choose a hero, but none is displayed.\n- Heroes always went on leave for three levels, regardless of what the text said.\n- The game uses a default system font if the desired font is not available. This had led to crashes on some devices.\n\nVersion 1.39\n============\nNew features:\n- Starting with endless stage 16, heroes may go on holiday. The player must choose one of several proposed heroes and grant leave to one of them.\n\nBug fixes:\n- Attackers that were slowed down by resistors behaved weird in ACC and MEM chips.\n\nMiscellaneous:\n- The slowing effect of resistors now depend on the attackers\' value. The stronger the attacker, the more it gets slowed.\n\nVersion 1.38\n============\nNew features:\n- The attackers held in the internal register of MEM and ACC are now released when selling the chip.\n\nBug fixes:\n- Game elements as well as hired heroes became active only when the stage was played a second time.\n- MEM and ACC chips are no longer emptied when resuming the app.\n\nMiscellaneous:\n- Removed the SELL option in stage 6\n\nVersion 1.37\n============\nBug fixes:\n- Fixed some bugs that occurred when re-entering the application.\n\nMiscellaneous:\n- Use of a custom font for chips and code fragments.\n\nVersion 1.36\n============\nNew functions:\n- New chip type: Resistors\n- Level 32 added\n- New heroes: Georg Ohm, Alessandro Volta\n\nBug fixes:\n- The level indicator on the welcome screen was limited to 99.\n\nVersion 1.35\n============\nBug fixes:\n- Fixed an occasional game crash when there were lots of attackers.\n- Leibniz is no longer affected by Sid Meier.\n- MEM chips are no longer sold instantly.\n\nVersion 1.34\n============\nIMPORTANT: The Endless level series now has its own CryptoCoins and a separate set of heroes. The existing coins have been distributed proportionally. Under certain circumstances, the heroes had to be reset; in this case, the coins have been credited to you and you will have to hire the heroes again.\nThe difficulty of the Endless levels has been drastically reduced in compensation.\n\nNew functions:\n- New hero: Gottfried Leibniz.\n\nBug fixes:\n- There were no CryptoCoins for level 30.\n- ACC chips showed more than one slot, although they can only hold one value.\n\nMiscellaneous:\n- Tramiel is limited to level 5 now.\n- Upgrade of MEM chips is significantly more expensive and requires Leibniz.\n\nVersion 1.33\n============\n    Two more levels were added, introducing SPLT and DUP.\n    Heroes now can be downgraded individually.\n    MEM chips can be upgraded (up to level 4) to hold more than one value. An explanatory text was added to stage 14.\n\nMiscellaneous:\n    Chips now target cryptocoins first.\n\nVersion 1.32\n============\nNew Features:\n    New hero added: Margaret Hamilton\n\nBugfixes:\n    Level selection in endless series was limited.\n    Two MEM chips could swallow the same attacker simultaneously.\n\nVersion 1.31\n============\nNew Features:\n    Two more types of negative chips: DUP and SPLT\n    (an introductory level with explanation will be added later).\n\nBugfixes:\n    Number of negative chips in endless stages reduced.\n    Revised the calculation of stage difficulty in endless stages.\n    Isolated slots are avoided, paths have a minimum length.\n\nMiscellaneous:\n    Removal cost of negative chips depend on how many have already been removed.\n\nVersion 1.30\n============\nNew Features:\n- new hero: Claude Chappe\n- Clearer design for buying and selling chips\n- Chips now choose their target intelligently (with more than one attacker in range)\n- Added an easter egg.\n\nBugfixes:\n- No new endless stages were available in the level selector beyond level 28.\n- Heat generation and damage corrected and adjusted\n- Fixed yet another bug when resuming the game\n\nMiscellaneous:\n- Changes in endless stage generation. Difficulty of the stage layout increases with the level. Impossible configurations are avoided.\n- Changed the order of some levels in normal mode to make the difficulty progress more consistently.\n\nVersion 1.29\n============\nNew Features:\n- New design for welcome screen. Moved start new game to settings. Added Release Notes in info section.\n- Revised generation of levels in endless series and made these levels clearer. Multiple CPUs are now possible.\n\nBugfixes:\n- Attackers were accelerated too much in ACC chips\n- Correction of speed control button size\n- Scrolling hero list was too slow\n\nMiscellaneous:\n- IMPORTANT: MEM chips must now be cleared by hand (by tapping on them) before they can absorb next attackers.\n\nVersion 1.28\n============\nNew Features:\n- New endless level series\n- In the About screen, added links for accessing the game wiki and the license on the Internet.\n- Chips are not removed instantly after being sold. Instead, they complete their current cooldown.\n\nBugfixes:\n- The game crashed when trying to display kiB values\n\nMiscellaneous:\n- decreased overall attacker frequency\n- slightly increased Mandelbrot´s effect\n- Attackers now have their speed slightly altered by ACC chips\n- several adjustments to game play\n\nVersion 1.27\n============\nNew Features:\n- Chips can be bought and sold even when game is paused.\n- Introduction of heat. Overheating may result in loss of one life.\n- Temperature sensor added to score board.\n- New chip type: NOP\n- New hero: Jack Kilby\n\nBugfixes:\n- Passing coins do no longer activate MEM chips.\n- Chip type is shown on description of range-extending heroes.\n- Text on Hire button did not change on purchase or reset.\n- Score board layout improved.\n\nMiscellaneous:\n- Re-organization of preferences / saved games file\n- Changed the way how game speed is handled\n\nVersion 1.26\n============\nNew Features:\n- new settings and about dialog\n- hero biography is now scrollable\n- added button to lock scrolling of the game viewport\n\nBugfixes:\n- fixed a bug that led to loss of heroes in version 1.25.\n  Added correction code to refund coins lost due to this bug.\n- chip sell prices were not converted to B or kiB\n- SHR 9 (and higher) chips had no effect\n- attackers stopped appearing when pausing the game between two waves\n- corrected delay between waves in fast forward mode\n\nMiscellaneous:\n- stage 8 made easier\n- LEDs now go out instead of turning red\n\nVersion 1.25\n============\nNew Features:\n- Chips can be bought and sold even when game is paused.\n- Introduction of heat. Overheating may result in loss of one life.\n- Temperature sensor added to score board.\n- New chip type: NOP\n- New hero: Jack Kilby\n\nBugfixes:\n- Passing coins do no longer activate MEM chips.\n- Chip type is shown on description of range-extending heroes.\n- Text on Hire button did not change on purchase or reset.\n- Score board layout improved.\n\nMiscellaneous:\n- Re-organization of preferences / saved games file\n- Changed the way how game speed is handled\n\n\nVersion 1.24\n============\nNew Features:\n- new background pictures\n- hero costs are shown on the ´hire´ button\n- overall small graphical improvements\n\nBugfixes:\n- game stays in portrait mode, keeps the device awake\n- corrected coin count and size of attackers when resuming game\n\nMiscellaneous:\n- replaced Android system style dialogs by custom design\n\nVersion 1.22\n============\nNew Features:\n- Chips can be bought and sold even when game is paused.\n- Introduction of heat. Overheating may result in loss of one life.\n- Temperature sensor added to score board.\n- New chip type: NOP\n- New hero: Jack Kilby\n\nBugfixes:\n- Passing coins do no longer activate MEM chips.\n- Chip type is shown on description of range-extending heroes.\n- Text on Hire button did not change on purchase or reset.\n- Score board layout improved.\n\nMiscellaneous:\n- Re-organization of preferences / saved games file\n- Changed the way how game speed is handled</string>
-    <string name="message_cannot_fire">Use “%s” to release this hero.</string>
-    <string name="message_is_on_leave">%s is currently on leave.</string>
-    <string name="instr_leave">Some heroes are asking for time off. You must grant leave to one of them, who will return after %d levels.</string>
-    <string name="instr_leave_1">Some heroes are asking for time off. You must grant leave to one of them, who will return in the next level.</string>
-    <string name="heroes_on_leave_0">No heroes are on leave.</string>
-    <string name="heroes_on_leave_1">Hero on leave:</string>
-    <string name="heroes_on_leave_2">Heroes on leave:</string>
-    <string name="shannon">Claude Elwood Shannon is considered the founder of information theory and one of the fathers of the information age. One of his major achievements was to transfer the mathematical theory of Boolean algebra to real circuits, thereby making modern digital computers possible. \n\nShannon developed the concept of information and entropy in messages, made important contributions to cryptography, and worked on artificial intelligence. Among other things, he described a programme for playing chess and constructed a mechanical mouse that could find its own way through a maze.  </string>
-    <string name="boole">The achievement of George Boole Jr. lies in the fact that he formalised the concepts of logic and thus made them part of mathematics. Boolean algebra is the basis for the internal functioning of all modern computers.\n\nBoole was the son of a shoemaker and never attended any school other than primary school. He taught himself maths, Latin and Greek, French and German.</string>
-    <string name="diffie">Together with Martin Hellmann, Bailey Whitfield Diffie developed the DH key exchange between two parties named after the two of them. They thus created an essential prerequisite for secure connections over the Internet.\n\nDiffie is also concerned about social issues of cryptography. He is a staunch advocate of the right to privacy.</string>
-    <string name="conway">John Horton Conway is best known for the invention of Conway\'s Game Of Life, a cellular automaton that generates complex living patterns on a computer screen. He was interested in mathematical games, with and without computers, and published one of the first algorithms to solve Rubik\'s cube. However, he also made a lot of contributions to “serious” mathematics.</string>
-    <string name="query_purchase_life">Do you want to spend %s to recover a life?</string>
-    <string name="annotation_purchase_life">This dialog can be disabled in “Settings”. You will still be able to purchase lives by tapping on the CPU.</string>
-    <string name="coins_singular">one coin</string>
-    <string name="coins_plural">%d coins</string>
-    <string name="coins_none">no coins</string>
-    <string name="settings_disable_purchase_dialog">Disable the life purchase dialog</string>
-    <string name="version">Version</string>
-    <string name="deco">Deco</string>
 
-    <string name="neumann">"All modern computers have an internal von Neumann architecture. This way of combining memory, arithmetic unit and program control to create a freely programmable machine was largely developed by John von Neumann, who is considered one of the fathers of computer science. He was a brilliant mathematician who, among other things, laid the mathematical foundations of quantum mechanics, but also decisively advanced game theory. He was also a highly intelligent and witty person and a real party animal.\n\nThe darker side of von Neumann´s life is his contributions to military research and the development and use of weapons of mass destruction."</string>
-    <string name="button_wiki">"Check Wikipedia Bio"</string>
+    <!-- HEROES :: DESCRIPTIONS -->
+    <string name="turing">Alan Turing was a foundational figure in computer science who introduced concepts such as the Turing machine and the Turing test and played a crucial role in breaking the Enigma code during World War II. His work shaped modern computing, though his life was tragically cut short after persecution for his homosexuality.</string>
+    <string name="lovelace">Ada Lovelace is widely regarded as the first programmer for her work on Charles Babbage’s analytical engine, where she wrote an algorithm for computing Bernoulli numbers. She also foresaw that computers could manipulate symbols beyond pure calculation, anticipating modern software concepts.</string>
+    <string name="hollerith">Herman Hollerith pioneered data processing using punched cards, developing machines that revolutionized large-scale data handling, notably for national censuses. His company later evolved into IBM, one of the most influential technology firms in history.</string>
+    <string name="osborne">Adam Osborne created the first commercially successful portable computer, the Osborne 1, in 1981, combining all essential components into a single transportable unit. He was also known as a writer and publisher of computer books.</string>
+    <string name="cernettes">Les Horribles Cernettes were a parody pop group at CERN who became the first band featured on the World Wide Web. A photo of the group from 1992 became the first widely distributed web image, helping define early web culture.</string>
+    <string name="knuth">Donald Knuth is a computer scientist best known for The Art of Computer Programming, one of the most influential works in the field. In the process, he created the TeX typesetting system, now a standard for scientific and mathematical publishing.</string>
+    <string name="zuse">Konrad Zuse built the first programmable, fully automatic digital computer in 1941 and introduced fundamental concepts such as binary logic and floating-point arithmetic. He also designed Plankalkül, the world’s first high-level programming language.</string>
+    <string name="franke">Herbert W. Franke was a physicist, science fiction author, and early pioneer of computer art and graphics. He developed the idea of “cybernetic aesthetics,” exploring art generated through algorithms and electronic systems.</string>
+    <string name="vaughan">Dorothy Vaughan was a mathematician at NASA who excelled as a “human computer” and later became a supervisor. She prepared her team for the transition to electronic computing by mastering and teaching the FORTRAN programming language.</string>
+    <string name="tramiel">Jack Tramiel, a Holocaust survivor, founded Commodore International and helped bring computing to the masses with the Commodore 64. The C64 became the best-selling home computer of all time and introduced millions to personal computing.</string>
+    <string name="wiener">Norbert Wiener founded the field of cybernetics, laying the groundwork for artificial intelligence and modern control systems. A prolific mathematician, he later adopted a strong pacifist stance and avoided contributing to military research.</string>
+    <string name="pascal">Blaise Pascal was a mathematician, philosopher, and physicist whose mechanical calculators were early steps toward automated computation. His legacy lives on in the Pascal programming language, named in his honor.</string>
+    <string name="hopper">Grace Hopper was a computer scientist who pioneered the idea that programs could be written in human-readable languages instead of machine code. She developed the FLOW-MATIC language and created the first compiler, laying the groundwork for modern programming languages.</string>
+    <string name="mandelbrot">Benoît Mandelbrot founded fractal geometry, a mathematical approach that describes complex natural forms and enables striking computer-generated graphics. The visualization of the Mandelbrot set became iconic and marked the beginning of a new era of computer art.</string>
+    <string name="schneier">Bruce Schneier is a renowned expert in cryptography and information security and the author of influential works such as “Applied Cryptography.” He is also known for openly criticizing governments and corporations when he believes they threaten security or privacy.</string>
+    <string name="meier">Sid Meier is a game designer who revolutionized strategy games by simulating complex systems with simple rules. His games, especially the “Civilization” series, tell sweeping stories of human history and have shaped the genre for decades.</string>
+    <string name="kilby">Jack St. Clair Kilby invented the integrated circuit, combining multiple electronic components into a single chip and enabling modern microelectronics. He is also regarded as a co-inventor of the pocket calculator and the thermal printer.</string>
+    <string name="chappe">Claude Chappe and his brothers developed the optical telegraph, the first system capable of transmitting information rapidly over long distances. By the early 19th century, their semaphore network connected Paris with major cities across France and Europe.</string>
+    <string name="hamilton">Margaret Hamilton led the software development for NASA’s Apollo missions, where her team programmed the guidance computers for the spacecraft and lunar module. She coined the term “software engineering” and helped establish software reliability as a critical discipline.</string>
+    <string name="leibniz">Gottfried Wilhelm Leibniz was a polymath who made lasting contributions to science, mathematics, and philosophy. For computing, he built advanced mechanical calculators and recognized the importance of binary numbers, which form the basis of all digital systems.</string>
+    <string name="ohm">Georg Simon Ohm mathematically described the relationship between voltage, current, and resistance, a principle now known as Ohm’s law. Although initially ignored, his work became fundamental to electrical engineering, and the unit of resistance is named after him.</string>
+    <string name="volta">Alessandro Volta was a physicist who made foundational discoveries in electricity and developed the first functional battery. His work defined key electrical concepts, and the unit of electrical voltage, the volt, bears his name.</string>
+    <string name="shannon">Claude Shannon founded information theory and helped make digital computing possible by applying Boolean logic to electrical circuits. He defined information and entropy, contributed to cryptography and artificial intelligence, and even built machines that could solve puzzles and learn.</string>
+    <string name="boole">George Boole formalized logical reasoning into a mathematical system now known as Boolean algebra, which underpins all modern computer logic. Despite little formal education, he taught himself multiple languages and advanced mathematics.</string>
+    <string name="diffie">Whitfield Diffie, together with Martin Hellman, invented public-key cryptography and the Diffie–Hellman key exchange, enabling secure communication over the Internet. He is also a strong advocate for privacy and civil liberties.</string>
+    <string name="conway">John Horton Conway was a mathematician best known for creating Conway’s Game of Life, a simple system that produces complex, lifelike patterns. Beyond recreational mathematics, he also made significant contributions to several serious mathematical fields.</string>
+    <string name="neumann">John von Neumann was one of the fathers of computer science and the main contributor to the von Neumann architecture, which defines how modern computers combine memory, processing, and program control. A brilliant mathematician, he also shaped quantum mechanics and game theory, though his legacy is complicated by his involvement in military research and weapons development.</string>
+
+    <!-- HEROES :: WIKIPEDIA -->
     <string name="url_wikipedia_fallback">https://en.wikipedia.org/wiki/Main_Page</string>
     <string name="url_turing">https://en.wikipedia.org/wiki/Alan_Turing</string>
     <string name="url_lovelace">https://en.wikipedia.org/wiki/Ada_Lovelace</string>
@@ -397,7 +243,64 @@ The programming language Pascal is named after him."</string>
     <string name="url_shannon">https://en.wikipedia.org/wiki/Claude_Shannon</string>
     <string name="url_wiener">https://en.wikipedia.org/wiki/Norbert_Wiener</string>
     <string name="url_boole">https://en.wikipedia.org/wiki/George_Boole</string>
-    <string name="coins_available">Coins available: %d</string>
-    <string name="coins_received_as_gift">You received %d coins as gift.</string>
-    <string name="instr_2_98">The heroes will soon be extending their holidays. They will then be unavailable for two or even more stages.\n</string>
+
+    <!-- _________________________________________________________________________________ -->
+
+
+    <string name="shortdesc_SUB">SUB :: Chip speed</string>
+    <string name="shortdesc_startinfo">Starting information</string>
+    <string name="shortdesc_info_on_kill">Additional info</string>
+    <string name="shortdesc_SHR">SHR :: Chip speed</string>
+    <string name="shortdesc_ACC">ACC :: Chip speed</string>
+    <string name="shortdesc_MEM">MEM :: Chip speed</string>
+    <string name="shortdesc_RES">Resistance value</string>
+    <string name="shortdesc_duration">Resistance effect duration</string>
+    <string name="shortdesc_heat">Generated heat</string>
+    <string name="shortdesc_upgrade">Chip upgrade cost</string>
+    <string name="shortdesc_lives">Additional lives</string>
+    <string name="shortdesc_frequency">Attacker frequency</string>
+    <string name="shortdesc_att_speed">Attacker speed</string>
+    <string name="shortdesc_att_strength">Attacker strength</string>
+    <string name="shortdesc_coin_strength">Coin strength</string>
+    <string name="shortdesc_info_gain">Information gain</string>
+    <string name="shortdesc_heat_conversion">heat converted</string>
+    <string name="shortdesc_double_chance">%s double hit chance</string>
+    <string name="shortdesc_range">%s chip range</string>
+    <string name="shortdesc_refund">Refund when selling chips</string>
+    <string name="shortdesc_max_hero_upgrade">Max hero level</string>
+    <string name="shortdesc_limit_unwanted">Unwanted chip count</string>
+    <string name="shortdesc_create_wanted">Additional chip count</string>
+    <string name="shortdesc_reduce_removal">Chip removal cost</string>
+    <string name="shortdesc_enable_mem_upgrade">MEM max. level</string>
+    <string name="upgrade_format">%1$s [cost: %2$d]</string>
+    <string name="stage_number">Stage %s</string>
+    <string name="toast_stage_cleared">Stage cleared</string>
+    <string name="toast_enter_stage">Stage %s</string>
+    <string name="HERO_EFFECT_CHIPSPEED">Decreases cooldown time of all %s chips</string>
+    <string name="HERO_EFFECT_HEAT">Reduces the amount of generated heat</string>
+    <string name="HERO_EFFECT_STARTINFO">Increases information at start of level</string>
+    <string name="HERO_EFFECT_UPGRADECOST">Reduces upgrade cost of all chips</string>
+    <string name="HERO_EFFECT_LIVES">Grants additional lives</string>
+    <string name="HERO_EFFECT_FREQUENCY">Decreases attacker frequency</string>
+    <string name="HERO_EFFECT_INFOOVERTIME">Gains additional bits over time</string>
+    <string name="HERO_EFFECT_ATTSPEED">Reduces attacker speed</string>
+    <string name="HERO_EFFECT_COINSTRENGTH">Reduces cryptocoin strength</string>
+    <string name="HERO_EFFECT_ATTSTRENGTH">Reduces attacker strength</string>
+    <string name="HERO_EFFECT_MAXHEROUPGRADE">Increases maximal upgrade level of other heroes</string>
+    <string name="HERO_EFFECT_REFUNDPRICE">Increases refund when selling chips</string>
+    <string name="HERO_EFFECT_GAININFO">Increases information gain through destroying attackers</string>
+    <string name="HERO_EFFECT_RANGE">Increases %s chip range</string>
+    <string name="HERO_EFFECT_LIMITUNWANTED">Reduces the number of unwanted chips</string>
+    <string name="HERO_CREATE_CHIPS">Creates additional chips</string>
+    <string name="HERO_EFFECT_DECREASEREMOVAL">Reduces the cost of unwanted chip removal</string>
+    <string name="HERO_EFFECT_ENABLEMEM">Enables upgrading of MEM chips</string>
+    <string name="HERO_EFFECT_RES_STRENGTH">Increases the strength of resistors</string>
+    <string name="HERO_EFFECT_RES_DURATION">Increases the duration of resistance effect</string>
+    <string name="HERO_EFFECT_CONVERT_HEAT">Converts some of the resistors\' heat into info</string>
+    <string name="HERO_EFFECT_CHANCE_DOUBLE">Gives %s chips a chance of double effect</string>
+
+    <string name="coins_singular">one coin</string>
+    <string name="coins_plural">%d coins</string>
+    <string name="coins_none">no coins</string>
+    <string name="deco">Deco</string>
 </resources>
