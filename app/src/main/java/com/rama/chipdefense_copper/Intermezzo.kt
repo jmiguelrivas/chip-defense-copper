@@ -188,32 +188,36 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
         showButton()
     }
 
-    private fun showButton() {
-        val bottomMargin = 40
-        buttonContinue = Button(
-                gameView, textOnContinueButton,
-//                textSize = GameView.computerTextSize * gameView.textScaleFactor,
-//                color = resources.getColor(R.color.text_green), style = Button.Style.FILLED
+    private fun fullWidthButtonRect(height: Int, bottomOffset: Int, margin: Int = 16): Rect {
+        return Rect(
+                myArea.left + margin,
+                myArea.bottom - bottomOffset - height,
+                myArea.right - margin,
+                myArea.bottom - bottomOffset
         )
-        val buttonTop = myArea.bottom - (buttonContinue?.area?.height() ?: 20) - bottomMargin
-        buttonContinue?.let {
-            Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW)
-            it.alignLeft(bottomMargin, buttonTop)
-        }
-        // if (game.global.coinsTotal > 0)  // make button always accessible. Issue #20
-        if (level.number > 6 || level.series != GameMechanics.SERIES_NORMAL)  // level 6 in series 1 is the first one where coins may be present
-        {
-            buttonPurchase = Button(
-                    gameView, resources.getString(R.string.button_marketplace),
-//                    textSize = GameView.computerTextSize * gameView.textScaleFactor,
-//                    color = resources.getColor(R.color.text_blue), style = Button.Style.FILLED
-            )
-            buttonPurchase?.let {
-                Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW)
-                it.alignRight(myArea.right - bottomMargin, buttonTop)
-            }
+    }
+
+
+    private fun showButton() {
+        val buttonHeight = 80
+        val bottomMargin = 40
+        val spacing = 16
+
+        // Continue button at the bottom
+        val continueRect = fullWidthButtonRect(buttonHeight, bottomMargin)
+        buttonContinue = Button(gameView, textOnContinueButton, containerArea = continueRect)
+        buttonContinue?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
+
+        // Purchase button above Continue (only if needed)
+        if (level.number > 6 || level.series != GameMechanics.SERIES_NORMAL) {
+            val purchaseBottomOffset = bottomMargin + buttonHeight + spacing
+            val purchaseRect = fullWidthButtonRect(buttonHeight, purchaseBottomOffset)
+            buttonPurchase =
+                Button(gameView, resources.getString(R.string.button_marketplace), containerArea = purchaseRect)
+            buttonPurchase?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
         }
     }
+
 
     override fun setOpacity(opacity: Float) {
         alpha = (opacity * 255).toInt()
