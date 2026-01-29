@@ -368,7 +368,7 @@ The programming language Pascal is named after him."</string>
     <string name="deco">Deco</string>
 
     <string name="neumann">"All modern computers have an internal von Neumann architecture. This way of combining memory, arithmetic unit and program control to create a freely programmable machine was largely developed by John von Neumann, who is considered one of the fathers of computer science. He was a brilliant mathematician who, among other things, laid the mathematical foundations of quantum mechanics, but also decisively advanced game theory. He was also a highly intelligent and witty person and a real party animal.\n\nThe darker side of von Neumann´s life is his contributions to military research and the development and use of weapons of mass destruction."</string>
-    <string name="button_wiki">"Wikipedia"</string>
+    <string name="button_wiki">"Check Wikipedia Bio"</string>
     <string name="url_wikipedia_fallback">https://en.wikipedia.org/wiki/Main_Page</string>
     <string name="url_turing">https://en.wikipedia.org/wiki/Alan_Turing</string>
     <string name="url_lovelace">https://en.wikipedia.org/wiki/Ada_Lovelace</string>

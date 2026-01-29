@@ -61,7 +61,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
     var nextGameLevel = Stage.Identifier()
 
     init {
-        clearPaint.color = Color.BLACK
+        clearPaint.color = resources.getColor(R.color.background_tertiary_color)
         clearPaint.style = Paint.Style.FILL
     }
 
@@ -173,9 +173,8 @@ class Marketplace(val gameView: GameView) : GameElement() {
     }
 
     private fun layoutButtons() {
-        val margin = 16
-        val bottomMargin = 40
-        var currentBottom = myArea.bottom - bottomMargin
+        val margin = 32
+        var currentBottom = myArea.bottom - globalPadding
 
         // List the buttons in order from bottom to top
         val buttonsStack = mutableListOf<Button>()
@@ -400,7 +399,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
             } else
                 return
         }
-        canvas.drawColor(Color.BLACK)
+        canvas.drawColor(resources.getColor(R.color.background_tertiary_color))
         // draw cards
         selected?.card?.displayHighlightFrame(canvas)
         for (hero in upgrades)
@@ -423,10 +422,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private fun displayAvailableCoins(canvas: Canvas, viewport: Viewport, coinsArea: Rect) {
         // draw 'total coins' line
         canvas.drawRect(coinsArea, clearPaint)
-        paint.color = Color.WHITE
-        paint.style = Paint.Style.STROKE
-        paint.strokeWidth = 2f * gameView.scaleFactor
-        paint.alpha = 255
         val y = coinsArea.bottom.toFloat() - paint.strokeWidth
         canvas.drawLine(0f, y, myArea.right.toFloat(), y, paint)
 
