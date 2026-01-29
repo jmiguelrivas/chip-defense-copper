@@ -38,6 +38,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private var biographyAreaMargin = 20
     private var clearPaint = Paint()
     private var paint = Paint()
+    private val globalPadding: Int = 32
 
     /** used for scrolling */
     private var cardViewOffset = 0f
@@ -80,9 +81,9 @@ class Marketplace(val gameView: GameView) : GameElement() {
                     bottomMargin
 
         myArea = Rect(
-                area.left,
+                area.left + globalPadding,
                 area.top + topInset + margin, // shift down by notch + margin
-                area.right,
+                area.right - globalPadding,
                 area.bottom
         )
 

@@ -7,6 +7,7 @@ import android.graphics.*
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.widget.Toast
 import com.rama.chipdefense_copper.activities.GameActivity
@@ -50,6 +51,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
 
     var coinsGathered = 0
     var durationOfLeave = 2
+    val globalPadding: Int = 32
 
     /** used for vertical scrolling */
     var vertOffset = 0f
@@ -62,6 +64,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
 
     fun setSize(area: Rect) {
         myArea = Rect(area)
+
         heroSelection?.adjustArea()
     }
 
@@ -190,18 +193,19 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
 
     private fun fullWidthButtonRect(height: Int, bottomOffset: Int, margin: Int = 16): Rect {
         return Rect(
-                myArea.left + margin,
+                myArea.left + margin + globalPadding,
                 myArea.bottom - bottomOffset - height,
-                myArea.right - margin,
+                myArea.right - margin - globalPadding,
                 myArea.bottom - bottomOffset
         )
     }
 
 
     private fun showButton() {
-        val buttonHeight = 80
+        val textSize = (32 * gameView.scaleFactor).toInt()
+        val buttonHeight = textSize * 3
         val bottomMargin = 40
-        val spacing = 16
+        val spacing = 32
 
         // Continue button at the bottom
         val continueRect = fullWidthButtonRect(buttonHeight, bottomMargin)
