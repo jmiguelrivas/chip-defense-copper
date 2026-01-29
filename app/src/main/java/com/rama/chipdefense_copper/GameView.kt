@@ -45,21 +45,14 @@ class GameView(context: Context) :
         const val chipTextSize = 20f
         const val computerTextSize = 26f
         const val notificationTextSize = 22f
-        const val instructionTextSize = 25f
-        const val biographyTextSize = 20f
         const val heroCardNameSize = 18f
         const val heroCardTextSize = 14f
-        const val purchaseButtonTextSize = 20f
         const val coinsAmountTextSize = 24f
 
         const val coinSizeOnScreen = 16
-        const val cardWidth = 220
+        const val cardWidth = 400
         const val cardHeight = cardWidth * 1.41
         const val cardPictureSize = cardWidth * 2 / 3
-
-        /** horizontal size of LEDs, can be smaller if there is too little space */
-        const val preferredSizeOfLED = 20
-
         val chipSize = Coord(6, 3)
         const val viewportMargin = 10
         const val minScoreBoardHeight = 100

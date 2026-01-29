@@ -52,6 +52,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private var maxCoinsToDisplay = 16
 
     private var currentWiki: Hero? = null
+    private var topInset = 0
 
     var nextGameLevel = Stage.Identifier()
 
@@ -61,13 +62,44 @@ class Marketplace(val gameView: GameView) : GameElement() {
     }
 
     fun setSize(area: Rect) {
-        myArea = Rect(area)
-        val margin = (120 * gameView.scaleFactor).toInt()
-        cardsArea =
-            Rect(margin, margin, ((GameView.cardWidth + 20) * gameView.scaleFactor).toInt(), myArea.bottom)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            gameView.rootWindowInsets?.let { insets ->
+                topInset = insets.displayCutout?.safeInsetTop ?: insets.systemWindowInsetTop
+            }
+        }
+
+        val margin = (80 * gameView.scaleFactor).toInt()
         coinSize = 80 * margin / 100
-        rightPanelArea =
-            Rect(cardsArea.right + biographyAreaMargin, margin, myArea.right - biographyAreaMargin, myArea.bottom - biographyAreaMargin)
+        val buttonHeight = 80
+        val buttonMargin = 16
+        val bottomMargin = 40
+
+        val buttonsBlockHeight =
+            buttonHeight * 3 +
+                    buttonMargin * 2 +
+                    bottomMargin
+
+        myArea = Rect(
+                area.left,
+                area.top + topInset + margin, // shift down by notch + margin
+                area.right,
+                area.bottom
+        )
+
+        cardsArea = Rect(
+                margin,
+                myArea.top,
+                myArea.right - margin,
+                (myArea.top + GameView.cardHeight * gameView.scaleFactor + margin).toInt()
+        )
+
+        rightPanelArea = Rect(
+                myArea.left,
+                cardsArea.bottom + biographyAreaMargin,
+                myArea.right,
+                myArea.bottom - buttonsBlockHeight - biographyAreaMargin
+        )
+
         createButton()
         biographyArea = Rect(rightPanelArea).apply {
             bottom = buttonPurchase?.area?.top ?: rightPanelArea.bottom
@@ -112,16 +144,14 @@ class Marketplace(val gameView: GameView) : GameElement() {
         coins = MutableList(purse.availableCoins()) { Coin(gameMechanics, coinSize) }
     }
 
-    private fun arrangeCards(heroes: MutableList<Hero>, dY: Float = 0f)
-            /** calculate the positions of the cards' rectangles.
-             * @param dY Vertical offset used for scrolling */
-    {
+    private fun arrangeCards(heroes: MutableList<Hero>, dX: Float = 0f) {
         val space = 20
-        // val offset = (GameMechanics.cardHeight*gameView.scaleFactor).toInt() + space
-        var pos = cardsArea.top + space + dY.toInt()
+        var posX = cardsArea.left + space + dX.toInt()
+        val posY = cardsArea.top + space
+
         for (hero in heroes) {
-            hero.card.putAt(space, pos)
-            pos += hero.card.cardArea.height() + space
+            hero.card.putAt(posX, posY)
+            posX += hero.card.cardArea.width() + space
         }
     }
 
@@ -339,9 +369,8 @@ class Marketplace(val gameView: GameView) : GameElement() {
             val posY = it.y.toInt()
             when {
                 cardsArea.contains(posX, posY) -> {
-                    cardViewOffset -= dY * scrollFactor
-                    if (cardViewOffset > 0f)
-                        cardViewOffset = 0f
+                    cardViewOffset -= dX * scrollFactor
+                    if (cardViewOffset > 0f) cardViewOffset = 0f
                     arrangeCards(upgrades, cardViewOffset)
                 }
 
