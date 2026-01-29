@@ -129,35 +129,53 @@ class Marketplace(val gameView: GameView) : GameElement() {
     }
 
     private fun createButton() {
+        val margin = 16                   // margin from left/right
         val bottomMargin = 40
+        val buttonHeight = 80             // fixed height
+
+        // continue button at the bottom
+        val finishRect = Rect(
+                rightPanelArea.left + margin,
+                myArea.bottom - bottomMargin - buttonHeight,
+                rightPanelArea.right - margin,
+                myArea.bottom - bottomMargin
+        )
         buttonFinish = Button(
-                gameView, resources.getString(R.string.button_playlevel),
-//                              textSize = GameView.purchaseButtonTextSize * gameView.textScaleFactor,
-//                              style = Button.Style.HP_KEY, preferredWidth = rightPanelArea.width()
+                gameView,
+                resources.getString(R.string.button_playlevel),
+                containerArea = finishRect
         )
-        buttonFinish?.let {
-            Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW)
-            it.alignRight(rightPanelArea.right, myArea.bottom - bottomMargin - it.area.height())
-        }
+        buttonFinish?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
+
+        // refund button above continue
+        val refundRect = Rect(
+                rightPanelArea.left + margin,
+                finishRect.top - buttonHeight - margin,
+                rightPanelArea.right - margin,
+                finishRect.top - margin
+        )
         buttonRefund = Button(
-                gameView, resources.getString(R.string.button_refund_all),
-//                              textSize = GameView.purchaseButtonTextSize * gameView.textScaleFactor,
-//                              style = Button.Style.HP_KEY, preferredWidth = rightPanelArea.width()
+                gameView,
+                resources.getString(R.string.button_refund_all),
+                containerArea = refundRect
         )
-        buttonRefund?.let {
-            Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW)
-            it.alignRight(rightPanelArea.right, myArea.bottom - bottomMargin - 2 * it.area.height())
-        }
+        buttonRefund?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
+
+        // purchase button above refund
+        val purchaseRect = Rect(
+                rightPanelArea.left + margin,
+                refundRect.top - buttonHeight - margin,
+                rightPanelArea.right - margin,
+                refundRect.top - margin
+        )
         buttonPurchase = Button(
-                gameView, purchaseButtonText(null),
-//                                textSize = GameView.purchaseButtonTextSize * gameView.textScaleFactor,
-//                                style = Button.Style.HP_KEY, preferredWidth = rightPanelArea.width()
+                gameView,
+                purchaseButtonText(null),
+                containerArea = purchaseRect
         )
-        buttonPurchase?.let {
-            Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW)
-            it.alignRight(rightPanelArea.right, myArea.bottom - bottomMargin - 3 * it.area.height())
-        }
+        buttonPurchase?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
     }
+
 
     fun onDown(event: MotionEvent): Boolean {
         /** test if a button has been pressed: */

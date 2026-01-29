@@ -13,7 +13,9 @@ import java.util.*
 
 class Button(
     val gameView: GameView,
-    var text: String
+    var text: String,
+    val preferredWidth: Int = 0,
+    val containerArea: Rect? = null
 ) : Fadable {
 
     private var alpha = 255
@@ -39,35 +41,26 @@ class Button(
     }
 
     init {
-        val padding =
-            (16f * gameView.resources.displayMetrics.density).toInt()
-
-        val bounds = Rect()
-        textPaint.getTextBounds(text, 0, text.length, bounds)
-
-        val width = bounds.width() + padding * 2
-        val height = bounds.height() + padding * 2
-
-        area.set(0, 0, width, height)
-
-        touchableArea.set(area)
-        touchableArea.inflate(padding / 2)
+        if (containerArea != null) {
+            // Use the container directly
+            area.set(containerArea)
+            touchableArea.set(area)
+        } else {
+            // old width calculation
+            val padding = (16f * gameView.resources.displayMetrics.density).toInt()
+            val bounds = Rect()
+            textPaint.getTextBounds(text, 0, text.length, bounds)
+            val width = bounds.width() + padding * 2
+            val height = bounds.height() + padding * 2
+            area.set(0, 0, width, height)
+            touchableArea.set(area)
+            touchableArea.inflate(padding / 2)
+        }
     }
 
-    fun alignLeft(left: Int, top: Int) {
+    fun setPosition(left: Int, top: Int) {
         area.offsetTo(left, top)
-        touchableArea.setCenter(
-                area.centerX(),
-                area.centerY()
-        )
-    }
-
-    fun alignRight(right: Int, top: Int) {
-        area.offsetTo(right - area.width(), top)
-        touchableArea.setCenter(
-                area.centerX(),
-                area.centerY()
-        )
+        touchableArea.setCenter(area.centerX(), area.centerY())
     }
 
     override fun fadeDone(type: Fader.Type) {}
