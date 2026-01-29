@@ -66,6 +66,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
     }
 
     fun setSize(area: Rect) {
+        // account for top inset / notch
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             gameView.rootWindowInsets?.let { insets ->
                 topInset = insets.displayCutout?.safeInsetTop ?: insets.systemWindowInsetTop
@@ -74,15 +75,8 @@ class Marketplace(val gameView: GameView) : GameElement() {
 
         val margin = (80 * gameView.scaleFactor).toInt()
         coinSize = 80 * margin / 100
-        val buttonHeight = 80
-        val buttonMargin = 16
-        val bottomMargin = 40
 
-        val buttonsBlockHeight =
-            buttonHeight * 3 +
-                    buttonMargin * 2 +
-                    bottomMargin
-
+        // set main area
         myArea = Rect(
                 area.left + globalPadding,
                 area.top + topInset + margin, // shift down by notch + margin
@@ -90,6 +84,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
                 area.bottom
         )
 
+        // cards area at top
         cardsArea = Rect(
                 margin,
                 myArea.top,
@@ -97,14 +92,19 @@ class Marketplace(val gameView: GameView) : GameElement() {
                 (myArea.top + GameView.cardHeight * gameView.scaleFactor + margin).toInt()
         )
 
+        // create buttons first
+        createButton()  // this will also call layoutButtons()
+
+        // right panel area is between cards and buttons
         rightPanelArea = Rect(
                 myArea.left,
                 cardsArea.bottom + biographyAreaMargin,
                 myArea.right,
-                myArea.bottom - buttonsBlockHeight - biographyAreaMargin
+                myArea.bottom - (buttonFinish?.area?.height()
+                    ?: 0) - 16 /* optional bottom margin */
         )
 
-        createButton()
+        // biography area inside right panel, ending above the purchase button
         biographyArea = Rect(rightPanelArea).apply {
             bottom = buttonPurchase?.area?.top ?: rightPanelArea.bottom
         }
@@ -163,128 +163,53 @@ class Marketplace(val gameView: GameView) : GameElement() {
     }
 
     private fun createButton() {
+        buttonFinish = Button(gameView, resources.getString(R.string.button_playlevel))
+        buttonRefund = Button(gameView, resources.getString(R.string.button_refund_one))
+        buttonRefundAll = Button(gameView, resources.getString(R.string.button_refund_all))
+        buttonPurchase = Button(gameView, purchaseButtonText(null))
+        buttonWikipedia = Button(gameView, resources.getString(R.string.button_wiki))
+
+        layoutButtons()
+    }
+
+    private fun layoutButtons() {
         val margin = 16
         val bottomMargin = 40
+        var currentBottom = myArea.bottom - bottomMargin
 
-        // ─────────────────────────────────────────────
-        // Play Stage button (bottom)
-        // ─────────────────────────────────────────────
-        buttonFinish = Button(
-                gameView,
-                resources.getString(R.string.button_playlevel)
-        )
-        buttonFinish?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
+        // List the buttons in order from bottom to top
+        val buttonsStack = mutableListOf<Button>()
 
-        val finishHeight = buttonFinish!!.area.height()
+        buttonFinish?.let { buttonsStack.add(it) }
 
-        val finishRect = Rect(
-                myArea.left + margin,
-                myArea.bottom - bottomMargin - finishHeight,
-                myArea.right - margin,
-                myArea.bottom - bottomMargin
-        )
+        buttonRefundAll?.let { buttonsStack.add(it) }
 
-        buttonFinish!!.area.set(finishRect)
-        buttonFinish!!.touchableArea.set(finishRect)
-
-        // ─────────────────────────────────────────────
-        // Refund All button (above finish)
-        // ─────────────────────────────────────────────
-        buttonRefundAll = Button(
-                gameView,
-                resources.getString(R.string.button_refund_all)
-        )
-        buttonRefundAll?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
-
-        val refundAllHeight = buttonRefundAll!!.area.height()
-
-        val refundAllRect = Rect(
-                myArea.left + margin,
-                finishRect.top - refundAllHeight - margin,
-                myArea.right - margin,
-                finishRect.top - margin
-        )
-
-        buttonRefundAll!!.area.set(refundAllRect)
-        buttonRefundAll!!.touchableArea.set(refundAllRect)
-
-        // ─────────────────────────────────────────────
-        // Refund button (above refundAll)
-        // ─────────────────────────────────────────────
-        buttonRefund = Button(
-                gameView,
-                resources.getString(R.string.button_refund_one)
-        )
-        buttonRefund?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
-
-        val refundHeight = buttonRefund!!.area.height()
-
-        val refundRect = Rect(
-                myArea.left + margin,
-                refundAllRect.top - refundHeight - margin,
-                myArea.right - margin,
-                refundAllRect.top - margin
-        )
-
-        buttonRefund!!.area.set(refundRect)
-        buttonRefund!!.touchableArea.set(refundRect)
-
-        // ─────────────────────────────────────────────
-        // Purchase button (above refund)
-        // ─────────────────────────────────────────────
-        buttonPurchase = Button(
-                gameView,
-                purchaseButtonText(null)
-        )
-        buttonPurchase?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
-
-        val purchaseHeight = buttonPurchase!!.area.height()
-
-        var purchaseRect: Rect
         if (showRefundOneButton) {
-            purchaseRect = Rect(
-                    myArea.left + margin,
-                    refundRect.top - purchaseHeight - margin,
-                    myArea.right - margin,
-                    refundRect.top - margin
-            )
-        } else {
-            purchaseRect = Rect(
-                    myArea.left + margin,
-                    refundAllRect.top - purchaseHeight - margin,
-                    myArea.right - margin,
-                    refundAllRect.top - margin
-            )
+            buttonRefund?.let { buttonsStack.add(it) }
         }
 
-        buttonPurchase!!.area.set(purchaseRect)
-        buttonPurchase!!.touchableArea.set(purchaseRect)
+        buttonPurchase?.let { buttonsStack.add(it) }
+        buttonWikipedia?.let { buttonsStack.add(it) }
 
-        // ─────────────────────────────────────────────
-        // Wikipedia button (above refund)
-        // ─────────────────────────────────────────────
-        buttonWikipedia = Button(
-                gameView,
-                resources.getString(R.string.button_wiki)
-        )
-
-        buttonWikipedia?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
-
-        val wikipediaHeight = buttonWikipedia!!.area.height()
-
-        val wikipediaRect = Rect(
-                myArea.left + margin,
-                purchaseRect.top - wikipediaHeight - margin,
-                myArea.right - margin,
-                purchaseRect.top - margin
-        )
-
-        buttonWikipedia!!.area.set(wikipediaRect)
-        buttonWikipedia!!.touchableArea.set(wikipediaRect)
+        // Position buttons
+        for (button in buttonsStack) {
+            val height = button.area.height()
+            val rect = Rect(
+                    myArea.left + margin,
+                    currentBottom - height,
+                    myArea.right - margin,
+                    currentBottom
+            )
+            button.area.set(rect)
+            button.touchableArea.set(rect)
+            currentBottom = rect.top - margin
+        }
     }
 
     fun onDown(event: MotionEvent): Boolean {
-        /** test if a button has been pressed: */
+        if (buttonWikipedia?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
+            wikipedia()
+        }
         if (buttonFinish?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
             selected = null
             makeButtonText(null)
@@ -292,13 +217,12 @@ class Marketplace(val gameView: GameView) : GameElement() {
             return true
         }
         if (buttonRefund?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
-            // if a hero card is selected, then only sell this one; otherwise, go into the "reset all" dialog
             selected?.let {
-                if (it.data.level > 0) {
-                    refundOne(it)
-                    return true
-                }
+                refundOne(it)
+                return true
             }
+        }
+        if (buttonRefundAll?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
             val dialog = Dialog(gameView.gameActivity)
             dialog.setContentView(R.layout.layout_dialog_heroes)
             dialog.window?.setLayout(
@@ -347,19 +271,12 @@ class Marketplace(val gameView: GameView) : GameElement() {
                 hero.let {
                     selected = it
                     it.biography?.viewOffset = 0f
-                    it.biography?.placeButton()
                     makeButtonText(it)
                     return true
                 }
         if (cardsArea.contains(event.x.toInt(), event.y.toInt())) {
             selected = null
             makeButtonText(null)
-        }
-        selected?.biography?.let {
-            if (it.wikiButtonActive && it.wikiButton.area.contains(event.x.toInt(), event.y.toInt())) {
-                Fader(gameView, it.wikiButton, Fader.Type.BLINK, Fader.Speed.FAST)
-                wikipedia()
-            }
         }
         return false
     }
@@ -493,9 +410,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
 
         // draw buttons
         buttonFinish?.display(canvas)
-        if (showRefundOneButton) {
-            buttonRefund?.display(canvas)
-        }
+        if (showRefundOneButton) buttonRefund?.display(canvas)
         buttonRefundAll?.display(canvas)
         selected?.let {
             buttonPurchase?.display(canvas)
@@ -546,6 +461,10 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private fun makeButtonText(card: Hero?) {
         buttonPurchase?.text = purchaseButtonText(card)
         showRefundOneButton = displayRefundOneButton(card)
+        layoutButtons()
+
+        // relayout buttons and recalc dependent areas
+        setSize(Rect(0, 0, gameView.width, gameView.height))
     }
 
     private fun purchaseButtonText(card: Hero?): String {

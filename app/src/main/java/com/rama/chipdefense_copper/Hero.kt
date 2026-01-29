@@ -705,10 +705,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
         private var maxViewOffset = 0f
         private var canvas = Canvas(bitmap)
         private var paintBiography = TextPaint()
-        var wikiButton = Button(
-                gameActivity.gameView,
-                resources.getString(R.string.button_wiki),
-        )
+
+        //        var wikiButton = Button(
+//                gameActivity.gameView,
+//                resources.getString(R.string.button_wiki),
+//        )
         var wikiButtonVisible = true
 
         /** whether clicking on the button triggers an action */
@@ -723,15 +724,12 @@ class Hero(var gameActivity: GameActivity, type: Type)
                 text = vitae + "\n"
                 paintBiography =
                     TextPaint(textStyleContent(gameActivity))
-                if (gameActivity.gameMechanics.currentStageIdent.series > GameMechanics.SERIES_NORMAL)
-                    wikiButtonVisible = true
             } else {
                 text = "%s\n\n%s".format(person.fullName, effect)
                 paintBiography =
                     TextPaint(textStyleContent(gameActivity, colorParam = R.color.foreground_inactive_color))
-                wikiButtonVisible = false
+
             }
-//            canvas.drawColor(resources.getColor(R.color.background_tertiary_color))
             val textLayout = StaticLayout(
                     text, paintBiography, screenArea.width(),
                     Layout.Alignment.ALIGN_NORMAL, 1.0f,
@@ -744,45 +742,14 @@ class Hero(var gameActivity: GameActivity, type: Type)
             canvas = Canvas(bitmap)
             textLayout.draw(canvas)
             maxViewOffset =
-                (area.height() + 2 * wikiButton.area.height() - screenArea.height()).toFloat()
+                (area.height() + 2 - screenArea.height()).toFloat()
             maxViewOffset = if (maxViewOffset < 0f) 0f else maxViewOffset
-            wikiButtonActive = false
-            placeButton()
         }
 
         fun display(canvas: Canvas) {
             val sourceRect =
                 Rect(0, -viewOffset.toInt(), bitmap.width, screenArea.height() - viewOffset.toInt())
             canvas.drawBitmap(bitmap, sourceRect, screenArea, paintBiography)
-            if (wikiButtonVisible) wikiButton.display(canvas)
-        }
-
-        fun placeButton() {
-            // full width, but height based on text
-            val padding = (16f * gameActivity.gameView.scaleFactor).toInt()
-            val bounds = Rect()
-            wikiButton.textPaint.getTextBounds(wikiButton.text, 0, wikiButton.text.length, bounds)
-            val buttonHeight = bounds.height() + padding * 2
-            wikiButton.area.set(
-                    screenArea.left,
-                    0, // y will be set in placeButton()
-                    screenArea.right,
-                    buttonHeight
-            )
-            wikiButton.touchableArea.set(wikiButton.area)
-            wikiButton.touchableArea.inflate(padding / 2)
-
-            if (!wikiButtonVisible)
-                return
-            wikiButton.area.setTopLeft(area.left, (area.bottom + viewOffset).toInt())
-            val buttonDisappearsBelowThisLine = screenArea.bottom - margin
-            if (!wikiButtonActive && wikiButton.area.bottom < buttonDisappearsBelowThisLine) {
-                wikiButtonActive = true
-                Fader(gameActivity.gameView, wikiButton, Fader.Type.APPEAR, Fader.Speed.FAST)
-            } else if (wikiButtonActive && wikiButton.area.bottom > buttonDisappearsBelowThisLine) {
-                wikiButtonActive = false
-                Fader(gameActivity.gameView, wikiButton, Fader.Type.DISAPPEAR, Fader.Speed.IMMEDIATE)
-            }
         }
 
         fun scroll(displacement: Float) {
@@ -790,7 +757,6 @@ class Hero(var gameActivity: GameActivity, type: Type)
             viewOffset -= displacement * scrollFactor
             if (viewOffset > 0f) viewOffset = 0f // avoid scrolling when already at end of area
             if (viewOffset < -maxViewOffset) viewOffset = -maxViewOffset
-            placeButton()
         }
     }
 
