@@ -33,7 +33,8 @@ class Instructions(
                 resources.getStringArray(R.array.fun_fact).random()
     // resources.getStringArray(R.array.fun_fact).last() // for debugging purposes
     else ""
-    var bitmap: Bitmap = createBitmap(instructionText(stage.number), gameView.width - 2 * margin)
+    var bitmap: Bitmap =
+        createBitmap(instructionText(stage.number), gameView.width - 2 * margin)
 
     fun setTextArea(rect: Rect) {
         // Get the top inset for notch/status bar
@@ -115,15 +116,39 @@ class Instructions(
     }
 
     private fun createBitmap(text: String, width: Int): Bitmap {
+        // Title layout
+        val title = "S${stage.series}-${stage.number}\n"
+        val titlePaint = TextPaint(textStyleContent(gameView.context, textSizeSp = 22f))
+        val titleLayout = StaticLayout(
+                title, titlePaint, width,
+                Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false
+        )
+
+        // Text layout
         val textPaint = TextPaint(textStyleContent(gameView.context))
         val textLayout = StaticLayout(
                 text, textPaint, width,
                 Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false
         )
-        val bitmap =
-            Bitmap.createBitmap(textLayout.width, textLayout.height, Bitmap.Config.ARGB_8888)
+
+        // Total bitmap height = title + text
+        val bitmapHeight = titleLayout.height + textLayout.height
+        val bitmap = Bitmap.createBitmap(width, bitmapHeight, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
+
+        // Draw title at the top
+        canvas.save()
+        canvas.translate(0f, 0f)
+        titleLayout.draw(canvas)
+        canvas.restore()
+
+        // Draw text below title
+        canvas.save()
+        canvas.translate(0f, titleLayout.height.toFloat()) // shift down by title height
         textLayout.draw(canvas)
+        canvas.restore()
+
         return bitmap
     }
+
 }
