@@ -14,7 +14,7 @@ class Button(
     val gameView: GameView,
     var text: String,
     val containerArea: Rect? = null,
-    maxWidth: Int? = null // new
+    maxWidth: Int? = null
 ) : Fadable {
 
     private var alpha = 255
@@ -27,7 +27,7 @@ class Button(
         color = gameView.resources.getColor(R.color.button_color)
     }
 
-    val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { // make it public or internal
+    val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         typeface = ResourcesCompat.getFont(gameView.context, R.font.jersey25_regular)
             ?: Typeface.DEFAULT
         color = gameView.resources.getColor(R.color.foreground_color)
@@ -38,15 +38,22 @@ class Button(
 
     init {
         val padding = (16f * gameView.resources.displayMetrics.density).toInt()
+
         if (containerArea != null) {
+            // Full-width / externally-sized button
             area.set(containerArea)
         } else {
-            val bounds = Rect()
-            textPaint.getTextBounds(text, 0, text.length, bounds)
-            val width = maxWidth ?: (bounds.width() + padding * 2)
-            val height = bounds.height() + padding * 2
+            // Self-sized button (authoritative sizing)
+            val fm = textPaint.fontMetrics
+            val textHeight = (fm.descent - fm.ascent).toInt()
+
+            val textWidth = textPaint.measureText(text).toInt()
+            val width = maxWidth ?: (textWidth + padding * 2)
+            val height = textHeight + padding * 2
+
             area.set(0, 0, width, height)
         }
+
         touchableArea.set(area)
         touchableArea.inflate(padding / 2)
     }

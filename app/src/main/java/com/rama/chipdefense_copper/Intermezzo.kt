@@ -10,6 +10,7 @@ import android.text.TextPaint
 import android.util.TypedValue
 import android.view.MotionEvent
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import com.rama.chipdefense_copper.activities.GameActivity
 import com.rama.chipdefense_copper.effects.Explosion
 import com.rama.chipdefense_copper.effects.Fadable
@@ -200,25 +201,38 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
         )
     }
 
-
     private fun showButton() {
-        val textSize = (32 * gameView.scaleFactor).toInt()
-        val buttonHeight = textSize * 3
         val bottomMargin = 40
         val spacing = 32
 
-        // Continue button at the bottom
-        val continueRect = fullWidthButtonRect(buttonHeight, bottomMargin)
-        buttonContinue = Button(gameView, textOnContinueButton, containerArea = continueRect)
+        buttonContinue = Button(gameView, textOnContinueButton)
         buttonContinue?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
 
-        // Purchase button above Continue (only if needed)
+        val continueHeight = buttonContinue!!.area.height()
+
+        val continueRect =
+            fullWidthButtonRect(continueHeight, bottomMargin)
+
+        buttonContinue!!.area.set(continueRect)
+        buttonContinue!!.touchableArea.set(continueRect)
+
         if (level.number > 6 || level.series != GameMechanics.SERIES_NORMAL) {
-            val purchaseBottomOffset = bottomMargin + buttonHeight + spacing
-            val purchaseRect = fullWidthButtonRect(buttonHeight, purchaseBottomOffset)
-            buttonPurchase =
-                Button(gameView, resources.getString(R.string.button_marketplace), containerArea = purchaseRect)
+
+            buttonPurchase = Button(
+                    gameView,
+                    resources.getString(R.string.button_marketplace)
+            )
             buttonPurchase?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
+
+            val purchaseHeight = buttonPurchase!!.area.height()
+            val purchaseBottomOffset =
+                bottomMargin + continueHeight + spacing
+
+            val purchaseRect =
+                fullWidthButtonRect(purchaseHeight, purchaseBottomOffset)
+
+            buttonPurchase!!.area.set(purchaseRect)
+            buttonPurchase!!.touchableArea.set(purchaseRect)
         }
     }
 
