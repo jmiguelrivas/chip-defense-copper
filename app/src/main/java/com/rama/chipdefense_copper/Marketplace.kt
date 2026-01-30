@@ -170,11 +170,12 @@ class Marketplace(val gameView: GameView) : GameElement() {
 
         buttonRefundAll?.let { buttonsStack.add(it) }
 
+        buttonPurchase?.let { buttonsStack.add(it) }
+        
         if (showRefundOneButton) {
             buttonRefund?.let { buttonsStack.add(it) }
         }
 
-        buttonPurchase?.let { buttonsStack.add(it) }
         buttonWikipedia?.let { buttonsStack.add(it) }
 
         // Position buttons
