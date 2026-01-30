@@ -411,8 +411,9 @@ class Marketplace(val gameView: GameView) : GameElement() {
         buttonRefundAll?.display(canvas)
         selected?.let {
             buttonPurchase?.display(canvas)
-            buttonWikipedia?.display(canvas)
+            if (showRefundOneButton) buttonWikipedia?.display(canvas)
         }
+        
         // draw biography
         selected?.biography?.display(canvas)
     }
