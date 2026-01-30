@@ -82,7 +82,7 @@
     <string name="instr_leave_1">Some heroes are asking for time off. You must grant leave to one of them, who will return in the next level.</string>
     <string name="heroes_on_leave_0">No heroes are on leave.</string>
     <string name="heroes_on_leave_1">Hero on leave:</string>
-    <string name="button_marketplace">Check Heroes</string>
+    <string name="button_marketplace">Hero Vault</string>
 
     <!-- MODAL :: RESET HEROES -->
     <string name="query_reset">Do you want to reset all heroes?</string>
@@ -103,6 +103,8 @@
     <string name="scoreboard_temp">temp</string>
     <string name="toast_loading">Loading …</string>
     <string name="overheat">CPU damage from overheating</string>
+    <string name="toast_stage_cleared">Stage cleared</string>
+    <string name="toast_enter_stage">Stage %s</string>
 
     <!-- MERKETPLACE -->
     <string name="button_refund_all">Reset all Heroes</string>
@@ -244,9 +246,7 @@
     <string name="url_wiener">https://en.wikipedia.org/wiki/Norbert_Wiener</string>
     <string name="url_boole">https://en.wikipedia.org/wiki/George_Boole</string>
 
-    <!-- _________________________________________________________________________________ -->
-
-
+    <!-- HEROES :: EFFECT -->
     <string name="shortdesc_SUB">SUB :: Chip speed</string>
     <string name="shortdesc_startinfo">Starting information</string>
     <string name="shortdesc_info_on_kill">Additional info</string>
@@ -272,10 +272,8 @@
     <string name="shortdesc_create_wanted">Additional chip count</string>
     <string name="shortdesc_reduce_removal">Chip removal cost</string>
     <string name="shortdesc_enable_mem_upgrade">MEM max. level</string>
-    <string name="upgrade_format">%1$s [cost: %2$d]</string>
-    <string name="stage_number">Stage %s</string>
-    <string name="toast_stage_cleared">Stage cleared</string>
-    <string name="toast_enter_stage">Stage %s</string>
+
+    <!-- HEROES :: EFFECT DESCRIPTION -->
     <string name="HERO_EFFECT_CHIPSPEED">Decreases cooldown time of all %s chips</string>
     <string name="HERO_EFFECT_HEAT">Reduces the amount of generated heat</string>
     <string name="HERO_EFFECT_STARTINFO">Increases information at start of level</string>
@@ -299,6 +297,8 @@
     <string name="HERO_EFFECT_CONVERT_HEAT">Converts some of the resistors\' heat into info</string>
     <string name="HERO_EFFECT_CHANCE_DOUBLE">Gives %s chips a chance of double effect</string>
 
+    <!-- _________________________________________________________________________________ -->
+    
     <string name="coins_singular">one coin</string>
     <string name="coins_plural">%d coins</string>
     <string name="coins_none">no coins</string>

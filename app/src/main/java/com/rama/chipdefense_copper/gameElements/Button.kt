@@ -33,7 +33,6 @@ class Button(
         color = gameView.resources.getColor(R.color.foreground_color)
         textSize = 32f * gameView.scaleFactor
         letterSpacing = 0.08f
-        isFakeBoldText = true
     }
 
     init {

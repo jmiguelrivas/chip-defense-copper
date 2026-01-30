@@ -41,7 +41,6 @@ fun textStyleContent(
         textSizeSp = textSizeSp
 ).apply {
     letterSpacing = 0.08f
-    isFakeBoldText = true
 }
 
 fun textStyleDisplay(
@@ -54,7 +53,6 @@ fun textStyleDisplay(
         textSizeSp = textSizeSp
 ).apply {
     letterSpacing = 0.08f
-    isFakeBoldText = true
 }
 
 fun textStyleTitle(
@@ -66,5 +64,4 @@ fun textStyleTitle(
         textSizeSp = textSizeSp
 ).apply {
     letterSpacing = 0.08f
-    isFakeBoldText = true
 }
