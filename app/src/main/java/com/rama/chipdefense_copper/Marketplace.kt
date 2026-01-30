@@ -13,6 +13,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.createBitmap
 import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.rama.chipdefense_copper.effects.Fadable
 import com.rama.chipdefense_copper.effects.Fader
 import com.rama.chipdefense_copper.effects.Flippable
@@ -66,10 +68,11 @@ class Marketplace(val gameView: GameView) : GameElement() {
 
     fun setSize(area: Rect) {
         // account for top inset / notch
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            gameView.rootWindowInsets?.let { insets ->
-                topInset = insets.displayCutout?.safeInsetTop ?: insets.systemWindowInsetTop
-            }
+        ViewCompat.getRootWindowInsets(gameView)?.let { insets ->
+            topInset = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() or
+                            WindowInsetsCompat.Type.displayCutout()
+            ).top
         }
 
         coinSize = 80
@@ -413,7 +416,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
             buttonPurchase?.display(canvas)
             if (showRefundOneButton) buttonWikipedia?.display(canvas)
         }
-        
+
         // draw biography
         selected?.biography?.display(canvas)
     }

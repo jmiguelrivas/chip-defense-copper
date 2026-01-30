@@ -10,6 +10,8 @@ import android.graphics.Rect
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.rama.chipdefense_copper.effects.Fadable
 import com.rama.chipdefense_copper.effects.Fader
 import com.rama.chipdefense_copper.utils.setTopLeft
@@ -38,10 +40,11 @@ class Instructions(
 
     fun setTextArea(rect: Rect) {
         // Get the top inset for notch/status bar
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            gameView.rootWindowInsets?.let { insets ->
-                topInset = insets.displayCutout?.safeInsetTop ?: insets.systemWindowInsetTop
-            }
+        ViewCompat.getRootWindowInsets(gameView)?.let { insets ->
+            topInset = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() or
+                            WindowInsetsCompat.Type.displayCutout()
+            ).top
         }
 
         // Apply margin + inset
