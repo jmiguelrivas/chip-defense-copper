@@ -22,8 +22,6 @@ class Instructions(
     val gameView: GameView, var stage: Stage.Identifier, var showLeaveDialogue: Boolean,
     private var callback: (() -> Unit)?
 ) : Fadable {
-    private val globalPadding: Int = 32
-    private var topInset = 0
     var myArea = Rect()
     var vertOffset = 0f
 
@@ -36,12 +34,12 @@ class Instructions(
     // resources.getStringArray(R.array.fun_fact).last() // for debugging purposes
     else ""
     var bitmap: Bitmap =
-        createBitmap(instructionText(stage.number), gameView.width - 2 * globalPadding)
+        createBitmap(instructionText(stage.number), gameView.width - 2 * GameView.globalPadding)
 
     fun setTextArea(rect: Rect) {
         // Get the top inset for notch/status bar
         ViewCompat.getRootWindowInsets(gameView)?.let { insets ->
-            topInset = insets.getInsets(
+            GameView.notchSize = insets.getInsets(
                     WindowInsetsCompat.Type.systemBars() or
                             WindowInsetsCompat.Type.displayCutout()
             ).top
@@ -49,10 +47,10 @@ class Instructions(
 
         // Apply margin + inset
         myArea = Rect(
-                rect.left + globalPadding,
-                rect.top + globalPadding + topInset,
-                rect.right - globalPadding,
-                rect.bottom - globalPadding
+                rect.left + GameView.globalPadding,
+                rect.top + GameView.globalPadding + GameView.notchSize,
+                rect.right - GameView.globalPadding,
+                rect.bottom - GameView.globalPadding
         )
     }
 

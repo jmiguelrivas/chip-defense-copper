@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.view.MotionEvent
@@ -13,8 +12,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.createBitmap
 import androidx.core.net.toUri
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.rama.chipdefense_copper.effects.Fadable
 import com.rama.chipdefense_copper.effects.Fader
 import com.rama.chipdefense_copper.effects.Flippable
@@ -42,7 +39,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private var biographyArea = Rect()
     private var clearPaint = Paint()
     private var paint = Paint()
-    private val globalPadding: Int = 32
 
     /** used for scrolling */
     private var cardViewOffset = 0f
@@ -57,7 +53,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private var maxCoinsToDisplay = 16
 
     private var currentWiki: Hero? = null
-    private var topInset = 0
 
     var nextGameLevel = Stage.Identifier()
 
@@ -67,29 +62,21 @@ class Marketplace(val gameView: GameView) : GameElement() {
     }
 
     fun setSize(area: Rect) {
-        // account for top inset / notch
-        ViewCompat.getRootWindowInsets(gameView)?.let { insets ->
-            topInset = insets.getInsets(
-                    WindowInsetsCompat.Type.systemBars() or
-                            WindowInsetsCompat.Type.displayCutout()
-            ).top
-        }
-
         coinSize = 80
 
         // set main area
         myArea = Rect(
                 area.left,
-                area.top + topInset + globalPadding, // shift down by notch + margin
+                area.top + GameView.notchSize + GameView.globalPadding, // shift down by notch + margin
                 area.right,
                 area.bottom
         )
 
         // cards area at top
         cardsArea = Rect(
-                globalPadding,
+                GameView.globalPadding,
                 myArea.top,
-                myArea.right - globalPadding,
+                myArea.right - GameView.globalPadding,
                 (myArea.top + GameView.cardHeight + 90).toInt()
         )
 
@@ -98,9 +85,9 @@ class Marketplace(val gameView: GameView) : GameElement() {
 
         // bio panel area is between cards and buttons
         bioPanel = Rect(
-                myArea.left + globalPadding,
-                cardsArea.bottom + globalPadding,
-                myArea.right - globalPadding,
+                myArea.left + GameView.globalPadding,
+                cardsArea.bottom + GameView.globalPadding,
+                myArea.right - GameView.globalPadding,
                 myArea.bottom - (buttonFinish?.area?.height()
                     ?: 0) - 16 /* optional bottom margin */
         )
@@ -174,8 +161,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
     }
 
     private fun layoutButtons() {
-        val margin = 32
-        var currentBottom = myArea.bottom - globalPadding
+        var currentBottom = myArea.bottom - GameView.globalPadding
 
         // List the buttons in order from bottom to top
         val buttonsStack = mutableListOf<Button>()
@@ -195,14 +181,14 @@ class Marketplace(val gameView: GameView) : GameElement() {
         for (button in buttonsStack) {
             val height = button.area.height()
             val rect = Rect(
-                    myArea.left + margin,
+                    myArea.left + GameView.globalPadding,
                     currentBottom - height,
-                    myArea.right - margin,
+                    myArea.right - GameView.globalPadding,
                     currentBottom
             )
             button.area.set(rect)
             button.touchableArea.set(rect)
-            currentBottom = rect.top - margin
+            currentBottom = rect.top - GameView.globalPadding
         }
     }
 

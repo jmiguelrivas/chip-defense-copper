@@ -17,6 +17,8 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.GestureDetectorCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.rama.chipdefense_copper.GameMechanics.GamePhase
 import com.rama.chipdefense_copper.GameMechanics.LevelMode
 import com.rama.chipdefense_copper.activities.GameActivity
@@ -58,7 +60,10 @@ class GameView(context: Context) :
         const val minScoreBoardHeight = 100
         const val maxScoreBoardHeight = 320
         const val speedControlButtonSize = 24
+        const val globalPadding: Int = 32
+        var notchSize: Int = 0
     }
+
 
     val gameActivity = context as GameActivity
     val gameMechanics = gameActivity.gameMechanics
@@ -172,6 +177,20 @@ class GameView(context: Context) :
     override fun surfaceDestroyed(p0: SurfaceHolder) {
     }
 
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+
+        ViewCompat.setOnApplyWindowInsetsListener(this) { _, insets ->
+            val topInset = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() or
+                            WindowInsetsCompat.Type.displayCutout()
+            ).top
+
+            notchSize = topInset
+            insets
+        }
+    }
+    
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         setComponentSize(w, h)

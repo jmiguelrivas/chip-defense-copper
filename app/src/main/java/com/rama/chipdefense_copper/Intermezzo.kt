@@ -52,7 +52,6 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
 
     var coinsGathered = 0
     var durationOfLeave = 2
-    val globalPadding: Int = 32
 
     /** used for vertical scrolling */
     var vertOffset = 0f
@@ -194,9 +193,9 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
 
     private fun fullWidthButtonRect(height: Int, bottomOffset: Int, margin: Int = 16): Rect {
         return Rect(
-                myArea.left + margin + globalPadding,
+                myArea.left + margin + GameView.globalPadding,
                 myArea.bottom - bottomOffset - height,
-                myArea.right - margin - globalPadding,
+                myArea.right - margin - GameView.globalPadding,
                 myArea.bottom - bottomOffset
         )
     }
