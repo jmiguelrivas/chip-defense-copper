@@ -160,17 +160,19 @@ class GameMechanics {
     var heroes = HashMap<Hero.Type, Hero>()
     var heroesByMode = hashMapOf(
             LevelMode.BASIC to HashMap(),
+            LevelMode.TURBO to HashMap(),
             LevelMode.ENDLESS to HashMap<Hero.Type, Hero>(),
     )
     var currentlyActiveWave: Wave? = null
     var holidays = HashMap<Int, Hero.Holiday>()
 
     /** the two different kind of series: BASIC (which means NORMAL and TURBO) and ENDLESS */
-    enum class LevelMode { BASIC, ENDLESS }
+    enum class LevelMode { BASIC, TURBO, ENDLESS }
 
     /** coin management */
     var purseOfCoins = hashMapOf(
             LevelMode.BASIC to PurseOfCoins(this, LevelMode.BASIC),
+            LevelMode.TURBO to PurseOfCoins(this, LevelMode.TURBO),
             LevelMode.ENDLESS to PurseOfCoins(this, LevelMode.ENDLESS),
     )
 
@@ -202,10 +204,13 @@ class GameMechanics {
         purseOfCoins[LevelMode.ENDLESS] = PurseOfCoins(this, LevelMode.ENDLESS)
         // additionally, the BASIC series if requested:
         if (mode == LevelMode.BASIC) {
-            summaryPerTurboLevel = HashMap()
             summaryPerNormalLevel = HashMap()
             heroesByMode[LevelMode.BASIC] = HashMap()
             purseOfCoins[LevelMode.BASIC] = PurseOfCoins(this, LevelMode.BASIC)
+        } else if (mode == LevelMode.TURBO) {
+            summaryPerTurboLevel = HashMap()
+            heroesByMode[LevelMode.TURBO] = HashMap()
+            purseOfCoins[LevelMode.TURBO] = PurseOfCoins(this, LevelMode.TURBO)
         }
     }
 

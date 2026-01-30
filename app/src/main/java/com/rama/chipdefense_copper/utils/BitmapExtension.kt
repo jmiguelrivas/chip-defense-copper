@@ -7,6 +7,9 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Matrix
+import androidx.annotation.DrawableRes
+import androidx.annotation.StyleRes
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.res.ResourcesCompat
 
 fun Bitmap.flipHorizontally(): Bitmap
@@ -32,16 +35,29 @@ fun Bitmap.clear()
 }
 
 fun Context.vectorToBitmap(
-    drawableId: Int,
+    @DrawableRes drawableId: Int,
     width: Int,
-    height: Int
+    height: Int,
+    @StyleRes styleRes: Int? = null
 ): Bitmap {
-    val drawable = ResourcesCompat.getDrawable(resources, drawableId, null)
-        ?: error("Drawable not found: $drawableId")
+    val context =
+        if (styleRes != null)
+            ContextThemeWrapper(this, styleRes)
+        else
+            this
+
+    val drawable = ResourcesCompat.getDrawable(
+            context.resources,
+            drawableId,
+            context.theme
+    ) ?: error("Drawable not found: $drawableId")
+
+    drawable.mutate()
 
     return Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888).also { bitmap ->
         val canvas = Canvas(bitmap)
-        drawable.setBounds(0, 0, canvas.width, canvas.height)
+        drawable.setBounds(0, 0, width, height)
         drawable.draw(canvas)
     }
 }
+

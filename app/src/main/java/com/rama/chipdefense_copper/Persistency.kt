@@ -226,11 +226,13 @@ class Persistency(private val activity: Activity) {
 
     data class SerializableHeroDataPerMode(
         val basic: MutableList<Hero.Data> = mutableListOf(),
+        val turbo: MutableList<Hero.Data> = mutableListOf(),
         val endless: MutableList<Hero.Data> = mutableListOf()
     )
 
     data class SerializablePurseContents(
         var basic: PurseOfCoins.Contents,
+        var turbo: PurseOfCoins.Contents,
         var endless: PurseOfCoins.Contents,
     )
 
@@ -262,9 +264,13 @@ class Persistency(private val activity: Activity) {
 
     fun saveCoins(gameMechanics: GameMechanics) {
         val emptyContents = PurseOfCoins.Contents()
-        val purseData = SerializablePurseContents(basic = emptyContents, endless = emptyContents)
+        val purseData =
+            SerializablePurseContents(basic = emptyContents, turbo = emptyContents, endless = emptyContents)
         gameMechanics.purseOfCoins[GameMechanics.LevelMode.BASIC]?.contents?.let { purse ->
             purseData.basic = purse
+        }
+        gameMechanics.purseOfCoins[GameMechanics.LevelMode.TURBO]?.contents?.let { purse ->
+            purseData.turbo = purse
         }
         gameMechanics.purseOfCoins[GameMechanics.LevelMode.ENDLESS]?.contents?.let { purse ->
             purseData.endless = purse
@@ -302,9 +308,12 @@ class Persistency(private val activity: Activity) {
             // save coins in purse:
             val emptyContents = PurseOfCoins.Contents()
             val purseData =
-                SerializablePurseContents(basic = emptyContents, endless = emptyContents)
+                SerializablePurseContents(basic = emptyContents, turbo = emptyContents, endless = emptyContents)
             gameMechanics.purseOfCoins[GameMechanics.LevelMode.BASIC]?.contents?.let { purse ->
                 purseData.basic = purse
+            }
+            gameMechanics.purseOfCoins[GameMechanics.LevelMode.TURBO]?.contents?.let { purse ->
+                purseData.turbo = purse
             }
             gameMechanics.purseOfCoins[GameMechanics.LevelMode.ENDLESS]?.contents?.let { purse ->
                 purseData.endless = purse
@@ -502,6 +511,9 @@ class Persistency(private val activity: Activity) {
                 null -> gson.fromJson(json, SerializableHeroData::class.java).upgrades
                 GameMechanics.LevelMode.BASIC ->
                     gson.fromJson(json, SerializableHeroDataPerMode::class.java).basic
+
+                GameMechanics.LevelMode.TURBO ->
+                    gson.fromJson(json, SerializableHeroDataPerMode::class.java).turbo
 
                 GameMechanics.LevelMode.ENDLESS ->
                     gson.fromJson(json, SerializableHeroDataPerMode::class.java).endless

@@ -50,7 +50,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private var coinSize = (32 * gameView.scaleFactor).toInt()
 
     /** maximum number of coins that are displayed separately */
-    private var maxCoinsToDisplay = 16
+    private var maxCoinsToDisplay = 1
 
     private var currentWiki: Hero? = null
 

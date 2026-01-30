@@ -64,7 +64,6 @@ class GameView(context: Context) :
         var notchSize: Int = 0
     }
 
-
     val gameActivity = context as GameActivity
     val gameMechanics = gameActivity.gameMechanics
     var canvas: Canvas? = null
@@ -77,10 +76,28 @@ class GameView(context: Context) :
     lateinit var monoTypeface: Typeface
     lateinit var boldTypeface: Typeface
 
-    private val coinIconBlue: Bitmap =
-        BitmapFactory.decodeResource(resources, R.drawable.cryptocoin)
-    private val coinIconRed: Bitmap =
-        BitmapFactory.decodeResource(resources, R.drawable.cryptocoin_red)
+    private val coinIconGreen = context.vectorToBitmap(
+            R.drawable.coin_pixel,
+            64,
+            64,
+            R.style.Coin_Green
+    )
+
+    private val coinIconGold = context.vectorToBitmap(
+            R.drawable.coin_pixel,
+            64,
+            64,
+            R.style.Coin_Gold
+    )
+
+    private val coinIconRed = context.vectorToBitmap(
+            R.drawable.coin_pixel,
+            64,
+            64,
+            R.style.Coin_Red
+    )
+
+
     val cpuImage: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.cpu)
     val playIcon: Bitmap = context.vectorToBitmap(
             R.drawable.icon_1x,
@@ -190,7 +207,7 @@ class GameView(context: Context) :
             insets
         }
     }
-    
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         setComponentSize(w, h)
@@ -439,7 +456,8 @@ class GameView(context: Context) :
 
     fun currentCoinBitmap(stage: Stage.Identifier = gameMechanics.currentStageIdent): Bitmap {
         return when (stage.mode()) {
-            LevelMode.BASIC -> coinIconBlue
+            LevelMode.BASIC -> coinIconGreen
+            LevelMode.TURBO -> coinIconGold
             LevelMode.ENDLESS -> coinIconRed
         }
     }

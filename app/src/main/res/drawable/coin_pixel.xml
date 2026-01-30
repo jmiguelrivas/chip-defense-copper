@@ -1,0 +1,33 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="16.933"
+    android:viewportHeight="16.933">
+    <path
+        android:pathData="M6.35,0v0.529H5.292v1.058H4.233v1.058H2.646v11.642h1.587v1.058h1.059v1.059H6.35v0.529h4.233v-0.53h1.059v-1.058H12.7v-1.058h1.587V2.645H12.7V1.587h-1.058V0.529h-1.059v-0.53z"
+        android:fillColor="?attr/coinBase" />
+    <path
+        android:pathData="M6.35,0v0.529L5.292,0.529v1.058L4.233,1.587v1.058L2.646,2.645v11.642h1.587v1.058h1.059v1.059L6.35,16.404v0.529h4.233v-0.53h1.059v-1.058L12.7,15.345v-1.058h1.587L14.287,2.645L12.7,2.645L12.7,1.587h-1.058L11.642,0.529h-1.059v-0.53zM6.88,0.529h3.174v0.529h1.059v1.058h1.058v1.059h1.587v10.583h-1.587v1.058h-1.058v1.059h-1.059v0.529L6.88,16.404v-0.53L5.821,15.874v-1.058L4.763,14.816v-1.058L3.175,13.758L3.175,3.175h1.588L4.763,2.116L5.82,2.116L5.82,1.058h1.058z"
+        android:fillColor="?attr/coinOutline" />
+    <path
+        android:pathData="M6.88,0.529v0.529H5.82v1.058H4.764v1.059H3.175v6.35h0.53V3.704h1.587V2.648l1.058,-0.002V1.587h1.058v-0.529h1.059v-0.53H6.879z"
+        android:fillColor="?attr/coinHighlight" />
+    <path
+        android:pathData="M8.467,0.529v0.529h1.058v0.53h1.058v1.057h1.059v1.059h1.587v1.058h0.53V3.175H12.17V2.116h-1.058V1.058h-1.059v-0.53zM3.175,9.525v4.233h1.588v1.058H5.82v0.53h0.529v-1.059H5.292v-1.058H3.704V9.525z"
+        android:fillColor="?attr/coinMidTone" />
+    <path
+        android:pathData="M13.23,4.763v8.466h-1.588v1.058h-1.059v1.058H9.525v0.53H7.408v-0.53H5.821v0.53h1.058v0.529h3.175v-0.53h1.059v-1.058h1.058v-1.058h1.587V4.762h-0.529z"
+        android:fillColor="?attr/coinShadow" />
+    <path
+        android:pathData="M6.88,3.175v1.587h-0.53v0.53h-0.53v6.35h0.53v0.528h0.53v0.53h0.528v0.529h2.646v-0.53h0.53v-0.529h0.529v-1.587h-1.059v0.53h-0.529v0.528H7.938v-0.529h-0.53V5.82h2.117v0.53h1.587V5.291h-0.529v-0.529h-0.529v-0.529h-0.529V3.175h-0.53v1.058H7.409V3.175H6.88z"
+        android:fillColor="?attr/coinBrand" />
+    <path
+        android:pathData="M6.35,2.645v1.588h-0.53v0.53h-0.528v6.35h0.529V5.291h0.529v-0.529h0.53V3.175h0.528v1.058h1.588V3.175h0.529v1.058h1.058v-0.53h-0.529V2.645H8.467v1.059h-0.53V2.645H6.35z"
+        android:fillColor="?attr/coinBrandShadow" />
+    <path
+        android:pathData="M10.054,4.233v0.53h0.53v0.528h0.529L11.113,6.35h-0.53v0.529h1.059L11.642,4.762h-0.53v-0.529h-1.058zM9.525,10.053v0.53h-0.53v0.53h-0.528v-0.53L7.408,10.583v0.53h0.53v0.528h1.587v-0.529h0.53v-0.529h1.587v-0.53L9.525,10.053zM5.292,11.113v1.057h0.529v0.53h1.058v-0.53L6.35,12.17v-0.529h-0.53v-0.529h-0.528z"
+        android:fillColor="?attr/coinBrandMidTones" />
+    <path
+        android:pathData="M7.408,5.82v4.763h0.53L7.938,6.35h1.058v0.529h1.587v-0.53L9.525,6.349L9.525,5.82L7.408,5.82zM11.112,10.583v1.587h-0.529v0.53h-0.529v0.529L7.408,13.229v-0.53L6.35,12.699v0.53h0.53v0.529h3.703v-0.53h0.53L11.113,12.7h0.529v-2.117h-0.53z"
+        android:fillColor="?attr/coinBrandHighlight" />
+</vector>

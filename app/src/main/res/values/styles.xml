@@ -72,60 +72,53 @@
         <item name="android:textColor">@color/foreground_color</item>
     </style>
 
-    <!-- _________________________________________________________________________________ -->
+    <!-- VECTORS: COINS -->
 
-    <style name="CustomAlertDialog" parent="android:Theme.Material.Dialog.Alert">
-        <item name="android:fontFamily">@font/jersey25_regular</item>
-        <item name="fontFamily">@font/jersey25_regular</item>
-
-        <!--        <item name="android:background">@color/black</item>-->
-        <!--        <item name="android:textColorPrimary">@color/text_amber</item> &lt;!&ndash; influences title &ndash;&gt;-->
-        <!--        <item name="android:textSize">16sp</item> &lt;!&ndash; influences the button text &ndash;&gt;-->
-        <!--        <item name="android:typeface">monospace</item> &lt;!&ndash; influences the button text &ndash;&gt;-->
-        <!--        <item name="android:textColor">@color/text_lightgreen</item> &lt;!&ndash; influences nothing &ndash;&gt;-->
-        <!--        <item name="android:borderlessButtonStyle">@style/PositiveButtonStyle</item>-->
-        <!--        <item name="android:buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>-->
-        <!--        <item name="android:buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>-->
-        <!--        <item name="android:negativeButtonText">TEST-->
-        <!--        </item> -->
-        <!-- sets text, but is overridden in source code -->
-        <!--
-        <item name="colorPrimary">@color/text_amber</item>
-        <item name="android:textColorPrimary">@color/text_green</item>
-        <item name="titleTextStyle">@style/TitleStyle</item>
-        <item name="materialAlertDialogBodyTextStyle">@style/TitleStyle</item>
-        <item name="android:textAppearance">@style/TitleStyle</item>
-
-        <item name="buttonBarNeutralButtonStyle">@style/NeutralButtonStyle</item>
+    <style name="Coin">
+        <item name="coinBase">#d44915</item>
+        <item name="coinOutline">#d44915</item>
+        <item name="coinHighlight">#d44915</item>
+        <item name="coinMidTone">#d44915</item>
+        <item name="coinShadow">#d44915</item>
+        <item name="coinBrand">#d44915</item>
+        <item name="coinBrandShadow">#d44915</item>
+        <item name="coinBrandMidTones">#d44915</item>
+        <item name="coinBrandHighlight">#d44915</item>
     </style>
 
-    <style name="NeutralButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
-        <item name="android:textColor">@color/text_green</item>
+    <style name="Coin.Green">
+        <item name="coinBase">#59d739</item>
+        <item name="coinOutline">#66ac34</item>
+        <item name="coinHighlight">#c6ffc9</item>
+        <item name="coinMidTone">#46bc6b</item>
+        <item name="coinShadow">#31b741</item>
+        <item name="coinBrand">#a9f9a1</item>
+        <item name="coinBrandShadow">#3ba734</item>
+        <item name="coinBrandMidTones">#4cc448</item>
+        <item name="coinBrandHighlight">#60c952</item>
     </style>
-    <style name="TitleStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
-        <item name="android:textColor">@color/text_amber</item>
-        <item name="android:textSize">16dp</item>
-        <item name="android:typeface">monospace</item>
+
+    <style name="Coin.Gold">
+        <item name="coinBase">#f1ae20</item>
+        <item name="coinOutline">#d88f04</item>
+        <item name="coinHighlight">#ffecc6</item>
+        <item name="coinMidTone">#fec654</item>
+        <item name="coinShadow">#e89c00</item>
+        <item name="coinBrand">#ffd387</item>
+        <item name="coinBrandShadow">#db9300</item>
+        <item name="coinBrandMidTones">#eaa622</item>
+        <item name="coinBrandHighlight">#ffb931</item>
     </style>
-    -->
+
+    <style name="Coin.Red">
+        <item name="coinBase">#d44915</item>
+        <item name="coinOutline">#b72c29</item>
+        <item name="coinHighlight">#ff9471</item>
+        <item name="coinMidTone">#e85e4d</item>
+        <item name="coinShadow">#b72c29</item>
+        <item name="coinBrand">#f78d89</item>
+        <item name="coinBrandShadow">#bd3b1e</item>
+        <item name="coinBrandMidTones">#ea420b</item>
+        <item name="coinBrandHighlight">#ff5c2b</item>
     </style>
-
-    <!--    <style name="NegativeButtonStyle" parent="android:Widget.Material.Button">-->
-    <!--        <item name="android:textColor">@color/text_lightgreen</item>-->
-    <!--        <item name="android:textColorPrimary">@color/text_lightgreen</item>-->
-    <!--        <item name="android:textColorSecondary">@color/text_lightgreen</item>-->
-    <!--    </style>-->
-
-    <!--    <style name="PositiveButtonStyle">-->
-    <!--        <item name="android:textColor">@color/text_lightgreen</item>-->
-    <!--    </style>-->
-
-    <!--    <style name="WelcomeButtonStyle">-->
-    <!--        <item name="android:textColor">@color/text_lightgreen</item>-->
-    <!--        <item name="android:background">@color/black</item>-->
-    <!--    </style>-->
-
-    <!--    <style name="textStyle">-->
-    <!--        <item name="android:textColor">@color/text_lightgreen</item>-->
-    <!--    </style>-->
 </resources>

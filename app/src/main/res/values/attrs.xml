@@ -15,4 +15,16 @@
         <attr name="text" />
     </declare-styleable>
 
+    <attr name="coinBase" format="color" />
+    <attr name="coinOutline" format="color" />
+    <attr name="coinShadow" format="color" />
+    <attr name="coinMidTone" format="color" />
+    <attr name="coinHighlight" format="color" />
+    <attr name="coinBrand" format="color" />
+    <attr name="coinBrandShadow" format="color" />
+    <attr name="coinBrandMidTones" format="color" />
+    <attr name="coinBrandHighlight" format="color" />
+
 </resources>
+
+

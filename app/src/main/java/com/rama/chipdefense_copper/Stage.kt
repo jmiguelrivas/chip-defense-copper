@@ -14,6 +14,7 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
     {
         companion object {
             val startOfNewGame = Identifier(GameMechanics.SERIES_NORMAL, 1)
+            val startOfTurbo = Identifier(GameMechanics.SERIES_TURBO, 1)
             val startOfEndless = Identifier(GameMechanics.SERIES_ENDLESS, 1)
         }
 
@@ -45,6 +46,8 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
         {
             if (series == GameMechanics.SERIES_ENDLESS)
                 return GameMechanics.LevelMode.ENDLESS
+            else if (series == GameMechanics.SERIES_TURBO)
+                return GameMechanics.LevelMode.TURBO
             else
                 return GameMechanics.LevelMode.BASIC
         }
