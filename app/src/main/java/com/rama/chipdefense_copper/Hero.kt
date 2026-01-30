@@ -9,11 +9,7 @@ import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
 import com.rama.chipdefense_copper.activities.GameActivity
-import com.rama.chipdefense_copper.effects.Fader
-import com.rama.chipdefense_copper.gameElements.Button
 import com.rama.chipdefense_copper.gameElements.HeroCard
-import com.rama.chipdefense_copper.utils.inflate
-import com.rama.chipdefense_copper.utils.setTopLeft
 import com.rama.chipdefense_copper.utils.textStyleContent
 import kotlin.math.exp
 import kotlin.math.truncate
@@ -725,7 +721,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                 paintBiography =
                     TextPaint(textStyleContent(gameActivity))
             } else {
-                text = "%s\n\n%s".format(person.fullName, effect)
+                text = effect
                 paintBiography =
                     TextPaint(textStyleContent(gameActivity, colorParam = R.color.foreground_inactive_color))
 

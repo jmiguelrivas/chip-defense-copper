@@ -36,9 +36,8 @@ class Marketplace(val gameView: GameView) : GameElement() {
 
     /** area used for cards, without header */
     private var cardsArea = Rect()
-    private var rightPanelArea = Rect()
+    private var bioPanel = Rect()
     private var biographyArea = Rect()
-    private var biographyAreaMargin = 20
     private var clearPaint = Paint()
     private var paint = Paint()
     private val globalPadding: Int = 32
@@ -73,40 +72,39 @@ class Marketplace(val gameView: GameView) : GameElement() {
             }
         }
 
-        val margin = (80 * gameView.scaleFactor).toInt()
-        coinSize = 80 * margin / 100
+        coinSize = 80
 
         // set main area
         myArea = Rect(
-                area.left + globalPadding,
-                area.top + topInset + margin, // shift down by notch + margin
-                area.right - globalPadding,
+                area.left,
+                area.top + topInset + globalPadding, // shift down by notch + margin
+                area.right,
                 area.bottom
         )
 
         // cards area at top
         cardsArea = Rect(
-                margin,
+                globalPadding,
                 myArea.top,
-                myArea.right - margin,
-                (myArea.top + GameView.cardHeight * gameView.scaleFactor + margin).toInt()
+                myArea.right - globalPadding,
+                (myArea.top + GameView.cardHeight + 90).toInt()
         )
 
         // create buttons first
         createButton()  // this will also call layoutButtons()
 
-        // right panel area is between cards and buttons
-        rightPanelArea = Rect(
-                myArea.left,
-                cardsArea.bottom + biographyAreaMargin,
-                myArea.right,
+        // bio panel area is between cards and buttons
+        bioPanel = Rect(
+                myArea.left + globalPadding,
+                cardsArea.bottom + globalPadding,
+                myArea.right - globalPadding,
                 myArea.bottom - (buttonFinish?.area?.height()
                     ?: 0) - 16 /* optional bottom margin */
         )
 
         // biography area inside right panel, ending above the purchase button
-        biographyArea = Rect(rightPanelArea).apply {
-            bottom = buttonPurchase?.area?.top ?: rightPanelArea.bottom
+        biographyArea = Rect(bioPanel).apply {
+            bottom = buttonPurchase?.area?.top ?: bioPanel.bottom
         }
     }
 
@@ -367,7 +365,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
                     arrangeCards(upgrades, cardViewOffset)
                 }
 
-                rightPanelArea.contains(posX, posY) -> {
+                bioPanel.contains(posX, posY) -> {
                     selected?.biography?.scroll(dY)
                 }
 
