@@ -25,6 +25,7 @@
     <attr name="coinBrandMidTones" format="color" />
     <attr name="coinBrandHighlight" format="color" />
 
+    <attr name="textColor" format="color" />
 </resources>
 
 

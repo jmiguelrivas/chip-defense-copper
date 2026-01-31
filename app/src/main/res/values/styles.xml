@@ -121,4 +121,14 @@
         <item name="coinBrandMidTones">#ea420b</item>
         <item name="coinBrandHighlight">#ff5c2b</item>
     </style>
+
+    <!-- VECTORS: HERO -->
+
+    <style name="Chip">
+        <item name="textColor">#d44915</item>
+    </style>
+
+    <style name="Chip.Green">
+        <item name="textColor">#59d739</item>
+    </style>
 </resources>

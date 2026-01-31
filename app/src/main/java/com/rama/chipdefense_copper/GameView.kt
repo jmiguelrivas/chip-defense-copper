@@ -76,21 +76,21 @@ class GameView(context: Context) :
     lateinit var monoTypeface: Typeface
     lateinit var boldTypeface: Typeface
 
-    private val coinIconGreen = context.vectorToBitmap(
+    private val coinIconGreen: Bitmap = context.vectorToBitmap(
             R.drawable.coin_pixel,
             64,
             64,
             R.style.Coin_Green
     )
 
-    private val coinIconGold = context.vectorToBitmap(
+    private val coinIconGold: Bitmap = context.vectorToBitmap(
             R.drawable.coin_pixel,
             64,
             64,
             R.style.Coin_Gold
     )
 
-    private val coinIconRed = context.vectorToBitmap(
+    private val coinIconRed: Bitmap = context.vectorToBitmap(
             R.drawable.coin_pixel,
             64,
             64,

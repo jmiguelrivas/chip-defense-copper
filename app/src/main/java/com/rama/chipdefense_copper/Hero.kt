@@ -11,6 +11,7 @@ import android.text.TextPaint
 import com.rama.chipdefense_copper.activities.GameActivity
 import com.rama.chipdefense_copper.gameElements.HeroCard
 import com.rama.chipdefense_copper.utils.textStyleContent
+import com.rama.chipdefense_copper.utils.createHero
 import kotlin.math.exp
 import kotlin.math.truncate
 
@@ -464,7 +465,12 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Alan Turing"
                     effect = resources.getString(R.string.HERO_EFFECT_CHIPSPEED).format("SUB")
                     vitae = resources.getString(R.string.turing)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_turing)
+                    picture = gameActivity.createHero(
+                            R.drawable.vector_cpu,
+                            "Alan Turing",
+                            "United K/ingdon",
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.INCREASE_CHIP_SHR_SPEED -> {
