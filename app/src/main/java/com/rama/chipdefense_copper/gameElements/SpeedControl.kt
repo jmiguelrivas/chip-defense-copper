@@ -33,7 +33,7 @@ class SpeedControl(var gameView: GameView)
                     gameView.resources.displayMetrics.density *
                     if (gameView.gameActivity.settings.configUseLargeButtons) 1.6f else 1.0f).toInt()
 
-        val margin = actualButtonSize
+        val margin = actualButtonSize / 2
 
         buttons = mutableListOf(button4, button3, button2, button1)
 

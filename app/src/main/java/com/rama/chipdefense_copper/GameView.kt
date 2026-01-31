@@ -57,7 +57,7 @@ class GameView(context: Context) :
         const val viewportMargin = 10
         const val minScoreBoardHeight = 100
         const val maxScoreBoardHeight = 320
-        const val speedControlButtonSize = 24
+        const val speedControlButtonSize = 32
         const val globalPadding: Int = 32
         var notchSize: Int = 0
     }
