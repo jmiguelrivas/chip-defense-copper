@@ -81,12 +81,12 @@ fun Context.resolveColorAttr(@AttrRes attr: Int): Int {
 
 fun Context.createHero(
     @DrawableRes drawableId: Int,
-    name: String = "Alan Turing",
-    country: String = "United Kingdom",
+    title: String = "Alan Turing",
+    description: String = "United Kingdom",
     @StyleRes styleRes: Int? = null
 ): Bitmap {
-    val width = 250
-    val height = 250
+    val width = 400
+    val height = 400
     val padding = 16
 
     val themedContext =
@@ -117,7 +117,7 @@ fun Context.createHero(
 
     // --- TEXT LAYOUTS
     val titleLayout = StaticLayout(
-            name,
+            title.toUpperCase(),
             titlePaint,
             width - padding * 2,
             Layout.Alignment.ALIGN_CENTER,
@@ -127,7 +127,7 @@ fun Context.createHero(
     )
 
     val countryLayout = StaticLayout(
-            country,
+            description,
             countryPaint,
             width - padding * 2,
             Layout.Alignment.ALIGN_CENTER,
@@ -135,6 +135,11 @@ fun Context.createHero(
             0.0f,
             false
     )
+
+    // --- TOTAL TEXT HEIGHT
+    val textYAdjustment = 10
+    val totalTextHeight = titleLayout.height + countryLayout.height
+    val startY = ((height - totalTextHeight) / 2f) - textYAdjustment  // <-- vertical center
 
     // --- BITMAP
     val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -144,15 +149,16 @@ fun Context.createHero(
     drawable.setBounds(0, 0, width, height)
     drawable.draw(canvas)
 
-    // --- DRAW TITLE (top)
+
+    // --- DRAW TITLE (vertically centered)
     canvas.save()
-    canvas.translate(padding.toFloat(), 8f)
+    canvas.translate(padding.toFloat(), startY)
     titleLayout.draw(canvas)
     canvas.restore()
 
-    // --- DRAW COUNTRY (below title)
+    // --- DRAW DESCRIPTION (below title)
     canvas.save()
-    canvas.translate(padding.toFloat(), (8 + titleLayout.height).toFloat())
+    canvas.translate(padding.toFloat(), startY + titleLayout.height)
     countryLayout.draw(canvas)
     canvas.restore()
 

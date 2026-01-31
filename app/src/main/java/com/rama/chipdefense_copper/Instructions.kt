@@ -118,7 +118,7 @@ class Instructions(
 
     private fun createBitmap(text: String, width: Int): Bitmap {
         // Title layout
-        val title = "S${stage.series}-${stage.number}\n"
+        val title = "S${stage.series}-${stage.number}"
         val titlePaint = TextPaint(textStyleContent(gameView.context, textSizeSp = 28f))
         val titleLayout = StaticLayout(
                 title, titlePaint, width,
