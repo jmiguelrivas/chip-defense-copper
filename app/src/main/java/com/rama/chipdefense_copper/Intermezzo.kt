@@ -205,7 +205,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
         val spacing = 32
 
         buttonContinue = Button(gameView, textOnContinueButton)
-        buttonContinue?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
+        buttonContinue?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.FAST) }
 
         val continueHeight = buttonContinue!!.area.height()
 
@@ -221,7 +221,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
                     gameView,
                     resources.getString(R.string.button_marketplace)
             )
-            buttonPurchase?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.SLOW) }
+            buttonPurchase?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.FAST) }
 
             val purchaseHeight = buttonPurchase!!.area.height()
             val purchaseBottomOffset =
@@ -320,7 +320,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
             Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.FAST)
         } else {
             type = Type.NORMAL_LEVEL
-            Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.SLOW)
+            Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.FAST)
         }
         gameView.background.prepareAtStartOfStage(level)
         gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.INTERMEZZO)
@@ -377,7 +377,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
         this.level = lastLevel
         if (hasWon) {
             type = Type.GAME_WON
-            Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.SLOW)
+            Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.FAST)
         } else {
             type = Type.GAME_LOST
             alpha = 255

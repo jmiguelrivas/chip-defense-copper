@@ -99,7 +99,7 @@ class Instructions(
     }
 
     init {
-        Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.SLOW)
+        Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.FAST)
     }
 
     override fun fadeDone(type: Fader.Type) {

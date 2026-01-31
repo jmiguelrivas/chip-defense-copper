@@ -66,7 +66,7 @@ class Typewriter(
         private val paintText = TextPaint(textStyleDisplay(gameView.context, textSizeSp = 20f))
 
         init {
-            Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.SLOW)
+            Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.MEDIUM)
         }
 
         override fun fadeDone(type: Fader.Type) {
