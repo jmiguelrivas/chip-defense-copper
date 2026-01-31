@@ -48,11 +48,10 @@ class GameView(context: Context) :
         const val computerTextSize = 26f
         const val notificationTextSize = 22f
         const val heroCardTextSize = 28f
-        const val coinsAmountTextSize = 28f
 
         const val coinSizeOnScreen = 16
         const val cardWidth = 600
-        const val cardHeight = cardWidth * 1.25
+        const val cardHeight = cardWidth + 80
         const val cardPictureSize = cardWidth - GameView.globalPadding * 2
         val chipSize = Coord(6, 3)
         const val viewportMargin = 10

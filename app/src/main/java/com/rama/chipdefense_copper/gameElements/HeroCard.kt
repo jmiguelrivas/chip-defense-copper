@@ -163,14 +163,19 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement(), Fadable
         canvas.drawBitmap(effectBitmap, null, effectRect, paintText)
     }
 
-    fun putAt(left: Int, top: Int)
-            /** sets the top left corner of the card area to the given position */
-    {
+    fun putAt(left: Int, top: Int) {
         cardAreaOnScreen = Rect(cardArea)
         cardAreaOnScreen.setTopLeft(left, top)
-        val center = cardAreaOnScreen.center()
+
         portraitAreaOnScreen = Rect(portraitArea)
-        portraitAreaOnScreen.setCenter(center)
+
+        val padding = (GameView.globalPadding * gameView.scaleFactor).toInt()
+
+        portraitAreaOnScreen.setTopLeft(
+                cardAreaOnScreen.left + padding,
+                cardAreaOnScreen.top + padding
+        )
+
         paintText.textSize = GameView.heroCardTextSize * gameView.textScaleFactor
         indicatorSize = portraitArea.width() / 10
     }
