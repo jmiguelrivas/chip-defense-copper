@@ -384,7 +384,6 @@ class Hero(var gameActivity: GameActivity, type: Type)
     {
         data.level = 0
         data.coinsSpent = 0
-        card.heroOpacity = 0f
         setDesc()
     }
 
@@ -398,10 +397,6 @@ class Hero(var gameActivity: GameActivity, type: Type)
             newInstance.data.level = data.level
             newInstance.data.coinsSpent = data.coinsSpent
             newInstance.person.setType()
-            newInstance.card.heroOpacity = when (data.level) {
-                0 -> 0f
-                else -> 1f
-            }
             newInstance.setDesc()
             newInstance.isOnLeave =
                 newInstance.isOnLeave(gameActivity.gameMechanics.currentStageIdent)

@@ -38,7 +38,6 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
 
     private var graphicalState = GraphicalState.NORMAL
     private var transition = 0.0f
-    var heroOpacity = 0f
 
     /** the little boxes that show the current level */
     private var levelIndicator = mutableListOf<Rect>()
@@ -97,10 +96,6 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
         paintText = TextPaint(textStyleContent(gameView.context))
         shortDescRect.top =
             shortDescRect.bottom - (50 * resources.displayMetrics.scaledDensity).toInt()
-        heroOpacity = when (hero.data.level) {
-            0 -> 0f
-            else -> 1f
-        }
     }
 
     override fun update() {
@@ -141,7 +136,6 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
                 )
             } else {
                 // Hero unlocked → draw portrait
-                paintHero.alpha = (255f * heroOpacity).toInt()
                 hero.person.picture?.let {
                     canvas.drawBitmap(it, null, portraitAreaOnScreen, paintHero)
                 }
@@ -150,7 +144,6 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
     }
 
     fun appearInstant() {
-        heroOpacity = 1f
         isVisible = true
         graphicalState = GraphicalState.NORMAL
     }
@@ -294,7 +287,6 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
 
     fun downgradeAnimation() {
         if (hero.data.level == 0) {
-            heroOpacity = 0f
             isVisible = false
             graphicalState = GraphicalState.TRANSIENT_LEVEL_0
         } else {
