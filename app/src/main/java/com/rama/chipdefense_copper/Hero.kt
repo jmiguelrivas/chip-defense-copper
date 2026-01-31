@@ -466,8 +466,8 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     effect = resources.getString(R.string.HERO_EFFECT_CHIPSPEED).format("SUB")
                     vitae = resources.getString(R.string.turing)
                     picture = gameActivity.createHero(
-                            "Alan Turing",
-                            "<" + resources.getString(R.string.shortdesc_SUB) + ">",
+                            fullName,
+                            resources.getString(R.string.shortdesc_SUB),
                             R.style.Chip_Green
                     )
                 }
@@ -477,7 +477,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Ada Lovelace"
                     effect = resources.getString(R.string.HERO_EFFECT_CHIPSPEED).format("SHR")
                     vitae = resources.getString(R.string.lovelace)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_lovelace)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_SHR),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.INCREASE_CHIP_MEM_SPEED -> {
@@ -485,7 +489,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Donald E. Knuth"
                     effect = resources.getString(R.string.HERO_EFFECT_CHIPSPEED).format("MEM")
                     vitae = resources.getString(R.string.knuth)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_knuth)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_MEM),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.REDUCE_HEAT -> {
@@ -493,7 +501,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Claude Chappe"
                     effect = resources.getString(R.string.HERO_EFFECT_HEAT)
                     vitae = resources.getString(R.string.chappe)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_chappe)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_heat),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.INCREASE_STARTING_CASH -> {
@@ -501,7 +513,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Herman Hollerith"
                     effect = resources.getString(R.string.HERO_EFFECT_STARTINFO)
                     vitae = resources.getString(R.string.hollerith)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_hollerith)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_startinfo),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.DECREASE_UPGRADE_COST -> {
@@ -509,7 +525,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Adam Osborne"
                     effect = resources.getString(R.string.HERO_EFFECT_UPGRADECOST)
                     vitae = resources.getString(R.string.osborne)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_osborne)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_upgrade),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.ADDITIONAL_LIVES -> {
@@ -517,7 +537,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Konrad Zuse"
                     effect = resources.getString(R.string.HERO_EFFECT_LIVES)
                     vitae = resources.getString(R.string.zuse)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_zuse)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_lives),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.LIMIT_UNWANTED_CHIPS -> {
@@ -525,7 +549,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Jack Kilby"
                     effect = resources.getString(R.string.HERO_EFFECT_LIMITUNWANTED)
                     vitae = resources.getString(R.string.kilby)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_kilby)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_limit_unwanted),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.CREATE_ADDITIONAL_CHIPS -> {
@@ -533,7 +561,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "John von Neumann"
                     effect = resources.getString(R.string.HERO_CREATE_CHIPS)
                     vitae = resources.getString(R.string.neumann)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_neumann)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_create_wanted),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.ENABLE_MEM_UPGRADE -> {
@@ -541,7 +573,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Gottfried Wilhelm Leibniz"
                     effect = resources.getString(R.string.HERO_EFFECT_ENABLEMEM)
                     vitae = resources.getString(R.string.leibniz)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_leibniz)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_MEM),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.DECREASE_ATT_FREQ -> {
@@ -549,7 +585,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Les Horribles Cernettes"
                     effect = resources.getString(R.string.HERO_EFFECT_FREQUENCY)
                     vitae = resources.getString(R.string.cernettes)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_cernettes)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_frequency),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.DECREASE_COIN_STRENGTH -> {
@@ -557,7 +597,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Whit Diffie"
                     effect = resources.getString(R.string.HERO_EFFECT_COINSTRENGTH)
                     vitae = resources.getString(R.string.diffie)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_diffie)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_coin_strength),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.GAIN_CASH -> {
@@ -565,7 +609,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Herbert W. Franke"
                     effect = resources.getString(R.string.HERO_EFFECT_INFOOVERTIME)
                     vitae = resources.getString(R.string.franke)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_franke)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_info_gain),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.GAIN_CASH_ON_KILL -> {
@@ -573,8 +621,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Benoît B. Mandelbrot"
                     effect = resources.getString(R.string.HERO_EFFECT_GAININFO)
                     vitae = resources.getString(R.string.mandelbrot)
-                    picture =
-                        BitmapFactory.decodeResource(resources, R.drawable.portrait_mandelbrot)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_info_on_kill),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.DECREASE_REMOVAL_COST -> {
@@ -582,7 +633,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Margaret Hamilton"
                     effect = resources.getString(R.string.HERO_EFFECT_DECREASEREMOVAL)
                     vitae = resources.getString(R.string.hamilton)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_hamilton)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_reduce_removal),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.DECREASE_ATT_SPEED -> {
@@ -590,7 +645,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Dorothy Vaughan"
                     effect = resources.getString(R.string.HERO_EFFECT_ATTSPEED)
                     vitae = resources.getString(R.string.vaughan)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_vaughan)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_att_speed),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.DECREASE_ATT_STRENGTH -> {
@@ -598,7 +657,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Bruce Schneier"
                     effect = resources.getString(R.string.HERO_EFFECT_ATTSTRENGTH)
                     vitae = resources.getString(R.string.schneier)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_schneier)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_att_strength),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.INCREASE_REFUND -> {
@@ -606,7 +669,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Jack Tramiel"
                     effect = resources.getString(R.string.HERO_EFFECT_REFUNDPRICE)
                     vitae = resources.getString(R.string.tramiel)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_tramiel)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_refund),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.INCREASE_CHIP_SUB_RANGE -> {
@@ -614,7 +681,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Norbert Wiener"
                     effect = resources.getString(R.string.HERO_EFFECT_RANGE).format("SUB")
                     vitae = resources.getString(R.string.wiener)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_wiener)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_range).format("SUB"),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.INCREASE_CHIP_SHR_RANGE -> {
@@ -622,7 +693,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Blaise Pascal"
                     effect = resources.getString(R.string.HERO_EFFECT_RANGE).format("SHR")
                     vitae = resources.getString(R.string.pascal)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_pascal)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_range).format("SHR"),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.INCREASE_CHIP_MEM_RANGE -> {
@@ -630,7 +705,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Grace Hopper"
                     effect = resources.getString(R.string.HERO_EFFECT_RANGE).format("MEM")
                     vitae = resources.getString(R.string.hopper)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_hopper)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_range).format("MEM"),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.INCREASE_MAX_HERO_LEVEL -> {
@@ -638,7 +717,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Sid Meier"
                     effect = resources.getString(R.string.HERO_EFFECT_MAXHEROUPGRADE)
                     vitae = resources.getString(R.string.meier)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_meier)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_max_hero_upgrade),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.INCREASE_CHIP_RES_STRENGTH -> {
@@ -646,7 +729,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Georg Ohm"
                     effect = resources.getString(R.string.HERO_EFFECT_RES_STRENGTH)
                     vitae = resources.getString(R.string.ohm)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_ohm)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_RES),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.INCREASE_CHIP_RES_DURATION -> {
@@ -654,7 +741,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Alessandro Volta"
                     effect = resources.getString(R.string.HERO_EFFECT_RES_DURATION)
                     vitae = resources.getString(R.string.volta)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_volta)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_duration),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.CONVERT_HEAT -> {
@@ -662,7 +753,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "Claude Shannon"
                     effect = resources.getString(R.string.HERO_EFFECT_CONVERT_HEAT)
                     vitae = resources.getString(R.string.shannon)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_shannon)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_heat_conversion),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.DOUBLE_HIT_SUB -> {
@@ -670,7 +765,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "George Boole"
                     effect = resources.getString(R.string.HERO_EFFECT_CHANCE_DOUBLE).format("SUB")
                     vitae = resources.getString(R.string.boole)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_boole)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_double_chance).format("SUB"),
+                            R.style.Chip_Green
+                    )
                 }
 
                 Type.DOUBLE_HIT_SHR -> {
@@ -678,7 +777,11 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     fullName = "John Horton Conway"
                     effect = resources.getString(R.string.HERO_EFFECT_CHANCE_DOUBLE).format("SHR")
                     vitae = resources.getString(R.string.conway)
-                    picture = BitmapFactory.decodeResource(resources, R.drawable.portrait_conway)
+                    picture = gameActivity.createHero(
+                            fullName,
+                            resources.getString(R.string.shortdesc_double_chance).format("SHR"),
+                            R.style.Chip_Green
+                    )
                 }
             }
 

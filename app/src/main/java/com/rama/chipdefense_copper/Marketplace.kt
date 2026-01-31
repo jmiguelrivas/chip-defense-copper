@@ -51,15 +51,10 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private var coinSize = (32 * gameView.scaleFactor).toInt()
 
     private val headerHeight: Int
-        get() = if (coins.size > maxCoinsToDisplay) {
-            (coinSize * 1.2f).toInt()   // icon + text
-        } else {
-            coinSize + GameView.globalPadding
-        }
+        get() = (coinSize * 1.2f).toInt()
 
 
     /** maximum number of coins that are displayed separately */
-    private var maxCoinsToDisplay = 1
 
     private var currentWiki: Hero? = null
 
@@ -254,14 +249,13 @@ class Marketplace(val gameView: GameView) : GameElement() {
             }
             return true
         }
-        if (coins.size <= maxCoinsToDisplay)
-            for (coin in coins) {
-                if (coin.myArea.contains(event.x.toInt(), event.y.toInt())) {
-                    if (!coin.isCurrentlyFlipping)
-                        Flipper(gameView, coin, Flipper.Type.HORIZONTAL)
-                    return true
-                }
+        for (coin in coins) {
+            if (coin.myArea.contains(event.x.toInt(), event.y.toInt())) {
+                if (!coin.isCurrentlyFlipping)
+                    Flipper(gameView, coin, Flipper.Type.HORIZONTAL)
+                return true
             }
+        }
         for (hero in upgrades)
             if (hero.card.cardAreaOnScreen.contains(event.x.toInt(), event.y.toInt()))
                 hero.let {
@@ -461,14 +455,16 @@ class Marketplace(val gameView: GameView) : GameElement() {
     }
 
     private fun purchaseButtonText(card: Hero?): String {
-        val text: String? = card?.let {
-            if (it.data.level <= 1)
+        val hero = card ?: selected
+        hero?.let {
+            val level = it.data.level
+            val price = it.getPrice(level)
+            return if (level <= 1)
                 resources.getString(R.string.button_purchase)
             else
-                resources.getString(R.string.button_purchase_plural)
-                    .format(it.getPrice(card.data.level))
+                resources.getString(R.string.button_purchase_plural).format(price)
         }
-        return text ?: resources.getString(R.string.button_purchase)
+        return resources.getString(R.string.button_purchase)
     }
 
     private fun displayRefundOneButton(card: Hero?): Boolean {

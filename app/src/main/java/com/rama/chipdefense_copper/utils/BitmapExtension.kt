@@ -86,7 +86,7 @@ fun Context.createHero(
 ): Bitmap {
     val width = 400
     val height = 400
-    val padding = 16
+    val padding = 56
 
     val themedContext =
         if (styleRes != null) ContextThemeWrapper(this, styleRes) else this
@@ -125,7 +125,7 @@ fun Context.createHero(
     )
 
     val descriptionLayout = StaticLayout(
-            description.toUpperCase(),
+            ("<" + description + ">").toUpperCase(),
             descriptionPaint,
             width - padding * 2,
             Layout.Alignment.ALIGN_CENTER,
