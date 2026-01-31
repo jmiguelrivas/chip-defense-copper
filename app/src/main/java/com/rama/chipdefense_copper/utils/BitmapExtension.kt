@@ -80,7 +80,6 @@ fun Context.resolveColorAttr(@AttrRes attr: Int): Int {
 }
 
 fun Context.createHero(
-    @DrawableRes drawableId: Int,
     title: String = "Alan Turing",
     description: String = "United Kingdom",
     @StyleRes styleRes: Int? = null
@@ -92,8 +91,8 @@ fun Context.createHero(
     val themedContext =
         if (styleRes != null) ContextThemeWrapper(this, styleRes) else this
 
-    val drawable = AppCompatResources.getDrawable(themedContext, drawableId)
-        ?: error("Drawable not found: $drawableId")
+    val drawable = AppCompatResources.getDrawable(themedContext, R.drawable.vector_cpu)
+        ?: error("Drawable not found: R.drawable.vector_cpu")
 
     val colorParam =
         R.color.background_tertiary_color//themedContext.resolveColorAttr(R.attr.chipTextColor)

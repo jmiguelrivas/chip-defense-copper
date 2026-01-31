@@ -466,11 +466,9 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     effect = resources.getString(R.string.HERO_EFFECT_CHIPSPEED).format("SUB")
                     vitae = resources.getString(R.string.turing)
                     picture = gameActivity.createHero(
-                            R.drawable.vector_cpu,
                             "Alan Turing",
                             "United Kingdon",
                             R.style.Chip_Green
-
                     )
                 }
 
