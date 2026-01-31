@@ -468,8 +468,9 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             R.drawable.vector_cpu,
                             "Alan Turing",
-                            "United K/ingdon",
+                            "United Kingdon",
                             R.style.Chip_Green
+
                     )
                 }
 

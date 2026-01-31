@@ -18,6 +18,7 @@ import androidx.annotation.StyleRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
+import com.rama.chipdefense_copper.R
 
 fun Bitmap.flipHorizontally(): Bitmap
         /** flips the bitmap horizontally. Taken from
@@ -82,10 +83,11 @@ fun Context.createHero(
     @DrawableRes drawableId: Int,
     name: String = "Alan Turing",
     country: String = "United Kingdom",
-    width: Int = 250,
-    height: Int = 250,
     @StyleRes styleRes: Int? = null
 ): Bitmap {
+    val width = 250
+    val height = 250
+    val padding = 16
 
     val themedContext =
         if (styleRes != null) ContextThemeWrapper(this, styleRes) else this
@@ -93,11 +95,14 @@ fun Context.createHero(
     val drawable = AppCompatResources.getDrawable(themedContext, drawableId)
         ?: error("Drawable not found: $drawableId")
 
+    val colorParam =
+        R.color.background_tertiary_color//themedContext.resolveColorAttr(R.attr.chipTextColor)
+
     // --- TEXT PAINTS (same pattern as the rest of the app)
     val titlePaint = TextPaint(
             textStyle(
                     themedContext,
-                    colorParam = themedContext.resolveColorAttr(android.R.attr.textColor),
+                    colorParam = colorParam,
                     textSizeSp = 12f
             )
     )
@@ -105,16 +110,16 @@ fun Context.createHero(
     val countryPaint = TextPaint(
             textStyle(
                     themedContext,
-                    colorParam = themedContext.resolveColorAttr(android.R.attr.textColor),
+                    colorParam = colorParam,
                     textSizeSp = 12f
             )
     )
 
-    // --- TEXT LAYOUTS (legacy StaticLayout, API 21-safe)
+    // --- TEXT LAYOUTS
     val titleLayout = StaticLayout(
             name,
             titlePaint,
-            width,
+            width - padding * 2,
             Layout.Alignment.ALIGN_CENTER,
             1.0f,
             0.0f,
@@ -124,7 +129,7 @@ fun Context.createHero(
     val countryLayout = StaticLayout(
             country,
             countryPaint,
-            width,
+            width - padding * 2,
             Layout.Alignment.ALIGN_CENTER,
             1.0f,
             0.0f,
@@ -141,13 +146,13 @@ fun Context.createHero(
 
     // --- DRAW TITLE (top)
     canvas.save()
-    canvas.translate(0f, 8f)
+    canvas.translate(padding.toFloat(), 8f)
     titleLayout.draw(canvas)
     canvas.restore()
 
     // --- DRAW COUNTRY (below title)
     canvas.save()
-    canvas.translate(0f, (8 + titleLayout.height).toFloat())
+    canvas.translate(padding.toFloat(), (8 + titleLayout.height).toFloat())
     countryLayout.draw(canvas)
     canvas.restore()
 

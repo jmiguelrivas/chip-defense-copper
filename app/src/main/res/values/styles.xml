@@ -122,13 +122,13 @@
         <item name="coinBrandHighlight">#ff5c2b</item>
     </style>
 
-    <!-- VECTORS: HERO -->
+    <!-- VECTORS: CHIPS -->
 
     <style name="Chip">
-        <item name="textColor">#d44915</item>
+        <item name="chipTextColor">#d44915</item>
     </style>
 
     <style name="Chip.Green">
-        <item name="textColor">#59d739</item>
+        <item name="chipTextColor">#59d739</item>
     </style>
 </resources>
