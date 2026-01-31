@@ -48,7 +48,7 @@ class GameView(context: Context) :
         const val computerTextSize = 26f
         const val notificationTextSize = 22f
         const val heroCardTextSize = 28f
-        const val coinsAmountTextSize = 22f
+        const val coinsAmountTextSize = 28f
 
         const val coinSizeOnScreen = 16
         const val cardWidth = 600

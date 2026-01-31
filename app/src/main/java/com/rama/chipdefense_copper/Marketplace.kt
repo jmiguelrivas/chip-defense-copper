@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
+import android.text.TextPaint
 import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.Toast
@@ -19,8 +20,8 @@ import com.rama.chipdefense_copper.effects.Flipper
 import com.rama.chipdefense_copper.gameElements.Button
 import com.rama.chipdefense_copper.gameElements.GameElement
 import com.rama.chipdefense_copper.networkmap.Viewport
-import com.rama.chipdefense_copper.utils.displayTextLeftAlignedInRect
 import com.rama.chipdefense_copper.utils.setCenter
+import com.rama.chipdefense_copper.utils.textStyleContent
 
 class Marketplace(val gameView: GameView) : GameElement() {
     private val resources: Resources = gameView.resources
@@ -49,6 +50,14 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private var coins = mutableListOf<Coin>()
     private var coinSize = (32 * gameView.scaleFactor).toInt()
 
+    private val headerHeight: Int
+        get() = if (coins.size > maxCoinsToDisplay) {
+            (coinSize * 1.2f).toInt()   // icon + text
+        } else {
+            coinSize + GameView.globalPadding
+        }
+
+
     /** maximum number of coins that are displayed separately */
     private var maxCoinsToDisplay = 1
 
@@ -67,7 +76,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
         // set main area
         myArea = Rect(
                 area.left,
-                area.top + GameView.notchSize + GameView.globalPadding, // shift down by notch + margin
+                area.top + GameView.notchSize + headerHeight,
                 area.right,
                 area.bottom
         )
@@ -75,7 +84,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
         // cards area at top
         cardsArea = Rect(
                 GameView.globalPadding,
-                myArea.top,
+                myArea.top + GameView.globalPadding,
                 myArea.right - GameView.globalPadding,
                 (myArea.top + GameView.cardHeight + 90).toInt()
         )
@@ -86,7 +95,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
         // bio panel area is between cards and buttons
         bioPanel = Rect(
                 myArea.left + GameView.globalPadding,
-                cardsArea.bottom + GameView.globalPadding * 2,
+                cardsArea.bottom + GameView.globalPadding * 3,
                 myArea.right - GameView.globalPadding,
                 myArea.bottom - (buttonFinish?.area?.height()
                     ?: 0) - 16 /* optional bottom margin */
@@ -408,38 +417,38 @@ class Marketplace(val gameView: GameView) : GameElement() {
         selected?.biography?.display(canvas)
     }
 
-    private fun displayAvailableCoins(canvas: Canvas, viewport: Viewport, coinsArea: Rect) {
-        // draw 'total coins' line
-        canvas.drawRect(coinsArea, clearPaint)
-        val y = coinsArea.bottom.toFloat() - paint.strokeWidth
-        canvas.drawLine(0f, y, myArea.right.toFloat(), y, paint)
+    private fun displayAvailableCoins(
+        canvas: Canvas,
+        viewport: Viewport,
+        coinsArea: Rect
+    ) {
+        displayCompactCoins(canvas, viewport, coinsArea)
+    }
 
-        // determine size and spacing of coins
-        val coinLeftMargin = coinSize / 2
-        var deltaX = coinSize + 2
-        if (coins.size * deltaX + 2 * coinLeftMargin > coinsArea.width())  // coins do not fit, must overlap
-            deltaX = (myArea.width() - 2 * coinLeftMargin) / coins.size
-        val coinPosY = coinsArea.centerY()
-        var coinPosX = coinLeftMargin
-        paint.textSize = gameView.textScaleFactor * GameView.coinsAmountTextSize
-        paint.style = Paint.Style.FILL
+    private fun displayCompactCoins(
+        canvas: Canvas,
+        viewport: Viewport,
+        area: Rect
+    ) {
+        val coin = coins.first()
+        val centerY = area.centerY()
+        val startX = area.left + GameView.globalPadding
 
-        // draw single coins if there are not too many
-        // otherwise display only one icon and the total number
-        if (coins.size > maxCoinsToDisplay) {
-            coins[0].let { coin ->
-                coin.setCenter(coinPosX, coinPosY)
-                coin.display(canvas, viewport)
-                coinsArea.left = coin.myArea.right + coinLeftMargin
-                resources.getString(R.string.coins_available).format(coins.size).let {
-                    coinsArea.displayTextLeftAlignedInRect(canvas, it, paint)
-                }
-            }
-        } else for (c in coins) {
-            c.setCenter(coinPosX, coinPosY)
-            c.display(canvas, viewport)
-            coinPosX += deltaX
+        coin.setCenter(startX + coinSize / 2, centerY)
+        coin.display(canvas, viewport)
+
+        val text = "× ${coins.size}"
+
+        val textPaint = TextPaint(
+                textStyleContent(gameView.context)
+        ).apply {
+            textSize *= gameView.textScaleFactor
         }
+
+        val textX = coin.myArea.right + GameView.globalPadding
+        val textY = centerY + textPaint.textSize / 3
+
+        canvas.drawText(text, textX.toFloat(), textY, textPaint)
     }
 
     private fun makeButtonText(card: Hero?) {

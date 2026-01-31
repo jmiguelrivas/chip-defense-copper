@@ -115,7 +115,6 @@
     <string name="message_cannot_fire">Use “%s” to release this hero.</string>
     <string name="message_is_on_leave">%s is currently on leave.</string>
     <string name="button_wiki">"Check Wikipedia Bio"</string>
-    <string name="coins_available">× %d</string>
     <string name="coins_received_as_gift">You received %d coins as gift.</string>
 
     <!-- INSTRUCTIONS -->
