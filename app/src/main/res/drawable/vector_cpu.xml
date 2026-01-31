@@ -11,14 +11,14 @@
       android:fillColor="#3e4d59"/>
   <path
       android:pathData="M6.35,4.233v0.53h-0.53v0.529h-0.528v0.529h-0.53v0.529h-0.529v21.167h0.53v0.529h0.529v0.529h0.529v0.53h0.529v0.528h21.167v-0.529h0.529v-0.529h0.529v-0.53h0.53v-0.528h0.528V6.35h-0.529v-0.53h-0.529v-0.528h-0.53v-0.53h-0.528v-0.529H6.35z"
-      android:fillColor="#bdc2d0"/>
+      android:fillColor="?attr/chipBase"/>
   <path
       android:pathData="M15.875,4.233v0.53h11.112v0.529h0.53v0.529h0.529v0.529h0.529v0.53h0.53v11.112h0.528V6.35h-0.529v-0.53h-0.529v-0.528h-0.53v-0.53h-0.528v-0.529H15.875zM4.233,15.875v11.642h0.53v0.529h0.529v0.529h0.529v0.53h0.529v0.528h11.642v-0.529H6.879v-0.529H6.35v-0.53h-0.53v-0.528h-0.528v-0.53h-0.53V15.876h-0.529z"
-      android:fillColor="#a1aec6"/>
+      android:fillColor="?attr/chipMidTone"/>
   <path
       android:pathData="M29.104,6.35h0.53v21.167h-0.53v0.529h-0.529v0.529h-0.53v0.53h-0.528v0.528H6.35v-0.529h20.638v-0.529h0.529v-0.53h0.529v-0.528h0.529v-0.53h0.53z"
-      android:fillColor="#5f6577"/>
+      android:fillColor="?attr/chipShadow"/>
   <path
       android:pathData="M4.763,26.458h-0.53V6.35h0.53v-0.53h0.529v-0.528h0.529v-0.53h0.529v-0.529h20.108v0.53H6.88v0.529h-0.53v0.529h-0.53v0.529h-0.528v0.53h-0.53Z"
-      android:fillColor="#d1d8e4"/>
+      android:fillColor="?attr/chipHighlight"/>
 </vector>

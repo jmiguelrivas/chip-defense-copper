@@ -109,7 +109,7 @@ fun Context.createHero(
             textStyle(
                     themedContext,
                     colorParam = R.color.chip_description,
-                    textSizeSp = 10f
+                    textSizeSp = 9f
             )
     )
 

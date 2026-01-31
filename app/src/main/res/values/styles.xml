@@ -80,55 +80,58 @@
         <item name="coinHighlight">#d44915</item>
         <item name="coinMidTone">#d44915</item>
         <item name="coinShadow">#d44915</item>
-        <item name="coinBrand">#d44915</item>
-        <item name="coinBrandShadow">#d44915</item>
-        <item name="coinBrandMidTones">#d44915</item>
-        <item name="coinBrandHighlight">#d44915</item>
     </style>
 
     <style name="Coin.Green">
-        <item name="coinBase">#59d739</item>
+        <item name="coinBase">#46bc6b</item>
         <item name="coinOutline">#66ac34</item>
         <item name="coinHighlight">#c6ffc9</item>
-        <item name="coinMidTone">#46bc6b</item>
-        <item name="coinShadow">#31b741</item>
-        <item name="coinBrand">#a9f9a1</item>
-        <item name="coinBrandShadow">#3ba734</item>
-        <item name="coinBrandMidTones">#4cc448</item>
-        <item name="coinBrandHighlight">#60c952</item>
+        <item name="coinMidTone">#59d739</item>
+        <item name="coinShadow">#1F832B</item>
     </style>
 
     <style name="Coin.Gold">
-        <item name="coinBase">#f1ae20</item>
+        <item name="coinBase">#fec654</item>
         <item name="coinOutline">#d88f04</item>
         <item name="coinHighlight">#ffecc6</item>
-        <item name="coinMidTone">#fec654</item>
+        <item name="coinMidTone">#f1ae20</item>
         <item name="coinShadow">#e89c00</item>
-        <item name="coinBrand">#ffd387</item>
-        <item name="coinBrandShadow">#db9300</item>
-        <item name="coinBrandMidTones">#eaa622</item>
-        <item name="coinBrandHighlight">#ffb931</item>
     </style>
 
     <style name="Coin.Red">
-        <item name="coinBase">#d44915</item>
+        <item name="coinBase">#e85e4d</item>
         <item name="coinOutline">#b72c29</item>
         <item name="coinHighlight">#ff9471</item>
-        <item name="coinMidTone">#e85e4d</item>
+        <item name="coinMidTone">#d44915</item>
         <item name="coinShadow">#b72c29</item>
-        <item name="coinBrand">#f78d89</item>
-        <item name="coinBrandShadow">#bd3b1e</item>
-        <item name="coinBrandMidTones">#ea420b</item>
-        <item name="coinBrandHighlight">#ff5c2b</item>
     </style>
 
     <!-- VECTORS: CHIPS -->
-
     <style name="Chip">
-        <item name="chipTextColor">#d44915</item>
+        <item name="chipBase">#bdc2d0</item>
+        <item name="chipHighlight">#d1d8e4</item>
+        <item name="chipMidTone">#a1aec6</item>
+        <item name="chipShadow">#5f6577</item>
     </style>
 
     <style name="Chip.Green">
-        <item name="chipTextColor">#59d739</item>
+        <item name="chipBase">#a6d69e</item>
+        <item name="chipHighlight">#c9f4a5</item>
+        <item name="chipMidTone">#76bc31</item>
+        <item name="chipShadow">#5e922c</item>
+    </style>
+
+    <style name="Chip.Gold">
+        <item name="chipBase">#eed468</item>
+        <item name="chipHighlight">#f4e8a5</item>
+        <item name="chipMidTone">#bca831</item>
+        <item name="chipShadow">#92792c</item>
+    </style>
+
+    <style name="Chip.Red">
+        <item name="chipBase">#ee8968</item>
+        <item name="chipHighlight">#eab4a5</item>
+        <item name="chipMidTone">#bc5c31</item>
+        <item name="chipShadow">#923b2c</item>
     </style>
 </resources>

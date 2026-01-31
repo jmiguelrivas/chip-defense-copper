@@ -20,12 +20,12 @@
     <attr name="coinShadow" format="color" />
     <attr name="coinMidTone" format="color" />
     <attr name="coinHighlight" format="color" />
-    <attr name="coinBrand" format="color" />
-    <attr name="coinBrandShadow" format="color" />
-    <attr name="coinBrandMidTones" format="color" />
-    <attr name="coinBrandHighlight" format="color" />
 
-    <attr name="chipTextColor" format="color" />
+    <attr name="chipBase" format="color" />
+    <attr name="chipShadow" format="color" />
+    <attr name="chipMidTone" format="color" />
+    <attr name="chipHighlight" format="color" />
+
 </resources>
 
 
