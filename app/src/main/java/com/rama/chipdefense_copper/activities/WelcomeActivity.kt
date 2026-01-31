@@ -54,42 +54,6 @@ class WelcomeActivity : BaseFullscreenActivity() {
         endlessSeriesAvailable = prefs.getBoolean("ENDLESS_AVAILABLE", false)
     }
 
-    private fun showLevelReached()
-            /** displays the max level reached so far as graphical display */
-    {
-        // display as graphics:
-//        var displayLit = true
-//        val display =
-//            SevenSegmentDisplay(4, (80 * resources.displayMetrics.scaledDensity).toInt(), this)
-//        val imageView = findViewById<ImageView>(R.id.sevenSegmentDisplay)
-//        val radix = if (settings.showLevelsInHex) 16 else 10
-//        if (maxLevel.number == 0)
-//            displayLit = false
-//        when (maxLevel.series) {
-//            GameMechanics.SERIES_NORMAL -> imageView.setImageBitmap(
-//                display.getDisplayBitmap(
-//                        maxLevel.number,
-//                        SevenSegmentDisplay.LedColors.GREEN,
-//                        displayLit, radix
-//                )
-//            )
-//            GameMechanics.SERIES_TURBO -> imageView.setImageBitmap(
-//                display.getDisplayBitmap(
-//                        maxLevel.number,
-//                        SevenSegmentDisplay.LedColors.YELLOW,
-//                        displayLit, radix
-//                )
-//            )
-//            else -> imageView.setImageBitmap(
-//                display.getDisplayBitmap(
-//                        maxLevel.number,
-//                        SevenSegmentDisplay.LedColors.RED,
-//                        displayLit, radix
-//                )
-//            )
-//        }
-    }
-
     @Suppress("UNUSED_PARAMETER")
     fun showMaxLevelInfo(v: View) {
         /** displays the max level reached so far as graphical display */
@@ -148,8 +112,6 @@ class WelcomeActivity : BaseFullscreenActivity() {
         if (maxLevel.series == 1 && maxLevel.number == 0)
             migrateLevelInfo(prefsLegacy, prefsState)
 
-        showLevelReached()
-
         val buttonResume = findViewById<Button>(R.id.continueGameButton)
 
         buttonResume.text = when {
@@ -185,7 +147,6 @@ class WelcomeActivity : BaseFullscreenActivity() {
         val prefs = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.loadFromFile(prefs)
         setupButtons()
-        showLevelReached()
     }
 
     fun resumeGame(@Suppress("UNUSED_PARAMETER") v: View) {
@@ -235,7 +196,7 @@ class WelcomeActivity : BaseFullscreenActivity() {
         startActivity(intent)
     }
 
-    fun exitActivity(@Suppress("UNUSED_PARAMETER") v: View) {
-        finish()
+    fun exitActivity(v: View) {
+        finishAffinity()
     }
 }
