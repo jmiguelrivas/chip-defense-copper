@@ -8,16 +8,13 @@ import android.text.TextPaint
 import com.rama.chipdefense_copper.GameView
 import com.rama.chipdefense_copper.Hero
 import com.rama.chipdefense_copper.R
-import com.rama.chipdefense_copper.effects.Fadable
-import com.rama.chipdefense_copper.effects.Fader
 import com.rama.chipdefense_copper.networkmap.Viewport
-import com.rama.chipdefense_copper.utils.center
 import com.rama.chipdefense_copper.utils.displayTextCenteredInRect
 import com.rama.chipdefense_copper.utils.setCenter
 import com.rama.chipdefense_copper.utils.setTopLeft
 import com.rama.chipdefense_copper.utils.textStyleContent
 
-class HeroCard(val gameView: GameView, val hero: Hero) : GameElement(), Fadable
+class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
 /** graphical representation of a hero or a heroine */
 {
     val type = hero.data.type
@@ -57,6 +54,8 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement(), Fadable
     private var paintIndicator = Paint()
     private var paintText = Paint()
     private val paintHero = Paint()
+
+    var isVisible: Boolean = false
 
     var inactiveColor = resources.getColor(R.color.foreground_inactive_color)
     private var monochromeColor = inactiveColor
@@ -124,13 +123,36 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement(), Fadable
 
         // display hero picture
         // (this is put here because of fading)
+        // display hero picture
         if (hero.isOnLeave) {
-            portraitAreaOnScreen.displayTextCenteredInRect(canvas, "On leave", paintText)
-        } else // not on leave, this is the normal case
-        {
-            paintHero.alpha = (255f * heroOpacity).toInt()
-            hero.person.picture?.let { canvas.drawBitmap(it, null, portraitAreaOnScreen, paintHero) }
+            portraitAreaOnScreen.displayTextCenteredInRect(
+                    canvas,
+                    "On leave",
+                    paintText
+            )
+        } else {
+            if (hero.data.level == 0) {
+                // Hero not unlocked → draw empty chip
+                canvas.drawBitmap(
+                        gameView.emptyChip,
+                        null,
+                        portraitAreaOnScreen,
+                        null
+                )
+            } else {
+                // Hero unlocked → draw portrait
+                paintHero.alpha = (255f * heroOpacity).toInt()
+                hero.person.picture?.let {
+                    canvas.drawBitmap(it, null, portraitAreaOnScreen, paintHero)
+                }
+            }
         }
+    }
+
+    fun appearInstant() {
+        heroOpacity = 1f
+        isVisible = true
+        graphicalState = GraphicalState.NORMAL
     }
 
     fun displayHighlightFrame(canvas: Canvas) {
@@ -265,39 +287,19 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement(), Fadable
     }
 
 
-    fun upgradeAnimation()
-            /** graphical transition that is called when upgrading the hero in the marketplace */
-    {
-        if (hero.data.level == 1) {
-            Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.FAST)
-            graphicalState = GraphicalState.TRANSIENT_LEVEL_0
-        } else {
-            Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.FAST)
-            graphicalState = GraphicalState.TRANSIENT
-        }
+    fun upgradeAnimation() {
+        appearInstant()
+        graphicalState = GraphicalState.TRANSIENT
     }
 
-    fun downgradeAnimation()
-            /** graphical transition that is called when downgrading the hero in the marketplace */
-    {
+    fun downgradeAnimation() {
         if (hero.data.level == 0) {
-            Fader(gameView, this, Fader.Type.DISAPPEAR, Fader.Speed.FAST)
+            heroOpacity = 0f
+            isVisible = false
             graphicalState = GraphicalState.TRANSIENT_LEVEL_0
         } else {
-            Fader(gameView, this, Fader.Type.APPEAR, Fader.Speed.FAST)
+            appearInstant()
             graphicalState = GraphicalState.TRANSIENT
         }
-    }
-
-    override fun fadeDone(type: Fader.Type) {
-        if (hero.data.level == 0)
-            heroOpacity = 0.0f
-        else
-            heroOpacity = 1.0f
-        graphicalState = GraphicalState.NORMAL
-    }
-
-    override fun setOpacity(opacity: Float) {
-        transition = opacity
     }
 }

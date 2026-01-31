@@ -95,6 +95,12 @@ class GameView(context: Context) :
             R.style.Coin_Red
     )
 
+    val emptyChip: Bitmap = context.vectorToBitmap(
+            R.drawable.vector_cpu,
+            400,
+            400,
+            R.style.Chip
+    )
 
     val cpuImage: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.cpu)
     val playIcon: Bitmap = context.vectorToBitmap(

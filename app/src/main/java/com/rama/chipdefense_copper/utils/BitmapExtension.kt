@@ -80,8 +80,8 @@ fun Context.resolveColorAttr(@AttrRes attr: Int): Int {
 }
 
 fun Context.createHero(
-    title: String = "Alan Turing",
-    description: String = "United Kingdom",
+    title: String,
+    description: String,
     @StyleRes styleRes: Int? = null
 ): Bitmap {
     val width = 400
@@ -162,5 +162,4 @@ fun Context.createHero(
 
     return bitmap
 }
-
 
