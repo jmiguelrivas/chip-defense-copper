@@ -65,7 +65,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
     /* string variables, will be overwritten later */
     var shortDesc: String = "effect description"
     var strengthDesc: String = "format string"
-    var upgradeDesc: String = " → next level"
+    var upgradeDesc: String = " >>  next level"
     private var costDesc: String = "[cost: ]"
 
     /** reference to the person data of this hero */
@@ -103,167 +103,167 @@ class Hero(var gameActivity: GameActivity, type: Type)
             Type.INCREASE_CHIP_SUB_SPEED -> {
                 shortDesc = resources.getString(R.string.shortdesc_SUB)
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → x %.2f".format(next)
+                upgradeDesc = " >>  x %.2f".format(next)
             }
 
             Type.INCREASE_STARTING_CASH -> {
                 shortDesc = resources.getString(R.string.shortdesc_startinfo)
                 strengthDesc = "%d bits".format(strength.toInt())
-                upgradeDesc = " → %d bits".format(next.toInt())
+                upgradeDesc = " >>  %d bits".format(next.toInt())
             }
 
             Type.INCREASE_CHIP_SHR_SPEED -> {
                 shortDesc = resources.getString(R.string.shortdesc_SHR)
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.INCREASE_CHIP_MEM_SPEED -> {
                 shortDesc = resources.getString(R.string.shortdesc_MEM)
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.INCREASE_CHIP_RES_STRENGTH -> {
                 shortDesc = resources.getString(R.string.shortdesc_RES)
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.INCREASE_CHIP_RES_DURATION -> {
                 shortDesc = resources.getString(R.string.shortdesc_duration)
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.REDUCE_HEAT -> {
                 shortDesc = resources.getString(R.string.shortdesc_heat)
                 strengthDesc = "-%d%%".format(strength.toInt())
-                upgradeDesc = " → -%d%%".format(next.toInt())
+                upgradeDesc = " >>  -%d%%".format(next.toInt())
             }
 
             Type.DECREASE_UPGRADE_COST -> {
                 shortDesc = resources.getString(R.string.shortdesc_upgrade)
                 strengthDesc = "-%d%%".format(strength.toInt())
-                upgradeDesc = " → -%d%%".format(next.toInt())
+                upgradeDesc = " >>  -%d%%".format(next.toInt())
             }
 
             Type.ADDITIONAL_LIVES -> {
                 shortDesc = resources.getString(R.string.shortdesc_lives)
                 strengthDesc = "%d".format(strength.toInt())
-                upgradeDesc = " → %d".format(next.toInt())
+                upgradeDesc = " >>  %d".format(next.toInt())
                 maxLevel = 3
             }
 
             Type.DECREASE_ATT_FREQ -> {
                 shortDesc = resources.getString(R.string.shortdesc_frequency)
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.DECREASE_ATT_SPEED -> {
                 shortDesc = resources.getString(R.string.shortdesc_att_speed)
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.DECREASE_COIN_STRENGTH -> {
                 shortDesc = resources.getString(R.string.shortdesc_coin_strength)
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.INCREASE_MAX_HERO_LEVEL -> {
                 shortDesc = resources.getString(R.string.shortdesc_max_hero_upgrade)
                 strengthDesc = "+%d".format(strength.toInt())
-                upgradeDesc = " → +%d".format(next.toInt())
+                upgradeDesc = " >>  +%d".format(next.toInt())
                 maxLevel = 3
             }
 
             Type.LIMIT_UNWANTED_CHIPS -> {
                 shortDesc = resources.getString(R.string.shortdesc_limit_unwanted)
                 strengthDesc = "-%d".format(strength.toInt())
-                upgradeDesc = " → -%d".format(next.toInt())
+                upgradeDesc = " >>  -%d".format(next.toInt())
             }
 
             Type.CREATE_ADDITIONAL_CHIPS -> {
                 shortDesc = resources.getString(R.string.shortdesc_create_wanted)
                 strengthDesc = "+%d".format(strength.toInt())
-                upgradeDesc = " → +%d".format(next.toInt())
+                upgradeDesc = " >>  +%d".format(next.toInt())
             }
 
             Type.ENABLE_MEM_UPGRADE -> {
                 shortDesc = resources.getString(R.string.shortdesc_enable_mem_upgrade)
                 strengthDesc = "%d".format(strength.toInt())
-                upgradeDesc = " → %d".format(next.toInt())
+                upgradeDesc = " >>  %d".format(next.toInt())
                 maxLevel = GameMechanics.maxInternalChipStorage - 1
             }
 
             Type.GAIN_CASH -> {
                 shortDesc = resources.getString(R.string.shortdesc_info_gain)
                 strengthDesc = "1 bit/%d ticks".format(strength.toInt())
-                upgradeDesc = " → 1/%d ticks".format(next.toInt())
+                upgradeDesc = " >>  1/%d ticks".format(next.toInt())
             }
 
             Type.GAIN_CASH_ON_KILL -> {
                 shortDesc = resources.getString(R.string.shortdesc_info_on_kill)
                 strengthDesc = "%d bit/kill".format(strength.toInt())
-                upgradeDesc = " → %d bit/kill".format(next.toInt())
+                upgradeDesc = " >>  %d bit/kill".format(next.toInt())
             }
 
             Type.INCREASE_REFUND -> {
                 shortDesc = resources.getString(R.string.shortdesc_refund)
                 strengthDesc = "%d%%".format(strength.toInt())
-                upgradeDesc = " → %d%%".format(next.toInt())
+                upgradeDesc = " >>  %d%%".format(next.toInt())
                 maxLevel = 5  // even at level 6, refund is more than 100%
             }
 
             Type.INCREASE_CHIP_SUB_RANGE -> {
                 shortDesc = resources.getString(R.string.shortdesc_range).format("SUB")
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.INCREASE_CHIP_SHR_RANGE -> {
                 shortDesc = resources.getString(R.string.shortdesc_range).format("SHR")
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.INCREASE_CHIP_MEM_RANGE -> {
                 shortDesc = resources.getString(R.string.shortdesc_range).format("MEM")
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.DECREASE_ATT_STRENGTH -> {
                 shortDesc = resources.getString(R.string.shortdesc_att_strength)
                 strengthDesc = "x %.2f".format(strength)
-                upgradeDesc = " → %.2f".format(next)
+                upgradeDesc = " >>  %.2f".format(next)
             }
 
             Type.DECREASE_REMOVAL_COST -> {
                 shortDesc = resources.getString(R.string.shortdesc_reduce_removal)
                 strengthDesc = "-%d%%".format(strength.toInt())
-                upgradeDesc = " → -%d%%".format(next.toInt())
+                upgradeDesc = " >>  -%d%%".format(next.toInt())
             }
 
             Type.CONVERT_HEAT -> {
                 shortDesc = resources.getString(R.string.shortdesc_heat_conversion)
                 strengthDesc = "%d%%".format(strength.toInt())
-                upgradeDesc = " → %d%%".format(next.toInt())
+                upgradeDesc = " >>  %d%%".format(next.toInt())
             }
 
             Type.DOUBLE_HIT_SUB -> {
                 shortDesc = resources.getString(R.string.shortdesc_double_chance).format("SUB")
                 strengthDesc = "%d%%".format(strength.toInt())
-                upgradeDesc = " → %d%%".format(next.toInt())
+                upgradeDesc = " >>  %d%%".format(next.toInt())
             }
 
             Type.DOUBLE_HIT_SHR -> {
                 shortDesc = resources.getString(R.string.shortdesc_double_chance).format("SHR")
                 strengthDesc = "%d%%".format(strength.toInt())
-                upgradeDesc = " → %d%%".format(next.toInt())
+                upgradeDesc = " >>  %d%%".format(next.toInt())
             }
         }
         val cost = getPrice(data.level)
@@ -467,7 +467,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     vitae = resources.getString(R.string.turing)
                     picture = gameActivity.createHero(
                             "Alan Turing",
-                            "United Kingdon",
+                            "<" + resources.getString(R.string.shortdesc_SUB) + ">",
                             R.style.Chip_Green
                     )
                 }

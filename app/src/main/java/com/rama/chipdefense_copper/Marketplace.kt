@@ -86,7 +86,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
         // bio panel area is between cards and buttons
         bioPanel = Rect(
                 myArea.left + GameView.globalPadding,
-                cardsArea.bottom + GameView.globalPadding,
+                cardsArea.bottom + GameView.globalPadding * 2,
                 myArea.right - GameView.globalPadding,
                 myArea.bottom - (buttonFinish?.area?.height()
                     ?: 0) - 16 /* optional bottom margin */
@@ -171,7 +171,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
         buttonRefundAll?.let { buttonsStack.add(it) }
 
         buttonPurchase?.let { buttonsStack.add(it) }
-        
+
         if (showRefundOneButton) {
             buttonRefund?.let { buttonsStack.add(it) }
         }
@@ -393,7 +393,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
         for (hero in upgrades)
             hero.card.display(canvas, viewport)
 
-        displayAvailableCoins(canvas, viewport, Rect(0, 0, myArea.right, cardsArea.top))
+        displayAvailableCoins(canvas, viewport, Rect(0, GameView.notchSize, myArea.right, cardsArea.top))
 
         // draw buttons
         buttonFinish?.display(canvas)

@@ -115,7 +115,7 @@
     <string name="message_cannot_fire">Use “%s” to release this hero.</string>
     <string name="message_is_on_leave">%s is currently on leave.</string>
     <string name="button_wiki">"Check Wikipedia Bio"</string>
-    <string name="coins_available">Coins available: %d</string>
+    <string name="coins_available">× %d</string>
     <string name="coins_received_as_gift">You received %d coins as gift.</string>
 
     <!-- INSTRUCTIONS -->
@@ -247,12 +247,12 @@
     <string name="url_boole">https://en.wikipedia.org/wiki/George_Boole</string>
 
     <!-- HEROES :: EFFECT -->
-    <string name="shortdesc_SUB">SUB :: Chip speed</string>
+    <string name="shortdesc_SUB">SUB Chip speed</string>
     <string name="shortdesc_startinfo">Starting information</string>
     <string name="shortdesc_info_on_kill">Additional info</string>
-    <string name="shortdesc_SHR">SHR :: Chip speed</string>
-    <string name="shortdesc_ACC">ACC :: Chip speed</string>
-    <string name="shortdesc_MEM">MEM :: Chip speed</string>
+    <string name="shortdesc_SHR">SHR Chip speed</string>
+    <string name="shortdesc_ACC">ACC Chip speed</string>
+    <string name="shortdesc_MEM">MEM Chip speed</string>
     <string name="shortdesc_RES">Resistance value</string>
     <string name="shortdesc_duration">Resistance effect duration</string>
     <string name="shortdesc_heat">Generated heat</string>
@@ -298,7 +298,7 @@
     <string name="HERO_EFFECT_CHANCE_DOUBLE">Gives %s chips a chance of double effect</string>
 
     <!-- _________________________________________________________________________________ -->
-    
+
     <string name="coins_singular">one coin</string>
     <string name="coins_plural">%d coins</string>
     <string name="coins_none">no coins</string>

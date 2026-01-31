@@ -25,6 +25,9 @@
     <color name="dashboard_display_background_color">#112</color>
     <color name="dashboard_divider_color">#2a304f</color>
 
+    <color name="chip_title">#556</color>
+    <color name="chip_description">#667</color>
+
     <!-- _________________________________________________________________________________ -->
 
     <color name="purple_200">#FFBB86FC</color>

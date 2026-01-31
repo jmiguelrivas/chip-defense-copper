@@ -53,7 +53,7 @@ class GameView(context: Context) :
         const val coinSizeOnScreen = 16
         const val cardWidth = 600
         const val cardHeight = cardWidth * 1.25
-        const val cardPictureSize = cardWidth * 2 / 3
+        const val cardPictureSize = cardWidth - GameView.globalPadding * 2
         val chipSize = Coord(6, 3)
         const val viewportMargin = 10
         const val minScoreBoardHeight = 100

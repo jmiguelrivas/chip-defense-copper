@@ -2,16 +2,12 @@ package com.rama.chipdefense_copper
 
 import android.app.Activity
 import android.content.SharedPreferences
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.util.Base64
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.rama.chipdefense_copper.activities.GameActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.ByteArrayOutputStream
 import java.io.File
 
 class Persistency(private val activity: Activity) {
@@ -22,12 +18,11 @@ class Persistency(private val activity: Activity) {
         const val filename_legacy = "prefs.xml"
         const val filename_settings = "settings"
         const val filename_structure = "structure"
-        const val filename_thumbnails = "thumbnails"
         const val filename_saves = "saves"
         const val filename_state = "state"
 
         // Export / Import
-        const val EXPORT_FILENAME = "cpudefense_backup.json"
+        const val EXPORT_FILENAME = "chipdefense-copper_backup.json"
     }
 
     // Gson instance reused everywhere
@@ -51,9 +46,6 @@ class Persistency(private val activity: Activity) {
     /** file that holds the structure of levels without any attackers. Used in ENDLESS series. */
     private val prefsStructure: SharedPreferences = prefs(filename_structure)
 
-    /** file for the small thumbnails that are displayed in the level selector */
-    private val prefsThumbnails: SharedPreferences = prefs(filename_thumbnails)
-
     /** file for the overall game progress, such as heroes or coins in the purse */
     private val prefsSaves: SharedPreferences = prefs(filename_saves)
 
@@ -68,7 +60,6 @@ class Persistency(private val activity: Activity) {
             filename_legacy,
             filename_settings,
             filename_structure,
-            filename_thumbnails,
             filename_saves,
             filename_state
     )
@@ -167,8 +158,6 @@ class Persistency(private val activity: Activity) {
             for ((fileName, entries) in imported) {
 
                 if (fileName !in allPrefFiles) continue
-                // optionally skip thumbnails
-                if (fileName == filename_thumbnails) continue
 
                 val editor = prefs(fileName).edit()
                 editor.clear()
@@ -345,22 +334,6 @@ class Persistency(private val activity: Activity) {
             saveStageSummaries(it, GameMechanics.SERIES_NORMAL)
             saveStageSummaries(it, GameMechanics.SERIES_TURBO)
             saveStageSummaries(it, GameMechanics.SERIES_ENDLESS)
-        }
-    }
-
-    fun saveThumbnailOfLevel(gameActivity: GameActivity, stage: Stage) {
-        val editor = prefsThumbnails.edit()
-        val levelIdent = stage.data.ident
-        if (levelIdent.number != 0) {
-            val outputStream = ByteArrayOutputStream()
-            val encodedImage: String =
-                Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT)
-            val key: String = when (levelIdent.series) {
-                GameMechanics.SERIES_ENDLESS -> "thumbnail_%d_endless".format(levelIdent.number)
-                else -> "thumbnail_%d".format(levelIdent.number)
-            }
-            editor.putString(key, encodedImage)
-            editor.apply()
         }
     }
 

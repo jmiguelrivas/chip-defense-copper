@@ -131,34 +131,6 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement(), Fadable
             paintHero.alpha = (255f * heroOpacity).toInt()
             hero.person.picture?.let { canvas.drawBitmap(it, null, portraitAreaOnScreen, paintHero) }
         }
-        displayFrame(canvas)
-    }
-
-    private fun displayFrame(canvas: Canvas) {
-        when (graphicalState) {
-            GraphicalState.TRANSIENT -> {
-                // draw animation
-                var thickness = transition
-                if (transition > 0.5)
-                    thickness = 1.0f - transition
-                paintRect.strokeWidth =
-                    (2f + 10 * thickness) * resources.displayMetrics.scaledDensity
-                canvas.drawRect(cardAreaOnScreen, paintRect)
-            }
-
-            GraphicalState.TRANSIENT_LEVEL_0 -> {
-                // draw animation for initial activation of the upgrade
-                canvas.drawRect(cardAreaOnScreen, paintInactive)
-//                displayLine(canvas, cardAreaOnScreen.left, cardAreaOnScreen.top, cardAreaOnScreen.left, cardAreaOnScreen.bottom)
-//                displayLine(canvas, cardAreaOnScreen.right, cardAreaOnScreen.bottom, cardAreaOnScreen.right, cardAreaOnScreen.top)
-//                displayLine(canvas, cardAreaOnScreen.right, cardAreaOnScreen.top, cardAreaOnScreen.left, cardAreaOnScreen.top)
-//                displayLine(canvas, cardAreaOnScreen.left, cardAreaOnScreen.bottom, cardAreaOnScreen.right, cardAreaOnScreen.bottom)
-                // let hero picture appear
-                heroOpacity = transition
-            }
-
-            else -> canvas.drawRect(cardAreaOnScreen, paintRect)
-        }
     }
 
     fun displayHighlightFrame(canvas: Canvas) {
@@ -203,6 +175,18 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement(), Fadable
         indicatorSize = portraitArea.width() / 10
     }
 
+    fun create(showNextUpdate: Boolean = true, monochrome: Boolean = false) {
+        cardArea =
+            Rect(0, 0, (GameView.cardWidth * gameView.scaleFactor).toInt(), (GameView.cardHeight * gameView.scaleFactor).toInt())
+        portraitArea =
+            Rect(0, 0, (GameView.cardPictureSize * gameView.scaleFactor).toInt(), (GameView.cardPictureSize * gameView.scaleFactor).toInt())
+        paintText.textSize = GameView.heroCardTextSize * gameView.textScaleFactor
+        indicatorSize = portraitArea.width() / 10
+        this.showNextUpdate = showNextUpdate
+        this.monochrome = monochrome
+        createBitmap()
+    }
+
     private fun addLevelDecoration(canvas: Canvas) {
         paintIndicator.color = if (hero.data.level == 0) inactiveColor else activeColor
         var verticalIndicatorSize = indicatorSize  // squeeze when max level is greater than 8
@@ -219,41 +203,62 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement(), Fadable
         return
     }
 
-    fun create(showNextUpdate: Boolean = true, monochrome: Boolean = false) {
-        cardArea =
-            Rect(0, 0, (GameView.cardWidth * gameView.scaleFactor).toInt(), (GameView.cardHeight * gameView.scaleFactor).toInt())
-        portraitArea =
-            Rect(0, 0, (GameView.cardPictureSize * gameView.scaleFactor).toInt(), (GameView.cardPictureSize * gameView.scaleFactor).toInt())
-        paintText.textSize = GameView.heroCardTextSize * gameView.textScaleFactor
-        indicatorSize = portraitArea.width() / 10
-        this.showNextUpdate = showNextUpdate
-        this.monochrome = monochrome
-        createBitmap()
-    }
-
-    fun createBitmap()
-            /** re-creates the bitmap without border, using a canvas positioned at (0, 0) */
-    {
+    fun createBitmap() {
         val bitmap =
             Bitmap.createBitmap(cardArea.width(), cardArea.height(), Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
 
-        // render text used to indicate the effect of the upgrade, and calculate its position
-        val marginHorizontal = 10f * resources.displayMetrics.scaledDensity
-        val marginVertical = 10f * resources.displayMetrics.scaledDensity
-        val baseline = bitmap.height - marginVertical
-        val paintUpdate = Paint(paintText)
-        canvas.drawText(hero.strengthDesc, marginHorizontal, baseline, paintText)
-        val bounds = Rect()
-        paintText.getTextBounds(hero.strengthDesc, 0, hero.strengthDesc.length, bounds)
-        canvas.drawText(hero.shortDesc, marginHorizontal, baseline - bounds.height() - marginVertical, paintText)
-        if (showNextUpdate) {
-            paintUpdate.color = resources.getColor(R.color.upgrade_inactive)
-            canvas.drawText(hero.upgradeDesc, bounds.right + marginHorizontal, baseline, paintUpdate)
+        val density = resources.displayMetrics.scaledDensity
+        val spacing = 6f * density
+        val bottomPadding = 10f * density
+
+        val cardWidth = bitmap.width
+        val cardHeight = bitmap.height
+
+        val paintActive = Paint(paintText)
+        val paintInactive = Paint(paintText).apply {
+            color = resources.getColor(R.color.foreground_inactive_color)
         }
-        addLevelDecoration(canvas)
+
+        // --- TEXT CONTENT
+        val counterText = "${hero.data.level} / ${hero.getMaxUpgradeLevel()}"
+        val activeText = hero.strengthDesc
+        val upgradeText = hero.upgradeDesc
+
+        // --- MEASURE WIDTHS
+        val counterWidth = paintActive.measureText(counterText)
+        val activeWidth = paintActive.measureText(activeText)
+        val upgradeWidth =
+            if (showNextUpdate) paintInactive.measureText(upgradeText) else 0f
+
+        val rowWidth =
+            if (showNextUpdate) activeWidth + spacing + upgradeWidth
+            else activeWidth
+
+        // --- BASELINES
+        val bottomBaseline = cardHeight - bottomPadding
+        val fm = paintActive.fontMetrics
+        val counterBaseline = bottomBaseline + fm.top - spacing
+
+        // --- CENTER X POSITIONS
+        val counterX = (cardWidth - counterWidth) / 2f
+        val rowStartX = (cardWidth - rowWidth) / 2f
+
+        // --- DRAW COUNTER (TOP)
+        canvas.drawText(counterText, counterX, counterBaseline, paintActive)
+
+        // --- DRAW ACTIVE TEXT
+        canvas.drawText(activeText, rowStartX, bottomBaseline, paintActive)
+
+        // --- DRAW INACTIVE UPGRADE TEXT
+        if (showNextUpdate) {
+            val upgradeX = rowStartX + activeWidth + spacing
+            canvas.drawText(upgradeText, upgradeX, bottomBaseline, paintInactive)
+        }
+
         myBitmap = bitmap
     }
+
 
     fun upgradeAnimation()
             /** graphical transition that is called when upgrading the hero in the marketplace */

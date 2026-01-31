@@ -94,23 +94,22 @@ fun Context.createHero(
     val drawable = AppCompatResources.getDrawable(themedContext, R.drawable.vector_cpu)
         ?: error("Drawable not found: R.drawable.vector_cpu")
 
-    val colorParam =
-        R.color.background_tertiary_color//themedContext.resolveColorAttr(R.attr.chipTextColor)
+//    val colorParam = themedContext.resolveColorAttr(R.attr.chipTextColor)
 
     // --- TEXT PAINTS (same pattern as the rest of the app)
     val titlePaint = TextPaint(
             textStyle(
                     themedContext,
-                    colorParam = colorParam,
-                    textSizeSp = 12f
+                    colorParam = R.color.chip_title,
+                    textSizeSp = 16f
             )
     )
 
-    val countryPaint = TextPaint(
+    val descriptionPaint = TextPaint(
             textStyle(
                     themedContext,
-                    colorParam = colorParam,
-                    textSizeSp = 12f
+                    colorParam = R.color.chip_description,
+                    textSizeSp = 10f
             )
     )
 
@@ -125,9 +124,9 @@ fun Context.createHero(
             false
     )
 
-    val countryLayout = StaticLayout(
-            description,
-            countryPaint,
+    val descriptionLayout = StaticLayout(
+            description.toUpperCase(),
+            descriptionPaint,
             width - padding * 2,
             Layout.Alignment.ALIGN_CENTER,
             1.0f,
@@ -137,7 +136,7 @@ fun Context.createHero(
 
     // --- TOTAL TEXT HEIGHT
     val textYAdjustment = 10
-    val totalTextHeight = titleLayout.height + countryLayout.height
+    val totalTextHeight = titleLayout.height + descriptionLayout.height
     val startY = ((height - totalTextHeight) / 2f) - textYAdjustment  // <-- vertical center
 
     // --- BITMAP
@@ -158,7 +157,7 @@ fun Context.createHero(
     // --- DRAW DESCRIPTION (below title)
     canvas.save()
     canvas.translate(padding.toFloat(), startY + titleLayout.height)
-    countryLayout.draw(canvas)
+    descriptionLayout.draw(canvas)
     canvas.restore()
 
     return bitmap
