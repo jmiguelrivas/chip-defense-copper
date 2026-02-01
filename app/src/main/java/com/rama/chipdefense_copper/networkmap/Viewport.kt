@@ -25,13 +25,13 @@ class Viewport
     /* default grid size that fits on screen without scrolling */
     private val standardGridSizeX = 50
     private val standardGridSizeY = 60
+    private val MIN_ZOOM = 0.5f
+    private val MAX_ZOOM = 1.2f
 
-    fun setScreenSize(width: Int, height: Int)
-    {
+    fun setScreenSize(width: Int, height: Int) {
         if (width == 0 || height == 0)
             isValid = false
-        else
-        {
+        else {
             screen = Rect(0, 0, width, height)
             this.viewportWidth = width - 2 * GameView.viewportMargin
             this.viewportHeight = height - 2 * GameView.viewportMargin
@@ -39,22 +39,44 @@ class Viewport
         }
     }
 
-    fun reset()
-    {
+    fun zoom(delta: Float) {
+        val oldScale = userScale
+        userScale = (userScale * delta).coerceIn(MIN_ZOOM, MAX_ZOOM)
+
+        if (oldScale != userScale) {
+            calculateScale()
+        }
+    }
+
+    fun zoomAt(delta: Float, focusX: Float, focusY: Float) {
+        val oldScale = userScale
+        val newScale = (userScale * delta).coerceIn(MIN_ZOOM, MAX_ZOOM)
+
+        if (oldScale == newScale) return
+
+        val scaleFactor = newScale / oldScale
+        userScale = newScale
+
+        // Adjust offsets so zoom keeps focus point stable
+        offsetX = ((offsetX - focusX) * scaleFactor + focusX).toInt()
+        offsetY = ((offsetY - focusY) * scaleFactor + focusY).toInt()
+
+        calculateScale()
+    }
+
+    fun reset() {
         offsetX = 0
         offsetY = 20
         userScale = 1.0f
     }
 
-    fun setGridSize(gridSizeX: Int, gridSizeY: Int)
-    {
+    fun setGridSize(gridSizeX: Int, gridSizeY: Int) {
         this.gridSizeX = gridSizeX
         this.gridSizeY = gridSizeY
         calculateScale()
     }
 
-    private fun calculateScale()
-    {
+    private fun calculateScale() {
         val width = viewportWidth.toFloat()
         val height = viewportHeight.toFloat()
         if (width == 0f || height == 0f)
@@ -68,8 +90,7 @@ class Viewport
         }
     }
 
-    fun addOffset(deltaX: Float, deltaY: Float)
-    {
+    fun addOffset(deltaX: Float, deltaY: Float) {
         val maxX = viewportWidth / 2
         offsetX += deltaX.toInt()
         if (offsetX > maxX)
@@ -81,25 +102,22 @@ class Viewport
         if (offsetY > maxY)
             offsetY = maxY
         else if (offsetY < -maxY)
-            offsetY = - maxY
+            offsetY = -maxY
     }
 
-    fun gridToViewport(gridPos: Coord): Pair<Int, Int>
-    {
+    fun gridToViewport(gridPos: Coord): Pair<Int, Int> {
         val posX = gridPos.x * scaleX + GameView.viewportMargin + offsetX
         val posY = gridPos.y * scaleY + GameView.viewportMargin + offsetY
         return Pair(posX.toInt(), posY.toInt())
     }
 
-    fun rectToViewport(rectInGridCoord: Rect): Rect
-    {
+    fun rectToViewport(rectInGridCoord: Rect): Rect {
         val upperLeft = gridToViewport(Coord(rectInGridCoord.left, rectInGridCoord.top))
         val lowerRight = gridToViewport(Coord(rectInGridCoord.right, rectInGridCoord.bottom))
         return Rect(upperLeft.first, upperLeft.second, lowerRight.first, lowerRight.second)
     }
 
-    fun isInRightHalfOfViewport(posX: Int): Boolean
-    {
+    fun isInRightHalfOfViewport(posX: Int): Boolean {
         return posX > viewportWidth / 2
     }
 

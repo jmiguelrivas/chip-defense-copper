@@ -13,6 +13,7 @@ import android.graphics.Rect
 import android.graphics.Typeface
 import android.view.GestureDetector
 import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.content.res.ResourcesCompat
@@ -69,10 +70,14 @@ class GameView(context: Context) :
     var scrollAllowed = true // whether the viewport can be moved by scrolling
     private var backgroundColour = Color.BLACK
     private var gestureDetector = GestureDetectorCompat(context, this)
+    private lateinit var scaleDetector: ScaleGestureDetector
 
     /** font for displaying "computer messages" */
     lateinit var monoTypeface: Typeface
     lateinit var boldTypeface: Typeface
+
+    private val MIN_ZOOM = 0.5f
+    private val MAX_ZOOM = 2.5f
 
     private val coinIconGreen: Bitmap = context.vectorToBitmap(
             R.drawable.coin_pixel,
@@ -289,8 +294,43 @@ class GameView(context: Context) :
 
     }
 
+    init {
+        gestureDetector = GestureDetectorCompat(context, this)
+
+        scaleDetector = ScaleGestureDetector(
+                context,
+                object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+                    override fun onScale(detector: ScaleGestureDetector): Boolean {
+                        viewport.zoomAt(
+                                detector.scaleFactor,
+                                detector.focusX,
+                                detector.focusY
+                        )
+
+                        gameMechanics.currentlyActiveStage
+                            ?.network
+                            ?.recreateNetworkImage(false)
+
+                        invalidate()
+                        return true
+                    }
+                }
+        )
+    }
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        this.gestureDetector.onTouchEvent(event)
+
+        // Always feed the scale detector
+        scaleDetector.onTouchEvent(event)
+
+        // If pinch-zoom is active, stop here
+        if (scaleDetector.isInProgress) {
+            return true
+        }
+
+        // Otherwise, process taps / drags
+        gestureDetector.onTouchEvent(event)
+
         return true
     }
 
