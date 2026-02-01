@@ -424,7 +424,9 @@ class Marketplace(val gameView: GameView) : GameElement() {
         viewport: Viewport,
         area: Rect
     ) {
-        val coin = coins.first()
+        // Use the first coin if available, or create a temporary placeholder coin if empty
+        val coin = if (coins.isNotEmpty()) coins.first() else Coin(gameMechanics, coinSize)
+
         val centerY = area.centerY()
         val startX = area.left + GameView.globalPadding
 
@@ -444,7 +446,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
 
         canvas.drawText(text, textX.toFloat(), textY, textPaint)
     }
-
+    
     private fun makeButtonText(card: Hero?) {
         buttonPurchase?.text = purchaseButtonText(card)
         showRefundOneButton = displayRefundOneButton(card)
