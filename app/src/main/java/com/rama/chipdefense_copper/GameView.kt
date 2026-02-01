@@ -76,9 +76,6 @@ class GameView(context: Context) :
     lateinit var monoTypeface: Typeface
     lateinit var boldTypeface: Typeface
 
-    private val MIN_ZOOM = 0.5f
-    private val MAX_ZOOM = 2.5f
-
     private val coinIconGreen: Bitmap = context.vectorToBitmap(
             R.drawable.coin_pixel,
             64,

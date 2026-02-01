@@ -16,9 +16,12 @@ import com.rama.chipdefense_copper.networkmap.Viewport
 import com.rama.chipdefense_copper.utils.setCenter
 import androidx.core.graphics.createBitmap
 
-class Cryptocoin(network: com.rama.chipdefense_copper.networkmap.Network, number: ULong = 1u, speed: Float = 1.0f):
-    Attacker(network, Representation.BINARY, number, speed), Flippable
-{
+class Cryptocoin(
+    network: com.rama.chipdefense_copper.networkmap.Network,
+    number: ULong = 1u,
+    speed: Float = 1.0f
+) :
+    Attacker(network, Representation.BINARY, number, speed), Flippable {
     var paint = Paint()
     private var isCurrentlyFlipping = false
     private var myBitmap: Bitmap = createBitmap(32, 32)
@@ -27,8 +30,10 @@ class Cryptocoin(network: com.rama.chipdefense_copper.networkmap.Network, number
         this.attackerData.isCoin = true
         this.animationCount *= 2
     }
+
     override fun display(canvas: Canvas, viewport: Viewport) {
-        val size =  (GameView.coinSizeOnScreen * network.gameView.resources.displayMetrics.scaledDensity).toInt()
+        val size =
+            (GameView.coinSizeOnScreen * network.gameView.resources.displayMetrics.scaledDensity).toInt()
         actualRect = Rect(0, 0, size, size)
         actualRect.setCenter(getPositionOnScreen())
         actualRect.offset(displacement.first, displacement.second)
@@ -36,24 +41,28 @@ class Cryptocoin(network: com.rama.chipdefense_copper.networkmap.Network, number
     }
 
     override val explosionColour: Int
-        get() = if (network.gameMechanics.currentStageIdent.series == GameMechanics.SERIES_ENDLESS) network.gameView.resources.getColor(R.color.attackers_glow_coin_endless)
-                else network.gameView.resources.getColor(R.color.attackers_glow_coin)
+        get() = when (network.gameMechanics.currentStageIdent.mode()) {
+            GameMechanics.LevelMode.ENDLESS ->
+                network.gameView.resources.getColor(R.color.attackers_glow_coin_endless)
 
-    override fun onShot(type: Chip.ChipType, power: Int): Boolean
-    {
-        when (type)
-        {
+            GameMechanics.LevelMode.TURBO ->
+                network.gameView.resources.getColor(R.color.attackers_glow_coin_turbo)
+
+            GameMechanics.LevelMode.BASIC ->
+                network.gameView.resources.getColor(R.color.attackers_glow_coin)
+        }
+
+    override fun onShot(type: Chip.ChipType, power: Int): Boolean {
+        when (type) {
             Chip.ChipType.ACC -> return false
             Chip.ChipType.MEM -> return false
             Chip.ChipType.DUP -> return false
             Chip.ChipType.SPLT -> return false
             else -> {
-                if (super.onShot(type, power))
-                {
+                if (super.onShot(type, power)) {
                     network.gameMechanics.state.coinsExtra++
                     return true
-                }
-                else {
+                } else {
                     // coin was hit but not destroyed
                     if (!isCurrentlyFlipping)
                         Flipper(network.gameView, this, Flipper.Type.HORIZONTAL, Flipper.Speed.FAST)
@@ -64,7 +73,8 @@ class Cryptocoin(network: com.rama.chipdefense_copper.networkmap.Network, number
     }
 
     override fun makeNumber() {
-        myBitmap = this.network.gameView.currentCoinBitmap().copy(this.network.gameView.currentCoinBitmap().config ?: ARGB_8888, true)
+        myBitmap = this.network.gameView.currentCoinBitmap()
+            .copy(this.network.gameView.currentCoinBitmap().config ?: ARGB_8888, true)
     }
 
     override fun setBitmap(bitmap: Bitmap) {

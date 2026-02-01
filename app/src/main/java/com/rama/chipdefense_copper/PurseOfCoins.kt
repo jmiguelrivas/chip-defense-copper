@@ -77,56 +77,26 @@ class PurseOfCoins(
         return availableCoins() >= price
     }
 
-    fun calculateInitialContents()
-            /** method for migrating the "old" style of coin-keeping. */
-    {
-        // get number of reward coins
-        val sumRewardCoinsInBasicMode =
-            gameMechanics.summaryPerNormalLevel.values.sumOf { it.coinsGot }
-        val sumRewardCoinsInTurboMode =
-            gameMechanics.summaryPerTurboLevel.values.sumOf { it.coinsGot }
-        val sumRewardCoinsInEndlessMode =
-            gameMechanics.summaryPerEndlessLevel.values.sumOf { it.coinsGot }
+    fun calculateInitialContents() {
+        val summaries = when (levelMode) {
+            GameMechanics.LevelMode.BASIC ->
+                gameMechanics.summaryPerNormalLevel.values
 
-        // distribute the coins in the game fairly to the modes
-        val coinsSpentOnHeroes = gameMechanics.heroes.values.sumOf { it.data.coinsSpent }
-        val theoreticalAmountOfCoins = gameMechanics.global.coinsTotal + coinsSpentOnHeroes
-        val totalRewardCoins = sumRewardCoinsInBasicMode + sumRewardCoinsInEndlessMode
-        // the difference between the (theoretical) sum of all coins and those accounted for is the number of walking coins
-        var totalRunningCoins = theoreticalAmountOfCoins - totalRewardCoins
-        if (totalRunningCoins < 0) totalRunningCoins = 0 // safety catch, should not be triggered
-        if (totalRewardCoins == 0)
-        // special case: the player has not won any coins yet
-        {
-            contents.rewardCoins = 0
-            contents.runningCoins = 0
-            contents.spentCoins = 0
-        } else when (levelMode)   // distribute the coins into the series according to the general percentage
-        {
-            GameMechanics.LevelMode.BASIC -> {
-                contents.rewardCoins = sumRewardCoinsInBasicMode
-                contents.runningCoins =
-                    totalRunningCoins * sumRewardCoinsInBasicMode / totalRewardCoins
-                contents.spentCoins = 0  // initial value, will be set later accordingly
-                contents.coinsSpentOnPurchases = 0
-            }
+            GameMechanics.LevelMode.TURBO ->
+                gameMechanics.summaryPerTurboLevel.values
 
-            GameMechanics.LevelMode.TURBO -> {
-                contents.rewardCoins = sumRewardCoinsInTurboMode
-                contents.runningCoins =
-                    totalRunningCoins * sumRewardCoinsInTurboMode / totalRewardCoins
-                contents.spentCoins = 0  // initial value, will be set later accordingly
-                contents.coinsSpentOnPurchases = 0
-            }
-
-            GameMechanics.LevelMode.ENDLESS -> {
-                contents.rewardCoins = sumRewardCoinsInEndlessMode
-                contents.runningCoins =
-                    totalRunningCoins * sumRewardCoinsInEndlessMode / totalRewardCoins
-                contents.spentCoins = 0
-                contents.coinsSpentOnPurchases = 0
-            }
+            GameMechanics.LevelMode.ENDLESS ->
+                gameMechanics.summaryPerEndlessLevel.values
         }
-        contents.totalCoins = contents.rewardCoins + contents.runningCoins
+
+        val rewardCoins = summaries.sumOf { it.coinsGot }
+
+        contents.rewardCoins = rewardCoins
+        contents.runningCoins = 0 // legacy, or compute per-mode if needed
+        contents.spentCoins = 0
+        contents.coinsSpentOnPurchases = 0
+        contents.totalCoins = rewardCoins
+
     }
+
 }

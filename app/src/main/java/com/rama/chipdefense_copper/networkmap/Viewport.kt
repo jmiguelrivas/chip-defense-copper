@@ -39,15 +39,6 @@ class Viewport
         }
     }
 
-    fun zoom(delta: Float) {
-        val oldScale = userScale
-        userScale = (userScale * delta).coerceIn(MIN_ZOOM, MAX_ZOOM)
-
-        if (oldScale != userScale) {
-            calculateScale()
-        }
-    }
-
     fun zoomAt(delta: Float, focusX: Float, focusY: Float) {
         val oldScale = userScale
         val newScale = (userScale * delta).coerceIn(MIN_ZOOM, MAX_ZOOM)

@@ -9,7 +9,10 @@ import kotlin.random.Random
 import androidx.core.graphics.scale
 
 class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
-    class Identifier(var series: Int = GameMechanics.SERIES_NORMAL, var number: Int = 0)
+    class Identifier(
+        var series: Int = GameMechanics.SERIES_NORMAL,
+        var number: Int = 0
+    )
     /** A [Stage] is identified by the combination of [series] (1 to 3) and the level [number]. */
     {
         companion object {
@@ -17,6 +20,9 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
             val startOfTurbo = Identifier(GameMechanics.SERIES_TURBO, 1)
             val startOfEndless = Identifier(GameMechanics.SERIES_ENDLESS, 1)
         }
+
+        val levelMode: GameMechanics.LevelMode
+            get() = mode()
 
         fun next(): Identifier
                 /** returns an identifier of the next level */
@@ -31,13 +37,16 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
             return Identifier(series, if (number <= 1) 1 else number - 1)
         }
 
-        fun isGreaterThan(compare: Identifier): Boolean
-                /** used to establish a natural order of stage [Identifier]s */
-        {
+        fun isGreaterThan(compare: Identifier): Boolean {
+            val thisMode = this.mode()
+            val otherMode = compare.mode()
+
             return when {
-                compare.series > this.series -> false
-                compare.series < this.series -> true
-                else -> compare.number < this.number
+                thisMode != otherMode ->
+                    thisMode.ordinal > otherMode.ordinal
+
+                else ->
+                    this.number > compare.number
             }
         }
 
@@ -96,18 +105,11 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
 
     var rewardCoins = 0  // number of coins that can be obtained by completing the level
 
-    fun getLevel(): Int {
-        return data.ident.number
-    }
-
-    fun getSeries(): Int {
-        return data.ident.series
-    }
-
     fun identAsString(): String
             /** ident of the stage as string, for logging purposes */
     {
-        return "stage %d (series %s)".format(getLevel(), getSeries())
+        return "stage %d (%s)".format(data.ident.number, data.ident.mode())
+
     }
 
     fun numberAsString(): String
@@ -384,19 +386,28 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
         attackerCount: Int, attackerStrength: Int, attackerFrequency: Float, attackerSpeed: Float,
         coins: Int = 0, representation: Attacker.Representation = Attacker.Representation.UNDEFINED
     ) {
-        val series = getSeries()
         var count = attackerCount
         var strength = attackerStrength
         var frequency = attackerFrequency
         var speed = attackerSpeed
-        if (series == GameMechanics.SERIES_TURBO)  // modifications in strength for turbo mode
-        {
-            count = (attackerCount * 1.5f).toInt()
-            strength =
-                (attackerStrength * (1 + waves.size * waves.size * 0.2f + waves.size) + 4).toInt()
-            frequency = attackerFrequency * 1.6f
-            speed = attackerSpeed * 1.2f
+        when (data.ident.mode()) {
+            GameMechanics.LevelMode.TURBO -> {
+                count = (attackerCount * 1.5f).toInt()
+                strength =
+                    (attackerStrength * (1 + waves.size * waves.size * 0.2f + waves.size) + 4).toInt()
+                frequency = attackerFrequency * 1.6f
+                speed = attackerSpeed * 1.2f
+            }
+
+            GameMechanics.LevelMode.BASIC -> {
+                // no changes
+            }
+
+            GameMechanics.LevelMode.ENDLESS -> {
+                // no changes (for now)
+            }
         }
+
         val waveData = Wave.Data(
                 count, strength, frequency, speed,
                 coins, currentCount = count, representation = representation, ticksUntilNextAttacker = ticksUntilFirstAttacker.toDouble()

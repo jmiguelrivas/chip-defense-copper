@@ -24,6 +24,7 @@ import com.rama.chipdefense_copper.GameMechanics.Params.SERIES_ENDLESS
 import com.rama.chipdefense_copper.GameMechanics.Params.SERIES_NORMAL
 import com.rama.chipdefense_copper.GameMechanics.Params.SERIES_TURBO
 import com.rama.chipdefense_copper.GameMechanics.Params.forceHeroMigration
+import com.rama.chipdefense_copper.GameMode
 import com.rama.chipdefense_copper.GameView
 import com.rama.chipdefense_copper.Persistency
 import com.rama.chipdefense_copper.PurseOfCoins
@@ -93,6 +94,13 @@ class GameActivity : BaseFullscreenActivity() {
         /* here, the size of the surfaces might not be known */
         requestWindowFeature(Window.FEATURE_NO_TITLE) // method of Activity
         setContentView(R.layout.activity_main_game)
+
+//        gameMechanics.mode = when (intentMode) {
+//            BASIC -> GameMode.Basic
+//            ENDLESS -> GameMode.Endless
+//            TURBO -> GameMode.Turbo
+//        }
+
 //        applySystemInsets(findViewById<View>(R.id.mainGameLayout))
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         if (intent.getBooleanExtra("ACTIVATE_LOGGING", false) && GameMechanics.enableLogging)
@@ -233,18 +241,18 @@ class GameActivity : BaseFullscreenActivity() {
             // make next series available if last level is completed, otherwise remove access
             val completedLastStageOfSeries: Boolean =
                 (identifier.number == GameMechanics.maxLevelAvailable)
-            when (newMaxStage.series) {
-                SERIES_NORMAL -> {
+            when (newMaxStage.mode()) {
+                LevelMode.BASIC -> {
                     putBoolean("TURBO_AVAILABLE", completedLastStageOfSeries)
                     putBoolean("ENDLESS_AVAILABLE", false)
                 }
 
-                SERIES_TURBO -> {
+                LevelMode.TURBO -> {
                     putBoolean("TURBO_AVAILABLE", true)
                     putBoolean("ENDLESS_AVAILABLE", completedLastStageOfSeries)
                 }
 
-                SERIES_ENDLESS -> {
+                LevelMode.ENDLESS -> {
                     putBoolean("TURBO_AVAILABLE", true)
                     putBoolean("ENDLESS_AVAILABLE", true)
                 }
@@ -279,26 +287,21 @@ class GameActivity : BaseFullscreenActivity() {
         val resetRequested = (resetEndless || resetProgress)
 
         if (resetRequested) {
-            level = Identifier.startOfEndless
-            gameMechanics.deleteProgressOfSeries(LevelMode.ENDLESS)
-            if (resetProgress)
-            // in addition: if a complete reset is requested, also clear the BASIC series
-            {
-                level = Identifier.startOfNewGame
-                gameMechanics.deleteProgressOfSeries(LevelMode.BASIC)
-            }
-            gameMechanics.currentStageIdent = level
-            setLastPlayedStage(level)
-            setMaxPlayedStage(level, forceReset = true)
-            prepareLevelAtStartOfGame(level)
-            Persistency(this).apply {
-                saveHeroes(gameMechanics)
-                saveCoins(gameMechanics)
-                saveStageSummaries(gameMechanics, SERIES_NORMAL)
-                saveStageSummaries(gameMechanics, SERIES_TURBO)
-                saveStageSummaries(gameMechanics, SERIES_ENDLESS)
+            when {
+                resetProgress -> {
+                    gameMechanics.deleteProgressOfSeries(LevelMode.BASIC)
+                    gameMechanics.deleteProgressOfSeries(LevelMode.TURBO)
+                    gameMechanics.deleteProgressOfSeries(LevelMode.ENDLESS)
+                    level = Identifier.startOfNewGame
+                }
+
+                resetEndless -> {
+                    gameMechanics.deleteProgressOfSeries(LevelMode.ENDLESS)
+                    level = Identifier.startOfEndless
+                }
             }
         }
+
         // final actions, to be executed in any case
         if (gameMechanics.purseOfCoins[LevelMode.BASIC]?.initialized == false || forceHeroMigration)
             gameMechanics.migrateHeroes()
@@ -355,7 +358,7 @@ class GameActivity : BaseFullscreenActivity() {
 
     fun startNextStage(ident: Identifier) {
         val nextStage = Stage(gameMechanics, gameView)
-        logger?.log("Starting level %d of series %d".format(ident.number, ident.series))
+        logger?.log("Starting level %d (%s)".format(ident.number, ident.mode()))
         StageCatalog.createStage(nextStage, ident)
         nextStage.calculateDifficulty()
         if (!nextStage.isInitialized())

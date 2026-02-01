@@ -56,8 +56,9 @@
     <color name="attackers_glow_hex">#BD5B2D</color>
     <color name="attackers_slowed_bin">#DAE6C2C2</color>
     <color name="attackers_slowed_hex">#FFAA00</color>
-    <color name="attackers_glow_coin">#1D96FF</color>
+    <color name="attackers_glow_coin">#1DFF61</color>
     <color name="attackers_glow_coin_endless">#EC2816</color>
+    <color name="attackers_glow_coin_turbo">#E9D51A</color>
     <color name="attackers_background">#40000000</color>
     <color name="chips_sub_foreground">#DA07DD00</color>
     <color name="chips_sub_glow">#AFFA34</color>
