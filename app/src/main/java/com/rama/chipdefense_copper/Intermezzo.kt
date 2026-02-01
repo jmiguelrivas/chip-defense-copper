@@ -97,10 +97,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
                 if (coinsGathered > 0)
                     lines.add(resources.getString(R.string.coins_gathered).format(coinsGathered))
                 if (level.series == 1) {
-                    lines.add(resources.getString(R.string.series_completed_message_1))
-                    lines.add(resources.getString(R.string.series_completed_message_2))
-                    lines.add(resources.getString(R.string.series_completed_message_3))
-                    lines.add(resources.getString(R.string.series_completed_message_4))
+                    lines.add(resources.getString(R.string.series_completed_basic))
                 } else
                     lines.add(resources.getString(R.string.win))
                 textOnContinueButton = resources.getString(R.string.button_exit)
@@ -215,24 +212,21 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
         buttonContinue!!.area.set(continueRect)
         buttonContinue!!.touchableArea.set(continueRect)
 
-        if (level.number > 6 || level.series != GameMechanics.SERIES_NORMAL) {
+        buttonPurchase = Button(
+                gameView,
+                resources.getString(R.string.button_marketplace)
+        )
+        buttonPurchase?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.FAST) }
 
-            buttonPurchase = Button(
-                    gameView,
-                    resources.getString(R.string.button_marketplace)
-            )
-            buttonPurchase?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.FAST) }
+        val purchaseHeight = buttonPurchase!!.area.height()
+        val purchaseBottomOffset =
+            bottomMargin + continueHeight + spacing
 
-            val purchaseHeight = buttonPurchase!!.area.height()
-            val purchaseBottomOffset =
-                bottomMargin + continueHeight + spacing
+        val purchaseRect =
+            fullWidthButtonRect(purchaseHeight, purchaseBottomOffset)
 
-            val purchaseRect =
-                fullWidthButtonRect(purchaseHeight, purchaseBottomOffset)
-
-            buttonPurchase!!.area.set(purchaseRect)
-            buttonPurchase!!.touchableArea.set(purchaseRect)
-        }
+        buttonPurchase!!.area.set(purchaseRect)
+        buttonPurchase!!.touchableArea.set(purchaseRect)
     }
 
 
