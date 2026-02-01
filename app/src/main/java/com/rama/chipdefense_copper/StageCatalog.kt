@@ -1,5 +1,6 @@
 package com.rama.chipdefense_copper
 
+import com.rama.chipdefense_copper.GameMechanics.LevelMode
 import com.rama.chipdefense_copper.gameElements.*
 import com.rama.chipdefense_copper.networkmap.Link
 import kotlin.math.sqrt
@@ -195,6 +196,9 @@ class StageCatalog
                         createWave(4, 1, .075f, 1f)
 
                         data.chipsAllowed = setOf(Chip.ChipUpgrades.SUB)
+                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
+                            rewardCoins = 3
+                        }
                     }
 
                     2 -> {
@@ -213,6 +217,9 @@ class StageCatalog
                         createWave(8, 1, .075f, 1f)
 
                         data.chipsAllowed = setOf(Chip.ChipUpgrades.SUB)
+                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
+                            rewardCoins = 3
+                        }
                     }
 
                     3 -> {
@@ -237,6 +244,9 @@ class StageCatalog
                         createWave(10, 1, .075f, 1f)
 
                         data.chipsAllowed = setOf(Chip.ChipUpgrades.SUB, Chip.ChipUpgrades.POWERUP)
+                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
+                            rewardCoins = 3
+                        }
                     }
 
                     4 -> {
@@ -267,6 +277,9 @@ class StageCatalog
                         createWave(10, 3, .15f, 1f)
 
                         data.chipsAllowed = setOf(Chip.ChipUpgrades.SUB, Chip.ChipUpgrades.POWERUP)
+                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
+                            rewardCoins = 3
+                        }
                     }
 
                     5 -> {
@@ -310,6 +323,9 @@ class StageCatalog
                                     Chip.ChipUpgrades.POWERUP,
                                     Chip.ChipUpgrades.SHR
                             )
+                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
+                            rewardCoins = 3
+                        }
                     }
 
                     6 -> {
@@ -355,7 +371,9 @@ class StageCatalog
                                     Chip.ChipUpgrades.POWERUP,
                                     Chip.ChipUpgrades.SHR
                             )
-                        rewardCoins = 3
+                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
+                            rewardCoins = 3
+                        }
                     }
 
                     7 -> {
