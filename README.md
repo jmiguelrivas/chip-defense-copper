@@ -1,4 +1,4 @@
-[Preview](./metadata/preview.svg)
+![ChipDefense Copper Logo](./metadata/preview.svg)
 
 # ChipDefense: Copper
 
