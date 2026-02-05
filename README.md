@@ -1,3 +1,5 @@
+[Preview](./metadata/preview.svg)
+
 # ChipDefense: Copper
 
 **ChipDefense: Copper** is a fork of **ChipDefense** (originally created by **ochadenas**) and is released under the **MIT License**.
