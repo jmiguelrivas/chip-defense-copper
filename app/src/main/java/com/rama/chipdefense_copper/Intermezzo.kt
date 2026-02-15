@@ -7,10 +7,8 @@ import android.graphics.*
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
-import android.util.TypedValue
 import android.view.MotionEvent
 import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
 import com.rama.chipdefense_copper.activities.GameActivity
 import com.rama.chipdefense_copper.effects.Explosion
 import com.rama.chipdefense_copper.effects.Fadable
@@ -449,7 +447,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
             // create empty bitmap
             val bitmap = Bitmap.createBitmap(area.width(), area.height(), Bitmap.Config.ARGB_8888)
             val canvas = Canvas(bitmap)
-            canvas.drawColor(resources.getColor(R.color.alternate_background))
+            canvas.drawColor(resources.getColor(R.color.background_tertiary_color))
             // create text for bitmap
             val margin = 20 * gameView.scaleFactor
             canvas.save()
@@ -462,7 +460,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
             val textPaint = TextPaint()
             textPaint.textSize = GameView.computerTextSize * gameView.textScaleFactor
             textPaint.typeface = Typeface.SANS_SERIF
-            textPaint.color = resources.getColor(R.color.text_amber)
+            textPaint.color = resources.getColor(R.color.computer_typewriter_color_warning)
             textPaint.alpha = 255
             val textLayout =
                 StaticLayout(text, textPaint, area.width() - 2 * margin.toInt(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false)
@@ -508,7 +506,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
 
         fun display(canvas: Canvas) {
             heroSelectionArea.bottom = heightOfConsoleLine()
-            paint.color = resources.getColor(R.color.text_amber)
+            paint.color = resources.getColor(R.color.computer_typewriter_color_warning)
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = 6f
             paint.alpha = 255

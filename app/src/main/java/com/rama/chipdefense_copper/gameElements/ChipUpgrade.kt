@@ -11,23 +11,24 @@ import androidx.core.graphics.createBitmap
 
 class ChipUpgrade(
     private val chipToUpgrade: Chip, val type: Chip.ChipUpgrades,
-    private var posX: Int, private var posY: Int, val color: Int): Movable
-{
+    private var posX: Int, private var posY: Int, val color: Int
+) : Movable {
     val gameMechanics = chipToUpgrade.network.gameMechanics
     val gameView = chipToUpgrade.network.gameView
     var actualRect = Rect(chipToUpgrade.actualRect)
-    var labelRect = Rect(0,0,0,0)
+    var labelRect = Rect(0, 0, 0, 0)
     private val paintBackground = Paint()
     private val paintText = Paint()
     private val paintFrame = Paint()
+
     /** the price that must be paid, or the refund (negative) if the type is SELL */
     private var price = calculatePrice()
 
     private fun calculatePrice(): Int
-    /** calculates and returns the price that must be paid for this upgrade. */
+            /** calculates and returns the price that must be paid for this upgrade. */
     {
         var penalty = 0 // possible price modification
-        when (type){
+        when (type) {
             Chip.ChipUpgrades.POWERUP -> {
                 var baseValue = chipToUpgrade.chipData.value
                 if (chipToUpgrade.chipData.type == Chip.ChipType.MEM) baseValue += 12  // MEM updates are really expensive
@@ -36,14 +37,18 @@ class ChipUpgrade(
                 upgradePrice = upgradePrice * (100f - discount) / 100
                 return upgradePrice.toInt()
             }
+
             Chip.ChipUpgrades.REDUCE -> {
-                val alreadyRemoved = gameMechanics.currentlyActiveStage?.data?.obstaclesRemovedCount ?: 0
+                val alreadyRemoved =
+                    gameMechanics.currentlyActiveStage?.data?.obstaclesRemovedCount ?: 0
                 val discount = gameMechanics.heroModifier(Hero.Type.DECREASE_REMOVAL_COST)
-                return (chipToUpgrade.chipData.value * (alreadyRemoved*(alreadyRemoved+1)/2 + 1) * (100f-discount).toInt() / 100)
+                return (chipToUpgrade.chipData.value * (alreadyRemoved * (alreadyRemoved + 1) / 2 + 1) * (100f - discount).toInt() / 100)
             }
+
             Chip.ChipUpgrades.SELL -> {
-                return (- chipToUpgrade.chipData.refund * gameMechanics.heroModifier(Hero.Type.INCREASE_REFUND) * 0.01f).toInt()
+                return (-chipToUpgrade.chipData.refund * gameMechanics.heroModifier(Hero.Type.INCREASE_REFUND) * 0.01f).toInt()
             }
+
             Chip.ChipUpgrades.ACC -> {
                 // ACC chips are more expensive if there are already chips of the same type
                 gameMechanics.currentlyActiveStage?.let {
@@ -52,13 +57,13 @@ class ChipUpgrade(
                 }
                 return GameMechanics.basePrice.getOrElse(Chip.ChipUpgrades.ACC) { 20 } + penalty
             }
+
             else -> return GameMechanics.basePrice.getOrElse(type) { 20 }
         }
     }
 
-    private fun canAfford(): Boolean
-    {
-        return (price<=gameMechanics.state.cash)
+    private fun canAfford(): Boolean {
+        return (price <= gameMechanics.state.cash)
     }
 
     override fun moveStart() {
@@ -74,13 +79,11 @@ class ChipUpgrade(
     }
 
     fun onDown(event: MotionEvent): Boolean {
-        if (actualRect.contains(event.x.toInt(), event.y.toInt()))
-        {
+        if (actualRect.contains(event.x.toInt(), event.y.toInt())) {
             if (canAfford())
                 buyUpgrade(type)
             return true
-        }
-        else
+        } else
             return false
     }
 
@@ -91,10 +94,8 @@ class ChipUpgrade(
              * @param doForFree if True, do not charge for this update
              */
     {
-        when (type)
-        {
-            Chip.ChipUpgrades.POWERUP ->
-            {
+        when (type) {
+            Chip.ChipUpgrades.POWERUP -> {
                 chipToUpgrade.addPower(1)
                 chipToUpgrade.chipData.value += price
                 // if the chip is created by the game, refund price is less than the value
@@ -103,21 +104,24 @@ class ChipUpgrade(
                 else
                     chipToUpgrade.chipData.refund += price
             }
-            Chip.ChipUpgrades.REDUCE ->
-            {
+
+            Chip.ChipUpgrades.REDUCE -> {
                 chipToUpgrade.addPower(-1)
                 if (chipToUpgrade.chipData.upgradeLevel == 0)
                     chipToUpgrade.markChipAsSold()
-                gameMechanics.currentlyActiveStage?.let {it.data.obstaclesRemovedCount++ }
+                gameMechanics.currentlyActiveStage?.let { it.data.obstaclesRemovedCount++ }
             }
+
             Chip.ChipUpgrades.SELL -> chipToUpgrade.markChipAsSold()
             Chip.ChipUpgrades.SUB -> chipToUpgrade.setType(Chip.ChipType.SUB)
             Chip.ChipUpgrades.SHR -> chipToUpgrade.setType(Chip.ChipType.SHR)
             Chip.ChipUpgrades.ACC -> {
                 chipToUpgrade.setType(Chip.ChipType.ACC)
-                chipToUpgrade.chipData.value = price  // ACC prices do vary, so the default value cannot be used
+                chipToUpgrade.chipData.value =
+                    price  // ACC prices do vary, so the default value cannot be used
                 chipToUpgrade.chipData.refund = price
             }
+
             Chip.ChipUpgrades.MEM -> chipToUpgrade.setType(Chip.ChipType.MEM)
             Chip.ChipUpgrades.CLK -> chipToUpgrade.setType(Chip.ChipType.CLK)
             Chip.ChipUpgrades.RES -> chipToUpgrade.setType(Chip.ChipType.RES)
@@ -127,14 +131,12 @@ class ChipUpgrade(
         }
     }
 
-    fun display(canvas: Canvas)
-    {
+    fun display(canvas: Canvas) {
         if (actualRect.width() == 0 || actualRect.height() == 0)
             return
         actualRect.setCenter(posX, posY)
 
-        val text = when(type)
-        {
+        val text = when (type) {
             Chip.ChipUpgrades.POWERUP -> "+1"
             Chip.ChipUpgrades.REDUCE -> "-1"
             Chip.ChipUpgrades.SELL -> "SELL"
@@ -148,7 +150,7 @@ class ChipUpgrade(
         val bitmap = createBitmap(actualRect.width(), actualRect.height())
         val rect = Rect(0, 0, bitmap.width, bitmap.height)
 
-        paintFrame.color = if (type== Chip.ChipUpgrades.SELL) Color.RED else color
+        paintFrame.color = if (type == Chip.ChipUpgrades.SELL) Color.RED else color
 
         val newCanvas = Canvas(bitmap)
         paintText.textSize = GameView.chipTextSize * gameView.textScaleFactor
@@ -159,7 +161,7 @@ class ChipUpgrade(
         rect.displayTextCenteredInRect(newCanvas, text, paintText)
         canvas.drawBitmap(bitmap, null, actualRect, paintText)
 
-        paintBackground.color = gameView.resources.getColor(R.color.network_background)
+        paintBackground.color = gameView.resources.getColor(R.color.game_background)
         paintBackground.alpha = 120
         paintBackground.style = Paint.Style.FILL
         canvas.drawRect(actualRect, paintBackground)
@@ -179,7 +181,7 @@ class ChipUpgrade(
         val priceText = gameView.scoreBoard.informationToString(price)
         paintText.getTextBounds(priceText, 0, priceText.length, labelRect)
         //
-        labelRect.setBottomLeft(actualRect.centerX(), actualRect.top+2)
+        labelRect.setBottomLeft(actualRect.centerX(), actualRect.top + 2)
         labelRect.inflate(1)
         canvas.drawRect(labelRect, paintBackground)
         canvas.drawText(priceText, labelRect.left.toFloat(), labelRect.bottom.toFloat(), paintText)

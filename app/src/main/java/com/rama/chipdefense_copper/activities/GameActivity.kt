@@ -302,6 +302,10 @@ class GameActivity : BaseFullscreenActivity() {
             }
         }
 
+//        if (gameMechanics.purseOfCoins[LevelMode.TURBO]?.initialized == true)
+//            gameMechanics.purseOfCoins[LevelMode.TURBO].currentPurse
+//            Stage.Identifier.startOfTurbo//.addReward(100)
+
         // final actions, to be executed in any case
         if (gameMechanics.purseOfCoins[LevelMode.BASIC]?.initialized == false || forceHeroMigration)
             gameMechanics.migrateHeroes()

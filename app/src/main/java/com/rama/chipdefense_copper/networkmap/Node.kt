@@ -16,37 +16,37 @@ import com.rama.chipdefense_copper.utils.setCenter
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 
-open class Node(val theNetwork: Network, x: Float, y: Float): GameElement()
-{
+open class Node(val theNetwork: Network, x: Float, y: Float) : GameElement() {
     val resources: Resources = theNetwork.gameView.resources
 
     data class Data
-        (
+    (
         var ident: Int,
         var gridX: Float,
         var gridY: Float,
         var range: Float
-                )
+    )
 
     var data = Data(ident = -1, gridX = x, gridY = y, range = 0.0f)
-    var posOnGrid = Coord(Pair(x,y))
+    var posOnGrid = Coord(Pair(x, y))
     var connectedLinks = CopyOnWriteArrayList<Link>() // used during level setup
 
     open var actualRect: Rect? = null
+
     /** hack: limit list cleanup to improve performance */
     private var ticks = 100
 
     /** keep track of the current distance to the vehicles in range */
     enum class VehicleDirection { APPROACHING, LEAVING, GONE }
-    data class Distance ( var distance: Float, var direction: VehicleDirection )
+    data class Distance(var distance: Float, var direction: VehicleDirection)
+
     private var distanceToVehicle: ConcurrentHashMap<Vehicle, Distance> = ConcurrentHashMap()
     val vehiclesDefinitelyGone = mutableListOf<Vehicle>()
     val vehiclesInRange = mutableListOf<Vehicle>()
 
     override fun update() {
         ticks--
-        if (ticks<0)
-        {
+        if (ticks < 0) {
             cleanupVehiclesInRange()
             ticks = 100
         }
@@ -57,7 +57,7 @@ open class Node(val theNetwork: Network, x: Float, y: Float): GameElement()
         actualRect?.setCenter(viewport.gridToViewport(posOnGrid))
         actualRect?.let { rect ->
             val paint = Paint()
-            paint.color = resources.getColor(R.color.network_background)
+            paint.color = resources.getColor(R.color.game_background)
             paint.style = Paint.Style.FILL
             canvas.drawRect(rect, paint)
             paint.color = Color.WHITE
@@ -71,7 +71,9 @@ open class Node(val theNetwork: Network, x: Float, y: Float): GameElement()
             /** whether the ends of connectors are shown.
              * @return false if the node itself supersedes the link ends.
              */
-    { return true }
+    {
+        return true
+    }
 
     fun calculateActualRect(): Rect?
             /** determines the size of this node on the screen based on the grid points.
@@ -81,12 +83,11 @@ open class Node(val theNetwork: Network, x: Float, y: Float): GameElement()
         val factor = 3.0f
         val dist = theNetwork.distanceBetweenGridPoints()
         return dist?.let {
-            if (it.first>0 && it.second>0) {
+            if (it.first > 0 && it.second > 0) {
                 val distX = it.first * factor
                 val distY = it.second * factor
                 Rect(0, 0, distX.toInt(), distY.toInt())
-            }
-            else
+            } else
                 null
         }
     }
@@ -104,10 +105,9 @@ open class Node(val theNetwork: Network, x: Float, y: Float): GameElement()
 
 
     fun distanceTo(vehicle: Vehicle): Float?
-    /** @return the absolute distance to the vehicle (always positive) or null if out of range */
+            /** @return the absolute distance to the vehicle (always positive) or null if out of range */
     {
-        if (vehicle.startNode != this && vehicle.endNode != this)
-        {
+        if (vehicle.startNode != this && vehicle.endNode != this) {
             // something went wrong
             return null
         }
@@ -118,8 +118,7 @@ open class Node(val theNetwork: Network, x: Float, y: Float): GameElement()
             return dist?.distance
     }
 
-    fun vehiclesInRange(range: Float): List<Vehicle>
-    {
+    fun vehiclesInRange(range: Float): List<Vehicle> {
         /*
         // first, clean up our list and remove all vehicles that are no longer considered
         val vehiclesDefinitelyGone = distanceToVehicle.keys.filter { distanceToVehicle[it]?.direction == VehicleDirection.GONE }
@@ -152,9 +151,10 @@ open class Node(val theNetwork: Network, x: Float, y: Float): GameElement()
     }
 
     private fun cleanupVehiclesInRange()
-    /** remove the vehicles from the list that are already GONE */
+            /** remove the vehicles from the list that are already GONE */
     {
-        val hashMap: Map<Vehicle, Distance> = distanceToVehicle.filterValues { it.direction != VehicleDirection.GONE }
+        val hashMap: Map<Vehicle, Distance> =
+            distanceToVehicle.filterValues { it.direction != VehicleDirection.GONE }
         if (hashMap.isNotEmpty())
             distanceToVehicle = ConcurrentHashMap(hashMap)
     }

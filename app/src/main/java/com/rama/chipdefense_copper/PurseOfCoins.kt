@@ -77,26 +77,26 @@ class PurseOfCoins(
         return availableCoins() >= price
     }
 
-    fun calculateInitialContents() {
-        val summaries = when (levelMode) {
-            GameMechanics.LevelMode.BASIC ->
-                gameMechanics.summaryPerNormalLevel.values
-
-            GameMechanics.LevelMode.TURBO ->
-                gameMechanics.summaryPerTurboLevel.values
-
-            GameMechanics.LevelMode.ENDLESS ->
-                gameMechanics.summaryPerEndlessLevel.values
-        }
-
-        val rewardCoins = summaries.sumOf { it.coinsGot }
-
-        contents.rewardCoins = rewardCoins
-        contents.runningCoins = 0 // legacy, or compute per-mode if needed
-        contents.spentCoins = 0
-        contents.coinsSpentOnPurchases = 0
-        contents.totalCoins = rewardCoins
-
-    }
+//    fun calculateInitialContents() {
+//        val summaries = when (levelMode) {
+//            GameMechanics.LevelMode.BASIC ->
+//                gameMechanics.summaryPerNormalLevel.values
+//
+//            GameMechanics.LevelMode.TURBO ->
+//                gameMechanics.summaryPerTurboLevel.values
+//
+//            GameMechanics.LevelMode.ENDLESS ->
+//                gameMechanics.summaryPerEndlessLevel.values
+//        }
+//
+//        val rewardCoins = summaries.sumOf { it.coinsGot }
+//
+//        contents.rewardCoins = rewardCoins
+//        contents.runningCoins = 0 // legacy, or compute per-mode if needed
+//        contents.spentCoins = 0
+//        contents.coinsSpentOnPurchases = 0
+//        contents.totalCoins = rewardCoins
+//
+//    }
 
 }

@@ -1,65 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- GLOBAL UI -->
     <color name="foreground_color">#BCCDD5</color>
     <color name="foreground_inactive_color">#949FA6</color>
     <color name="background_color">#2A2837</color>
     <color name="background_secondary_color">#223</color>
     <color name="background_tertiary_color">#1f1f21</color>
 
-    <color name="accent">#7EA245</color>
-    <color name="accent_secondary">#639FC7</color>
-    <color name="danger">#ff7e80</color>
-
-    <color name="game_button_color">#c9e3ce</color>
-    <color name="stage_selection_background_color">#2f3d6f</color>
-
+    <!-- GLOBAL UI: BUTTONS -->
     <color name="button_color">#3d385b</color>
     <color name="button_danger_color">#77302c</color>
+
+    <!-- GLOBAL UI: ABOUT -->
+    <color name="accent">#7EA245</color>
+    <color name="accent_secondary">#639FC7</color>
+
+    <!-- SELECT LEVEL -->
+    <color name="stage_selection_background_color">#2f3d6f</color>
     <color name="switch_track_color">#445</color>
     <color name="tab_selected_color">#3c797a</color>
 
+    <!-- HERO CHIP -->
+    <color name="hero_chip_title">#556</color>
+    <color name="hero_chip_description">#667</color>
+
+    <!-- HERO CHIP: ACTIVE COLORS -->
+    <color name="upgrade_active_general">#79D5FF</color>
+    <color name="upgrade_active_eco">#FF6F00</color>
+    <color name="upgrade_active_meta">#F23D43</color>
+    <color name="upgrade_active_chip_sub">#07DD00</color>
+    <color name="upgrade_active_chip_shr">#649DF3</color>
+    <color name="upgrade_active_chip_acc">#FFC107</color>
+    <color name="upgrade_active_chip_mem">#774CC3</color>
+    <color name="upgrade_active_chip_clk">#F19C50</color>
+    <color name="upgrade_active_chip_res">#F0F0F0</color>
+
+    <!-- INTERMEZZO -->
+    <color name="computer_typewriter_color">#009700</color>
+    <color name="computer_typewriter_color_warning">#B9921C</color>
+
     <!-- GAME: DASHBOARD -->
-    <color name="fps_debug">#afa</color>
-    <color name="dashboard_color">#181e3c</color>
+    <color name="debug_text_color">#afa</color>
+    <color name="dashboard_background_color">#181e3c</color>
     <color name="dashboard_display_foregorund_color">#a6e190</color>
     <color name="dashboard_display_background_color">#112</color>
     <color name="dashboard_divider_color">#2a304f</color>
+    <color name="led_danger_color">#FF5640</color>
+    <color name="led_warning_color">#fefbd3</color>
 
-    <color name="chip_title">#556</color>
-    <color name="chip_description">#667</color>
+    <!-- GAME: SPEED CONTROLS -->
+    <color name="game_speed_button_color">#c9e3ce</color>
 
-    <!-- _________________________________________________________________________________ -->
+    <!-- GAME: UI -->
+    <color name="game_background">#153322</color>
+    <color name="circuit_connectors">#F0e79c00</color>
+    <color name="circuit_entrypoints">#F0CFB473</color>
 
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="deco_blue">#0C65EA</color>
-    <color name="deco_white">#FFFFFF</color>
-    <color name="choice_3">#fdd300</color>
-    <color name="choice_2">#EB9109</color>
-    <color name="choice_1">#eb6909</color>
-
-    <color name="circuit">#fdd300</color>
-    <color name="circuit_edge">#eb6909</color>
-
-    <color name="network_background">#F0292215</color>
-    <color name="alternate_background">#000000</color>
-    <color name="connectors">#F0e79c00</color>
-    <color name="entrypoints">#F0CFB473</color>
-    <color name="attackers_foreground_bin">#DAFFF2F2</color>
+    <!-- GAME: ATTACKERS -->
+    <color name="attackers_foreground_binary">#DAFFF2F2</color>
     <color name="attackers_foreground_hex">#FFDC00</color>
-    <color name="attackers_glow_bin">#FFFD2222</color>
+    <color name="attackers_glow_binary">#FFFD2222</color>
     <color name="attackers_glow_hex">#BD5B2D</color>
-    <color name="attackers_slowed_bin">#DAE6C2C2</color>
+    <color name="attackers_slowed_binary">#DAE6C2C2</color>
     <color name="attackers_slowed_hex">#FFAA00</color>
-    <color name="attackers_glow_coin">#1DFF61</color>
+
+    <!-- GAME: ATTACKERS: COIN -->
+    <color name="attackers_glow_coin_basic">#1DFF61</color>
     <color name="attackers_glow_coin_endless">#EC2816</color>
     <color name="attackers_glow_coin_turbo">#E9D51A</color>
-    <color name="attackers_background">#40000000</color>
+
+    <!-- GAME: CHIPS -->
     <color name="chips_sub_foreground">#DA07DD00</color>
     <color name="chips_sub_glow">#AFFA34</color>
     <color name="chips_shr_foreground">#DA649DF3</color>
@@ -82,43 +92,8 @@
     <color name="chips_split_glow">#FFA557</color>
     <color name="chips_soldstate_foreground">#707070</color>
     <color name="chips_soldstate_glow">#CFCFCF</color>
-    <color name="chips_background">#FF303030</color>
-    <color name="chips_background_alternate">#545454</color>
-    <color name="resistor_background">#303030</color>
-    <color name="scoreboard_text">#FFFFFF</color>
-    <color name="led_red">#FF5640</color>
-    <color name="led_red_glow">#fa0011</color>
-    <color name="led_green">#1CFB3A</color>
-    <color name="led_green_glow">#009b42</color>
-    <color name="led_blue">#1BB8FF</color>
-    <color name="led_blue_glow">#006A9A</color>
-    <color name="led_turbo">#fefbd3</color>
-    <color name="led_turbo_glow">#ffd501</color>
-    <color name="led_off">#191919</color>
-    <color name="led_off_glow">#101010</color>
-    <color name="led_panel">#333333</color>
-    <color name="text_green">#009700</color>
-    <color name="text_lightgreen">#79CD79</color>
-    <color name="text_amber">#B9921C</color>
-    <color name="text_lightamber">#fdd300</color>
-    <color name="text_white">#FFFFFF</color>
-    <color name="text_gray">#9A9A9A</color>
-    <color name="text_blue">#1BB8FF</color>
-    <color name="text_lightblue">#7AC8EC</color>
-    <color name="text_red">#D50000</color>
-    <color name="text_lightred">#f04662</color>
 
-    <color name="upgrade_inactive">#7C878C</color>
-    <color name="upgrade_monochrome">#B9921C</color>
-    <color name="upgrade_active_general">#79D5FF</color>
-    <color name="upgrade_active_eco">#FF6F00</color>
-    <color name="upgrade_active_meta">#F23D43</color>
-    <color name="upgrade_active_chip_sub">#07DD00</color>
-    <color name="upgrade_active_chip_shr">#649DF3</color>
-    <color name="upgrade_active_chip_acc">#FFC107</color>
-    <color name="upgrade_active_chip_mem">#774CC3</color>
-    <color name="upgrade_active_chip_clk">#F19C50</color>
-    <color name="upgrade_active_chip_res">#F0F0F0</color>
+    <!-- GAME: CHIPS: RESISTORS -->
     <color name="resistor_0">#000000</color>
     <color name="resistor_1">#964b00</color>
     <color name="resistor_2">#ff0000</color>
@@ -132,5 +107,11 @@
     <color name="resistor_gold">#d3cb10</color>
     <color name="resistor_silver">#cfcfcf</color>
 
-
+    <!-- _________________________________________________________________________________ -->
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>

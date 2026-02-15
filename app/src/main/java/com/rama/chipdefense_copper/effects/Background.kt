@@ -144,7 +144,7 @@ class Background(val gameView: GameView)
         val bitmap = basicBackground ?: createBitmap(destRect.width(), destRect.height())
         basicBackground = bitmap
         val canvas = Canvas(bitmap)
-        canvas.drawColor(gameView.resources.getColor(R.color.network_background))
+        canvas.drawColor(gameView.resources.getColor(R.color.game_background))
         return bitmap
     }
 

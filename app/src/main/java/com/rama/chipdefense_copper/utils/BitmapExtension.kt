@@ -100,7 +100,7 @@ fun Context.createHero(
     val titlePaint = TextPaint(
             textStyle(
                     themedContext,
-                    colorParam = R.color.chip_title,
+                    colorParam = R.color.hero_chip_title,
                     textSizeSp = 16f
             )
     )
@@ -108,7 +108,7 @@ fun Context.createHero(
     val descriptionPaint = TextPaint(
             textStyle(
                     themedContext,
-                    colorParam = R.color.chip_description,
+                    colorParam = R.color.hero_chip_description,
                     textSizeSp = 9f
             )
     )

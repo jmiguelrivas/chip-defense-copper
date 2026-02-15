@@ -260,7 +260,7 @@ open class Attacker(
     override val explosionColour: Int?
         get() = when (attackerData.representation) {
             Representation.UNDEFINED -> null
-            Representation.BINARY -> resources.getColor(R.color.attackers_glow_bin)
+            Representation.BINARY -> resources.getColor(R.color.attackers_glow_binary)
             Representation.HEX -> resources.getColor(R.color.attackers_glow_hex)
             Representation.DECIMAL -> null
             Representation.FLOAT -> null
@@ -310,10 +310,10 @@ open class Attacker(
         when (attackerData.representation) {
             Representation.BINARY -> {
                 textPaint.color = if (data.speedModificationTimer > 0)
-                    resources.getColor(R.color.attackers_slowed_bin)
+                    resources.getColor(R.color.attackers_slowed_binary)
                 else
-                    resources.getColor(R.color.attackers_foreground_bin)
-                blurPaint.color = resources.getColor(R.color.attackers_glow_bin)
+                    resources.getColor(R.color.attackers_foreground_binary)
+                blurPaint.color = resources.getColor(R.color.attackers_glow_binary)
             }
 
             else -> {
@@ -353,7 +353,7 @@ open class Attacker(
         blurCanvas.drawBitmap(alphaBitmap, 0f, 0f, blurPaint)
 
         textPaint.maskFilter = null
-        textPaint.color = resources.getColor(R.color.attackers_foreground_bin)
+        textPaint.color = resources.getColor(R.color.attackers_foreground_binary)
     }
 
     override fun update() {

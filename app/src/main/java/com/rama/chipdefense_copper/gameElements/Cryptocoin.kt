@@ -49,7 +49,7 @@ class Cryptocoin(
                 network.gameView.resources.getColor(R.color.attackers_glow_coin_turbo)
 
             GameMechanics.LevelMode.BASIC ->
-                network.gameView.resources.getColor(R.color.attackers_glow_coin)
+                network.gameView.resources.getColor(R.color.attackers_glow_coin_basic)
         }
 
     override fun onShot(type: Chip.ChipType, power: Int): Boolean {

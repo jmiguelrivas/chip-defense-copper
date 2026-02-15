@@ -26,7 +26,7 @@ class Viewport
     private val standardGridSizeX = 50
     private val standardGridSizeY = 60
     private val MIN_ZOOM = 0.5f
-    private val MAX_ZOOM = 1.2f
+    private val MAX_ZOOM = 3f
 
     fun setScreenSize(width: Int, height: Int) {
         if (width == 0 || height == 0)

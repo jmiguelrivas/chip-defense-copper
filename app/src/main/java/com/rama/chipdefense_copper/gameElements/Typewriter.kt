@@ -48,7 +48,7 @@ class Typewriter(
 
     fun display(canvas: Canvas) {
         textBoxes.map { it.display(canvas) }
-        paintLine.color = resources.getColor(R.color.text_green)
+        paintLine.color = resources.getColor(R.color.computer_typewriter_color)
     }
 
     inner class TextBox(

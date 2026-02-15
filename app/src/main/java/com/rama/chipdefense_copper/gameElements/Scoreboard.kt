@@ -216,7 +216,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
     override fun display(canvas: Canvas, viewport: Viewport) {
         val currentStage = gameView.gameMechanics.currentStageIdent
         val paint = Paint()
-        paint.color = ContextCompat.getColor(gameView.context, R.color.dashboard_color)
+        paint.color = ContextCompat.getColor(gameView.context, R.color.dashboard_background_color)
 
         paint.style = Paint.Style.FILL
         canvas.drawRect(area, paint)
@@ -250,7 +250,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
 
         val paint = textStyle(
                 gameView.context,
-                colorParam = R.color.fps_debug
+                colorParam = R.color.debug_text_color
         ).apply {
             textAlign = Paint.Align.LEFT
         }
@@ -645,9 +645,11 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
             } else {
                 valueText = "$lastValue°"
                 if (lastValue >= GameMechanics.temperatureLimit)
-                    valuePaint.color = ContextCompat.getColor(gameView.context, R.color.led_red)
+                    valuePaint.color =
+                        ContextCompat.getColor(gameView.context, R.color.led_danger_color)
                 else if (lastValue >= GameMechanics.temperatureWarnThreshold)
-                    valuePaint.color = ContextCompat.getColor(gameView.context, R.color.led_turbo)
+                    valuePaint.color =
+                        ContextCompat.getColor(gameView.context, R.color.led_warning_color)
             }
 
             drawGameDisplay(
