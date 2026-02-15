@@ -22,7 +22,7 @@ class Background(val gameView: GameView)
 /** The background shown during the game, showing a picture of real circuits.
  * This object is created whenever a game is started or resumed.
  * The actual image is only a part of the larger image, cut out at random positions.
-  */
+ */
 {
     /** area (in pixels) where to draw the background on */
     private var myArea = Rect()
@@ -31,13 +31,14 @@ class Background(val gameView: GameView)
     private val maxBackgroundNumber = 9
 
     /** standard opacity of the background */
-    private val backgroundOpacity = 0.6f
+    private val backgroundOpacity = 1f
 
     var opacity = backgroundOpacity
     var paint = Paint()
 
     /** the x coordinate of the "window" on the bigger bitmap that is to be displayed */
     var displacementX = 0
+
     /** the y coordinate of the "window" on the bigger bitmap that is to be displayed */
     var displacementY = 0
 
@@ -72,16 +73,14 @@ class Background(val gameView: GameView)
              * if the size has not changed.
              */
     {
-        if (forceNewBackground || width!=myArea.width() || height!=myArea.height())
-        {
+        if (forceNewBackground || width != myArea.width() || height != myArea.height()) {
             myArea = Rect(0, 0, width, height)
             setBasicBackground()
         }
     }
 
-    private fun setBasicBackground()
-    {
-        if (myArea.width()==0 || myArea.height()==0)
+    private fun setBasicBackground() {
+        if (myArea.width() == 0 || myArea.height() == 0)
             return
         if (enabled)
             wholeBackground?.let { basicBackground = bitmapCroppedToSize(myArea, it) }
@@ -89,17 +88,19 @@ class Background(val gameView: GameView)
             basicBackground = createBlankBackground(myArea)
     }
 
-    fun display(canvas: Canvas)
-    {
+    fun display(canvas: Canvas) {
         paint.alpha = (255 * opacity).toInt()
         basicBackground?.let {
             canvas.drawBitmap(it, null, myArea, paint)
         }
     }
 
-    private fun loadWholeBitmap(number: Int, useSpecial: GameMechanics.Params.Season = GameMechanics.Params.Season.DEFAULT): Bitmap
-    /** loads a large background image into memory
-     * @param number the number of the background chosen. Must be between 1 and maxBackgroundNumber */
+    private fun loadWholeBitmap(
+        number: Int,
+        useSpecial: GameMechanics.Params.Season = GameMechanics.Params.Season.DEFAULT
+    ): Bitmap
+            /** loads a large background image into memory
+             * @param number the number of the background chosen. Must be between 1 and maxBackgroundNumber */
     {
         val resources: Resources = gameView.resources
         // since loading now happens in small chunks, there is no need to display the toast */
@@ -110,19 +111,16 @@ class Background(val gameView: GameView)
         val options = BitmapFactory.Options()
         options.inScaled = false
         return when (useSpecial) {
-            GameMechanics.Params.Season.EASTER -> BitmapFactory.decodeResource(resources, R.drawable.background_flowers)
-            GameMechanics.Params.Season.CHRISTMAS -> BitmapFactory.decodeResource(resources, R.drawable.background_winter)
+//            GameMechanics.Params.Season.EASTER -> BitmapFactory.decodeResource(resources, R.drawable.background_flowers)
+//            GameMechanics.Params.Season.CHRISTMAS -> BitmapFactory.decodeResource(resources, R.drawable.background_winter)
             else -> when (number) {
-                1 -> BitmapFactory.decodeResource(resources, R.drawable.background_1, options)
-                2 -> BitmapFactory.decodeResource(resources, R.drawable.background_2, options)
-                3 -> BitmapFactory.decodeResource(resources, R.drawable.background_3, options)
-                4 -> BitmapFactory.decodeResource(resources, R.drawable.background_4, options)
-                5 -> BitmapFactory.decodeResource(resources, R.drawable.background_5, options)
-                6 -> BitmapFactory.decodeResource(resources, R.drawable.background_6, options)
-                7 -> BitmapFactory.decodeResource(resources, R.drawable.background_7, options)
-                8 -> BitmapFactory.decodeResource(resources, R.drawable.background_8, options)
-                9 -> BitmapFactory.decodeResource(resources, R.drawable.background_9, options)
-                else -> BitmapFactory.decodeResource(resources, R.drawable.background_9, options)
+                1 -> BitmapFactory.decodeResource(resources, R.drawable.bg_1, options)
+                2 -> BitmapFactory.decodeResource(resources, R.drawable.bg_2, options)
+                3 -> BitmapFactory.decodeResource(resources, R.drawable.bg_3, options)
+                4 -> BitmapFactory.decodeResource(resources, R.drawable.bg_4, options)
+                5 -> BitmapFactory.decodeResource(resources, R.drawable.bg_5, options)
+                6 -> BitmapFactory.decodeResource(resources, R.drawable.bg_6, options)
+                else -> BitmapFactory.decodeResource(resources, R.drawable.bg_6, options)
             }
         }
     }
@@ -141,7 +139,7 @@ class Background(val gameView: GameView)
     }
 
     private fun createBlankBackground(destRect: Rect): Bitmap
-    /** @return an empty bitmap with the dimensions of the given rectangle */
+            /** @return an empty bitmap with the dimensions of the given rectangle */
     {
         val bitmap = basicBackground ?: createBitmap(destRect.width(), destRect.height())
         basicBackground = bitmap
@@ -170,8 +168,8 @@ class Background(val gameView: GameView)
         // here, largeBitmap is at least as big as the destination rectangle (in both dimensions)
         val deltaX = largeBitmap.width - destRect.width()
         val deltaY = largeBitmap.height - destRect.height()
-        displacementX = if (deltaX>0) Random.nextInt(deltaX) else 0
-        displacementY = if (deltaY>0) Random.nextInt(deltaY) else 0
+        displacementX = if (deltaX > 0) Random.nextInt(deltaX) else 0
+        displacementY = if (deltaY > 0) Random.nextInt(deltaY) else 0
 
         val bitmap = createBlankBackground(destRect)
         val canvas = Canvas(bitmap)
