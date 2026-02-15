@@ -59,6 +59,7 @@ open class Chip(val network: Network, gridX: Int, gridY: Int) :
             node = super.data
     )
 
+    private var currentZoom = 1.0f
     open var bitmap: Bitmap? = null
     private var bitmapActivated: Bitmap? = null
     private var widthOnScreen: Int = 0
@@ -419,22 +420,30 @@ open class Chip(val network: Network, gridX: Int, gridY: Int) :
         if (chipData.type == ChipType.ENTRY)
             return super.display(canvas, viewport)
 
-        /* calculate size */
-        /* this is put here because the viewport / zoom factor may change.
-        However, it may be possible to remove this from display()
-         */
+        currentZoom = viewport.userScale
+
         val sizeOnScreen = theNetwork.distanceBetweenGridPoints()
         sizeOnScreen?.let {
-            widthOnScreen = it.first * GameView.chipSize.x.toInt()
-            heightOnScreen = it.second * GameView.chipSize.y.toInt()
+            widthOnScreen = (it.first * GameView.chipSize.x * currentZoom).toInt()
+            heightOnScreen = (it.second * GameView.chipSize.y * currentZoom).toInt()
+
             actualRect = Rect(0, 0, widthOnScreen, heightOnScreen)
         }
+
         outlineWidth = 2f * resources.displayMetrics.scaledDensity
         actualRect?.setCenter(viewport.gridToViewport(posOnGrid))
+
+        if (bitmap == null || bitmap?.width != widthOnScreen || bitmap?.height != heightOnScreen) {
+            recreateChipBitmap()
+        }
+
         actualRect?.let { displayChip(canvas, it) }
-        if (theNetwork.gameView.gameActivity.settings.configShowAttackersInRange && chipData.type != ChipType.EMPTY)
+
+        if (theNetwork.gameView.gameActivity.settings.configShowAttackersInRange && chipData.type != ChipType.EMPTY) {
             actualRect?.let { displayLineToAttacker(canvas, attackersInRange(), it) }
+        }
     }
+
 
     private fun displayLineToAttacker(
         canvas: Canvas,
@@ -802,43 +811,45 @@ open class Chip(val network: Network, gridX: Int, gridY: Int) :
         return bitmap
     }
 
-    private fun createBitmap(text: String): Bitmap?
-            /** creates the bitmap of a 'standard' chip with [text], using the current colours */
-    {
-        val bitmap: Bitmap? = actualRect?.let {
+    private fun createBitmap(text: String): Bitmap? {
+        return actualRect?.let {
             val bitmap = Bitmap.createBitmap(it.width(), it.height(), Bitmap.Config.ARGB_8888)
-            val rect = Rect(0, 0, bitmap.width - 2 * outlineWidth.toInt(), bitmap.height)
+            val padding = outlineWidth.toInt()
+            val rect = Rect(padding, 0, bitmap.width - padding, bitmap.height)
             val canvas = Canvas(bitmap)
             val paint = Paint()
 
-            paint.textSize = (GameView.chipTextSize * network.gameView.textScaleFactor) *
-                    if (theNetwork.gameView.gameActivity.settings.configUseLargeButtons) 1.0f else 0.96f // multiple sizes possible
+            paint.textSize =
+                (GameView.chipTextSize * network.gameView.textScaleFactor * currentZoom) *
+                        if (theNetwork.gameView.gameActivity.settings.configUseLargeButtons) 1.0f else 0.96f
             paint.alpha = 255
             paint.typeface = theNetwork.gameView.boldTypeface
             paint.textAlign = Paint.Align.CENTER
-            val clippedRect = rect.displayTextCenteredInRect(canvas, text, paint)
 
+            val centerX = rect.exactCenterX()
+            val centerY = rect.exactCenterY()
+            val fm = paint.fontMetrics
+            val baseline = centerY - (fm.ascent + fm.descent) / 2
+
+            // create alpha for glow
             val alpha: Bitmap = bitmap.extractAlpha()
-            /* create a transparent black background to have more contrast */
-            paint.color = defaultBackgroundColor
-            // canvas.drawRect(clippedRect, paint)
 
-            /* use blurred image to create glow */
+            // draw glow
             val blurMaskFilter = BlurMaskFilter(2.5f, BlurMaskFilter.Blur.OUTER)
-            // paint.color = chipData.glowColor
             paint.color = defaultBackgroundColor
             paint.maskFilter = blurMaskFilter
             val blurCanvas = Canvas(bitmap)
             blurCanvas.drawBitmap(alpha, 0f, 0f, paint)
 
-            /* add the actual (non-blurred) text */
+            // draw actual text
             paint.color = chipData.color
             paint.maskFilter = null
-            clippedRect.displayTextCenteredInRect(canvas, text, paint)
+            canvas.drawText(text, centerX, baseline, paint)
+
             bitmap
         }
-        return bitmap
     }
+
 
     private fun showUpgrades()
             /** displays boxes with all available upgrades */

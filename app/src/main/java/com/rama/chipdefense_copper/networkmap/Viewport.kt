@@ -19,7 +19,7 @@ class Viewport
     private var scaleY = 1.0f
     private var offsetX = 0
     private var offsetY = 0
-    private var userScale = 1.0f // zoom factor chosen by the player
+    var userScale = 1.0f // zoom factor chosen by the player
     var isValid = false
 
     /* default grid size that fits on screen without scrolling */
