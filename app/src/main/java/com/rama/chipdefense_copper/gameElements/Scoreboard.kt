@@ -214,7 +214,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
     }
 
     override fun display(canvas: Canvas, viewport: Viewport) {
-        val currentStage = gameView.gameMechanics.currentStageIdent
+//        val currentStage = gameView.gameMechanics.currentStageIdent
         val paint = Paint()
         paint.color = ContextCompat.getColor(gameView.context, R.color.dashboard_background_color)
 
@@ -507,7 +507,7 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         private var lastValue = -1   // used to detect value changes
         lateinit var bitmap: Bitmap
         private val paint = Paint()
-        private var preferredSizeLedX = 0
+//        private var preferredSizeLedX = 0
 
         fun setSize(area: Rect, divider: Int): Rect {
             this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
@@ -594,15 +594,15 @@ class ScoreBoard(val gameView: GameView) : GameElement() {
         private var divider = 0
 
         private var lastValue = -1
-        private var temperature: Int = GameMechanics.baseTemperature
+//        private var temperature: Int = GameMechanics.baseTemperature
 
         lateinit var bitmap: Bitmap
         private val paint = Paint()
 
-        private fun isTemperatureAvailable(): Boolean {
-            val state = gameView.gameMechanics.state
-            return state.heat > 0
-        }
+//        private fun isTemperatureAvailable(): Boolean {
+//            val state = gameView.gameMechanics.state
+//            return state.heat > 0
+//        }
 
         fun setSize(area: Rect, divider: Int): Rect {
             this.area = Rect(area.left, area.top, area.left + displayOutputSize, area.bottom)
