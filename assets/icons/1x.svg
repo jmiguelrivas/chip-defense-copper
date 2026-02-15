@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="bars-solid"
+   viewBox="0 0 24 24"
+   version="1.1"
+   sodipodi:docname="1x.svg"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="11.523451"
+     inkscape:cx="5.8142304"
+     inkscape:cy="3.2976232"
+     inkscape:window-width="1680"
+     inkscape:window-height="1000"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="bars-solid" />
+  <path
+     d="M 8.8062628,4.7415249 V 19.258476 H 5.9028725 V 7.6449151 H 3.5801603 V 4.7415249 Z M 11.709668,15.774408 V 15.19373 h 0.580678 v -0.580678 h 0.580678 v -0.580678 h 0.580679 V 13.451696 H 12.871024 V 12.871018 H 12.290346 V 12.29034 H 11.709668 V 11.709662 H 11.12899 V 8.2255932 h 2.903391 v 2.9033898 h 0.580678 v 0.580679 h 0.580678 v 0.580678 h 1.161356 v -0.580678 h 0.580678 v -0.580679 h 0.580678 V 8.2255932 h 2.90339 v 3.4840688 h -0.580678 v 0.580678 h -0.580678 v 0.580678 h -0.580678 v 0.580678 h -0.580678 v 0.580678 h 0.580678 v 0.580678 h 0.580678 v 0.580678 h 0.580678 v 0.580678 h 0.580678 v 3.484068 h -2.90339 v -2.90339 H 16.935771 V 15.774408 H 16.355093 V 15.19373 h -1.161356 v 0.580678 h -0.580678 v 0.580678 h -0.580678 v 2.90339 H 11.12899 v -3.484068 z"
+     id="text3"
+     style="font-weight:bold;font-size:23.8078px;font-family:'Jersey 25';-inkscape-font-specification:'Jersey 25 Bold';text-align:center;text-anchor:middle;stroke-width:1.92843;stroke-linecap:round;stroke-linejoin:round"
+     aria-label="1x" />
+</svg>
