@@ -29,7 +29,6 @@
     <string name="export_data">Export Data</string>
     <string name="button_reset_progress">Reset game progress</string>
     <string name="settings_activate_log">Enable debug logging</string>
-    <string name="settings_fast_fast_forward">Show “really fast forward” button</string>
     <string name="settings_disable_purchase_dialog">Disable the life purchase dialog</string>
     <string name="settings_disable_background">Disable background</string>
     <string name="settings_show_atts_in_range">Show attackers in range</string>
@@ -66,8 +65,6 @@
     <string name="continue_game">Continue playing</string>
 
     <!-- INTERMEZZO -->
-    <string name="series_completed_message_1">" "</string>
-    <string name="series_completed_message_4">" "</string>
     <string name="game_start">Starting game.</string>
     <string name="button_playlevel">Play stage</string>
     <string name="failed">Failed to clear stage.</string>
@@ -300,5 +297,4 @@
     <string name="coins_singular">one coin</string>
     <string name="coins_plural">%d coins</string>
     <string name="coins_none">no coins</string>
-    <string name="deco">Deco</string>
 </resources>

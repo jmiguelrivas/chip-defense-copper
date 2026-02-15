@@ -17,10 +17,4 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
-    <style name="AlertDialogCustom" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="android:fontFamily">@font/jersey25_regular</item>
-        <item name="fontFamily">@font/jersey25_regular</item>
-        <item name="android:textColor">@android:color/holo_red_dark</item>
-        <item name="android:background">@android:color/holo_blue_dark</item>
-    </style>
 </resources>
