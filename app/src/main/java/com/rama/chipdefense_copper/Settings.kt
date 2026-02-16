@@ -6,7 +6,6 @@ class Settings {
     var configDisablePurchaseDialog: Boolean = false
     var configDisableBackground: Boolean = true
     var configShowAttackersInRange: Boolean = false
-    var configUseLargeButtons: Boolean = false
     var showFrameRate: Boolean = false
     var keepLevels: Boolean = true
     var showLevelsInHex: Boolean = false
@@ -16,7 +15,6 @@ class Settings {
         configDisablePurchaseDialog = prefs.getBoolean("DISABLE_PURCHASE_DIALOG", false)
         configDisableBackground = prefs.getBoolean("DISABLE_BACKGROUND", false)
         configShowAttackersInRange = prefs.getBoolean("SHOW_ATTS_IN_RANGE", false)
-        configUseLargeButtons = prefs.getBoolean("USE_LARGE_BUTTONS", false)
         showFrameRate = prefs.getBoolean("SHOW_FRAMERATE", false)
         keepLevels = prefs.getBoolean("KEEP_LEVELS", true)
         showLevelsInHex = prefs.getBoolean("USE_HEX", false)
@@ -29,7 +27,6 @@ class Settings {
             putBoolean("DISABLE_PURCHASE_DIALOG", configDisablePurchaseDialog)
             putBoolean("DISABLE_BACKGROUND", configDisableBackground)
             putBoolean("SHOW_ATTS_IN_RANGE", configShowAttackersInRange)
-            putBoolean("USE_LARGE_BUTTONS", configUseLargeButtons)
             putBoolean("SHOW_FRAMERATE", showFrameRate)
             putBoolean("KEEP_LEVELS", keepLevels)
             putBoolean("USE_HEX", showLevelsInHex)

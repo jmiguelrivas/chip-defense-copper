@@ -26,7 +26,7 @@ class Viewport
     private val standardGridSizeX = 50
     private val standardGridSizeY = 60
     private val MIN_ZOOM = 0.5f
-    private val MAX_ZOOM = 3f
+    private val MAX_ZOOM = 4f
 
     fun setScreenSize(width: Int, height: Int) {
         if (width == 0 || height == 0)
@@ -46,12 +46,12 @@ class Viewport
         val margin = GameView.viewportMargin.toFloat()
 
         // Horizontal limits: keep at least part of the world visible
-        val minX = (-margin - worldWidth / 2).toInt()
-        val maxX = (viewportWidth - worldWidth / 2 - margin).toInt()
+        val minX = (-margin - worldWidth).toInt()
+        val maxX = (viewportWidth - margin).toInt()
 
         // Vertical limits
-        val minY = (-margin - worldHeight / 2).toInt()
-        val maxY = (viewportHeight - worldHeight / 2 - margin).toInt()
+        val minY = (-margin - worldHeight).toInt()
+        val maxY = (viewportHeight - margin).toInt()
 
         offsetX = offsetX.coerceIn(minX, maxX)
         offsetY = offsetY.coerceIn(minY, maxY)

@@ -54,14 +54,6 @@
                     style="@style/Widget.CpuDefense.RetroSwitch" />
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/switch_use_large_buttons"
-                    android:text="@string/settings_use_large_buttons"
-                    android:onClick="savePrefs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.CpuDefense.RetroSwitch" />
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/switch_show_framerate"
                     android:text="@string/settings_show_framerate"
                     android:onClick="savePrefs"

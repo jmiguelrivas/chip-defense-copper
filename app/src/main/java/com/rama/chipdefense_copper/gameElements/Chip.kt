@@ -820,8 +820,7 @@ open class Chip(val network: Network, gridX: Int, gridY: Int) :
             val paint = Paint()
 
             paint.textSize =
-                (GameView.chipTextSize * network.gameView.textScaleFactor * currentZoom) *
-                        if (theNetwork.gameView.gameActivity.settings.configUseLargeButtons) 1.0f else 0.96f
+                (GameView.chipTextSize * network.gameView.textScaleFactor * currentZoom) * 0.96f
             paint.alpha = 255
             paint.typeface = theNetwork.gameView.boldTypeface
             paint.textAlign = Paint.Align.CENTER

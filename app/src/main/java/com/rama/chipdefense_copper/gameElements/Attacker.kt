@@ -298,10 +298,7 @@ open class Attacker(
 
     fun createBitmap(text: String) {
         // adjust font size by zoom as well
-        numberFontSize = baseNumberFontSize *
-                network.gameView.textScaleFactor *
-                currentZoom *  // <-- scale with zoom
-                if (activity.settings.configUseLargeButtons) 1.5f else 0.8f
+        numberFontSize = baseNumberFontSize * network.gameView.textScaleFactor * currentZoom * 0.8f
 
         val textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         val blurPaint = Paint(Paint.ANTI_ALIAS_FLAG)

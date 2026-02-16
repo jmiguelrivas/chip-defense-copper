@@ -123,8 +123,6 @@ class SettingsActivity : BaseFullscreenActivity() {
             settings.configDisableBackground
         findViewById<SwitchCompat>(R.id.switch_show_atts_in_range)?.isChecked =
             settings.configShowAttackersInRange
-        findViewById<SwitchCompat>(R.id.switch_use_large_buttons)?.isChecked =
-            settings.configUseLargeButtons
         findViewById<SwitchCompat>(R.id.switch_show_framerate)?.isChecked = settings.showFrameRate
         findViewById<SwitchCompat>(R.id.switch_keep_levels)?.isChecked = settings.keepLevels
         findViewById<SwitchCompat>(R.id.switch_use_hex)?.isChecked = settings.showLevelsInHex
@@ -145,8 +143,6 @@ class SettingsActivity : BaseFullscreenActivity() {
             findViewById<SwitchCompat>(R.id.switch_disable_background)?.isChecked ?: false
         settings.configShowAttackersInRange =
             findViewById<SwitchCompat>(R.id.switch_show_atts_in_range)?.isChecked ?: false
-        settings.configUseLargeButtons =
-            findViewById<SwitchCompat>(R.id.switch_use_large_buttons)?.isChecked ?: false
         settings.showFrameRate =
             findViewById<SwitchCompat>(R.id.switch_show_framerate)?.isChecked ?: false
         settings.keepLevels = findViewById<SwitchCompat>(R.id.switch_keep_levels)?.isChecked ?: true
