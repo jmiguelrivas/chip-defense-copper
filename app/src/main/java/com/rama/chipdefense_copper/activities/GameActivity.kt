@@ -292,6 +292,19 @@ class GameActivity : BaseFullscreenActivity() {
                     gameMechanics.deleteProgressOfSeries(LevelMode.BASIC)
                     gameMechanics.deleteProgressOfSeries(LevelMode.TURBO)
                     gameMechanics.deleteProgressOfSeries(LevelMode.ENDLESS)
+
+                    // Reset the SharedPreferences flags
+                    val prefs = getSharedPreferences(Persistency.filename_state, MODE_PRIVATE)
+                    with(prefs.edit()) {
+                        putBoolean("TURBO_AVAILABLE", false)
+                        putBoolean("ENDLESS_AVAILABLE", false)
+                        putInt("LASTSTAGE", 0)
+                        putInt("LASTSERIES", 1)
+                        putInt("MAXSTAGE", 0)
+                        putInt("MAXSERIES", 1)
+                        apply()
+                    }
+
                     level = Identifier.startOfNewGame
                 }
 
@@ -299,6 +312,7 @@ class GameActivity : BaseFullscreenActivity() {
                     gameMechanics.deleteProgressOfSeries(LevelMode.ENDLESS)
                     level = Identifier.startOfEndless
                 }
+
             }
         }
 
