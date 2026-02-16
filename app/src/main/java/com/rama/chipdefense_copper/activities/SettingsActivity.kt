@@ -60,13 +60,13 @@ class SettingsActivity : BaseFullscreenActivity() {
         loadPrefs()
 
         // --------- NEW: Wire Import/Export Buttons ----------
-//        findViewById<View>(R.id.exportData)?.setOnClickListener {
-//            exportData()
-//        }
-//
-//        findViewById<View>(R.id.importData)?.setOnClickListener {
-//            importData()
-//        }
+        findViewById<View>(R.id.exportData)?.setOnClickListener {
+            exportData()
+        }
+
+        findViewById<View>(R.id.importData)?.setOnClickListener {
+            importData()
+        }
 
         // EXPORT launcher
         exportLauncher =

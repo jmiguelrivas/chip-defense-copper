@@ -57,8 +57,8 @@ class GameActivity : BaseFullscreenActivity() {
     private val defaultDelay = 40L
 
     /** delta T when accelerated */
-    private val fastForwardDelay = 8L
-    private val fastFastForwardDelay = 3L
+    private val fastForwardDelay = 12L
+    private val fastFastForwardDelay = 5L
     private var updateDelay: Long = defaultDelay
     private val effectsDelay: Long = 15
 
