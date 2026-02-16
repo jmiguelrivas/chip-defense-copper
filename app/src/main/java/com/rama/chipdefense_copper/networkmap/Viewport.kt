@@ -39,6 +39,24 @@ class Viewport
         }
     }
 
+    private fun clampOffset() {
+        val worldWidth = gridSizeX * scaleX
+        val worldHeight = gridSizeY * scaleY
+
+        val margin = GameView.viewportMargin.toFloat()
+
+        // Horizontal limits: keep at least part of the world visible
+        val minX = (-margin - worldWidth / 2).toInt()
+        val maxX = (viewportWidth - worldWidth / 2 - margin).toInt()
+
+        // Vertical limits
+        val minY = (-margin - worldHeight / 2).toInt()
+        val maxY = (viewportHeight - worldHeight / 2 - margin).toInt()
+
+        offsetX = offsetX.coerceIn(minX, maxX)
+        offsetY = offsetY.coerceIn(minY, maxY)
+    }
+
     fun zoomAt(delta: Float, focusX: Float, focusY: Float) {
         val oldScale = userScale
         val newScale = (userScale * delta).coerceIn(MIN_ZOOM, MAX_ZOOM)
@@ -48,11 +66,11 @@ class Viewport
         val scaleFactor = newScale / oldScale
         userScale = newScale
 
-        // Adjust offsets so zoom keeps focus point stable
         offsetX = ((offsetX - focusX) * scaleFactor + focusX).toInt()
         offsetY = ((offsetY - focusY) * scaleFactor + focusY).toInt()
 
         calculateScale()
+        clampOffset()
     }
 
     fun reset() {
@@ -82,18 +100,9 @@ class Viewport
     }
 
     fun addOffset(deltaX: Float, deltaY: Float) {
-        val maxX = viewportWidth / 2
         offsetX += deltaX.toInt()
-        if (offsetX > maxX)
-            offsetX = maxX
-        else if (offsetX < -maxX)
-            offsetX = -maxX
-        val maxY = viewportHeight / 2
         offsetY += deltaY.toInt()
-        if (offsetY > maxY)
-            offsetY = maxY
-        else if (offsetY < -maxY)
-            offsetY = -maxY
+        clampOffset()
     }
 
     fun gridToViewport(gridPos: Coord): Pair<Int, Int> {
