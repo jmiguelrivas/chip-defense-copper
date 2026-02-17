@@ -86,7 +86,7 @@
         <item name="coinBase">#46bc6b</item>
         <item name="coinOutline">#66ac34</item>
         <item name="coinHighlight">#c6ffc9</item>
-        <item name="coinMidTone">#59d739</item>
+        <item name="coinMidTone">#4FA838</item>
         <item name="coinShadow">#1F832B</item>
     </style>
 

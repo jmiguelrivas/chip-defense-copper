@@ -55,7 +55,7 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
 
     var isVisible: Boolean = false
 
-    var inactiveColor = resources.getColor(R.color.foreground_inactive_color)
+    var inactiveColor = resources.getColor(R.color.accent_secondary)
     private var monochromeColor = inactiveColor
     var activeColor: Int = if (monochrome) monochromeColor
     else when (type) {
@@ -152,11 +152,8 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
         {
             val originalThickness = strokeWidth
             val originalAlpha = alpha
-            alpha = 60
-            strokeWidth = originalThickness + 12 * resources.displayMetrics.scaledDensity
-            canvas.drawRect(cardAreaOnScreen, this)
-            alpha = 60
-            strokeWidth = originalThickness + 6 * resources.displayMetrics.scaledDensity
+            alpha = 100
+            strokeWidth = originalThickness + 7 * resources.displayMetrics.scaledDensity
             canvas.drawRect(cardAreaOnScreen, this)
             // restore original values
             strokeWidth = originalThickness
