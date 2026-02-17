@@ -62,7 +62,7 @@ Icons used in this project:
 
 Sound effects by Jesús Lastra.
 
-- Author: [Jesús Lastra](https://opengameart.org/users/jalastram)
+- Author: [Jesús Lastra Martínez](https://www.youtube.com/@FlatStoneMusic/videos)
 - Source: https://opengameart.org/content/button-clicks-beeps-99-sounds
 - License: **CC BY 3.0**
 - License link: https://creativecommons.org/licenses/by/3.0/
