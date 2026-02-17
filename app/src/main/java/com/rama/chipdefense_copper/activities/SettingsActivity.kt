@@ -115,6 +115,16 @@ class SettingsActivity : BaseFullscreenActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Sounds.playSecondarySoundtrack()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Sounds.stopSecondarySoundtrack()
+    }
+
     private fun loadPrefs() {
         val prefs = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.loadFromFile(prefs)
@@ -159,7 +169,7 @@ class SettingsActivity : BaseFullscreenActivity() {
 
         Sounds.enabled = !settings.configDisableSounds
         Sounds.playBtnToggleSound()
-        
+
         val prefs = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.saveToFile(prefs)
     }

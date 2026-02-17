@@ -9,6 +9,7 @@ import android.graphics.Paint
 import android.graphics.Shader
 import android.util.AttributeSet
 import android.view.View
+import com.rama.chipdefense_copper.utils.vectorToBitmap
 
 class AnimatedPatternView @JvmOverloads constructor(
     context: Context,

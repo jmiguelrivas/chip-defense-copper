@@ -13,6 +13,7 @@ import com.rama.chipdefense_copper.GameMechanics
 import com.rama.chipdefense_copper.GameView
 import com.rama.chipdefense_copper.Hero
 import com.rama.chipdefense_copper.R
+import com.rama.chipdefense_copper.Sounds
 import com.rama.chipdefense_copper.effects.Mover
 import com.rama.chipdefense_copper.networkmap.Network
 import com.rama.chipdefense_copper.networkmap.Node
@@ -160,6 +161,7 @@ open class Chip(val network: Network, gridX: Int, gridY: Int) :
              * Sets parameters such as colour, cooldown time, price, refund value.
              */
     {
+        Sounds.playBuildSound()
         chipData.type = chipType
         chipData.upgradeLevel = 1
         val gameMechanics = network.gameMechanics

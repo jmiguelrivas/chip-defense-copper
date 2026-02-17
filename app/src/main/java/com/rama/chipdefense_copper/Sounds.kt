@@ -10,6 +10,7 @@ import android.os.Looper
 object Sounds {
     private var soundPool: SoundPool? = null
     private var mediaPlayer: MediaPlayer? = null
+    private var secondaryPlayer: MediaPlayer? = null
     var enabled: Boolean = true
     private var btnClickId: Int = 0
     private var btnClickBackId: Int = 0
@@ -18,8 +19,11 @@ object Sounds {
     private var btnClickSelectId: Int = 0
     private var btnClickSpeedId: Int = 0
     private var btnClickPauseId: Int = 0
+    private var buildId: Int = 0
     private var fadeHandler: Handler? = null
     private var fadeRunnable: Runnable? = null
+    private var secondaryFadeHandler: Handler? = null
+    private var secondaryFadeRunnable: Runnable? = null
 
     private var shootId: Int = 0
 
@@ -43,10 +47,15 @@ object Sounds {
         btnClickPauseId = soundPool!!.load(context, R.raw.beep_58, 1)
 
         shootId = soundPool!!.load(context, R.raw.beep_94, 1)
+        buildId = soundPool!!.load(context, R.raw.beep_84, 1)
 
         mediaPlayer = MediaPlayer.create(context, R.raw.every_friday_nes)
         mediaPlayer?.isLooping = true
         mediaPlayer?.setVolume(1f, 1f)
+
+        secondaryPlayer = MediaPlayer.create(context, R.raw.doogdoog) // put your resource here
+        secondaryPlayer?.isLooping = true
+        secondaryPlayer?.setVolume(1f, 1f)
     }
 
     private fun play(id: Int, left: Float = 1f, right: Float = 1f, loop: Int = 0) {
@@ -86,6 +95,10 @@ object Sounds {
         play(shootId, 1f, 1f)
     }
 
+    fun playBuildSound() {
+        play(buildId, 1f, 1f)
+    }
+
     fun playSoundtrack(durationMs: Long = 500) {
         if (!enabled) return
         val player = mediaPlayer ?: return
@@ -99,7 +112,7 @@ object Sounds {
 
         val steps = 20
         val delay = durationMs / steps
-        var currentStep = -5
+        var currentStep = -15
 
         fadeHandler = Handler(Looper.getMainLooper())
         fadeRunnable = object : Runnable {
@@ -112,8 +125,7 @@ object Sounds {
                 if (currentStep <= steps) {
                     fadeHandler?.postDelayed(this, delay)
                 } else {
-                    // ensure full volume at the end
-                    player.setVolume(1f, 1f)
+                    player.setVolume(.5f, .5f)
                 }
             }
         }
@@ -121,7 +133,7 @@ object Sounds {
         fadeHandler?.post(fadeRunnable!!)
     }
 
-    fun stopSoundtrack(durationMs: Long = 1000) {
+    fun stopSoundtrack(durationMs: Long = 0) {
         val player = mediaPlayer ?: return
 
         fadeHandler?.removeCallbacksAndMessages(null)
@@ -147,11 +159,70 @@ object Sounds {
                     player.prepareAsync()
 
                     // reset volume so next play starts at full volume
-                    player.setVolume(1f, 1f)
+                    player.setVolume(.5f, .5f)
                 }
             }
         }
 
         fadeHandler?.post(fadeRunnable!!)
+    }
+
+    fun playSecondarySoundtrack(durationMs: Long = 500) {
+        if (!enabled) return
+        val player = secondaryPlayer ?: return
+
+        secondaryFadeHandler?.removeCallbacksAndMessages(null)
+        player.setVolume(0f, 0f)
+        if (!player.isPlaying) player.start()
+
+        val steps = 20
+        val delay = durationMs / steps
+        var currentStep = -10
+
+        secondaryFadeHandler = Handler(Looper.getMainLooper())
+        secondaryFadeRunnable = object : Runnable {
+            override fun run() {
+                val volume = (currentStep.toFloat() / steps.toFloat()).coerceIn(0f, 1f)
+                player.setVolume(volume, volume)
+                currentStep++
+
+                if (currentStep <= steps) {
+                    secondaryFadeHandler?.postDelayed(this, delay)
+                } else {
+                    player.setVolume(.5f, .5f)
+                }
+            }
+        }
+
+        secondaryFadeHandler?.post(secondaryFadeRunnable!!)
+    }
+
+
+    fun stopSecondarySoundtrack(durationMs: Long = 0) {
+        val player = secondaryPlayer ?: return
+
+        secondaryFadeHandler?.removeCallbacksAndMessages(null)
+        val steps = 20
+        val delay = durationMs / steps
+        var currentStep = 0
+
+        secondaryFadeHandler = Handler(Looper.getMainLooper())
+        secondaryFadeRunnable = object : Runnable {
+            override fun run() {
+                val volume = 1f - (currentStep.toFloat() / steps.toFloat())
+                player.setVolume(volume, volume)
+                currentStep++
+
+                if (currentStep <= steps) {
+                    secondaryFadeHandler?.postDelayed(this, delay)
+                } else {
+                    player.stop()
+                    player.prepareAsync()
+                    player.setVolume(.5f, .5f)
+                }
+            }
+        }
+
+        secondaryFadeHandler?.post(secondaryFadeRunnable!!)
     }
 }
