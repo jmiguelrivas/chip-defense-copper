@@ -1,6 +1,6 @@
 # Attribution
 
-## Original Project (MIT License)
+## Original Project
 
 This project is a modified fork of **CPU Defense** by **Oliver Chadenas**.
 
@@ -32,7 +32,7 @@ Modifications and additional content © 2026 [Miguel Rivas](https://github.com/o
 
 ---
 
-## Font Attribution (SIL Open Font License 1.1)
+## Font Attribution
 
 This project uses the **Jersey 25** font from the Soft Type Collection.
 
@@ -46,7 +46,7 @@ The SIL Open Font License 1.1 is included in the project and applies to the font
 
 ---
 
-## Icon Attribution (CC BY 4.0)
+## Icon Attribution
 
 Icons used in this project:
 
@@ -58,7 +58,7 @@ Icons used in this project:
 
 ---
 
-## Sound Effects Attribution (CC BY 3.0)
+## Sound Effects Attribution
 
 Sound effects by Jesús Lastra.
 
@@ -69,12 +69,21 @@ Sound effects by Jesús Lastra.
 
 ---
 
-## Soundtrack Attribution (CC BY 3.0)
+## Soundtrack Attribution
+
+Every Friday NES Version (Main Menu)
 
 - Author: [Snabisch](https://opengameart.org/users/snabisch)
 - Source: https://opengameart.org/content/every-friday-nes-version
 - License: **CC BY 3.0**
 - License link: https://creativecommons.org/licenses/by/3.0/
+
+Doog Doog (Secondary Views)
+
+- Author: [Spring Spring](https://opengameart.org/users/spring-spring)
+- Source: https://opengameart.org/content/birbotronicdoogdoog-soundtrack
+- License: **CC0 1.0 Universal**
+- License link: https://creativecommons.org/publicdomain/zero/1.0/
 
 ---
 
