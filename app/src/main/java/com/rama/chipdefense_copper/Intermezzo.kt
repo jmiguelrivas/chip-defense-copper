@@ -40,6 +40,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
     private var typewriter: Typewriter? = null
     private var buttonContinue: Button? = null
     private var buttonPurchase: Button? = null
+    private var buttonBack: Button? = null
     private var instructions: Instructions? = null
 
     /** a panel containing several heroes to choose from */
@@ -199,32 +200,37 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
         val bottomMargin = 40
         val spacing = 32
 
+        // Define all buttons here
+        val buttonList = mutableListOf<Button>()
+
         buttonContinue = Button(gameView, textOnContinueButton)
-        buttonContinue?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.FAST) }
+        buttonBack = Button(gameView, resources.getString(R.string.go_back))
+        buttonPurchase = Button(gameView, resources.getString(R.string.button_marketplace))
 
-        val continueHeight = buttonContinue!!.area.height()
+        // Add them in the order they should appear (bottom → top)
+        buttonList.add(buttonBack!!)
+        buttonList.add(buttonContinue!!)
+        buttonList.add(buttonPurchase!!)
 
-        val continueRect =
-            fullWidthButtonRect(continueHeight, bottomMargin)
+        // Layout loop
+        var currentOffset = bottomMargin
 
-        buttonContinue!!.area.set(continueRect)
-        buttonContinue!!.touchableArea.set(continueRect)
+        buttonList.forEach { btn ->
+            // animate
+            Fader(gameView, btn, Fader.Type.APPEAR, Fader.Speed.FAST)
 
-        buttonPurchase = Button(
-                gameView,
-                resources.getString(R.string.button_marketplace)
-        )
-        buttonPurchase?.let { Fader(gameView, it, Fader.Type.APPEAR, Fader.Speed.FAST) }
+            // measure
+            val height = btn.area.height()
 
-        val purchaseHeight = buttonPurchase!!.area.height()
-        val purchaseBottomOffset =
-            bottomMargin + continueHeight + spacing
+            // position
+            val rect = fullWidthButtonRect(height, currentOffset)
 
-        val purchaseRect =
-            fullWidthButtonRect(purchaseHeight, purchaseBottomOffset)
+            btn.area.set(rect)
+            btn.touchableArea.set(rect)
 
-        buttonPurchase!!.area.set(purchaseRect)
-        buttonPurchase!!.touchableArea.set(purchaseRect)
+            // move offset upward for next button
+            currentOffset += height + spacing
+        }
     }
 
     override fun setOpacity(opacity: Float) {
@@ -243,6 +249,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
         typewriter?.display(canvas)
         buttonContinue?.display(canvas)
         buttonPurchase?.display(canvas)
+        buttonBack?.display(canvas)
         heroSelection?.display(canvas)
         displayLine(canvas, heightOfConsoleLine())
     }
@@ -268,6 +275,10 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
                     startLevel()
                 }
             }
+            return true
+        } else if (buttonBack?.touchableArea?.contains(event.x.toInt(), event.y.toInt()) == true) {
+            Sounds.playBtnBackSound()
+            gameView.gameActivity.finish()
             return true
         } else if (heroSelection?.onDown(event) == true)
             return true

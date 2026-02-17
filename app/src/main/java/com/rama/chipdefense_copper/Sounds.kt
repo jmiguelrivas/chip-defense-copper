@@ -29,7 +29,6 @@ object Sounds {
             .setAudioAttributes(attrs)
             .build()
 
-        // load your sound (put it in res/raw/click.wav)
         btnClickId = soundPool!!.load(context, R.raw.beep_35, 1)
         btnClickBackId = soundPool!!.load(context, R.raw.beep_67, 1)
         btnClickActiveId = soundPool!!.load(context, R.raw.beep_15, 1)

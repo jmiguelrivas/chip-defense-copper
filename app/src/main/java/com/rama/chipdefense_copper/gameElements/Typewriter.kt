@@ -88,7 +88,7 @@ class Typewriter(
     }
 
     companion object {
-        const val heightOfEmptyTypewriterArea = 260
+        const val heightOfEmptyTypewriterArea = 420
     }
 
 }
