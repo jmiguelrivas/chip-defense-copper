@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="15mm"
+   height="15mm"
+   viewBox="0 0 15 15"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="pattern_cyan.svg"
+   inkscape:export-filename="background_pattern_2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="7.0903051"
+     inkscape:cx="26.021447"
+     inkscape:cy="41.182995"
+     inkscape:window-width="1680"
+     inkscape:window-height="1000"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#285668;stroke-width:0.3429;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"
+       id="rect1"
+       width="15"
+       height="15"
+       x="0"
+       y="0" />
+    <g
+       id="g1"
+       style="fill:#3b6477;fill-opacity:1">
+      <path
+         id="text269"
+         style="font-weight:bold;font-size:6.03956px;font-family:'Jersey 25';-inkscape-font-specification:'Jersey 25 Bold';text-align:center;text-anchor:middle;stroke-width:0.0917257;stroke-linecap:round;stroke-linejoin:round;fill:#3b6477;fill-opacity:1"
+         d="M 2.7243815 1.18184 L 2.7243815 1.9187459 L 3.3134928 1.9187459 L 3.3134928 4.8648193 L 4.049882 4.8648193 L 4.049882 1.18184 L 2.7243815 1.18184 z M 10.293429 10.077938 L 10.293429 10.225216 L 9.9988729 10.225216 L 9.9988729 10.37301 L 9.8515951 10.37301 L 9.8515951 10.667566 L 9.7043172 10.667566 L 9.7043172 13.171806 L 9.8515951 13.171806 L 9.8515951 13.466361 L 9.9988729 13.466361 L 9.9988729 13.613639 L 10.293429 13.613639 L 10.293429 13.760917 L 11.32489 13.760917 L 11.32489 13.613639 L 11.619446 13.613639 L 11.619446 13.466361 L 11.766724 13.466361 L 11.766724 13.171806 L 11.914001 13.171806 L 11.914001 10.667566 L 11.766724 10.667566 L 11.766724 10.37301 L 11.619446 10.37301 L 11.619446 10.225216 L 11.32489 10.225216 L 11.32489 10.077938 L 10.293429 10.077938 z M 10.588501 10.814844 L 11.030334 10.814844 L 11.030334 10.962122 L 11.177612 10.962122 L 11.177612 12.876733 L 11.030334 12.876733 L 11.030334 13.024528 L 10.588501 13.024528 L 10.588501 12.876733 L 10.440706 12.876733 L 10.440706 10.962122 L 10.588501 10.962122 L 10.588501 10.814844 z " />
+    </g>
+  </g>
+</svg>

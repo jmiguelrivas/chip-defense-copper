@@ -26,6 +26,8 @@
     <attr name="chipMidTone" format="color" />
     <attr name="chipHighlight" format="color" />
 
+    <declare-styleable name="AnimatedPatternView">
+        <attr name="mode" format="string" />
+    </declare-styleable>
 </resources>
-
 
