@@ -69,12 +69,22 @@ Sound effects by Jesús Lastra.
 
 ---
 
+## Soundtrack Attribution (CC BY 3.0)
+
+- Author: [Snabisch](https://opengameart.org/users/snabisch)
+- Source: https://opengameart.org/content/every-friday-nes-version
+- License: **CC BY 3.0**
+- License link: https://creativecommons.org/licenses/by/3.0/
+
+---
+
 ## License Summary
 
 - **Code:** MIT License
 - **Font:** SIL Open Font License 1.1
 - **Icons:** CC BY 4.0
-- **Sounds:** CC BY 3.0
+- **Sounds Effects:** CC BY 3.0
+- **Soundtrack:** CC BY 3.0
 
 ---
 

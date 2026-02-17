@@ -3,9 +3,13 @@ package com.rama.chipdefense_copper
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.SoundPool
+import android.media.MediaPlayer
+import android.os.Handler
+import android.os.Looper
 
 object Sounds {
     private var soundPool: SoundPool? = null
+    private var mediaPlayer: MediaPlayer? = null
     var enabled: Boolean = true
     private var btnClickId: Int = 0
     private var btnClickBackId: Int = 0
@@ -14,8 +18,9 @@ object Sounds {
     private var btnClickSelectId: Int = 0
     private var btnClickSpeedId: Int = 0
     private var btnClickPauseId: Int = 0
+    private var fadeHandler: Handler? = null
+    private var fadeRunnable: Runnable? = null
 
-    //    private var explotionId: Int = 0
     private var shootId: Int = 0
 
     fun init(context: Context) {
@@ -37,13 +42,16 @@ object Sounds {
         btnClickSpeedId = soundPool!!.load(context, R.raw.beep_82, 1)
         btnClickPauseId = soundPool!!.load(context, R.raw.beep_58, 1)
 
-//        explotionId = soundPool!!.load(context, R.raw.beep_94, 1)
         shootId = soundPool!!.load(context, R.raw.beep_94, 1)
+
+        mediaPlayer = MediaPlayer.create(context, R.raw.every_friday_nes)
+        mediaPlayer?.isLooping = true
+        mediaPlayer?.setVolume(1f, 1f)
     }
 
-    private fun play(id: Int, left: Float = 1f, right: Float = 1f) {
+    private fun play(id: Int, left: Float = 1f, right: Float = 1f, loop: Int = 0) {
         if (!enabled) return
-        soundPool?.play(id, left, right, 1, 0, 1f)
+        soundPool?.play(id, left, right, 1, loop, 1f)
     }
 
     fun playBtnSound() {
@@ -71,19 +79,79 @@ object Sounds {
     }
 
     fun playBtnPauseSound() {
-        play(btnClickPauseId, .6f, .6f)
+        play(btnClickPauseId, .4f, .4f)
     }
-
-//    fun playExplotionSound() {
-//        play(explotionId, 1f, 1f)
-//    }
 
     fun playShootSound() {
         play(shootId, 1f, 1f)
     }
 
-    fun release() {
-        soundPool?.release()
-        soundPool = null
+    fun playSoundtrack(durationMs: Long = 500) {
+        if (!enabled) return
+        val player = mediaPlayer ?: return
+
+        // reset any ongoing fade
+        fadeHandler?.removeCallbacksAndMessages(null)
+
+        // start volume at 0
+        player.setVolume(0f, 0f)
+        if (!player.isPlaying) player.start()
+
+        val steps = 20
+        val delay = durationMs / steps
+        var currentStep = -5
+
+        fadeHandler = Handler(Looper.getMainLooper())
+        fadeRunnable = object : Runnable {
+            override fun run() {
+                val volume = (currentStep.toFloat() / steps.toFloat())
+                player.setVolume(volume, volume)
+
+                currentStep++
+
+                if (currentStep <= steps) {
+                    fadeHandler?.postDelayed(this, delay)
+                } else {
+                    // ensure full volume at the end
+                    player.setVolume(1f, 1f)
+                }
+            }
+        }
+
+        fadeHandler?.post(fadeRunnable!!)
+    }
+
+    fun stopSoundtrack(durationMs: Long = 1000) {
+        val player = mediaPlayer ?: return
+
+        fadeHandler?.removeCallbacksAndMessages(null)
+
+        val steps = 20
+        val delay = durationMs / steps
+        var currentStep = 0
+
+        fadeHandler = Handler(Looper.getMainLooper())
+
+        fadeRunnable = object : Runnable {
+            override fun run() {
+                val volume = 1f - (currentStep.toFloat() / steps.toFloat())
+                player.setVolume(volume, volume)
+
+                currentStep++
+
+                if (currentStep <= steps) {
+                    fadeHandler?.postDelayed(this, delay)
+                } else {
+                    // finally stop when fully faded out
+                    player.stop()
+                    player.prepareAsync()
+
+                    // reset volume so next play starts at full volume
+                    player.setVolume(1f, 1f)
+                }
+            }
+        }
+
+        fadeHandler?.post(fadeRunnable!!)
     }
 }

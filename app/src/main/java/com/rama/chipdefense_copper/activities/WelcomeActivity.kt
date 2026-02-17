@@ -153,7 +153,13 @@ class WelcomeActivity : BaseFullscreenActivity() {
         val prefs = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.loadFromFile(prefs)
         Sounds.enabled = !settings.configDisableSounds
+        Sounds.playSoundtrack()
         setupButtons()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Sounds.stopSoundtrack()
     }
 
     fun resumeGame(@Suppress("UNUSED_PARAMETER") v: View) {
