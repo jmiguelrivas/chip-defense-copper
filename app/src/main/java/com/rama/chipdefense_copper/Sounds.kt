@@ -15,6 +15,9 @@ object Sounds {
     private var btnClickSpeedId: Int = 0
     private var btnClickPauseId: Int = 0
 
+    //    private var explotionId: Int = 0
+    private var shootId: Int = 0
+
     fun init(context: Context) {
         val attrs = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_GAME)
@@ -34,6 +37,9 @@ object Sounds {
         btnClickSelectId = soundPool!!.load(context, R.raw.beep_03, 1)
         btnClickSpeedId = soundPool!!.load(context, R.raw.beep_82, 1)
         btnClickPauseId = soundPool!!.load(context, R.raw.beep_58, 1)
+
+//        explotionId = soundPool!!.load(context, R.raw.beep_94, 1)
+        shootId = soundPool!!.load(context, R.raw.beep_94, 1)
     }
 
     private fun play(id: Int, left: Float = 1f, right: Float = 1f) {
@@ -67,6 +73,14 @@ object Sounds {
 
     fun playBtnPauseSound() {
         play(btnClickPauseId, .6f, .6f)
+    }
+
+//    fun playExplotionSound() {
+//        play(explotionId, 1f, 1f)
+//    }
+
+    fun playShootSound() {
+        play(shootId, 1f, 1f)
     }
 
     fun release() {

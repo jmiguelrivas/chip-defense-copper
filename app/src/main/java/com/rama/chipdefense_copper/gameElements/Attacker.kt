@@ -153,6 +153,7 @@ open class Attacker(
     private fun invertNumber()
             /** turns the number into its binary complement */
     {
+        Sounds.playShootSound()
         var n: ULong = attackerData.number
         n = n.inv()
         if (attackerData.representation == Representation.BINARY)
@@ -206,6 +207,7 @@ open class Attacker(
              * @return true if the attacker gets destroyed, false otherwise
              */
     {
+        Sounds.playShootSound()
         when (type) {
             Chip.ChipType.SUB -> {
                 val newNumber = attackerData.number.toLong() - power
