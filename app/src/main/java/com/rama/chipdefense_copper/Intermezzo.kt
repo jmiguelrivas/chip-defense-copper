@@ -227,7 +227,6 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
         buttonPurchase!!.touchableArea.set(purchaseRect)
     }
 
-
     override fun setOpacity(opacity: Float) {
         alpha = (opacity * 255).toInt()
     }
@@ -250,11 +249,14 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
 
     fun onDown(event: MotionEvent): Boolean {
         /** test if a button has been pressed: */
-        if (buttonPurchase?.touchableArea?.contains(event.x.toInt(), event.y.toInt()) == true)
+        if (buttonPurchase?.touchableArea?.contains(event.x.toInt(), event.y.toInt()) == true) {
+            Sounds.playBtnSound()
             startMarketplace()
-        else if (buttonContinue?.touchableArea?.contains(event.x.toInt(), event.y.toInt()) == true) {
+        } else if (buttonContinue?.touchableArea?.contains(event.x.toInt(), event.y.toInt()) == true) {
+
             when (type) {
                 Type.GAME_WON -> {
+                    Sounds.playBtnBackSound()
                     gameView.gameActivity.finish()
                 }
 
@@ -339,6 +341,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
     }
 
     private fun startLevel() {
+        Sounds.playBtnActiveSound()
         if (holidayGranted()) {
             gameView.gameActivity.startNextStage(level)
         }

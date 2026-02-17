@@ -15,6 +15,7 @@ import com.rama.chipdefense_copper.GameMechanics
 import com.rama.chipdefense_copper.Persistency
 import com.rama.chipdefense_copper.R
 import com.rama.chipdefense_copper.Settings
+import com.rama.chipdefense_copper.Sounds
 import com.rama.chipdefense_copper.Stage
 
 class WelcomeActivity : BaseFullscreenActivity() {
@@ -23,6 +24,8 @@ class WelcomeActivity : BaseFullscreenActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Sounds.init(this)
 
         setContentView(R.layout.activity_welcome)
 
@@ -150,6 +153,8 @@ class WelcomeActivity : BaseFullscreenActivity() {
     }
 
     fun resumeGame(@Suppress("UNUSED_PARAMETER") v: View) {
+        Sounds.playBtnSound()
+
         val intent = Intent(this, GameActivity::class.java)
         intent.putExtra("ACTIVATE_LOGGING", settings.activateLogging)
         when {
@@ -177,6 +182,7 @@ class WelcomeActivity : BaseFullscreenActivity() {
     }
 
     fun startLevelSelection(@Suppress("UNUSED_PARAMETER") v: View) {
+        Sounds.playBtnSound()
         val intent = Intent(this, LevelSelectActivity::class.java)
         intent.putExtra("TURBO_AVAILABLE", turboSeriesAvailable)
         intent.putExtra("ENDLESS_AVAILABLE", endlessSeriesAvailable)
@@ -185,6 +191,7 @@ class WelcomeActivity : BaseFullscreenActivity() {
     }
 
     fun displaySettingsDialog(@Suppress("UNUSED_PARAMETER") v: View) {
+        Sounds.playBtnSound()
         val intent = Intent(this, SettingsActivity::class.java)
         intent.putExtra("MAXSERIES", maxLevel.series)
         startActivity(intent)
@@ -192,11 +199,13 @@ class WelcomeActivity : BaseFullscreenActivity() {
     }
 
     fun displayAboutDialog(@Suppress("UNUSED_PARAMETER") v: View) {
+        Sounds.playBtnSound()
         val intent = Intent(this, AboutActivity::class.java)
         startActivity(intent)
     }
 
     fun exitActivity(v: View) {
+        Sounds.playBtnBackSound()
         finishAffinity()
     }
 }

@@ -19,6 +19,7 @@ import com.rama.chipdefense_copper.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.ActivityResultLauncher
 import com.rama.chipdefense_copper.BaseFullscreenActivity
+import com.rama.chipdefense_copper.Sounds
 
 
 class SettingsActivity : BaseFullscreenActivity() {
@@ -137,6 +138,7 @@ class SettingsActivity : BaseFullscreenActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     fun savePrefs(v: View) {
+        Sounds.playBtnToggleSound()
         settings.configDisablePurchaseDialog =
             findViewById<SwitchCompat>(R.id.switch_disable_purchase_dialog)?.isChecked ?: false
         settings.configDisableBackground =
@@ -155,10 +157,12 @@ class SettingsActivity : BaseFullscreenActivity() {
     }
 
     fun dismiss(@Suppress("UNUSED_PARAMETER") v: View) {
+        Sounds.playBtnBackSound()
         finish()
     }
 
     fun startNewGame(@Suppress("UNUSED_PARAMETER") v: View) {
+        Sounds.playBtnSound()
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.layout_dialog_reset_progress)
         dialog.window?.setLayout(
@@ -168,6 +172,7 @@ class SettingsActivity : BaseFullscreenActivity() {
         dialog.setCancelable(true)
         dialog.findViewById<TextView>(R.id.reset_all)?.let {
             it.setOnClickListener {
+                Sounds.playBtnActiveSound()
                 val intent = Intent(this, GameActivity::class.java)
                 intent.putExtra("RESET_PROGRESS", true)
                 intent.putExtra("CONTINUE_GAME", false)
@@ -179,6 +184,7 @@ class SettingsActivity : BaseFullscreenActivity() {
         dialog.findViewById<TextView>(R.id.reset_endless)?.let {
             if (isEndlessAvailable) {
                 it.setOnClickListener {
+                    Sounds.playBtnActiveSound()
                     val intent = Intent(this, GameActivity::class.java)
                     intent.putExtra("RESET_ENDLESS", true)
                     intent.putExtra("CONTINUE_GAME", false)
@@ -190,6 +196,7 @@ class SettingsActivity : BaseFullscreenActivity() {
         }
         dialog.findViewById<TextView>(R.id.close_modal)?.let {
             it.setOnClickListener {
+                Sounds.playBtnBackSound()
                 dialog.dismiss()
             }
         }
@@ -201,10 +208,12 @@ class SettingsActivity : BaseFullscreenActivity() {
     // ----------------------------
 
     private fun exportData() {
+        Sounds.playBtnActiveSound()
         exportLauncher.launch("cpudefense_backup.json")
     }
 
     private fun importData() {
+        Sounds.playBtnActiveSound()
         importLauncher.launch(arrayOf("application/json"))
     }
 }

@@ -41,6 +41,7 @@ class IconLink @JvmOverloads constructor(
 
         if (!url.isNullOrBlank()) {
             setOnClickListener {
+                Sounds.playBtnActiveSound()
                 context.startActivity(
                         Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 )

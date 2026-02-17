@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import com.rama.chipdefense_copper.BaseFullscreenActivity
 import com.rama.chipdefense_copper.R
+import com.rama.chipdefense_copper.Sounds
 
 
 class AboutActivity : BaseFullscreenActivity() {
@@ -24,6 +25,7 @@ class AboutActivity : BaseFullscreenActivity() {
     }
 
     fun dismiss(@Suppress("UNUSED_PARAMETER") v: View) {
+        Sounds.playBtnBackSound()
         finish()
     }
 }

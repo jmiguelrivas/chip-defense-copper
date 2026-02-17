@@ -7,6 +7,7 @@ import com.rama.chipdefense_copper.GameView
 import com.rama.chipdefense_copper.effects.Fadable
 import com.rama.chipdefense_copper.effects.Fader
 import androidx.core.graphics.scale
+import com.rama.chipdefense_copper.Sounds
 
 class SpeedControlButton(
     val gameView: GameView,
@@ -40,21 +41,25 @@ class SpeedControlButton(
         if (area.contains(p0.x.toInt(), p0.y.toInt())) {
             when (type) {
                 Type.X0 -> {
+                    Sounds.playBtnPauseSound()
                     gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X1)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.PAUSED)
                 }
 
                 Type.X1 -> {
+                    Sounds.playBtnSpeedSound()
                     gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X1)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.RUNNING)
                 }
 
                 Type.X2 -> {
+                    Sounds.playBtnSpeedSound()
                     gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X2)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.RUNNING)
                 }
 
                 Type.X3 -> {
+                    Sounds.playBtnSpeedSound()
                     gameView.gameActivity.setGameSpeed(GameMechanics.GameSpeed.X3)
                     gameView.gameActivity.changeToGamePhase(GameMechanics.GamePhase.RUNNING)
                 }

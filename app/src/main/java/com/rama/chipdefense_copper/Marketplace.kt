@@ -199,21 +199,25 @@ class Marketplace(val gameView: GameView) : GameElement() {
 
     fun onDown(event: MotionEvent): Boolean {
         if (buttonWikipedia?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
+            Sounds.playBtnActiveSound()
             wikipedia()
         }
         if (buttonFinish?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
+            Sounds.playBtnActiveSound()
             selected = null
             makeButtonText(null)
             gameView.gameActivity.startNextStage(nextGameLevel)
             return true
         }
         if (buttonRefund?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
+            Sounds.playBtnActiveSound()
             selected?.let {
                 refundOne(it)
                 return true
             }
         }
         if (buttonRefundAll?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
+            Sounds.playBtnSound()
             val dialog = Dialog(gameView.gameActivity)
             dialog.setContentView(R.layout.layout_dialog_heroes)
             dialog.window?.setLayout(
@@ -227,13 +231,14 @@ class Marketplace(val gameView: GameView) : GameElement() {
             val button2 = dialog.findViewById<android.widget.Button>(R.id.button2)
             button2?.text = resources.getText(R.string.yes)
             button1?.text = resources.getText(R.string.no)
-            button2?.setOnClickListener { dialog.dismiss(); refundAll() }
-            button1?.setOnClickListener { dialog.dismiss() }
+            button2?.setOnClickListener { Sounds.playBtnActiveSound(); dialog.dismiss(); refundAll() }
+            button1?.setOnClickListener { Sounds.playBtnBackSound(); dialog.dismiss() }
             dialog.show()
             return true
         }
         if (buttonPurchase?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
             selected?.let {
+                Sounds.playBtnActiveSound()
                 if (heroIsOnLeave(it)) return true
                 val price = it.getPrice(it.data.level)
                 if (purse.canAfford(price) && it.data.level < it.getMaxUpgradeLevel()) {
@@ -446,7 +451,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
 
         canvas.drawText(text, textX.toFloat(), textY, textPaint)
     }
-    
+
     private fun makeButtonText(card: Hero?) {
         buttonPurchase?.text = purchaseButtonText(card)
         showRefundOneButton = displayRefundOneButton(card)

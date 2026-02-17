@@ -16,6 +16,7 @@ import com.rama.chipdefense_copper.Settings
 import com.rama.chipdefense_copper.Stage
 import com.google.android.material.tabs.TabLayout
 import com.rama.chipdefense_copper.BaseFullscreenActivity
+import com.rama.chipdefense_copper.Sounds
 import com.rama.chipdefense_copper.utils.dp
 
 @Suppress("DEPRECATION")
@@ -40,6 +41,7 @@ class LevelSelectActivity : BaseFullscreenActivity() {
     }
 
     fun dismiss(@Suppress("UNUSED_PARAMETER") v: View) {
+        Sounds.playBtnBackSound()
         finish()
     }
 
@@ -63,6 +65,7 @@ class LevelSelectActivity : BaseFullscreenActivity() {
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                Sounds.playBtnSelectSound()
                 prepareStageSelector(tab.position + 1)
             }
 
@@ -172,7 +175,9 @@ class LevelSelectActivity : BaseFullscreenActivity() {
             }
 
             levelEntryView.isClickable = true
-            levelEntryView.setOnClickListener { onLevelSelect(levelEntryView, level) }
+            levelEntryView.setOnClickListener {
+                onLevelSelect(levelEntryView, level)
+            }
             listView.addView(levelEntryView)
 
             if (!nextLevelPossible(level, series))
@@ -181,6 +186,7 @@ class LevelSelectActivity : BaseFullscreenActivity() {
     }
 
     private fun onLevelSelect(v: View, level: Int) {
+        Sounds.playBtnSelectSound()
         selectedLevel = level
 
         selectedLevelView?.setBackgroundColor(resources.getColor(R.color.background_tertiary_color))
@@ -189,6 +195,7 @@ class LevelSelectActivity : BaseFullscreenActivity() {
     }
 
     fun startGame(@Suppress("UNUSED_PARAMETER") v: View) {
+        Sounds.playBtnSound()
         if (selectedLevel == 0) return
 
         val intent = Intent(this, GameActivity::class.java)

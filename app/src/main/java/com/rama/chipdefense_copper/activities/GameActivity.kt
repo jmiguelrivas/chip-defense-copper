@@ -20,16 +20,14 @@ import com.rama.chipdefense_copper.GameMechanics
 import com.rama.chipdefense_copper.GameMechanics.GamePhase
 import com.rama.chipdefense_copper.GameMechanics.GameSpeed
 import com.rama.chipdefense_copper.GameMechanics.LevelMode
-import com.rama.chipdefense_copper.GameMechanics.Params.SERIES_ENDLESS
 import com.rama.chipdefense_copper.GameMechanics.Params.SERIES_NORMAL
-import com.rama.chipdefense_copper.GameMechanics.Params.SERIES_TURBO
 import com.rama.chipdefense_copper.GameMechanics.Params.forceHeroMigration
-import com.rama.chipdefense_copper.GameMode
 import com.rama.chipdefense_copper.GameView
 import com.rama.chipdefense_copper.Persistency
 import com.rama.chipdefense_copper.PurseOfCoins
 import com.rama.chipdefense_copper.R
 import com.rama.chipdefense_copper.Settings
+import com.rama.chipdefense_copper.Sounds
 import com.rama.chipdefense_copper.Stage
 import com.rama.chipdefense_copper.Stage.Identifier
 import com.rama.chipdefense_copper.StageCatalog
@@ -484,16 +482,17 @@ class GameActivity : BaseFullscreenActivity() {
     }
 
     fun showReturnDialog() {
+        Sounds.playBtnSound()
         val dialog = Dialog(this)
-        dialog.setContentView(R.layout.layout_dialog_replay)
+        dialog.setContentView(R.layout.layout_dialog_game_menu)
         dialog.window?.setLayout(MATCH_PARENT, WRAP_CONTENT)
         dialog.setCancelable(true)
         dialog.findViewById<Button>(R.id.button_return)
-            ?.setOnClickListener { dialog.dismiss(); returnToMainMenu() }
+            ?.setOnClickListener { Sounds.playBtnBackSound(); dialog.dismiss(); returnToMainMenu() }
         dialog.findViewById<Button>(R.id.button_replay)
-            ?.setOnClickListener { dialog.dismiss(); replayLevel() }
+            ?.setOnClickListener { Sounds.playBtnActiveSound(); dialog.dismiss(); replayLevel() }
         dialog.findViewById<Button>(R.id.button_cancel)
-            ?.setOnClickListener { dialog.dismiss() }
+            ?.setOnClickListener { Sounds.playBtnBackSound(); dialog.dismiss() }
         dialog.setOnDismissListener { gameThreadsRunning = true; startGameThreads() }
         gameThreadsRunning = false
         dialog.show()
@@ -513,6 +512,7 @@ class GameActivity : BaseFullscreenActivity() {
             /** @param showHint Whether to display the text how to disable this dialog
              */
     {
+        Sounds.playBtnSound()
         val price = gameMechanics.costOfLife()
         if (price > 0 && gameMechanics.currentPurse().canAfford(price)
             && gameMechanics.state.lives < gameMechanics.state.currentMaxLives
@@ -527,9 +527,9 @@ class GameActivity : BaseFullscreenActivity() {
             if (!showHint)
                 dialog.findViewById<TextView>(R.id.textViewAnnotation)?.text = ""
             dialog.findViewById<Button>(R.id.button_yes)
-                ?.setOnClickListener { restoreOneLife(); dialog.dismiss(); }
+                ?.setOnClickListener { Sounds.playBtnActiveSound(); restoreOneLife(); dialog.dismiss(); }
             dialog.findViewById<Button>(R.id.button_no)
-                ?.setOnClickListener { dialog.dismiss(); }
+                ?.setOnClickListener { Sounds.playBtnBackSound(); dialog.dismiss(); }
             dialog.setOnDismissListener { gameThreadsRunning = true; startGameThreads() }
             gameThreadsRunning = false
             dialog.show()
