@@ -2,15 +2,33 @@
 
 ## Original Project (MIT License)
 
-This project is a fork of **CPU Defense** by **ochadenas**.
+This project is a modified fork of **CPU Defense** by **Oliver Chadenas**.
 
 - Original author: [Oliver Chadenas](https://github.com/ochadenas)
 - Original repository: https://github.com/ochadenas/cpudefense
-- Author profile: https://github.com/ochadenas
 - License: **MIT License**
 
 The original project’s code is licensed under the MIT License, and this fork continues to comply
 with the same license terms.
+
+---
+
+## Modifications and Additions
+
+This fork includes significant modifications and new original content
+by [Miguel Rivas](https://github.com/jmiguelrivas), including:
+
+- UI/UX redesign of menus and in-game interfaces
+- New visual identity and logo
+- New pixel-art coin assets
+- New chip illustrations used to represent heroes
+- Integration of new sound effects and UI feedback
+- Various gameplay and quality-of-life improvements
+
+Unless otherwise specified, all new code and original assets added in this fork are released under
+the MIT License.
+
+Modifications and additional content © 2026 [Miguel Rivas](https://github.com/ochadenas)
 
 ---
 
@@ -34,8 +52,20 @@ Icons used in this project:
 
 - Icon set: **pixel-icon-library**
     - Author: [HackerNoon](https://github.com/hackernoon)
-    - License: **CC BY 4.0**
     - Source: https://github.com/hackernoon/pixel-icon-library
+    - License: **CC BY 4.0**
+    - License link: https://creativecommons.org/licenses/by/4.0/
+
+---
+
+## Sound Effects Attribution (CC BY 3.0)
+
+Sound effects by Jesús Lastra.
+
+- Author: [Jesús Lastra](https://opengameart.org/users/jalastram)
+- Source: https://opengameart.org/content/button-clicks-beeps-99-sounds
+- License: **CC BY 3.0**
+- License link: https://creativecommons.org/licenses/by/3.0/
 
 ---
 
@@ -43,7 +73,8 @@ Icons used in this project:
 
 - **Code:** MIT License
 - **Font:** SIL Open Font License 1.1
-- **Icons:** CC BY 4.0  
+- **Icons:** CC BY 4.0
+- **Sounds:** CC BY 3.0
 
 ---
 
