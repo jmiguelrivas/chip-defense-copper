@@ -83,6 +83,14 @@
                     android:onClick="savePrefs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/Widget.CpuDefense.RetroSwitch" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/toggle_sound"
+                    android:text="@string/toggle_sound"
+                    android:onClick="savePrefs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     style="@style/Widget.CpuDefense.RetroSwitch" />
 

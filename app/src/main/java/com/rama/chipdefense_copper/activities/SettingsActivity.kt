@@ -118,10 +118,13 @@ class SettingsActivity : BaseFullscreenActivity() {
     private fun loadPrefs() {
         val prefs = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.loadFromFile(prefs)
+        Sounds.enabled = !settings.configDisableSounds
         findViewById<SwitchCompat>(R.id.switch_disable_purchase_dialog)?.isChecked =
             settings.configDisablePurchaseDialog
         findViewById<SwitchCompat>(R.id.switch_disable_background)?.isChecked =
             settings.configDisableBackground
+        findViewById<SwitchCompat>(R.id.toggle_sound)?.isChecked =
+            settings.configDisableSounds
         findViewById<SwitchCompat>(R.id.switch_show_atts_in_range)?.isChecked =
             settings.configShowAttackersInRange
         findViewById<SwitchCompat>(R.id.switch_show_framerate)?.isChecked = settings.showFrameRate
@@ -138,11 +141,12 @@ class SettingsActivity : BaseFullscreenActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     fun savePrefs(v: View) {
-        Sounds.playBtnToggleSound()
         settings.configDisablePurchaseDialog =
             findViewById<SwitchCompat>(R.id.switch_disable_purchase_dialog)?.isChecked ?: false
         settings.configDisableBackground =
             findViewById<SwitchCompat>(R.id.switch_disable_background)?.isChecked ?: false
+        settings.configDisableSounds =
+            findViewById<SwitchCompat>(R.id.toggle_sound)?.isChecked ?: false
         settings.configShowAttackersInRange =
             findViewById<SwitchCompat>(R.id.switch_show_atts_in_range)?.isChecked ?: false
         settings.showFrameRate =
@@ -152,6 +156,10 @@ class SettingsActivity : BaseFullscreenActivity() {
             findViewById<SwitchCompat>(R.id.switch_use_hex)?.isChecked ?: false
         settings.activateLogging =
             findViewById<SwitchCompat>(R.id.switch_activate_log)?.isChecked ?: false
+
+        Sounds.enabled = !settings.configDisableSounds
+        Sounds.playBtnToggleSound()
+        
         val prefs = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.saveToFile(prefs)
     }

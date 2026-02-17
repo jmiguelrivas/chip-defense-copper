@@ -10,10 +10,12 @@ class Settings {
     var keepLevels: Boolean = true
     var showLevelsInHex: Boolean = false
     var activateLogging: Boolean = false
+    var configDisableSounds: Boolean = false
 
     fun loadFromFile(prefs: SharedPreferences): Boolean {
         configDisablePurchaseDialog = prefs.getBoolean("DISABLE_PURCHASE_DIALOG", false)
         configDisableBackground = prefs.getBoolean("DISABLE_BACKGROUND", false)
+        configDisableSounds = prefs.getBoolean("DISABLE_SOUNDS", false)
         configShowAttackersInRange = prefs.getBoolean("SHOW_ATTS_IN_RANGE", false)
         showFrameRate = prefs.getBoolean("SHOW_FRAMERATE", false)
         keepLevels = prefs.getBoolean("KEEP_LEVELS", true)
@@ -26,6 +28,7 @@ class Settings {
         prefs.edit().apply {
             putBoolean("DISABLE_PURCHASE_DIALOG", configDisablePurchaseDialog)
             putBoolean("DISABLE_BACKGROUND", configDisableBackground)
+            putBoolean("DISABLE_SOUNDS", configDisableSounds)
             putBoolean("SHOW_ATTS_IN_RANGE", configShowAttackersInRange)
             putBoolean("SHOW_FRAMERATE", showFrameRate)
             putBoolean("KEEP_LEVELS", keepLevels)
@@ -49,6 +52,7 @@ class Settings {
         oldPrefs.edit().apply {
             remove("DISABLE_PURCHASE_DIALOG")
             remove("DISABLE_BACKGROUND")
+            remove("DISABLE_SOUNDS")
             remove("SHOW_ATTS_IN_RANGE")
             remove("USE_LARGE_BUTTONS")
             remove("SHOW_FRAMERATE")

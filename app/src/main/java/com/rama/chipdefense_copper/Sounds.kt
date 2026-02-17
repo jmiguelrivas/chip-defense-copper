@@ -6,6 +6,7 @@ import android.media.SoundPool
 
 object Sounds {
     private var soundPool: SoundPool? = null
+    var enabled: Boolean = true
     private var btnClickId: Int = 0
     private var btnClickBackId: Int = 0
     private var btnClickActiveId: Int = 0
@@ -35,81 +36,37 @@ object Sounds {
         btnClickPauseId = soundPool!!.load(context, R.raw.beep_58, 1)
     }
 
+    private fun play(id: Int, left: Float = 1f, right: Float = 1f) {
+        if (!enabled) return
+        soundPool?.play(id, left, right, 1, 0, 1f)
+    }
+
     fun playBtnSound() {
-        soundPool?.play(
-                btnClickId,
-                1f,
-                1f,
-                1,
-                0,
-                1f
-        )
+        play(btnClickId)
     }
 
     fun playBtnBackSound() {
-        soundPool?.play(
-                btnClickBackId,
-                1f,
-                1f,
-                1,
-                0,
-                1f
-        )
+        play(btnClickBackId)
     }
 
     fun playBtnActiveSound() {
-        soundPool?.play(
-                btnClickActiveId,
-                1f,
-                1f,
-                1,
-                0,
-                1f
-        )
+        play(btnClickActiveId)
     }
 
     fun playBtnToggleSound() {
-        soundPool?.play(
-                btnClickToggleId,
-                .5f,
-                .5f,
-                1,
-                0,
-                1f
-        )
+        play(btnClickToggleId, .5f, .5f)
     }
 
     fun playBtnSelectSound() {
-        soundPool?.play(
-                btnClickSelectId,
-                1f,
-                1f,
-                1,
-                0,
-                1f
-        )
+        play(btnClickSelectId)
     }
 
     fun playBtnSpeedSound() {
-        soundPool?.play(
-                btnClickSpeedId,
-                1f,
-                1f,
-                1,
-                0,
-                1f
-        )
+        play(btnClickSpeedId)
     }
 
     fun playBtnPauseSound() {
-        soundPool?.play(
-                btnClickPauseId,
-                .6f,
-                .6f,
-                1,
-                0,
-                1f
-        )
+        play(btnClickPauseId, .6f, .6f)
     }
 
     fun release() {

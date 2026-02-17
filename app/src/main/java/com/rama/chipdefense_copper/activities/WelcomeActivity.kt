@@ -40,6 +40,9 @@ class WelcomeActivity : BaseFullscreenActivity() {
         val prefsLegacy = getSharedPreferences(Persistency.filename_legacy, MODE_PRIVATE)
         val prefsSettings = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.migrateSettings(prefsLegacy, prefsSettings)
+
+        settings.loadFromFile(prefsSettings)
+        Sounds.enabled = !settings.configDisableSounds
     }
 
     private var gameState: String? = null
@@ -149,6 +152,7 @@ class WelcomeActivity : BaseFullscreenActivity() {
         super.onResume()
         val prefs = getSharedPreferences(Persistency.filename_settings, MODE_PRIVATE)
         settings.loadFromFile(prefs)
+        Sounds.enabled = !settings.configDisableSounds
         setupButtons()
     }
 

@@ -24,13 +24,14 @@
     <string name="settings_keep_levels">Keep created stages in “endless” mode</string>
     <string name="settings_use_hex">Display stage numbers in hex</string>
     <string name="game_progress">Game Progress</string>
-    <string name="import_data">Import Data</string>
-    <string name="export_data">Export Data</string>
     <string name="button_reset_progress">Reset game progress</string>
     <string name="settings_activate_log">Enable debug logging</string>
+    <string name="toggle_sound">Disable sounds</string>
     <string name="settings_disable_purchase_dialog">Disable the life purchase dialog</string>
     <string name="settings_disable_background">Disable background</string>
     <string name="settings_show_atts_in_range">Show attackers in range</string>
+    <string name="import_data">Import Data</string>
+    <string name="export_data">Export Data</string>
 
     <!-- ABOUT -->
     <string name="chip_defense_copper_url" translatable="false">https://github.com/jmiguelrivas/chip-defense-copper</string>
