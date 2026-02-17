@@ -463,7 +463,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_SUB),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -475,7 +475,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_SHR),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -487,7 +487,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_MEM),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -499,7 +499,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_heat),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -511,7 +511,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_startinfo),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -523,7 +523,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_upgrade),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -535,7 +535,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_lives),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -547,7 +547,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_limit_unwanted),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -559,7 +559,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_create_wanted),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -571,7 +571,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_MEM),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -583,7 +583,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_frequency),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -595,7 +595,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_coin_strength),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -607,7 +607,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_info_gain),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -619,7 +619,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_info_on_kill),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -631,7 +631,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_reduce_removal),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -643,7 +643,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_att_speed),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -655,7 +655,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_att_strength),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -667,7 +667,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_refund),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -679,7 +679,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_range).format("SUB"),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -691,7 +691,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_range).format("SHR"),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -703,7 +703,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_range).format("MEM"),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -715,7 +715,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_max_hero_upgrade),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -727,7 +727,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_RES),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -739,7 +739,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_duration),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -751,7 +751,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_heat_conversion),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -763,7 +763,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_double_chance).format("SUB"),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
 
@@ -775,7 +775,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_double_chance).format("SHR"),
-                            R.style.Chip_Green
+                            R.style.Chip_Gold
                     )
                 }
             }

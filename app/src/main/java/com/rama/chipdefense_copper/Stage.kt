@@ -17,7 +17,6 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
     {
         companion object {
             val startOfNewGame = Identifier(GameMechanics.SERIES_NORMAL, 1)
-            val startOfTurbo = Identifier(GameMechanics.SERIES_TURBO, 1)
             val startOfEndless = Identifier(GameMechanics.SERIES_ENDLESS, 1)
         }
 
@@ -55,8 +54,6 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
         {
             if (series == GameMechanics.SERIES_ENDLESS)
                 return GameMechanics.LevelMode.ENDLESS
-            else if (series == GameMechanics.SERIES_TURBO)
-                return GameMechanics.LevelMode.TURBO
             else
                 return GameMechanics.LevelMode.BASIC
         }
@@ -390,23 +387,6 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
         var strength = attackerStrength
         var frequency = attackerFrequency
         var speed = attackerSpeed
-        when (data.ident.mode()) {
-            GameMechanics.LevelMode.TURBO -> {
-                count = (attackerCount * 1.5f).toInt()
-                strength =
-                    (attackerStrength * (1 + waves.size * waves.size * 0.2f + waves.size) + 4).toInt()
-                frequency = attackerFrequency * 1.6f
-                speed = attackerSpeed * 1.2f
-            }
-
-            GameMechanics.LevelMode.BASIC -> {
-                // no changes
-            }
-
-            GameMechanics.LevelMode.ENDLESS -> {
-                // no changes (for now)
-            }
-        }
 
         val waveData = Wave.Data(
                 count, strength, frequency, speed,

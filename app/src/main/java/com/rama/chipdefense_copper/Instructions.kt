@@ -83,11 +83,6 @@ class Instructions(
                 32 -> resources.getString(R.string.instr_23)
                 else -> ""
             }
-        } else if (stage.series == GameMechanics.SERIES_TURBO) {
-            return when (level) {
-                1 -> resources.getString(R.string.instr_2_1)
-                else -> ""
-            }
         } else if (stage.series == GameMechanics.SERIES_ENDLESS) {
             return when (level) {
                 1 -> resources.getString(R.string.instr_endless)

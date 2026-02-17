@@ -65,9 +65,8 @@
     <color name="attackers_slowed_hex">#FFAA00</color>
 
     <!-- GAME: ATTACKERS: COIN -->
-    <color name="attackers_glow_coin_basic">#1DFF61</color>
+    <color name="attackers_glow_coin_basic">#FFE81D</color>
     <color name="attackers_glow_coin_endless">#EC2816</color>
-    <color name="attackers_glow_coin_turbo">#E9D51A</color>
 
     <!-- GAME: CHIPS -->
     <color name="chips_sub_foreground">#DA07DD00</color>

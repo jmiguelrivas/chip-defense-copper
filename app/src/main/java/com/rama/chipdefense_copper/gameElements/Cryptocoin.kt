@@ -44,10 +44,7 @@ class Cryptocoin(
         get() = when (network.gameMechanics.currentStageIdent.mode()) {
             GameMechanics.LevelMode.ENDLESS ->
                 network.gameView.resources.getColor(R.color.attackers_glow_coin_endless)
-
-            GameMechanics.LevelMode.TURBO ->
-                network.gameView.resources.getColor(R.color.attackers_glow_coin_turbo)
-
+            
             GameMechanics.LevelMode.BASIC ->
                 network.gameView.resources.getColor(R.color.attackers_glow_coin_basic)
         }

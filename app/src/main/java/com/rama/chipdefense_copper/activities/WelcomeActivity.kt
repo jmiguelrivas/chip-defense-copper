@@ -48,7 +48,6 @@ class WelcomeActivity : BaseFullscreenActivity() {
     private var gameState: String? = null
     private var nextLevelToPlay = Stage.Identifier()
     private var maxLevel = Stage.Identifier()
-    private var turboSeriesAvailable = false
     private var endlessSeriesAvailable = false
 
     private fun determineLevels(prefs: SharedPreferences) {
@@ -56,7 +55,6 @@ class WelcomeActivity : BaseFullscreenActivity() {
         maxLevel.number = prefs.getInt("MAXSTAGE", 0)
         nextLevelToPlay.series = prefs.getInt("LASTSERIES", 1)
         nextLevelToPlay.number = prefs.getInt("LASTSTAGE", 0)
-        turboSeriesAvailable = prefs.getBoolean("TURBO_AVAILABLE", false)
         endlessSeriesAvailable = prefs.getBoolean("ENDLESS_AVAILABLE", false)
     }
 
@@ -65,7 +63,6 @@ class WelcomeActivity : BaseFullscreenActivity() {
         /** displays the max level reached so far as graphical display */
         val seriesName = when (maxLevel.series) {
             GameMechanics.SERIES_NORMAL -> getString(R.string.name_series_1)
-            GameMechanics.SERIES_TURBO -> getString(R.string.name_series_2)
             GameMechanics.SERIES_ENDLESS -> getString(R.string.name_series_3)
             else -> "???"  // shouldn't happen
         }
@@ -89,8 +86,7 @@ class WelcomeActivity : BaseFullscreenActivity() {
                 putInt("MAXSTAGE", maxLevel.number)
                 putInt("LASTSERIES", nextLevelToPlay.series)
                 putInt("LASTSTAGE", nextLevelToPlay.number)
-                putBoolean("TURBO_AVAILABLE", turboSeriesAvailable)
-                putBoolean("ENDLESS_AVAILABLE", turboSeriesAvailable)
+                putBoolean("ENDLESS_AVAILABLE", endlessSeriesAvailable)
                 apply()
             }
             oldPrefs.edit().apply {
@@ -98,7 +94,6 @@ class WelcomeActivity : BaseFullscreenActivity() {
                 remove("MAXSTAGE")
                 remove("LASTSERIES")
                 remove("LASTSTAGE")
-                remove("TURBO_AVAILABLE")
                 remove("ENDLESS_AVAILABLE")
                 remove("STATUS")  // has also been migrated
                 apply()
@@ -107,7 +102,6 @@ class WelcomeActivity : BaseFullscreenActivity() {
     }
 
     private fun setupButtons() {
-        val isTurboAvailable = intent.getBooleanExtra("TURBO_AVAILABLE", false)
         val isEndlessAvailable = intent.getBooleanExtra("ENDLESS_AVAILABLE", false)
 
         val prefsState = getSharedPreferences(Persistency.filename_state, MODE_PRIVATE)
@@ -121,8 +115,7 @@ class WelcomeActivity : BaseFullscreenActivity() {
         val buttonResume = findViewById<Button>(R.id.continueGameButton)
 
         buttonResume.text = when {
-            // Level 0 but turbo mode available → play level 1 in turbo
-            maxLevel.number == 0 && (isTurboAvailable || isEndlessAvailable) ->
+            maxLevel.number == 0 && isEndlessAvailable ->
                 getString(R.string.play_level_x)
                     .format(Stage.numberToString(nextLevelToPlay.number, settings.showLevelsInHex))
 
@@ -194,7 +187,6 @@ class WelcomeActivity : BaseFullscreenActivity() {
     fun startLevelSelection(@Suppress("UNUSED_PARAMETER") v: View) {
         Sounds.playBtnSound()
         val intent = Intent(this, LevelSelectActivity::class.java)
-        intent.putExtra("TURBO_AVAILABLE", turboSeriesAvailable)
         intent.putExtra("ENDLESS_AVAILABLE", endlessSeriesAvailable)
         intent.putExtra("NEXT_SERIES", nextLevelToPlay.series)
         startActivity(intent)

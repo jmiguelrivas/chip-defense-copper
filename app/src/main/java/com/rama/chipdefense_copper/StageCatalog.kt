@@ -23,30 +23,6 @@ class StageCatalog
                     createStageWithoutObstacles(stage, level)
                 }
 
-                GameMechanics.SERIES_TURBO -> {
-                    createStageWithoutObstacles(stage, level)  // make basic layout
-                    val difficulty = when (level.number) {
-                        1 -> 0
-                        2 -> 0
-                        3 -> 0
-                        4 -> 0
-                        5 -> 0
-                        6 -> 0
-                        7 -> 4
-                        8 -> 4
-                        9 -> 3
-                        10 -> 4
-                        11 -> 3
-                        22 -> 2
-                        24 -> 4
-                        27 -> 4
-                        29 -> 3
-                        else -> 6
-                    }
-                    createObstaclesForDifficulty(stage, difficulty.toDouble())
-                    createAdditionalChips(stage)
-                }
-
                 GameMechanics.SERIES_ENDLESS -> {
                     // if the stage is in the save file (from an earlier try on this level),
                     // restore the structure. Otherwise, create an empty level.
@@ -196,9 +172,6 @@ class StageCatalog
                         createWave(4, 1, .075f, 1f)
 
                         data.chipsAllowed = setOf(Chip.ChipUpgrades.SUB)
-                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
-                            rewardCoins = 3
-                        }
                     }
 
                     2 -> {
@@ -217,9 +190,6 @@ class StageCatalog
                         createWave(8, 1, .075f, 1f)
 
                         data.chipsAllowed = setOf(Chip.ChipUpgrades.SUB)
-                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
-                            rewardCoins = 3
-                        }
                     }
 
                     3 -> {
@@ -244,9 +214,6 @@ class StageCatalog
                         createWave(10, 1, .075f, 1f)
 
                         data.chipsAllowed = setOf(Chip.ChipUpgrades.SUB, Chip.ChipUpgrades.POWERUP)
-                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
-                            rewardCoins = 3
-                        }
                     }
 
                     4 -> {
@@ -277,9 +244,6 @@ class StageCatalog
                         createWave(10, 3, .15f, 1f)
 
                         data.chipsAllowed = setOf(Chip.ChipUpgrades.SUB, Chip.ChipUpgrades.POWERUP)
-                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
-                            rewardCoins = 3
-                        }
                     }
 
                     5 -> {
@@ -323,9 +287,6 @@ class StageCatalog
                                     Chip.ChipUpgrades.POWERUP,
                                     Chip.ChipUpgrades.SHR
                             )
-                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
-                            rewardCoins = 3
-                        }
                     }
 
                     6 -> {
@@ -371,9 +332,6 @@ class StageCatalog
                                     Chip.ChipUpgrades.POWERUP,
                                     Chip.ChipUpgrades.SHR
                             )
-                        if (level.mode() == GameMechanics.LevelMode.TURBO) {
-                            rewardCoins = 3
-                        }
                     }
 
                     7 -> {

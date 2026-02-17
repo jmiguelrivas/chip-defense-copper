@@ -26,14 +26,12 @@ class LevelSelectActivity : BaseFullscreenActivity() {
     private var selectedLevelView: Button? = null
     private var selectedLevel: Int = 0
     private var selectedSeries: Int = 0
-    private var isTurboAvailable = false
     private var isEndlessAvailable = false
     private val settings = Settings()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
-        isTurboAvailable = intent.getBooleanExtra("TURBO_AVAILABLE", false)
         isEndlessAvailable = intent.getBooleanExtra("ENDLESS_AVAILABLE", false)
         setContentView(R.layout.activity_level)
         applySystemInsets(findViewById<View>(R.id.root))
@@ -47,7 +45,6 @@ class LevelSelectActivity : BaseFullscreenActivity() {
 
     override fun onActivityReenter(resultCode: Int, data: Intent?) {
         super.onActivityReenter(resultCode, data)
-        isTurboAvailable = intent.getBooleanExtra("TURBO_AVAILABLE", false)
         isEndlessAvailable = intent.getBooleanExtra("ENDLESS_AVAILABLE", false)
         setupSelector()
     }
@@ -59,7 +56,6 @@ class LevelSelectActivity : BaseFullscreenActivity() {
         val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
 
         if (GameMechanics.makeAllLevelsAvailable) {
-            isTurboAvailable = true
             isEndlessAvailable = true
         }
 
@@ -95,20 +91,6 @@ class LevelSelectActivity : BaseFullscreenActivity() {
                 populateStageList(
                         listView, levels, GameMechanics.SERIES_NORMAL,
                 )
-            }
-
-            GameMechanics.SERIES_TURBO -> {
-                if (isTurboAvailable) {
-                    levels = Persistency(this).loadStageSummaries(GameMechanics.SERIES_TURBO)
-                    populateStageList(
-                            listView, levels, GameMechanics.SERIES_NORMAL,
-                    )
-                } else {
-                    val textView = TextView(ContextThemeWrapper(this, R.style.Content))
-                    textView.text = getString(R.string.message_series_unavailable)
-                    textView.setPadding(dp(16), dp(16), dp(16), dp(16))
-                    listView.addView(textView)
-                }
             }
 
             GameMechanics.SERIES_ENDLESS -> {

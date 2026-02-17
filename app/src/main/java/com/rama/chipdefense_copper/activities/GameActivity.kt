@@ -93,12 +93,6 @@ class GameActivity : BaseFullscreenActivity() {
         requestWindowFeature(Window.FEATURE_NO_TITLE) // method of Activity
         setContentView(R.layout.activity_main_game)
 
-//        gameMechanics.mode = when (intentMode) {
-//            BASIC -> GameMode.Basic
-//            ENDLESS -> GameMode.Endless
-//            TURBO -> GameMode.Turbo
-//        }
-
 //        applySystemInsets(findViewById<View>(R.id.mainGameLayout))
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         if (intent.getBooleanExtra("ACTIVATE_LOGGING", false) && GameMechanics.enableLogging)
@@ -241,17 +235,10 @@ class GameActivity : BaseFullscreenActivity() {
                 (identifier.number == GameMechanics.maxLevelAvailable)
             when (newMaxStage.mode()) {
                 LevelMode.BASIC -> {
-                    putBoolean("TURBO_AVAILABLE", completedLastStageOfSeries)
-                    putBoolean("ENDLESS_AVAILABLE", false)
-                }
-
-                LevelMode.TURBO -> {
-                    putBoolean("TURBO_AVAILABLE", true)
                     putBoolean("ENDLESS_AVAILABLE", completedLastStageOfSeries)
                 }
 
                 LevelMode.ENDLESS -> {
-                    putBoolean("TURBO_AVAILABLE", true)
                     putBoolean("ENDLESS_AVAILABLE", true)
                 }
             }
@@ -288,13 +275,11 @@ class GameActivity : BaseFullscreenActivity() {
             when {
                 resetProgress -> {
                     gameMechanics.deleteProgressOfSeries(LevelMode.BASIC)
-                    gameMechanics.deleteProgressOfSeries(LevelMode.TURBO)
                     gameMechanics.deleteProgressOfSeries(LevelMode.ENDLESS)
 
                     // Reset the SharedPreferences flags
                     val prefs = getSharedPreferences(Persistency.filename_state, MODE_PRIVATE)
                     with(prefs.edit()) {
-                        putBoolean("TURBO_AVAILABLE", false)
                         putBoolean("ENDLESS_AVAILABLE", false)
                         putInt("LASTSTAGE", 0)
                         putInt("LASTSERIES", 1)
@@ -313,10 +298,6 @@ class GameActivity : BaseFullscreenActivity() {
 
             }
         }
-
-//        if (gameMechanics.purseOfCoins[LevelMode.TURBO]?.initialized == true)
-//            gameMechanics.purseOfCoins[LevelMode.TURBO].currentPurse
-//            Stage.Identifier.startOfTurbo//.addReward(100)
 
         // final actions, to be executed in any case
         if (gameMechanics.purseOfCoins[LevelMode.BASIC]?.initialized == false || forceHeroMigration)
