@@ -512,11 +512,11 @@ class GameActivity : BaseFullscreenActivity() {
             /** @param showHint Whether to display the text how to disable this dialog
              */
     {
-        Sounds.playBtnSound()
         val price = gameMechanics.costOfLife()
         if (price > 0 && gameMechanics.currentPurse().canAfford(price)
             && gameMechanics.state.lives < gameMechanics.state.currentMaxLives
         ) {
+            Sounds.playBtnSound()
             val dialog = Dialog(this)
             dialog.setContentView(R.layout.layout_dialog_purchaselife)
             dialog.window?.setLayout(MATCH_PARENT, WRAP_CONTENT)

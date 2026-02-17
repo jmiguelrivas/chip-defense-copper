@@ -111,8 +111,8 @@ class Background(val gameView: GameView)
         val options = BitmapFactory.Options()
         options.inScaled = false
         return when (useSpecial) {
-//            GameMechanics.Params.Season.EASTER -> BitmapFactory.decodeResource(resources, R.drawable.background_flowers)
-//            GameMechanics.Params.Season.CHRISTMAS -> BitmapFactory.decodeResource(resources, R.drawable.background_winter)
+//            GameMechanics.Params.Season.EASTER -> BitmapFactory.decodeResource(resources, R.drawable.bg_1)
+//            GameMechanics.Params.Season.WINTER -> BitmapFactory.decodeResource(resources, R.drawable.bg_1)
             else -> when (number) {
                 1 -> BitmapFactory.decodeResource(resources, R.drawable.bg_1, options)
                 2 -> BitmapFactory.decodeResource(resources, R.drawable.bg_2, options)
@@ -132,7 +132,8 @@ class Background(val gameView: GameView)
              */
     {
         var useSpecialBackground = GameMechanics.specialLevel(stageIdent)
-        if (useSpecialBackground == GameMechanics.Params.Season.CHRISTMAS)
+
+        if (useSpecialBackground == GameMechanics.Params.Season.WINTER)
             gameView.effects?.addSnow()
         val n = stageIdent.number
         wholeBackground = loadWholeBitmap(n % maxBackgroundNumber + 1, useSpecialBackground)

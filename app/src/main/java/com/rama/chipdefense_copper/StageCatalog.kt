@@ -1955,7 +1955,7 @@ class StageCatalog
                         rewardCoins = 3
                     }
 
-                    GameMechanics.Params.Season.CHRISTMAS -> {
+                    GameMechanics.Params.Season.WINTER -> {
                         initializeNetwork(50, 50)
 
                         createChip(25, 48, 0, type = Chip.ChipType.ENTRY)

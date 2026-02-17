@@ -87,7 +87,7 @@ class GameMechanics {
         const val resistorBaseDuration = 160f // ticks
         const val resistorMaxDuration = 1600f // ticks
 
-        enum class Season { DEFAULT, EASTER, CHRISTMAS }
+        enum class Season { DEFAULT, EASTER, WINTER }
 
         fun specialSeason(): Season
                 /** for "easter egg" purposes. Determine whether - at the time of playing - we are in
@@ -95,17 +95,18 @@ class GameMechanics {
                  */
         {
             when (Calendar.getInstance().get(Calendar.MONTH)) {
-                0 -> return Season.CHRISTMAS  // January
+                0 -> return Season.WINTER // JAN
+                1 -> return Season.WINTER // FEB
                 2 -> return Season.EASTER
                 3 -> return Season.EASTER
                 10 -> return Season.DEFAULT
-                11 -> return Season.CHRISTMAS
+                11 -> return Season.WINTER // DEC
                 else -> return Season.DEFAULT
             }
         }
 
         fun specialLevel(stageIdent: Stage.Identifier): Season {
-            if (stageIdent.mode() == LevelMode.BASIC && stageIdent.number == specialLevelNumber)
+            if ((stageIdent.mode() == LevelMode.BASIC || stageIdent.mode() == LevelMode.TURBO) && stageIdent.number == specialLevelNumber)
                 return specialSeason()
             else
                 return Season.DEFAULT

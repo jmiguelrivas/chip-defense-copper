@@ -12,7 +12,7 @@ class Effects(var gameView: GameView) {
     var explosions = CopyOnWriteArrayList<Explosion>()
     private var faders = CopyOnWriteArrayList<Fader>()
 
-    /** snow is used for the "christmas time easter egg" */
+    /** snow is used for the "WINTER time easter egg" */
     val snow = Snow()
     private var gameArea = Rect()
 

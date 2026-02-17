@@ -1,5 +1,5 @@
 New features:
-- added a special Christmas level
+- added a special WINTER level
 - The game's language can be changed via the device Settings dialogue.
 
 Bug fixes:
