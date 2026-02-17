@@ -576,10 +576,10 @@ class Hero(var gameActivity: GameActivity, type: Type)
                 }
 
                 Type.DECREASE_ATT_FREQ -> {
-                    name = "LHC"
-                    fullName = "Les Horribles Cernettes"
+                    name = "Stallman"
+                    fullName = "Richard Stallman"
                     effect = resources.getString(R.string.HERO_EFFECT_FREQUENCY)
-                    vitae = resources.getString(R.string.cernettes)
+                    vitae = resources.getString(R.string.stallman)
                     picture = gameActivity.createHero(
                             fullName,
                             resources.getString(R.string.shortdesc_frequency),

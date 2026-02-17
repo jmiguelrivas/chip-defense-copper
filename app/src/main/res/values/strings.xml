@@ -210,6 +210,9 @@
     <string name="diffie">Whitfield Diffie, together with Martin Hellman, invented public-key cryptography and the Diffie–Hellman key exchange, enabling secure communication over the Internet. He is also a strong advocate for privacy and civil liberties.</string>
     <string name="conway">John Horton Conway was a mathematician best known for creating Conway’s Game of Life, a simple system that produces complex, lifelike patterns. Beyond recreational mathematics, he also made significant contributions to several serious mathematical fields.</string>
     <string name="neumann">John von Neumann was one of the fathers of computer science and the main contributor to the von Neumann architecture, which defines how modern computers combine memory, processing, and program control. A brilliant mathematician, he also shaped quantum mechanics and game theory, though his legacy is complicated by his involvement in military research and weapons development.</string>
+    <string name="torvalds">Linus Torvalds is a Finnish-American software engineer best known for creating the Linux kernel, which became the foundation of the open-source operating system Linux. His work revolutionized software development, popularized open-source collaboration, and laid the groundwork for countless servers, devices, and systems worldwide.</string>
+    <string name="stallman">Richard Stallman is an American software freedom activist and programmer who launched the GNU Project, creating a free software operating system and establishing the principles of copyleft. His advocacy for user freedom and open-source software has profoundly influenced computing, licensing, and digital rights.</string>
+    <string name="berners_lee">Tim Berners-Lee is a British computer scientist who invented the World Wide Web, introducing the HTTP protocol, HTML language, and the first web browser. His work transformed how information is shared globally, making the internet accessible and usable for billions of people and shaping the modern connected world.</string>
 
     <!-- HEROES :: WIKIPEDIA -->
     <string name="url_wikipedia_fallback">https://en.wikipedia.org/wiki/Main_Page</string>
@@ -240,6 +243,9 @@
     <string name="url_shannon">https://en.wikipedia.org/wiki/Claude_Shannon</string>
     <string name="url_wiener">https://en.wikipedia.org/wiki/Norbert_Wiener</string>
     <string name="url_boole">https://en.wikipedia.org/wiki/George_Boole</string>
+    <string name="url_torvalds">https://en.wikipedia.org/wiki/Linus_Torvalds</string>
+    <string name="url_stallman">https://en.wikipedia.org/wiki/Richard_Stallman</string>
+    <string name="url_berners_lee">https://en.wikipedia.org/wiki/Tim_Berners-Lee</string>
 
     <!-- HEROES :: EFFECT -->
     <string name="shortdesc_SUB">SUB Chip speed</string>
