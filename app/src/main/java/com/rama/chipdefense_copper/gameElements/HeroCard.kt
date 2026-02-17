@@ -30,7 +30,6 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
     private var portraitArea = Rect()
     private var portraitAreaOnScreen = Rect(portraitArea)
     private var myBitmap: Bitmap? = null
-    private var effectBitmap = BitmapFactory.decodeResource(resources, R.drawable.glow)
     private var shortDescRect = Rect(cardAreaOnScreen)
 
     /** state used for various graphical effects */
@@ -164,18 +163,6 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
             alpha = originalAlpha
         }
         // }
-    }
-
-    private fun displayLine(canvas: Canvas, x0: Int, y0: Int, x1: Int, y1: Int)
-            /** draws a fraction of the line between x0,y0 and x1,y1 */
-    {
-        val x: Float = x0 * (1 - transition) + x1 * transition
-        val y = y0 * (1 - transition) + y1 * transition
-        canvas.drawLine(x0.toFloat(), y0.toFloat(), x, y, paintRect)
-        // draw the glow effect
-        val effectRect = Rect(0, 0, effectBitmap.width, effectBitmap.height)
-        effectRect.setCenter(x.toInt(), y.toInt())
-        canvas.drawBitmap(effectBitmap, null, effectRect, paintText)
     }
 
     fun putAt(left: Int, top: Int) {
