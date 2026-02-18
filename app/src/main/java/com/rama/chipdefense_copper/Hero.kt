@@ -454,7 +454,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
         var url = ""
 
         fun setType(mode: GameMode) {
-            val info = HeroesCatalog.get(data.type, gameActivity, resources)
+            val info = HeroesCatalog.get(data.type, gameActivity, resources, mode)
             if (!info.isAvailableIn(mode)) {
                 throw IllegalStateException("Hero ${info.name} not available in this mode")
             }

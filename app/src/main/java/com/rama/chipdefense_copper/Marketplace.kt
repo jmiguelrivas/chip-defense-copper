@@ -109,38 +109,45 @@ class Marketplace(val gameView: GameView) : GameElement() {
         purse = gameMechanics.currentPurse()
 
         for (type in Hero.Type.entries) {
-            /* if upgrade already exists (because it has been bought earlier),
-            get it from the game data. Otherwise, create an empty card.
-            Only add upgrades that are allowed (available) at present.
-             */
             var hero: Hero? = heroes[type]
+
+            // Only create hero if it doesn't exist yet
             if (hero == null) {
-                val mode: GameMode = level.mode()
-                hero = Hero.createFromData(gameView.gameActivity, Hero.Data(type), mode)
+                try {
+                    hero = Hero.createFromData(gameView.gameActivity, Hero.Data(type), level.mode())
+                } catch (e: Exception) {
+                    continue
+                }
             }
+
+            // Add hero only if available or already upgraded
             if (hero.isAvailable(level) || hero.data.level > 0) {
                 hero.createBiography(biographyArea)
+                hero.setDesc()
+                hero.card.create(showNextUpdate = true)
+                hero.isOnLeave = hero.isOnLeave(level)
                 newUpgrades.add(hero)
             }
-            hero.setDesc()
-            hero.card.create(showNextUpdate = true)
-            hero.isOnLeave = hero.isOnLeave(level)
         }
 
+        // Arrange the cards in the marketplace
         arrangeCards(newUpgrades, cardViewOffset)
         upgrades = newUpgrades
-        if (level.mode() == GameMode.Endless) // grant a gift at the beginning of 'Endless'
-        {
+
+        // Give a gift at the start of Endless mode
+        if (level.mode() == GameMode.Endless) {
             val gift = purse.addGift(GameMechanics.defaultGiftCoins)
             if (gift > 0) {
                 Toast.makeText(
-                        gameView.gameActivity, resources.getString(R.string.coins_received_as_gift)
-                    .format(gift), Toast.LENGTH_SHORT
-                )
-                    .show()
+                        gameView.gameActivity,
+                        resources.getString(R.string.coins_received_as_gift).format(gift),
+                        Toast.LENGTH_SHORT
+                ).show()
                 Persistency(gameView.gameActivity).saveCoins(gameMechanics)
             }
         }
+
+        // Prepare coin display
         coins = MutableList(purse.availableCoins()) { Coin(gameMechanics, coinSize) }
     }
 
