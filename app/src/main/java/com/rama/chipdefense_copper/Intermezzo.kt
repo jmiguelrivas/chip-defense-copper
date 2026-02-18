@@ -79,6 +79,7 @@ class Intermezzo(var gameView: GameView) : GameElement(), Fadable {
     }
 
     private fun displayTypewriterText() {
+        Sounds.playMonitorSound()
         val lines = CopyOnWriteArrayList<String>()
         when (type) {
             Type.GAME_LOST -> {

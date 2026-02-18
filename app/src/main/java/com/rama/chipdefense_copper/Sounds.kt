@@ -20,6 +20,7 @@ object Sounds {
     private var btnClickSpeedId: Int = 0
     private var btnClickPauseId: Int = 0
     private var buildId: Int = 0
+    private var monitorId: Int = 0
     private var fadeHandler: Handler? = null
     private var fadeRunnable: Runnable? = null
     private var secondaryFadeHandler: Handler? = null
@@ -48,6 +49,7 @@ object Sounds {
 
         shootId = soundPool!!.load(context, R.raw.beep_94, 1)
         buildId = soundPool!!.load(context, R.raw.beep_84, 1)
+        monitorId = soundPool!!.load(context, R.raw.beep_86, 1)
 
         mediaPlayer = MediaPlayer.create(context, R.raw.every_friday_nes)
         mediaPlayer?.isLooping = true
@@ -97,6 +99,10 @@ object Sounds {
 
     fun playBuildSound() {
         play(buildId, 1f, 1f)
+    }
+
+    fun playMonitorSound() {
+        play(monitorId, 1f, 1f)
     }
 
     fun playSoundtrack(durationMs: Long = 500) {
