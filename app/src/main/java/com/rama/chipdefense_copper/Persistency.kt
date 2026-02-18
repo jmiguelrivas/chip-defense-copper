@@ -478,8 +478,15 @@ class Persistency(private val activity: Activity) {
             }
             for (heroData in listOfHeroData) {
                 try {
+                    // convert nullable LevelMode to GameMode
+                    val gameMode: GameMode = when (mode) {
+                        GameMechanics.LevelMode.BASIC -> GameMode.Basic
+                        GameMechanics.LevelMode.ENDLESS -> GameMode.Endless
+                        null -> GameMode.Basic
+                    }
+
                     heroMap[heroData.type] =
-                        Hero.createFromData(activity as GameActivity, heroData)
+                        Hero.createFromData(activity as GameActivity, heroData, gameMode)
                 } catch (ex: NullPointerException) {
                     /* may happen if a previously existing hero type is definitely removed from the game */
                 }

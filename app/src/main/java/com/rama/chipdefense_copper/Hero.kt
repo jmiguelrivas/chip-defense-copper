@@ -12,7 +12,6 @@ import com.rama.chipdefense_copper.activities.GameActivity
 import com.rama.chipdefense_copper.data.HeroesCatalog
 import com.rama.chipdefense_copper.gameElements.HeroCard
 import com.rama.chipdefense_copper.utils.textStyleContent
-import com.rama.chipdefense_copper.utils.createHero
 import kotlin.math.exp
 import kotlin.math.truncate
 
@@ -389,15 +388,15 @@ class Hero(var gameActivity: GameActivity, type: Type)
     }
 
     companion object {
-        fun createFromData(gameActivity: GameActivity, data: Data): Hero
+        fun createFromData(gameActivity: GameActivity, data: Data, mode: GameMode): Hero
                 /** reconstruct a Hero object based on the saved data
-                 * and set all inner proprieties
+                 * and set all inner properties, mode aware
                  */
         {
             val newInstance = Hero(gameActivity, data.type)
             newInstance.data.level = data.level
             newInstance.data.coinsSpent = data.coinsSpent
-            newInstance.person.setType()
+            newInstance.person.setType(mode)
             newInstance.setDesc()
             newInstance.isOnLeave =
                 newInstance.isOnLeave(gameActivity.gameMechanics.currentStageIdent)
@@ -455,7 +454,10 @@ class Hero(var gameActivity: GameActivity, type: Type)
         var url = ""
 
         fun setType(mode: GameMode) {
-            val info = HeroesCatalog.get(type, mode)
+            val info = HeroesCatalog.get(data.type, gameActivity, resources)
+            if (!info.isAvailableIn(mode)) {
+                throw IllegalStateException("Hero ${info.name} not available in this mode")
+            }
 
             name = info.name
             fullName = info.fullName
@@ -463,11 +465,8 @@ class Hero(var gameActivity: GameActivity, type: Type)
             vitae = info.vitae
             picture = info.picture
 
-            val resId = resources.getIdentifier(
-                    "url_" + info.key,
-                    "string",
-                    gameActivity.packageName
-            )
+            val resId =
+                resources.getIdentifier("url_" + info.key, "string", gameActivity.packageName)
             url = resources.getString(resId)
         }
     }
