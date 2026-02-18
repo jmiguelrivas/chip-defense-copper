@@ -36,11 +36,9 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
         fun isGreaterThan(compare: Identifier): Boolean {
             val thisMode = this.mode()
             val otherMode = compare.mode()
-
-            return if (thisMode != otherMode) {
-                thisMode > otherMode
-            } else {
-                this.number > compare.number
+            return when {
+                thisMode != otherMode -> thisMode.ordinal > otherMode.ordinal
+                else -> this.number > compare.number
             }
         }
 
