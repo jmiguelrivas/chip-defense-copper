@@ -19,9 +19,9 @@ import com.rama.chipdefense_copper.CpuReached
 import com.rama.chipdefense_copper.GameMechanics
 import com.rama.chipdefense_copper.GameMechanics.GamePhase
 import com.rama.chipdefense_copper.GameMechanics.GameSpeed
-import com.rama.chipdefense_copper.GameMechanics.LevelMode
 import com.rama.chipdefense_copper.GameMechanics.Params.SERIES_NORMAL
 import com.rama.chipdefense_copper.GameMechanics.Params.forceHeroMigration
+import com.rama.chipdefense_copper.GameMode
 import com.rama.chipdefense_copper.GameView
 import com.rama.chipdefense_copper.Persistency
 import com.rama.chipdefense_copper.PurseOfCoins
@@ -234,11 +234,11 @@ class GameActivity : BaseFullscreenActivity() {
             val completedLastStageOfSeries: Boolean =
                 (identifier.number == GameMechanics.maxLevelAvailable)
             when (newMaxStage.mode()) {
-                LevelMode.BASIC -> {
+                GameMode.Basic -> {
                     putBoolean("ENDLESS_AVAILABLE", completedLastStageOfSeries)
                 }
 
-                LevelMode.ENDLESS -> {
+                GameMode.Endless -> {
                     putBoolean("ENDLESS_AVAILABLE", true)
                 }
             }
@@ -274,8 +274,8 @@ class GameActivity : BaseFullscreenActivity() {
         if (resetRequested) {
             when {
                 resetProgress -> {
-                    gameMechanics.deleteProgressOfSeries(LevelMode.BASIC)
-                    gameMechanics.deleteProgressOfSeries(LevelMode.ENDLESS)
+                    gameMechanics.deleteProgressOfSeries(GameMode.Basic)
+                    gameMechanics.deleteProgressOfSeries(GameMode.Endless)
 
                     // Reset the SharedPreferences flags
                     val prefs = getSharedPreferences(Persistency.filename_state, MODE_PRIVATE)
@@ -292,7 +292,7 @@ class GameActivity : BaseFullscreenActivity() {
                 }
 
                 resetEndless -> {
-                    gameMechanics.deleteProgressOfSeries(LevelMode.ENDLESS)
+                    gameMechanics.deleteProgressOfSeries(GameMode.Endless)
                     level = Identifier.startOfEndless
                 }
 
@@ -300,7 +300,7 @@ class GameActivity : BaseFullscreenActivity() {
         }
 
         // final actions, to be executed in any case
-        if (gameMechanics.purseOfCoins[LevelMode.BASIC]?.initialized == false || forceHeroMigration)
+        if (gameMechanics.purseOfCoins[GameMode.Basic]?.initialized == false || forceHeroMigration)
             gameMechanics.migrateHeroes()
 
         if (resumeGame)

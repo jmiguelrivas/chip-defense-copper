@@ -20,9 +20,6 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
             val startOfEndless = Identifier(GameMechanics.SERIES_ENDLESS, 1)
         }
 
-        val levelMode: GameMechanics.LevelMode
-            get() = mode()
-
         fun next(): Identifier
                 /** returns an identifier of the next level */
         {
@@ -40,22 +37,20 @@ class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
             val thisMode = this.mode()
             val otherMode = compare.mode()
 
-            return when {
-                thisMode != otherMode ->
-                    thisMode.ordinal > otherMode.ordinal
-
-                else ->
-                    this.number > compare.number
+            return if (thisMode != otherMode) {
+                thisMode > otherMode
+            } else {
+                this.number > compare.number
             }
         }
 
-        fun mode(): GameMechanics.LevelMode
+        fun mode(): GameMode
                 /** check whether we are in 'endless' or 'basic' mode */
         {
             if (series == GameMechanics.SERIES_ENDLESS)
-                return GameMechanics.LevelMode.ENDLESS
+                return GameMode.Endless
             else
-                return GameMechanics.LevelMode.BASIC
+                return GameMode.Basic
         }
     }
 

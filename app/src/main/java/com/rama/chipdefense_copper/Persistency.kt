@@ -252,10 +252,10 @@ class Persistency(private val activity: Activity) {
         val emptyContents = PurseOfCoins.Contents()
         val purseData =
             SerializablePurseContents(basic = emptyContents, endless = emptyContents)
-        gameMechanics.purseOfCoins[GameMechanics.LevelMode.BASIC]?.contents?.let { purse ->
+        gameMechanics.purseOfCoins[GameMode.Basic]?.contents?.let { purse ->
             purseData.basic = purse
         }
-        gameMechanics.purseOfCoins[GameMechanics.LevelMode.ENDLESS]?.contents?.let { purse ->
+        gameMechanics.purseOfCoins[GameMode.Endless]?.contents?.let { purse ->
             purseData.endless = purse
         }
         prefsSaves.edit().putString("coins", gson.toJson(purseData)).apply()
@@ -292,10 +292,10 @@ class Persistency(private val activity: Activity) {
             val emptyContents = PurseOfCoins.Contents()
             val purseData =
                 SerializablePurseContents(basic = emptyContents, endless = emptyContents)
-            gameMechanics.purseOfCoins[GameMechanics.LevelMode.BASIC]?.contents?.let { purse ->
+            gameMechanics.purseOfCoins[GameMode.Basic]?.contents?.let { purse ->
                 purseData.basic = purse
             }
-            gameMechanics.purseOfCoins[GameMechanics.LevelMode.ENDLESS]?.contents?.let { purse ->
+            gameMechanics.purseOfCoins[GameMode.Endless]?.contents?.let { purse ->
                 purseData.endless = purse
             }
             prefsSaves.edit().putString("coins", gson.toJson(purseData)).commit()
@@ -334,8 +334,8 @@ class Persistency(private val activity: Activity) {
 
         editor = prefsSaves.edit()
         val heroData = SerializableHeroDataPerMode()
-        gameMechanics.heroesByMode[GameMechanics.LevelMode.BASIC]?.values?.forEach { hero -> heroData.basic.add(hero.data) }
-        gameMechanics.heroesByMode[GameMechanics.LevelMode.ENDLESS]?.values?.forEach { hero -> heroData.endless.add(hero.data) }
+        gameMechanics.heroesByMode[GameMode.Basic]?.values?.forEach { hero -> heroData.basic.add(hero.data) }
+        gameMechanics.heroesByMode[GameMode.Endless]?.values?.forEach { hero -> heroData.endless.add(hero.data) }
         editor.putString("heroes", gson.toJson(heroData))
         editor.apply()
     }
@@ -446,15 +446,15 @@ class Persistency(private val activity: Activity) {
 
     fun loadAllHeroes(gameMechanics: GameMechanics) {
         gameMechanics.heroes = loadHeroes(gameMechanics, null)  // legacy, now deprecated
-        gameMechanics.heroesByMode[GameMechanics.LevelMode.BASIC] =
-            loadHeroes(gameMechanics, GameMechanics.LevelMode.BASIC)
-        gameMechanics.heroesByMode[GameMechanics.LevelMode.ENDLESS] =
-            loadHeroes(gameMechanics, GameMechanics.LevelMode.ENDLESS)
+        gameMechanics.heroesByMode[GameMode.Basic] =
+            loadHeroes(gameMechanics, GameMode.Basic)
+        gameMechanics.heroesByMode[GameMode.Endless] =
+            loadHeroes(gameMechanics, GameMode.Endless)
     }
 
     private fun loadHeroes(
         gameMechanics: GameMechanics,
-        mode: GameMechanics.LevelMode?
+        mode: GameMode?
     ): HashMap<Hero.Type, Hero>
             /** gets the heroes from the appropriate save file.
              * @param mode The level series mode (normal or endless). If 'null', get the data from
@@ -470,18 +470,15 @@ class Persistency(private val activity: Activity) {
         try {
             val listOfHeroData: MutableList<Hero.Data> = when (mode) {
                 null -> gson.fromJson(json, SerializableHeroData::class.java).upgrades
-                GameMechanics.LevelMode.BASIC ->
-                    gson.fromJson(json, SerializableHeroDataPerMode::class.java).basic
-
-                GameMechanics.LevelMode.ENDLESS ->
-                    gson.fromJson(json, SerializableHeroDataPerMode::class.java).endless
+                GameMode.Basic -> gson.fromJson(json, SerializableHeroDataPerMode::class.java).basic
+                GameMode.Endless -> gson.fromJson(json, SerializableHeroDataPerMode::class.java).endless
             }
             for (heroData in listOfHeroData) {
                 try {
-                    // convert nullable LevelMode to GameMode
+                    // convert nullable to GameMode.Basic
                     val gameMode: GameMode = when (mode) {
-                        GameMechanics.LevelMode.BASIC -> GameMode.Basic
-                        GameMechanics.LevelMode.ENDLESS -> GameMode.Endless
+                        GameMode.Basic -> GameMode.Basic
+                        GameMode.Endless -> GameMode.Endless
                         null -> GameMode.Basic
                     }
 
@@ -508,10 +505,10 @@ class Persistency(private val activity: Activity) {
             if (json != "none") {
                 val data: SerializablePurseContents =
                     gson.fromJson(json, SerializablePurseContents::class.java)
-                gameMechanics.purseOfCoins[GameMechanics.LevelMode.BASIC]?.let { purse ->
+                gameMechanics.purseOfCoins[GameMode.Basic]?.let { purse ->
                     purse.contents = data.basic; purse.initialized = true
                 }
-                gameMechanics.purseOfCoins[GameMechanics.LevelMode.ENDLESS]?.let { purse ->
+                gameMechanics.purseOfCoins[GameMode.Endless]?.let { purse ->
                     purse.contents = data.endless; purse.initialized = true
                 }
             }

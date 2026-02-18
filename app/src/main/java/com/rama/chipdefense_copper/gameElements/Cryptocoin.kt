@@ -15,6 +15,7 @@ import com.rama.chipdefense_copper.effects.Flipper
 import com.rama.chipdefense_copper.networkmap.Viewport
 import com.rama.chipdefense_copper.utils.setCenter
 import androidx.core.graphics.createBitmap
+import com.rama.chipdefense_copper.GameMode
 
 class Cryptocoin(
     network: com.rama.chipdefense_copper.networkmap.Network,
@@ -42,10 +43,10 @@ class Cryptocoin(
 
     override val explosionColour: Int
         get() = when (network.gameMechanics.currentStageIdent.mode()) {
-            GameMechanics.LevelMode.ENDLESS ->
+            GameMode.Endless ->
                 network.gameView.resources.getColor(R.color.attackers_glow_coin_endless)
-            
-            GameMechanics.LevelMode.BASIC ->
+
+            GameMode.Basic ->
                 network.gameView.resources.getColor(R.color.attackers_glow_coin_basic)
         }
 

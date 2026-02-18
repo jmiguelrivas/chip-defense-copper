@@ -21,7 +21,6 @@ import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rama.chipdefense_copper.GameMechanics.GamePhase
-import com.rama.chipdefense_copper.GameMechanics.LevelMode
 import com.rama.chipdefense_copper.activities.GameActivity
 import com.rama.chipdefense_copper.effects.Background
 import com.rama.chipdefense_copper.effects.Effects
@@ -490,8 +489,8 @@ class GameView(context: Context) :
 
     fun currentCoinBitmap(stage: Stage.Identifier = gameMechanics.currentStageIdent): Bitmap {
         return when (stage.mode()) {
-            LevelMode.BASIC -> coinIconGold
-            LevelMode.ENDLESS -> coinIconRed
+            GameMode.Basic -> coinIconGold
+            GameMode.Endless -> coinIconRed
         }
     }
 
@@ -510,7 +509,7 @@ class GameView(context: Context) :
     }
 
     private fun showAdditionalEffects(): Boolean {
-        if (gameMechanics.currentStageIdent.mode() == LevelMode.BASIC && gameMechanics.currentStageIdent.number == GameMechanics.specialLevelNumber)
+        if (gameMechanics.currentStageIdent.mode() == GameMode.Basic && gameMechanics.currentStageIdent.number == GameMechanics.specialLevelNumber)
             return (gameMechanics.state.phase == GamePhase.RUNNING || gameMechanics.state.phase == GamePhase.PAUSED)
         else
             return false

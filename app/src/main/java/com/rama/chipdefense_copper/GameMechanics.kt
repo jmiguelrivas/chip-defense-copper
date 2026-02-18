@@ -20,7 +20,7 @@ class GameMechanics {
 
         // debug options
         /** for debugging purposes only. MUST BE SET TO FALSE */
-        const val makeAllLevelsAvailable = false
+        const val makeAllLevelsAvailable = true
 
         /** for debugging purposes only. MUST BE SET TO FALSE */
         const val resetHeroHolidays = false
@@ -105,7 +105,7 @@ class GameMechanics {
         }
 
         fun specialLevel(stageIdent: Stage.Identifier): Season {
-            if (stageIdent.mode() == LevelMode.BASIC && stageIdent.number == specialLevelNumber)
+            if (stageIdent.mode() == GameMode.Basic && stageIdent.number == specialLevelNumber)
                 return specialSeason()
             else
                 return Season.DEFAULT
@@ -158,19 +158,16 @@ class GameMechanics {
     var summaryPerEndlessLevel = HashMap<Int, Stage.Summary>()
     var heroes = HashMap<Hero.Type, Hero>()
     var heroesByMode = hashMapOf(
-            LevelMode.BASIC to HashMap(),
-            LevelMode.ENDLESS to HashMap<Hero.Type, Hero>(),
+            GameMode.Basic to HashMap(),
+            GameMode.Endless to HashMap<Hero.Type, Hero>(),
     )
     var currentlyActiveWave: Wave? = null
     var holidays = HashMap<Int, Hero.Holiday>()
 
-    /** the two different kind of series: BASIC and ENDLESS */
-    enum class LevelMode { BASIC, ENDLESS }
-
     /** coin management */
     var purseOfCoins = hashMapOf(
-            LevelMode.BASIC to PurseOfCoins(this, LevelMode.BASIC),
-            LevelMode.ENDLESS to PurseOfCoins(this, LevelMode.ENDLESS),
+            GameMode.Basic to PurseOfCoins(this, GameMode.Basic),
+            GameMode.Endless to PurseOfCoins(this, GameMode.Endless),
     )
 
     /** the stage that has been selected in the level selector */
@@ -190,20 +187,20 @@ class GameMechanics {
     enum class GamePhase { START, RUNNING, INTERMEZZO, MARKETPLACE, PAUSED }
     enum class GameSpeed { X1, X2, X3 }
 
-    fun deleteProgressOfSeries(mode: LevelMode)
+    fun deleteProgressOfSeries(mode: GameMode)
             /** initializes the data structures for level summaries, heroes and coin purse with empty values.
              * @param mode selects whether only the ENDLESS series gets deleted, or all series (including ENDLESS).
              */
     {
         // this gets deleted in any case:
         summaryPerEndlessLevel = HashMap()
-        heroesByMode[LevelMode.ENDLESS] = HashMap()
-        purseOfCoins[LevelMode.ENDLESS] = PurseOfCoins(this, LevelMode.ENDLESS)
+        heroesByMode[GameMode.Endless] = HashMap()
+        purseOfCoins[GameMode.Endless] = PurseOfCoins(this, GameMode.Endless)
         // additionally, the BASIC series if requested:
-        if (mode == LevelMode.BASIC) {
+        if (mode == GameMode.Basic) {
             summaryPerNormalLevel = HashMap()
-            heroesByMode[LevelMode.BASIC] = HashMap()
-            purseOfCoins[LevelMode.BASIC] = PurseOfCoins(this, LevelMode.BASIC)
+            heroesByMode[GameMode.Basic] = HashMap()
+            purseOfCoins[GameMode.Basic] = PurseOfCoins(this, GameMode.Basic)
         }
     }
 
@@ -330,7 +327,7 @@ class GameMechanics {
              * @return Number of coins required
              */
     {
-        if (currentStageIdent.mode() == LevelMode.ENDLESS && !allowLivesPurchaseInAllStages)
+        if (currentStageIdent.mode() == GameMode.Endless && !allowLivesPurchaseInAllStages)
             return 0
         return 1 + state.livesRestored + (currentStageIdent.number / 32)
     }
@@ -441,8 +438,8 @@ class GameMechanics {
              * Called when migrating from 1.33 to 1.34
              */
     {
-        heroesByMode[LevelMode.BASIC] = HashMap(heroes)
-        heroesByMode[LevelMode.ENDLESS] = HashMap()
+        heroesByMode[GameMode.Basic] = HashMap(heroes)
+        heroesByMode[GameMode.Endless] = HashMap()
 
     }
 

@@ -115,11 +115,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
              */
             var hero: Hero? = heroes[type]
             if (hero == null) {
-                val mode: GameMode = when (level.mode()) {
-                    GameMechanics.LevelMode.BASIC -> GameMode.Basic
-                    GameMechanics.LevelMode.ENDLESS -> GameMode.Endless
-                }
-                
+                val mode: GameMode = level.mode()
                 hero = Hero.createFromData(gameView.gameActivity, Hero.Data(type), mode)
             }
             if (hero.isAvailable(level) || hero.data.level > 0) {
@@ -133,7 +129,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
 
         arrangeCards(newUpgrades, cardViewOffset)
         upgrades = newUpgrades
-        if (level.mode() == GameMechanics.LevelMode.ENDLESS) // grant a gift at the beginning of 'Endless'
+        if (level.mode() == GameMode.Endless) // grant a gift at the beginning of 'Endless'
         {
             val gift = purse.addGift(GameMechanics.defaultGiftCoins)
             if (gift > 0) {

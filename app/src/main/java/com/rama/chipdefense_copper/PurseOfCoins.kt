@@ -4,7 +4,7 @@ import android.content.res.Resources
 
 class PurseOfCoins(
     val gameMechanics: GameMechanics,
-    private val levelMode: GameMechanics.LevelMode = GameMechanics.LevelMode.BASIC
+    private val levelMode: GameMode = GameMode.Basic
 )
 /** Auxiliary object that holds the current amount of coins for a level mode
  *

@@ -4,6 +4,7 @@ import android.graphics.*
 import android.view.MotionEvent
 import com.rama.chipdefense_copper.CpuReached
 import com.rama.chipdefense_copper.GameMechanics
+import com.rama.chipdefense_copper.GameMode
 import com.rama.chipdefense_copper.networkmap.Network
 import com.rama.chipdefense_copper.networkmap.Viewport
 import com.rama.chipdefense_copper.utils.makeSquare
@@ -95,7 +96,7 @@ class Cpu(network: Network, gridX: Int, gridY: Int) : Chip(network, gridX, gridY
     override fun onDown(event: MotionEvent): Boolean {
         if (actualRect?.contains(event.x.toInt(), event.y.toInt()) == false)
             return false
-        if (network.gameView.gameMechanics.currentStageIdent.mode() == GameMechanics.LevelMode.ENDLESS) {
+        if (network.gameView.gameMechanics.currentStageIdent.mode() == GameMode.Endless) {
             network.gameView.gameActivity.showPurchaseLifeDialog(showHint = false)
             return true
         } else
