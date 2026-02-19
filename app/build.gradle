@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-android'
 }
 
+def currentYear = java.time.LocalDate.now().getYear()
+
 android {
     compileSdk = 36
 
@@ -11,7 +13,7 @@ android {
         minSdk = 21
         targetSdk = 36
         versionCode = 1
-        versionName = "2026." + versionCode.toString()
+        versionName = currentYear + "." + versionCode.toString()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         dependenciesInfo {
@@ -20,6 +22,13 @@ android {
             // Disables dependency metadata when building Android App Bundles.
             includeInBundle = false
             // see https://gitlab.com/fdroid/fdroidserver/-/issues/1056
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def versionCode = variant.versionCode
+            outputFileName = "chip-defense_${versionName}.apk"
         }
     }
 

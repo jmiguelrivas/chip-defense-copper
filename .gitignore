@@ -13,6 +13,7 @@ keystore.properties
 /build/
 **/build/
 **/build/**
+app/release/
 
 # === Android artifacts ===
 *.apk
