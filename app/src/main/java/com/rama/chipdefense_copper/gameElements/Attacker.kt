@@ -14,7 +14,6 @@ import kotlin.math.exp
 import kotlin.math.log2
 import kotlin.random.Random
 
-
 open class Attacker(
     network: Network, representation: Representation = Representation.BINARY,
     number: ULong = 1u, speed: Float = 1.0f

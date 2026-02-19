@@ -2,7 +2,6 @@ package com.rama.chipdefense_copper.activities
 
 import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.View.VISIBLE
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import com.rama.chipdefense_copper.GameMechanics
 import com.rama.chipdefense_copper.Persistency

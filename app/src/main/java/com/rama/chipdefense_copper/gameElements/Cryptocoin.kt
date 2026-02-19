@@ -7,7 +7,6 @@ import android.graphics.Bitmap.Config.ARGB_8888
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
-import com.rama.chipdefense_copper.GameMechanics
 import com.rama.chipdefense_copper.GameView
 import com.rama.chipdefense_copper.R
 import com.rama.chipdefense_copper.effects.Flippable

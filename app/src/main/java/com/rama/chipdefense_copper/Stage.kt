@@ -6,7 +6,6 @@ import com.rama.chipdefense_copper.networkmap.Network
 import com.rama.chipdefense_copper.networkmap.Track
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.random.Random
-import androidx.core.graphics.scale
 
 class Stage(var gameMechanics: GameMechanics, var gameView: GameView) {
     class Identifier(

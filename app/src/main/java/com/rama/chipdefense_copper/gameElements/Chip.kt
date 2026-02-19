@@ -18,7 +18,6 @@ import com.rama.chipdefense_copper.effects.Mover
 import com.rama.chipdefense_copper.networkmap.Network
 import com.rama.chipdefense_copper.networkmap.Node
 import com.rama.chipdefense_copper.networkmap.Viewport
-import com.rama.chipdefense_copper.utils.displayTextCenteredInRect
 import com.rama.chipdefense_copper.utils.inflate
 import com.rama.chipdefense_copper.utils.setBottomLeft
 import com.rama.chipdefense_copper.utils.setCenter
