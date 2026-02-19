@@ -39,7 +39,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private var bioPanel = Rect()
     private var biographyArea = Rect()
     private var clearPaint = Paint()
-    private var paint = Paint()
 
     /** used for scrolling */
     private var cardViewOffset = 0f
@@ -221,7 +220,7 @@ class Marketplace(val gameView: GameView) : GameElement() {
             return true
         }
         if (buttonRefund?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
-            Sounds.playBtnActiveSound()
+            Sounds.playBtnBackSound()
             selected?.let {
                 refundOne(it)
                 return true
@@ -275,9 +274,11 @@ class Marketplace(val gameView: GameView) : GameElement() {
         for (hero in upgrades)
             if (hero.card.cardAreaOnScreen.contains(event.x.toInt(), event.y.toInt()))
                 hero.let {
-                    selected = it
-                    it.biography?.viewOffset = 0f
-                    makeButtonText(it)
+                    if (selected != it) {
+                        selected = it
+                        Sounds.playBtnSelectSound()
+                        makeButtonText(it)
+                    }
                     return true
                 }
         if (cardsArea.contains(event.x.toInt(), event.y.toInt())) {

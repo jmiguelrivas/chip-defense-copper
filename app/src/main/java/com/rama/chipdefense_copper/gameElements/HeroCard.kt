@@ -8,6 +8,7 @@ import android.text.TextPaint
 import com.rama.chipdefense_copper.GameView
 import com.rama.chipdefense_copper.Hero
 import com.rama.chipdefense_copper.R
+import com.rama.chipdefense_copper.Sounds
 import com.rama.chipdefense_copper.networkmap.Viewport
 import com.rama.chipdefense_copper.utils.displayTextCenteredInRect
 import com.rama.chipdefense_copper.utils.setCenter
@@ -159,7 +160,6 @@ class HeroCard(val gameView: GameView, val hero: Hero) : GameElement()
             strokeWidth = originalThickness
             alpha = originalAlpha
         }
-        // }
     }
 
     fun putAt(left: Int, top: Int) {
