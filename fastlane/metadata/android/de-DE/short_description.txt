@@ -1,2 +1,0 @@
-Ein „Tower Defense“-Spiel mit einem Mikroprozessor-Thema
-

@@ -1,5 +1,0 @@
-- Added 'turbo' mode for replaying levels with increased difficulty.
-- Added level 26.
-- Added two more heroes (Norbert Wiener, Blaise Pascal).
-- Added 'retry' button after lost levels.
-

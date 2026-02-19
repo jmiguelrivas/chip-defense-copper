@@ -1,6 +1,0 @@
-- Performance improvements
-- Hero cards and coin symbols now scale with screen resolution
-- French translation extended
-- fixed incorrect count of coins on level selection screen
-- minor bug fixes
-
