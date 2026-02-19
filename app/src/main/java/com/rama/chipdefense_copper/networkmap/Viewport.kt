@@ -43,15 +43,13 @@ class Viewport
         val worldWidth = gridSizeX * scaleX
         val worldHeight = gridSizeY * scaleY
 
-        val margin = GameView.viewportMargin.toFloat()
-
         // Horizontal limits: keep at least part of the world visible
-        val minX = (-margin - worldWidth).toInt()
-        val maxX = (viewportWidth - margin).toInt()
+        val minX = (-worldWidth).toInt()
+        val maxX = viewportWidth
 
         // Vertical limits
-        val minY = (-margin - worldHeight).toInt()
-        val maxY = (viewportHeight - margin).toInt()
+        val minY = (-worldHeight).toInt()
+        val maxY = viewportHeight
 
         offsetX = offsetX.coerceIn(minX, maxX)
         offsetY = offsetY.coerceIn(minY, maxY)
