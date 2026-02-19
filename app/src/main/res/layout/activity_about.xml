@@ -7,7 +7,7 @@
     <com.rama.chipdefense_copper.AnimatedPatternView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:mode="green" />
+        app:mode="night" />
 
     <LinearLayout
         android:id="@+id/root"
