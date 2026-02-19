@@ -37,8 +37,8 @@
     <string name="chip_defense_copper_label" translatable="false">jmiguelrivas/chip-defense-copper</string>
     <string name="chip_defense_url" translatable="false">https://github.com/ochadenas/cpudefense</string>
     <string name="chip_defense_label" translatable="false">ochadenas/cpudefense</string>
-    <string name="wiki_url" translatable="false">https://github.com/ochadenas/cpudefense/wiki/Chip-Defense</string>
-    <string name="wiki_label">Game Wiki (ChipDefense)</string>
+    <string name="wiki_url" translatable="false">https://chip-defense.github.io/</string>
+    <string name="wiki_label">Game Website</string>
     <string name="works_offline">Works Offline</string>
     <string name="no_trackers">No Trackers</string>
     <string name="no_ads">No Ads</string>
