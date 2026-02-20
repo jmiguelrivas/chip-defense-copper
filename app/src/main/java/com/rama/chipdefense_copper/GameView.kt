@@ -75,11 +75,11 @@ class GameView(context: Context) :
     lateinit var monoTypeface: Typeface
     lateinit var boldTypeface: Typeface
 
-    private val coinIconGold: Bitmap = context.vectorToBitmap(
+    private val coinIconGreen: Bitmap = context.vectorToBitmap(
             R.drawable.coin_pixel,
             64,
             64,
-            R.style.Coin_Gold
+            R.style.Coin_Green
     )
 
     private val coinIconRed: Bitmap = context.vectorToBitmap(
@@ -489,7 +489,7 @@ class GameView(context: Context) :
 
     fun currentCoinBitmap(stage: Stage.Identifier = gameMechanics.currentStageIdent): Bitmap {
         return when (stage.mode()) {
-            GameMode.Basic -> coinIconGold
+            GameMode.Basic -> coinIconGreen
             GameMode.Endless -> coinIconRed
         }
     }

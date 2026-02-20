@@ -28,7 +28,7 @@ object HeroesCatalog {
                         fullName = "Alan Turing",
                         effect = res.getString(R.string.HERO_EFFECT_CHIPSPEED).format("SUB"),
                         vitae = res.getString(R.string.turing),
-                        picture = game.createHero("Alan Turing", res.getString(R.string.shortdesc_SUB), R.style.Chip_Gold),
+                        picture = game.createHero("Alan Turing", res.getString(R.string.shortdesc_SUB), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -40,7 +40,7 @@ object HeroesCatalog {
                         fullName = "Ada Lovelace",
                         effect = res.getString(R.string.HERO_EFFECT_CHIPSPEED).format("SHR"),
                         vitae = res.getString(R.string.lovelace),
-                        picture = game.createHero("Ada Lovelace", res.getString(R.string.shortdesc_SHR), R.style.Chip_Gold),
+                        picture = game.createHero("Ada Lovelace", res.getString(R.string.shortdesc_SHR), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -52,7 +52,7 @@ object HeroesCatalog {
                         fullName = "Bertrand Russell",
                         effect = res.getString(R.string.HERO_EFFECT_CHIPSPEED).format("MEM"),
                         vitae = res.getString(R.string.bertrand_russell),
-                        picture = game.createHero("Bertrand Russell", res.getString(R.string.shortdesc_MEM), R.style.Chip_Gold),
+                        picture = game.createHero("Bertrand Russell", res.getString(R.string.shortdesc_MEM), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -64,7 +64,7 @@ object HeroesCatalog {
                         fullName = "Claude Chappe",
                         effect = res.getString(R.string.HERO_EFFECT_HEAT),
                         vitae = res.getString(R.string.chappe),
-                        picture = game.createHero("Claude Chappe", res.getString(R.string.shortdesc_heat), R.style.Chip_Gold),
+                        picture = game.createHero("Claude Chappe", res.getString(R.string.shortdesc_heat), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -76,7 +76,7 @@ object HeroesCatalog {
                         fullName = "Herman Hollerith",
                         effect = res.getString(R.string.HERO_EFFECT_STARTINFO),
                         vitae = res.getString(R.string.hollerith),
-                        picture = game.createHero("Herman Hollerith", res.getString(R.string.shortdesc_startinfo), R.style.Chip_Gold),
+                        picture = game.createHero("Herman Hollerith", res.getString(R.string.shortdesc_startinfo), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -88,7 +88,7 @@ object HeroesCatalog {
                         fullName = "Nikola Tesla",
                         effect = res.getString(R.string.HERO_EFFECT_UPGRADECOST),
                         vitae = res.getString(R.string.nikola_tesla),
-                        picture = game.createHero("Nikola Tesla", res.getString(R.string.shortdesc_upgrade), R.style.Chip_Gold),
+                        picture = game.createHero("Nikola Tesla", res.getString(R.string.shortdesc_upgrade), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -100,7 +100,7 @@ object HeroesCatalog {
                         fullName = "Konrad Zuse",
                         effect = res.getString(R.string.HERO_EFFECT_LIVES),
                         vitae = res.getString(R.string.zuse),
-                        picture = game.createHero("Konrad Zuse", res.getString(R.string.shortdesc_lives), R.style.Chip_Gold),
+                        picture = game.createHero("Konrad Zuse", res.getString(R.string.shortdesc_lives), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -112,7 +112,7 @@ object HeroesCatalog {
                         fullName = "Jack Kilby",
                         effect = res.getString(R.string.HERO_EFFECT_LIMITUNWANTED),
                         vitae = res.getString(R.string.kilby),
-                        picture = game.createHero("Jack Kilby", res.getString(R.string.shortdesc_limit_unwanted), R.style.Chip_Gold),
+                        picture = game.createHero("Jack Kilby", res.getString(R.string.shortdesc_limit_unwanted), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -124,7 +124,7 @@ object HeroesCatalog {
                         fullName = "John von Neumann",
                         effect = res.getString(R.string.HERO_CREATE_CHIPS),
                         vitae = res.getString(R.string.neumann),
-                        picture = game.createHero("John von Neumann", res.getString(R.string.shortdesc_create_wanted), R.style.Chip_Gold),
+                        picture = game.createHero("John von Neumann", res.getString(R.string.shortdesc_create_wanted), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -136,7 +136,7 @@ object HeroesCatalog {
                         fullName = "Gottfried Wilhelm Leibniz",
                         effect = res.getString(R.string.HERO_EFFECT_ENABLEMEM),
                         vitae = res.getString(R.string.leibniz),
-                        picture = game.createHero("Gottfried Wilhelm Leibniz", res.getString(R.string.shortdesc_MEM), R.style.Chip_Gold),
+                        picture = game.createHero("Gottfried Wilhelm Leibniz", res.getString(R.string.shortdesc_MEM), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -148,7 +148,7 @@ object HeroesCatalog {
                         fullName = "Al-Khwarizmi",
                         effect = res.getString(R.string.HERO_EFFECT_FREQUENCY),
                         vitae = res.getString(R.string.al_khwarizmi),
-                        picture = game.createHero("Al-Khwarizmi", res.getString(R.string.shortdesc_frequency), R.style.Chip_Gold),
+                        picture = game.createHero("Al-Khwarizmi", res.getString(R.string.shortdesc_frequency), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -160,7 +160,7 @@ object HeroesCatalog {
                         fullName = "Gottlob Frege",
                         effect = res.getString(R.string.HERO_EFFECT_COINSTRENGTH),
                         vitae = res.getString(R.string.gottlob_frege),
-                        picture = game.createHero("Gottlob Frege", res.getString(R.string.shortdesc_coin_strength), R.style.Chip_Gold),
+                        picture = game.createHero("Gottlob Frege", res.getString(R.string.shortdesc_coin_strength), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -172,7 +172,7 @@ object HeroesCatalog {
                         fullName = "Herbert W. Franke",
                         effect = res.getString(R.string.HERO_EFFECT_INFOOVERTIME),
                         vitae = res.getString(R.string.franke),
-                        picture = game.createHero("Herbert W. Franke", res.getString(R.string.shortdesc_info_gain), R.style.Chip_Gold),
+                        picture = game.createHero("Herbert W. Franke", res.getString(R.string.shortdesc_info_gain), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -184,7 +184,7 @@ object HeroesCatalog {
                         fullName = "Benoît B. Mandelbrot",
                         effect = res.getString(R.string.HERO_EFFECT_GAININFO),
                         vitae = res.getString(R.string.mandelbrot),
-                        picture = game.createHero("Benoît B. Mandelbrot", res.getString(R.string.shortdesc_info_on_kill), R.style.Chip_Gold),
+                        picture = game.createHero("Benoît B. Mandelbrot", res.getString(R.string.shortdesc_info_on_kill), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -196,7 +196,7 @@ object HeroesCatalog {
                         fullName = "Margaret Hamilton",
                         effect = res.getString(R.string.HERO_EFFECT_DECREASEREMOVAL),
                         vitae = res.getString(R.string.hamilton),
-                        picture = game.createHero("Margaret Hamilton", res.getString(R.string.shortdesc_reduce_removal), R.style.Chip_Gold),
+                        picture = game.createHero("Margaret Hamilton", res.getString(R.string.shortdesc_reduce_removal), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -208,7 +208,7 @@ object HeroesCatalog {
                         fullName = "Dorothy Vaughan",
                         effect = res.getString(R.string.HERO_EFFECT_ATTSPEED),
                         vitae = res.getString(R.string.vaughan),
-                        picture = game.createHero("Dorothy Vaughan", res.getString(R.string.shortdesc_att_speed), R.style.Chip_Gold),
+                        picture = game.createHero("Dorothy Vaughan", res.getString(R.string.shortdesc_att_speed), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -220,7 +220,7 @@ object HeroesCatalog {
                         fullName = "Euclid",
                         effect = res.getString(R.string.HERO_EFFECT_ATTSTRENGTH),
                         vitae = res.getString(R.string.euclid),
-                        picture = game.createHero("Euclid", res.getString(R.string.shortdesc_att_strength), R.style.Chip_Gold),
+                        picture = game.createHero("Euclid", res.getString(R.string.shortdesc_att_strength), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -232,7 +232,7 @@ object HeroesCatalog {
                         fullName = "Jack Tramiel",
                         effect = res.getString(R.string.HERO_EFFECT_REFUNDPRICE),
                         vitae = res.getString(R.string.tramiel),
-                        picture = game.createHero("Jack Tramiel", res.getString(R.string.shortdesc_refund), R.style.Chip_Gold),
+                        picture = game.createHero("Jack Tramiel", res.getString(R.string.shortdesc_refund), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -246,7 +246,7 @@ object HeroesCatalog {
                         vitae = res.getString(R.string.wiener),
                         picture = game.createHero(
                                 "Norbert Wiener", res.getString(R.string.shortdesc_range)
-                            .format("SUB"), R.style.Chip_Gold
+                            .format("SUB"), R.style.Chip_Green
                         ),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
@@ -261,7 +261,7 @@ object HeroesCatalog {
                         vitae = res.getString(R.string.pascal),
                         picture = game.createHero(
                                 "Blaise Pascal", res.getString(R.string.shortdesc_range)
-                            .format("SHR"), R.style.Chip_Gold
+                            .format("SHR"), R.style.Chip_Green
                         ),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
@@ -276,7 +276,7 @@ object HeroesCatalog {
                         vitae = res.getString(R.string.hopper),
                         picture = game.createHero(
                                 "Grace Hopper", res.getString(R.string.shortdesc_range)
-                            .format("MEM"), R.style.Chip_Gold
+                            .format("MEM"), R.style.Chip_Green
                         ),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
@@ -289,7 +289,7 @@ object HeroesCatalog {
                         fullName = "Charles Babbage",
                         effect = res.getString(R.string.HERO_EFFECT_MAXHEROUPGRADE),
                         vitae = res.getString(R.string.charles_babbage),
-                        picture = game.createHero("Charles Babbage", res.getString(R.string.shortdesc_max_hero_upgrade), R.style.Chip_Gold),
+                        picture = game.createHero("Charles Babbage", res.getString(R.string.shortdesc_max_hero_upgrade), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -301,7 +301,7 @@ object HeroesCatalog {
                         fullName = "Georg Ohm",
                         effect = res.getString(R.string.HERO_EFFECT_RES_STRENGTH),
                         vitae = res.getString(R.string.ohm),
-                        picture = game.createHero("Georg Ohm", res.getString(R.string.shortdesc_RES), R.style.Chip_Gold),
+                        picture = game.createHero("Georg Ohm", res.getString(R.string.shortdesc_RES), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -313,7 +313,7 @@ object HeroesCatalog {
                         fullName = "Alessandro Volta",
                         effect = res.getString(R.string.HERO_EFFECT_RES_DURATION),
                         vitae = res.getString(R.string.volta),
-                        picture = game.createHero("Alessandro Volta", res.getString(R.string.shortdesc_duration), R.style.Chip_Gold),
+                        picture = game.createHero("Alessandro Volta", res.getString(R.string.shortdesc_duration), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -325,7 +325,7 @@ object HeroesCatalog {
                         fullName = "Claude Shannon",
                         effect = res.getString(R.string.HERO_EFFECT_CONVERT_HEAT),
                         vitae = res.getString(R.string.shannon),
-                        picture = game.createHero("Claude Shannon", res.getString(R.string.shortdesc_heat_conversion), R.style.Chip_Gold),
+                        picture = game.createHero("Claude Shannon", res.getString(R.string.shortdesc_heat_conversion), R.style.Chip_Green),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
             },
@@ -339,7 +339,7 @@ object HeroesCatalog {
                         vitae = res.getString(R.string.boole),
                         picture = game.createHero(
                                 "George Boole", res.getString(R.string.shortdesc_double_chance)
-                            .format("SUB"), R.style.Chip_Gold
+                            .format("SUB"), R.style.Chip_Green
                         ),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
@@ -354,7 +354,7 @@ object HeroesCatalog {
                         vitae = res.getString(R.string.conway),
                         picture = game.createHero(
                                 "John Horton Conway", res.getString(R.string.shortdesc_double_chance)
-                            .format("SHR"), R.style.Chip_Gold
+                            .format("SHR"), R.style.Chip_Green
                         ),
                         isAvailableIn = { mode -> mode == GameMode.Basic }
                 )
