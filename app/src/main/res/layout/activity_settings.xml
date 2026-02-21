@@ -120,6 +120,7 @@
                     android:id="@+id/startNewGameButton"
                     android:onClick="startNewGame"
                     android:text="@string/button_reset_progress"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.CpuDefense.Button.Danger" />
