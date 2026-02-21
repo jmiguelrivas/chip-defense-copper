@@ -105,7 +105,6 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/importData"
                     android:text="@string/import_data"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.CpuDefense.Button.Danger" />

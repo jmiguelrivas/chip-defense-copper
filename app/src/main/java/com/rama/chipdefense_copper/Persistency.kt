@@ -70,20 +70,7 @@ class Persistency(private val activity: Activity) {
      */
     fun exportAllDataToFile(): String {
         return try {
-            val exportData = HashMap<String, Map<String, Any?>>()
-
-            for (file in allPrefFiles) {
-                val prefsMap = prefs(file).all
-
-                // Convert raw map into a clean JSON map
-                val cleanedMap = prefsMap.mapValues { (_, value) ->
-                    parseJsonIfNeeded(value)
-                }
-
-                exportData[file] = cleanedMap
-            }
-
-            val json = gson.toJson(exportData)
+            val json = buildExportJson()
 
             val file = File(
                     activity.getExternalFilesDir(null),
@@ -91,14 +78,28 @@ class Persistency(private val activity: Activity) {
             )
 
             file.writeText(json)
-
             toast("Export completed:\n${file.absolutePath}")
-
             json
         } catch (e: Exception) {
             toast("Export failed: ${e.message}")
             ""
         }
+    }
+
+    private fun buildExportJson(): String {
+        val exportData = HashMap<String, Map<String, Any?>>()
+
+        for (file in allPrefFiles) {
+            val prefsMap = prefs(file).all
+
+            val cleanedMap = prefsMap.mapValues { (_, value) ->
+                parseJsonIfNeeded(value)
+            }
+
+            exportData[file] = cleanedMap
+        }
+
+        return gson.toJson(exportData)
     }
 
     private fun parseJsonIfNeeded(value: Any?): Any? {
@@ -121,8 +122,7 @@ class Persistency(private val activity: Activity) {
 
     fun exportAllDataToUri(uri: Uri): Boolean {
         return try {
-            val json = exportAllDataToFile()
-            if (json.isBlank()) return false
+            val json = buildExportJson()   // <-- FIXED
 
             activity.contentResolver
                 .openOutputStream(uri)
@@ -165,11 +165,30 @@ class Persistency(private val activity: Activity) {
                 for ((key, value) in entries) {
                     when (value) {
                         is String -> editor.putString(key, value)
+
                         is Boolean -> editor.putBoolean(key, value)
-                        is Int -> editor.putInt(key, value)
-                        is Long -> editor.putLong(key, value)
+
+                        is Double -> {
+                            // decide if it's actually an Int/Long
+                            if (value % 1 == 0.0) {
+                                val longVal = value.toLong()
+
+                                if (longVal in Int.MIN_VALUE..Int.MAX_VALUE) {
+                                    editor.putInt(key, longVal.toInt())
+                                } else {
+                                    editor.putLong(key, longVal)
+                                }
+                            } else {
+                                editor.putFloat(key, value.toFloat())
+                            }
+                        }
+
                         is Float -> editor.putFloat(key, value)
-                        is Double -> editor.putFloat(key, value.toFloat())
+
+                        is Int -> editor.putInt(key, value)
+
+                        is Long -> editor.putLong(key, value)
+
                         else -> editor.putString(key, gson.toJson(value))
                     }
                 }

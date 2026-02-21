@@ -102,8 +102,7 @@ class SettingsActivity : BaseFullscreenActivity() {
                 val success = persistency.importAllDataFromUri(uri)
 
                 if (success) {
-                    toast("Import completed. Restarting…")
-                    restartApp()
+                    toast("Import completed. restart the app.")
                 } else {
                     toast("Import failed.")
                 }
