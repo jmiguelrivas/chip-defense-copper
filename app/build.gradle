@@ -27,7 +27,6 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            def versionCode = variant.versionCode
             outputFileName = "chip-defense_${versionName}.apk"
         }
     }
