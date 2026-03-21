@@ -87,10 +87,9 @@ class GameActivity : BaseFullscreenActivity() {
              * here from another app.
              */
     {
-        super.onCreate(savedInstanceState)
-
         /* here, the size of the surfaces might not be known */
         requestWindowFeature(Window.FEATURE_NO_TITLE) // method of Activity
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_game)
 
 //        applySystemInsets(findViewById<View>(R.id.mainGameLayout))
