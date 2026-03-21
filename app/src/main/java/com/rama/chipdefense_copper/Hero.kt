@@ -464,9 +464,12 @@ class Hero(var gameActivity: GameActivity, type: Type)
         }
     }
 
-    inner class Biography(private var screenArea: Rect) {
+    inner class Biography(private var screenArea: Rect)
+    /** The curriculum vitae of the hero, including graphical representation on the screen,
+     * @param screenArea The rectangle on the screen provided for the biography. */
+    {
         var area = Rect(screenArea)
-        var bitmap: Bitmap? = null   // don't create yet
+        var bitmap: Bitmap? = null
         var viewOffset: Float = 0f
         private var maxViewOffset = 0f
         private var canvas: Canvas? = null
