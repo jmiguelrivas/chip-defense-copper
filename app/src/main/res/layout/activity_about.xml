@@ -12,93 +12,108 @@
     <LinearLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
-        android:focusableInTouchMode="true"
         android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
-            android:layout_width="370dp"
-            android:layout_height="120dp"
-            android:src="@drawable/logo" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:text="@string/app_description"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:textAlignment="center"
-            android:textColor="@color/foreground_color"
-            style="@style/Content" />
-
-        <LinearLayout
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <com.rama.chipdefense_copper.IconBadge
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:icon="@drawable/icon_octagon_check_solid"
-                app:text="@string/no_ads" />
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
 
-            <com.rama.chipdefense_copper.IconBadge
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:icon="@drawable/icon_octagon_check_solid"
-                app:text="@string/no_trackers" />
+                <ImageView
+                    android:layout_width="320dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/logo"
+                    android:layout_marginBottom="16dp" />
 
-            <com.rama.chipdefense_copper.IconBadge
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:icon="@drawable/icon_octagon_check_solid"
-                app:text="@string/works_offline" />
+                <TextView
+                    android:text="@string/app_description"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/foreground_color"
+                    style="@style/Content" />
 
-            <com.rama.chipdefense_copper.IconBadge
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:icon="@drawable/icon_crown_solid"
-                app:backgroundColor="#2A2A3A"
-                app:text="@string/license" />
+                <LinearLayout
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-            <com.rama.chipdefense_copper.IconLink
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:icon="@drawable/icon_github"
-                app:url="@string/chip_defense_copper_url"
-                app:text="@string/chip_defense_copper_label" />
+                    <com.rama.chipdefense_copper.IconBadge
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        app:icon="@drawable/icon_octagon_check_solid"
+                        app:text="@string/no_ads" />
 
-            <com.rama.chipdefense_copper.IconLink
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:icon="@drawable/icon_github"
-                app:url="@string/chip_defense_url"
-                app:text="@string/chip_defense_label" />
+                    <com.rama.chipdefense_copper.IconBadge
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        app:icon="@drawable/icon_octagon_check_solid"
+                        app:text="@string/no_trackers" />
 
-            <com.rama.chipdefense_copper.IconLink
-                android:id="@+id/button_web"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                app:url="@string/web_url"
-                app:icon="@drawable/icon_face_thinking_solid"
-                app:text="@string/web_label" />
+                    <com.rama.chipdefense_copper.IconBadge
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        app:icon="@drawable/icon_octagon_check_solid"
+                        app:text="@string/works_offline" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_back"
-                android:onClick="dismiss"
-                android:text="@string/go_back"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.CpuDefense.Button" />
-        </LinearLayout>
+                    <com.rama.chipdefense_copper.IconBadge
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        app:icon="@drawable/icon_crown_solid"
+                        app:backgroundColor="#2A2A3A"
+                        app:text="@string/license" />
+
+                    <com.rama.chipdefense_copper.IconLink
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        app:icon="@drawable/icon_github"
+                        app:url="@string/chip_defense_copper_url"
+                        app:text="@string/chip_defense_copper_label" />
+
+                    <com.rama.chipdefense_copper.IconLink
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        app:icon="@drawable/icon_github"
+                        app:url="@string/chip_defense_url"
+                        app:text="@string/chip_defense_label" />
+
+                    <com.rama.chipdefense_copper.IconLink
+                        android:id="@+id/button_web"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        app:url="@string/web_url"
+                        app:icon="@drawable/icon_face_thinking_solid"
+                        app:text="@string/web_label" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_back"
+                        android:onClick="dismiss"
+                        android:text="@string/go_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.CpuDefense.Button" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>
