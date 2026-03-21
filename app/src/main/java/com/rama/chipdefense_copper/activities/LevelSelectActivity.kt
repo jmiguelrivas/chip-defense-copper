@@ -37,17 +37,7 @@ class LevelSelectActivity : BaseFullscreenActivity() {
         applySystemInsets(findViewById<View>(R.id.root))
         setupSelector()
     }
-
-    override fun onResume() {
-        super.onResume()
-        Sounds.playSecondarySoundtrack()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Sounds.stopSecondarySoundtrack()
-    }
-
+    
     fun dismiss(@Suppress("UNUSED_PARAMETER") v: View) {
         Sounds.playBtnBackSound()
         finish()

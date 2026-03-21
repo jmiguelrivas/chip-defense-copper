@@ -18,14 +18,4 @@ class AboutActivity : BaseFullscreenActivity() {
         Sounds.playBtnBackSound()
         finish()
     }
-
-    override fun onResume() {
-        super.onResume()
-        Sounds.playSecondarySoundtrack()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Sounds.stopSecondarySoundtrack()
-    }
 }
