@@ -464,58 +464,58 @@ class Hero(var gameActivity: GameActivity, type: Type)
         }
     }
 
-    inner class Biography(private var screenArea: Rect)
-    /** The curriculum vitae of the hero, including graphical representation on the screen,
-     * @param screenArea The rectangle on the screen provided for the biography. */
-    {
+    inner class Biography(private var screenArea: Rect) {
         var area = Rect(screenArea)
-        var bitmap: Bitmap = createBitmap(area.width(), area.height(), Bitmap.Config.ARGB_8888)
+        var bitmap: Bitmap? = null   // don't create yet
         var viewOffset: Float = 0f
-
-        /** the amount by which the biography should be scrolled at the most */
         private var maxViewOffset = 0f
-        private var canvas = Canvas(bitmap)
+        private var canvas: Canvas? = null
         private var paintBiography = TextPaint()
+
+        private fun createSafeBitmap(width: Int, height: Int): Bitmap {
+            val w = width.coerceAtLeast(1)
+            val h = height.coerceAtLeast(1)
+            return Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+        }
 
         fun createBiography(selected: Hero?) {
             val text: String
-            if (data.level > 0) {
+            paintBiography = if (data.level > 0) {
                 text = vitae + "\n"
-                paintBiography =
-                    TextPaint(textStyleContent(gameActivity))
+                TextPaint(textStyleContent(gameActivity))
             } else {
                 text = effect
-                paintBiography =
-                    TextPaint(textStyleContent(gameActivity, colorParam = R.color.foreground_inactive_color))
-
+                TextPaint(textStyleContent(gameActivity, colorParam = R.color.foreground_inactive_color))
             }
+
+            val layoutWidth = screenArea.width().coerceAtLeast(1)
             val textLayout = StaticLayout(
-                    text, paintBiography, screenArea.width(),
-                    Layout.Alignment.ALIGN_NORMAL, 1.0f,
-                    0.0f,
-                    false
+                    text, paintBiography, layoutWidth,
+                    Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false
             )
-            area.bottom =
-                screenArea.top + textLayout.height
-            this.bitmap = createBitmap(area.width(), area.height(), Bitmap.Config.ARGB_8888)
-            canvas = Canvas(bitmap)
-            textLayout.draw(canvas)
-            maxViewOffset =
-                (area.height() + 2 - screenArea.height()).toFloat()
-            maxViewOffset = if (maxViewOffset < 0f) 0f else maxViewOffset
+
+            area.bottom = screenArea.top + textLayout.height
+            bitmap = createSafeBitmap(area.width(), area.height())
+            canvas = Canvas(bitmap!!)
+            textLayout.draw(canvas!!)
+
+            maxViewOffset = (area.height() + 2 - screenArea.height()).toFloat().coerceAtLeast(0f)
         }
 
         fun display(canvas: Canvas) {
-            val sourceRect =
-                Rect(0, -viewOffset.toInt(), bitmap.width, screenArea.height() - viewOffset.toInt())
-            canvas.drawBitmap(bitmap, sourceRect, screenArea, paintBiography)
+            bitmap?.let {
+                val sourceRect = Rect(
+                        0, -viewOffset.toInt(),
+                        it.width, screenArea.height() - viewOffset.toInt()
+                )
+                canvas.drawBitmap(it, sourceRect, screenArea, paintBiography)
+            }
         }
 
         fun scroll(displacement: Float) {
-            val scrollFactor = 1.0f  // higher values make scrolling faster
+            val scrollFactor = 1.0f
             viewOffset -= displacement * scrollFactor
-            if (viewOffset > 0f) viewOffset = 0f // avoid scrolling when already at end of area
-            if (viewOffset < -maxViewOffset) viewOffset = -maxViewOffset
+            viewOffset = viewOffset.coerceIn(-maxViewOffset, 0f)
         }
     }
 
