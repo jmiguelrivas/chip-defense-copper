@@ -37,8 +37,8 @@
     <string name="chip_defense_copper_label" translatable="false">jmiguelrivas/chip-defense-copper</string>
     <string name="chip_defense_url" translatable="false">https://github.com/ochadenas/cpudefense</string>
     <string name="chip_defense_label" translatable="false">ochadenas/cpudefense</string>
-    <string name="wiki_url" translatable="false">https://chip-defense.github.io/</string>
-    <string name="wiki_label">Game Website</string>
+    <string name="web_url" translatable="false">https://chip-defense.github.io/</string>
+    <string name="web_label">Game Website</string>
     <string name="works_offline">Works Offline</string>
     <string name="no_trackers">No Trackers</string>
     <string name="no_ads">No Ads</string>
@@ -109,7 +109,6 @@
     <string name="cost_desc">[cost: %d]</string>
     <string name="message_cannot_fire">Use “%s” to release this hero.</string>
     <string name="message_is_on_leave">%s is currently on leave.</string>
-    <string name="button_wiki">"Check Wikipedia Bio"</string>
     <string name="coins_received_as_gift">You received %d coins as gift.</string>
 
     <!-- INSTRUCTIONS -->
@@ -234,63 +233,6 @@
     <string name="chris_dibona">Open-source advocate at Google, supporting community projects and collaborative development. He has promoted developer engagement and championed the benefits of shared knowledge in software engineering.</string>
     <string name="brian_behlendorf">Key developer of the Apache HTTP Server, contributing to open-source web infrastructure. He played a central role in scaling the internet’s server ecosystem and promoting collaborative software development.</string>
     <string name="charles_babbage">Designed the Difference Engine and the Analytical Engine, early mechanical computers that introduced concepts such as programmable instructions, memory, and processing. His work laid the foundation for modern computer architecture and inspired the development of software and hardware design.</string>
-
-    <!-- HEROES :: WIKIPEDIA -->
-    <string name="url_wikipedia_fallback">https://en.wikipedia.org/wiki/Main_Page</string>
-    <string name="url_turing">https://en.wikipedia.org/wiki/Alan_Turing</string>
-    <string name="url_lovelace">https://en.wikipedia.org/wiki/Ada_Lovelace</string>
-    <string name="url_hollerith">https://en.wikipedia.org/wiki/Herman_Hollerith</string>
-    <string name="url_franke">https://en.wikipedia.org/wiki/Herbert_W._Franke</string>
-    <string name="url_osborne">https://en.wikipedia.org/wiki/Adam_Osborne</string>
-    <string name="url_tramiel">https://en.wikipedia.org/wiki/Jack_Tramiel</string>
-    <string name="url_mandelbrot">https://en.wikipedia.org/wiki/Benoit_Mandelbrot</string>
-    <string name="url_hamilton">https://en.wikipedia.org/wiki/Margaret_Hamilton_(software_engineer)</string>
-    <string name="url_pascal">https://en.wikipedia.org/wiki/Blaise_Pascal</string>
-    <string name="url_conway">https://en.wikipedia.org/wiki/John_Horton_Conway</string>
-    <string name="url_vaughan">https://en.wikipedia.org/wiki/Dorothy_Vaughan</string>
-    <string name="url_schneier">https://en.wikipedia.org/wiki/Bruce_Schneier</string>
-    <string name="url_diffie">https://en.wikipedia.org/wiki/Whitfield_Diffie</string>
-    <string name="url_zuse">https://en.wikipedia.org/wiki/Konrad_Zuse</string>
-    <string name="url_meier">https://en.wikipedia.org/wiki/Sid_Meier</string>
-    <string name="url_kilby">https://en.wikipedia.org/wiki/Jack_Kilby</string>
-    <string name="url_neumann">https://en.wikipedia.org/wiki/John_von_Neumann</string>
-    <string name="url_knuth">https://en.wikipedia.org/wiki/Donald_Knuth</string>
-    <string name="url_hopper">https://en.wikipedia.org/wiki/Grace_Hopper</string>
-    <string name="url_leibniz">https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz</string>
-    <string name="url_chappe">https://en.wikipedia.org/wiki/Claude_Chappe</string>
-    <string name="url_ohm">https://en.wikipedia.org/wiki/Georg_Ohm</string>
-    <string name="url_volta">https://en.wikipedia.org/wiki/Alessandro_Volta</string>
-    <string name="url_shannon">https://en.wikipedia.org/wiki/Claude_Shannon</string>
-    <string name="url_wiener">https://en.wikipedia.org/wiki/Norbert_Wiener</string>
-    <string name="url_boole">https://en.wikipedia.org/wiki/George_Boole</string>
-    <string name="url_torvalds">https://en.wikipedia.org/wiki/Linus_Torvalds</string>
-    <string name="url_stallman">https://en.wikipedia.org/wiki/Richard_Stallman</string>
-    <string name="url_berners_lee">https://en.wikipedia.org/wiki/Tim_Berners-Lee</string>
-    <string name="url_ciaran_gultnieks">https://en.wikipedia.org/wiki/Ciaran_Gultnieks</string>
-    <string name="url_miguel_de_icaza">https://en.wikipedia.org/wiki/Miguel_de_Icaza</string>
-    <string name="url_gabriela_salas_cabrera">https://en.wikipedia.org/wiki/Gabriela_Salas_Cabrera</string>
-    <string name="url_luis_von_ahn">https://en.wikipedia.org/wiki/Luis_von_Ahn</string>
-    <string name="url_chris_lilley">https://en.wikipedia.org/wiki/Chris_Lilley_(computer_scientist)</string>
-    <string name="url_al_khwarizmi">https://en.wikipedia.org/wiki/Al-Khwarizmi</string>
-    <string name="url_euclid">https://en.wikipedia.org/wiki/Euclid</string>
-    <string name="url_guido_van_rossum">https://en.wikipedia.org/wiki/Guido_van_Rossum</string>
-    <string name="url_federico_mena_quintero">https://github.com/federicomenaquintero</string>
-    <string name="url_hakon_wium_lie">https://en.wikipedia.org/wiki/H%C3%A5kon_Wium_Lie</string>
-    <string name="url_brendan_eich">https://en.wikipedia.org/wiki/Brendan_Eich</string>
-    <string name="url_ward_cunningham">https://en.wikipedia.org/wiki/Ward_Cunningham</string>
-    <string name="url_gottlob_frege">https://en.wikipedia.org/wiki/Gottlob_Frege</string>
-    <string name="url_nikola_tesla">https://en.wikipedia.org/wiki/Nikola_Tesla</string>
-    <string name="url_bertrand_russell">https://en.wikipedia.org/wiki/Bertrand_Russell</string>
-    <string name="url_phil_zimmermann">https://en.wikipedia.org/wiki/Phil_Zimmermann</string>
-    <string name="url_larry_wall">https://en.wikipedia.org/wiki/Larry_Wall</string>
-    <string name="url_mitchell_baker">https://en.wikipedia.org/wiki/Mitchell_Baker</string>
-    <string name="url_eric_s_raymond">https://en.wikipedia.org/wiki/Eric_S._Raymond</string>
-    <string name="url_bruce_perens">https://en.wikipedia.org/wiki/Bruce_Perens</string>
-    <string name="url_bert_bos">https://en.wikipedia.org/wiki/Bert_Bos</string>
-    <string name="url_yukihiro_matsumoto">https://en.wikipedia.org/wiki/Yukihiro_Matsumoto</string>
-    <string name="url_chris_dibona">https://en.wikipedia.org/wiki/Chris_DiBona</string>
-    <string name="url_brian_behlendorf">https://en.wikipedia.org/wiki/Brian_Behlendorf</string>
-    <string name="url_charles_babbage">https://en.wikipedia.org/wiki/Charles_Babbage</string>
 
     <!-- HEROES :: EFFECT -->
     <string name="shortdesc_SUB">SUB Chip speed</string>

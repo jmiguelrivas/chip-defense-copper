@@ -30,7 +30,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
     private var buttonRefund: Button? = null
     private var buttonRefundAll: Button? = null
     private var buttonPurchase: Button? = null
-    private var buttonWikipedia: Button? = null
     private var showRefundOneButton: Boolean = false
     private var myArea = Rect()
 
@@ -169,7 +168,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
         buttonRefund = Button(gameView, resources.getString(R.string.button_refund_one))
         buttonRefundAll = Button(gameView, resources.getString(R.string.button_refund_all))
         buttonPurchase = Button(gameView, purchaseButtonText(null))
-        buttonWikipedia = Button(gameView, resources.getString(R.string.button_wiki))
 
         layoutButtons()
     }
@@ -190,8 +188,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
             buttonRefund?.let { buttonsStack.add(it) }
         }
 
-        buttonWikipedia?.let { buttonsStack.add(it) }
-
         // Position buttons
         for (button in buttonsStack) {
             val height = button.area.height()
@@ -208,10 +204,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
     }
 
     fun onDown(event: MotionEvent): Boolean {
-        if (buttonWikipedia?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
-            Sounds.playBtnActiveSound()
-            wikipedia()
-        }
         if (buttonFinish?.area?.contains(event.x.toInt(), event.y.toInt()) == true) {
             Sounds.playBtnActiveSound()
             selected = null
@@ -286,20 +278,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
             makeButtonText(null)
         }
         return false
-    }
-
-    private fun wikipedia()
-            /** opens the system's default browser and points it to the hero's wikipedia article */
-    {
-        if (currentWiki != selected) {
-            val browserIntent =
-                Intent(Intent.ACTION_VIEW, selected?.person?.url?.toUri())
-            try {
-                gameView.gameActivity.startActivity(browserIntent)
-                currentWiki = selected
-            } catch (_: Exception) {
-            }  // come here if no external app can handle the request
-        }
     }
 
     private fun refundAll()
@@ -421,7 +399,6 @@ class Marketplace(val gameView: GameView) : GameElement() {
         buttonRefundAll?.display(canvas)
         selected?.let {
             buttonPurchase?.display(canvas)
-            if (showRefundOneButton) buttonWikipedia?.display(canvas)
         }
 
         // draw biography

@@ -75,7 +75,7 @@ class Hero(var gameActivity: GameActivity, type: Type)
     var effect: String = ""
     var vitae: String = ""
 
-    /** hero cannot upgraded beyond this level. This value can be modified for certain heroes,
+    /** hero cannot upgrade beyond this level. This value can be modified for certain heroes,
      * or by the effect of Sid Meier
      */
     private var maxLevel = 7
@@ -450,9 +450,6 @@ class Hero(var gameActivity: GameActivity, type: Type)
         /** the hero's photo */
         var picture: Bitmap? = null
 
-        /** link to the hero's wikipedia article */
-        var url = ""
-
         fun setType(mode: GameMode) {
             val info = HeroesCatalog.get(data.type, gameActivity, resources, mode)
             if (!info.isAvailableIn(mode)) {
@@ -464,10 +461,6 @@ class Hero(var gameActivity: GameActivity, type: Type)
             effect = info.effect
             vitae = info.vitae
             picture = info.picture
-
-            val resId =
-                resources.getIdentifier("url_" + info.key, "string", gameActivity.packageName)
-            url = resources.getString(resId)
         }
     }
 
@@ -483,18 +476,6 @@ class Hero(var gameActivity: GameActivity, type: Type)
         private var maxViewOffset = 0f
         private var canvas = Canvas(bitmap)
         private var paintBiography = TextPaint()
-
-        //        var wikiButton = Button(
-//                gameActivity.gameView,
-//                resources.getString(R.string.button_wiki),
-//        )
-        var wikiButtonVisible = true
-
-        /** whether clicking on the button triggers an action */
-        var wikiButtonActive = true
-
-        /** distance to lower edge of area where the wikipedia button begins to fade */
-        private var margin = 10 * gameActivity.gameView.scaleFactor
 
         fun createBiography(selected: Hero?) {
             val text: String

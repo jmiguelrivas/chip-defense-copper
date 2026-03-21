@@ -84,13 +84,13 @@
                 app:text="@string/chip_defense_label" />
 
             <com.rama.chipdefense_copper.IconLink
-                android:id="@+id/button_wiki"
+                android:id="@+id/button_web"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                app:url="@string/wiki_url"
+                app:url="@string/web_url"
                 app:icon="@drawable/icon_face_thinking_solid"
-                app:text="@string/wiki_label" />
+                app:text="@string/web_label" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_back"
