@@ -56,12 +56,12 @@ abstract class BaseFullscreenActivity : AppCompatActivity() {
                 else
                     Insets.NONE // no cutout on pre-P devices
 
-            val gestureInsets = insets.getInsets(WindowInsetsCompat.Type.systemGestures())
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 
-            val left = maxOf(cutoutInsets.left, gestureInsets.left)
-            val top = maxOf(cutoutInsets.top, gestureInsets.top)
-            val right = maxOf(cutoutInsets.right, gestureInsets.right)
-            val bottom = maxOf(cutoutInsets.bottom, gestureInsets.bottom)
+            val left = maxOf(cutoutInsets.left, systemBars.left)
+            val top = maxOf(cutoutInsets.top, systemBars.top)
+            val right = maxOf(cutoutInsets.right, systemBars.right)
+            val bottom = maxOf(cutoutInsets.bottom, systemBars.bottom)
 
             view.setPadding(
                     left + padding,
