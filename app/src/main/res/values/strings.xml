@@ -37,7 +37,7 @@
     <string name="chip_defense_copper_label" translatable="false">jmiguelrivas/chip-defense-copper</string>
     <string name="chip_defense_url" translatable="false">https://github.com/ochadenas/cpudefense</string>
     <string name="chip_defense_label" translatable="false">ochadenas/cpudefense</string>
-    <string name="web_url" translatable="false">https://chip-defense.github.io/</string>
+    <string name="web_url" translatable="false">chip-defense.github.io</string>
     <string name="web_label">Game Website</string>
     <string name="works_offline">Works Offline</string>
     <string name="no_trackers">No Trackers</string>
