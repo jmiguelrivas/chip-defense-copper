@@ -17,20 +17,21 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_title"
-            style="@style/Title" />
-
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_title"
+                    style="@style/Title" />
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/switch_disable_purchase_dialog"
@@ -125,16 +126,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.CpuDefense.Button.Danger" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_back"
-                    android:onClick="dismiss"
-                    android:text="@string/go_back"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.CpuDefense.Button" />
-
             </LinearLayout>
         </ScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#777"
+            android:layout_marginVertical="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_back"
+            android:onClick="dismiss"
+            android:text="@string/go_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.CpuDefense.Button" />
+
     </LinearLayout>
 </FrameLayout>

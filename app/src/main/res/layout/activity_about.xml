@@ -279,22 +279,22 @@
                         app:icon="@drawable/icon_octagon_check_solid"
                         app:text="CC 3.0" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#777"
-                        android:layout_marginVertical="16sp" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/button_back"
-                        android:onClick="dismiss"
-                        android:text="@string/go_back"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/Widget.CpuDefense.Button" />
-
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#777"
+            android:layout_marginVertical="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_back"
+            android:onClick="dismiss"
+            android:text="@string/go_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.CpuDefense.Button" />
     </LinearLayout>
 </FrameLayout>
