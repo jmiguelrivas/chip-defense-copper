@@ -16,7 +16,7 @@ with the same license terms.
 ## Modifications and Additions
 
 This fork includes significant modifications and new original content
-by [Miguel Rivas](https://github.com/jmiguelrivas), including:
+by [Pombo](https://github.com/pomboverso), including:
 
 - UI/UX redesign of menus and in-game interfaces
 - New visual identity and logo
@@ -28,7 +28,7 @@ by [Miguel Rivas](https://github.com/jmiguelrivas), including:
 Unless otherwise specified, all new code and original assets added in this fork are released under
 the MIT License.
 
-Modifications and additional content © 2026 [Miguel Rivas](https://github.com/ochadenas)
+Modifications and additional content © 2026 [Pombo](https://github.com/pomboverso)
 
 ---
 

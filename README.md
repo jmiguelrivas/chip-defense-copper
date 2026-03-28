@@ -18,16 +18,16 @@ make gameplay easier.
 
 ## Screenshots
 
-| Home | Settings | Gameplay | Hero Vault | About |
-| - | - | - | - | - |
-| ![Home](https://raw.githubusercontent.com/jmiguelrivas/chip-defense-copper/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png) | ![Settings](https://raw.githubusercontent.com/jmiguelrivas/chip-defense-copper/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png) | ![Gameplay](https://raw.githubusercontent.com/jmiguelrivas/chip-defense-copper/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/7.png) | ![Hero Vault](https://raw.githubusercontent.com/jmiguelrivas/chip-defense-copper/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/5.png) | ![About](https://raw.githubusercontent.com/jmiguelrivas/chip-defense-copper/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/9.png) |
+| Home                                                                                                                                                    | Settings                                                                                                                                                    | Gameplay                                                                                                                                                    | Hero Vault                                                                                                                                                    | About                                                                                                                                                    |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![Home](https://raw.githubusercontent.com/pomboverso/chip-defense-copper/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png) | ![Settings](https://raw.githubusercontent.com/pomboverso/chip-defense-copper/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png) | ![Gameplay](https://raw.githubusercontent.com/pomboverso/chip-defense-copper/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/7.png) | ![Hero Vault](https://raw.githubusercontent.com/pomboverso/chip-defense-copper/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/5.png) | ![About](https://raw.githubusercontent.com/pomboverso/chip-defense-copper/refs/heads/main/fastlane/metadata/android/en-US/images/phoneScreenshots/9.png) |
 
 ---
 
 ## Downlaod
 
 Get the latest APK from
-the [Releases page](https://github.com/jmiguelrivas/chip-defense-copper/releases)
+the [Releases page](https://github.com/pomboverso/chip-defense-copper/releases)
 
 ---
 

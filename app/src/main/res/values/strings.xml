@@ -33,8 +33,8 @@
     <string name="export_data">Export Data</string>
 
     <!-- ABOUT -->
-    <string name="chip_defense_copper_url" translatable="false">https://github.com/jmiguelrivas/chip-defense-copper</string>
-    <string name="chip_defense_copper_label" translatable="false">jmiguelrivas/chip-defense-copper</string>
+    <string name="chip_defense_copper_url" translatable="false">https://github.com/pomboverso/chip-defense-copper</string>
+    <string name="chip_defense_copper_label" translatable="false">pomboverso/chip-defense-copper</string>
     <string name="chip_defense_url" translatable="false">https://github.com/ochadenas/cpudefense</string>
     <string name="chip_defense_label" translatable="false">ochadenas/cpudefense</string>
     <string name="web_url" translatable="false">chip-defense.github.io</string>
